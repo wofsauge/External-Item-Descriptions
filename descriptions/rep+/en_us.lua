@@ -12,7 +12,7 @@ local languageCode = "en_us"
 
 ---------- Collectibles ----------
 local C_ID = "5.100."
-local additionalInformations={
+local additionalCollectibleInformations = {
 	-- Change: added "Creep persists until you exit the room"
 	[C_ID .. 56] = "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room", -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
@@ -58,8 +58,35 @@ local additionalInformations={
 
 	
 }
-EID:CompareWithPreviousDLC(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:updateDescriptionsViaTable(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
+
+---------- Pills ----------
+local Pill_ID = "5.70."
+local HorseID = PillColor.PILL_GIANT_FLAG
+
+local additionalPillInformations = {
+    ---------- Horse Pills ----------
+	-- Change: Teleports to a special room instead of a random room
+	[Pill_ID .. (HorseID + 20)] = "Teleports Isaac to a special room", -- Telepills
+	-- Change: Forgets all previously identified pills
+	[Pill_ID .. (HorseID + 26)] = "{{CurseLost}} Hides the floor map#{{Pill}} Forgets all previously identified pills", -- Amnesia
+	-- Change: Added additional curses information
+	[Pill_ID .. (HorseID + 32)] = "{{CurseMaze}} Curse of the Maze effect for the floor#Additional curses after multiple uses", -- ???
+	-- Change: affects whole floor
+	[Pill_ID .. (HorseID + 42)] = "{{Slow}} Slows Isaac and all enemies for the whole floor", -- I'm Drowsy...
+	-- Change: affects whole floor
+	[Pill_ID .. (HorseID + 43)] = "Speeds up Isaac and all enemies for the whole floor", --I'm Excited!!
+	-- Change: Forces the effect to be a golden trinket
+	[Pill_ID .. (HorseID + 44)] = "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently", -- Gulp!
+}
+EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+
+
+
+
+
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"

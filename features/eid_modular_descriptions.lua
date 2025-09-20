@@ -25,7 +25,9 @@ EID.StatisticsData = {
     ["Life"] = { Priority = 9580, Arrow = true },
     ["SizeUp"] = { Priority = 9570, Arrow = true },
     ["SizeDown"] = { Priority = 9560, Arrow = true },
-    ["Flight"] = { Priority = 9550, },
+    ["Flight"] = { Priority = 9550 },
+    ["RandomStatUp"] = { Priority = 9540 },
+    ["RandomStatDown"] = { Priority = 9530 },
 
     -- Health related
     ["RedHeart"] = { Priority = 8990, Arrow = true, Icon = "{{Heart}}" },

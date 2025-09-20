@@ -1,8 +1,12 @@
 -- Repentance Modular Descriptions
 -- Generates item descriptions based on stat changes defined in statValues
 local C_ID = "5.100."
+local Pill_ID = "5.70."
+local HorseID = PillColor.PILL_GIANT_FLAG
 
 local repentanceItemStats = {
+---------- Collectibles ----------
+
     [C_ID .. 2] = { FireRateMultiplier = 0.51 }, -- Inner Eye
     [C_ID .. 5] = { Damage = 1.5, Range = 1.5, RangeMultiplier = 2, ShotSpeedMultiplier = 1.6, Luck = -1 }, -- My Reflection
     [C_ID .. 6] = { Tears = 1.5, Range = -1.5, RangeMultiplier = 0.8 }, -- Number One
@@ -157,5 +161,37 @@ local repentanceItemStats = {
 	[C_ID .. 727] = { Bomb = 5 }, -- Ghost Bombs
 	[C_ID .. 730] = { Damage = 0.75, Luck = 1 }, -- Glass Eye
 	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
+
+
+---------- Pills ----------
+
+    [Pill_ID .. 12] = { Range = -1 }, -- Range Down
+    [Pill_ID .. 13] = { Range = 1.25 }, -- Range Up
+	[Pill_ID .. 48] = { ShotSpeed = -0.15 }, -- Shot speed Down
+	[Pill_ID .. 49] = { ShotSpeed = 0.15 }, -- Shot speed Up
+    [Pill_ID .. 50] = { RandomStatUp = 1, RandomStatDown = 1 }, -- Experimental Pill
+
+---------- Horse Pills ----------
+
+    [Pill_ID .. (HorseID + 3)] = { SoulHeart = 4 }, -- Balls of Steel
+    [Pill_ID .. (HorseID + 6)] = { SoulHeart = 3, FullHealth = true }, -- Full Health
+    [Pill_ID .. (HorseID + 7)] = { RedHeart = -2 }, -- Health Down
+    [Pill_ID .. (HorseID + 8)] = { EmptyHeart = 2 }, -- Health Up
+    [Pill_ID .. (HorseID + 12)] = { Range = -2 }, -- Range Down
+    [Pill_ID .. (HorseID + 13)] = { Range = 2.5 }, -- Range Up
+    [Pill_ID .. (HorseID + 14)] = { Speed = -0.24 }, -- Speed Down
+    [Pill_ID .. (HorseID + 15)] = { Speed = 0.3 }, -- Speed Up
+    [Pill_ID .. (HorseID + 16)] = { Tears = -0.56 }, -- Tears Down
+    [Pill_ID .. (HorseID + 17)] = { Tears = 0.70 }, -- Tears Up
+    [Pill_ID .. (HorseID + 18)] = { Luck = -2 }, -- Luck Down
+    [Pill_ID .. (HorseID + 19)] = { Luck = 2 }, -- Luck Up
+    [Pill_ID .. (HorseID + 21)] = { Spawns = {Battery = {3,4}} }, -- 48 Hour Energy!
+    [Pill_ID .. (HorseID + 22)] = { Spawns = {RedHeart = {1,4}} }, -- Hematemesis
+    [Pill_ID .. (HorseID + 39)] = { Spawns = {BlueFly = 6} }, -- Friends Till The End!
+    [Pill_ID .. (HorseID + 48)] = { ShotSpeed = -0.3 }, -- Shot speed Down
+    [Pill_ID .. (HorseID + 49)] = { ShotSpeed = 0.3 }, -- Shot speed Up
+
+
+
 }
 EID:updateDescriptionsViaTable(repentanceItemStats, EID.ItemStats)
