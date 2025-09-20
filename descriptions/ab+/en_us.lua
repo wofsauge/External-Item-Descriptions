@@ -46,6 +46,8 @@ EID.descriptions["en_us"].ModularDescriptions = {
     SizeUp = "Size up",
     SizeDown = "Size down",
     Flight = "Flight",
+	RandomStatUp = "↑ Increases {value} random stat{pluralize}";
+	RandomStatDown = "↓ Decreases {value} random stat{pluralize}";
 
     -- Health related
     RedHeart = "{value} Health",
@@ -99,6 +101,8 @@ EID.descriptions["en_us"].ModularDescriptions = {
     ContactDamagePerSecond = "Deals {value} contact damage per second",
 }
 
+
+---------- Collectibles ----------
 
 local C_ID = "5.100."
 EID.descriptions[languageCode].AdditionalInformations = {
@@ -274,7 +278,6 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 237] = "Piercing tears", -- Death's Touch
 	[C_ID .. 238] = "{{Warning}} Getting both parts of the key opens a big golden door#{{EternalHeart}} +2% chance for Eternal Hearts", -- Key Piece 1
 	[C_ID .. 239] = "{{Warning}} Getting both parts of the key opens a big golden door#{{EternalHeart}} +2% chance for Eternal Hearts", -- Key Piece 2
-	[C_ID .. 240] = "↑ Increases 4 random stats#↓ Decreases 2 random stats", -- Experimental Treatment
 	[C_ID .. 241] = "Doubles all room clear rewards#33% chance for no room clear reward", -- Contract from Below
 	[C_ID .. 242] = "50% chance to block enemy shots", -- Infamy
 	[C_ID .. 243] = "Blocks enemy shots coming from the direction Isaac is shooting", -- Trinity Shield
@@ -493,7 +496,7 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 478] = "Pauses all enemies in the room until Isaac shoots#Touching a paused enemy still deals damage to Isaac#Enemies unpause after 30 seconds", -- Pause
 	[C_ID .. 479] = "{{Trinket}} Consumes Isaac's held trinkets and grants their effects permanently#Increases the spawn rate of trinkets", -- Smelter
 	[C_ID .. 480] = "Converts pickups into blue flies or spiders#Doubles all blue flies and spiders#Spawns 1 blue fly or spider if Isaac has none", -- Compost
-	[C_ID .. 481] = "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#{{Blank}} Corrupts all sprites and music in the room", -- Dataminer
+	[C_ID .. 481] = "{{Timer}} Random tear effects for the room#{{Blank}} Corrupts all sprites and music in the room", -- Dataminer
 	[C_ID .. 482] = "Changes your character to a random character#Removes the most recent item collected", -- Clicker
 	[C_ID .. 483] = "Affects the whole floor#Explodes all objects#Deals 200 damage to all enemies#Opens secret rooms#Opens Boss Rush and Hush regardless of time", -- Mama Mega!
 	[C_ID .. 484] = "Upon use, pushes enemies away and spawns a rock wave around Isaac#The rock wave can open rooms and break rocks", -- Wait What?
@@ -564,8 +567,51 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 550] = "Mom's Foot constantly tries to stomp Isaac#Using the item stops the stomping for the room (or one Boss Rush wave)#{{Warning}} (Try to beat Boss Rush with it!)", -- Broken Shovel
 	[C_ID .. 551] = "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\"", -- Broken Shovel
 	[C_ID .. 552] = "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\"", -- Mom's Shovel
-
 }
+
+
+---------- Pills ----------
+
+local Pill_ID = "5.70."
+local additionalPillInformations = {
+    [Pill_ID .. 1] = "{{Poison}} Isaac farts and poisons nearby enemies", -- Bad Gas
+    [Pill_ID .. 2] = "{{Warning}} Deals 1 heart of damage to Isaac#Becomes a Full Health pill at 1 heart or less", -- Bad Trip
+    [Pill_ID .. 4] = "Swaps Isaac's number of {{Bomb}} bombs and {{Key}} keys", -- Bombs are Key
+    [Pill_ID .. 5] = "Isaac quickly spawns 5 lit bombs", -- Explosive Diarrhea
+    [Pill_ID .. 6] = "{{HealingRed}} Fully heals all heart containers", -- Full Health
+    [Pill_ID .. 7] = "Becomes a Health Up pill at 0 or 1 heart containers", -- Health Down
+    [Pill_ID .. 9] = "No effect", -- I Found Pills
+    [Pill_ID .. 10] = "No effect#Eating 3 grants the Adult transformation:#↑ {{Heart}} +1 Health", -- Puberty
+    [Pill_ID .. 20] = "Teleports Isaac to a random room#{{ErrorRoom}} Small chance to teleport Isaac to the I AM ERROR room", -- Telepills
+    [Pill_ID .. 21] = "{{Battery}} Fully recharges the active item", -- 48 Hour Energy!
+    [Pill_ID .. 22] = "{{Warning}} Drains all but one heart container", -- Hematemesis
+    [Pill_ID .. 23] = "Prevents Isaac from moving and shooting for 2 seconds", -- Paralysis
+    [Pill_ID .. 24] = "{{SecretRoom}} Opens all secret room entrances on the floor", -- I can see forever!
+    [Pill_ID .. 25] = "{{Charm}} Charms all enemies in the room", -- Pheromones
+    [Pill_ID .. 26] = "{{CurseLost}} Hides the map for the floor", -- Amnesia
+    [Pill_ID .. 27] = "Spawns a large puddle on the ground which damages enemies", -- Lemon Party
+    [Pill_ID .. 28] = "{{Timer}} Isaac shoots diagonally for 30 seconds", -- R U A Wizard?
+    [Pill_ID .. 29] = "{{Timer}} Reduces all damage taken to half a heart for the room", -- Percs!
+    [Pill_ID .. 30] = "{{Timer}} Increases all damage taken to a full heart for the room", -- Addicted!
+    [Pill_ID .. 31] = "Isaac spawns poop behind him for 2 seconds", -- Re-Lax
+    [Pill_ID .. 32] = "{{CurseMaze}} Curse of the Maze effect for the floor", -- ???
+    [Pill_ID .. 33] = "Doesn't affect his hitbox", -- One makes you larger
+    [Pill_ID .. 34] = "Also decreases his hitbox", -- One makes you small
+    [Pill_ID .. 35] = "Spawns 1 blue spider for each poop in the room", -- Infested!
+    [Pill_ID .. 36] = "Spawn 1 blue spider for each enemy in the room#Spawns 1-3 blue spiders if there are no enemies in the room", -- Infested?
+    [Pill_ID .. 37] = "{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HealingRed}} Killing 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room", -- Power Pill!
+    [Pill_ID .. 38] = "{{Timer}} Pixelates the screen 3 times over 30 second", -- Retro Vision
+    [Pill_ID .. 40] = "Spawns a pool of slippery creep", -- X-Lax
+    [Pill_ID .. 41] = "{{Slow}} Spawns a pool of slowing creep", -- Something's wrong...
+    [Pill_ID .. 42] = "{{Slow}} Slows all enemies in the room", -- I'm Drowsy...
+    [Pill_ID .. 43] = "Speeds up all enemies in the room", -- I'm Excited!!
+    [Pill_ID .. 44] = "{{Trinket}} Consumes Isaac's trinket and grants its effects permanently", -- Gulp!
+    [Pill_ID .. 45] = "{{Collectible149}} Shoots one Ipecac tear", -- Horf!
+    [Pill_ID .. 46] = "{{Timer}} Receive for 6 seconds:#Invincibility#Isaac can't shoot (No contact damage)", -- Feels like I'm walking on sunshine!
+    [Pill_ID .. 47] = "Spawns the last pill used before Vurp!", -- Vurp!
+}
+EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion

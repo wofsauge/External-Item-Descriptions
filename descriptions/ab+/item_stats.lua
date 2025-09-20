@@ -1,8 +1,14 @@
 -- AB+ Modular Descriptions
 -- Generates item descriptions based on stat changes defined in statValues
 local C_ID = "5.100."
+local T_ID = "5.350."
+local Pill_ID = "5.70."
+local Card_ID = "5.300."
 
 EID.ItemStats = {
+
+---------- Collectibles ----------
+
     [C_ID .. 1] = { Tears = 0.7 }, -- The Sad Onion
     [C_ID .. 2] = { TearsMultiplier = 0.48, TearDelay = 3 }, -- The Inner Eye
     [C_ID .. 3] = { TearFlags = { [TearFlags.TEAR_HOMING] = 1.0 } }, -- Spoon Bender
@@ -137,6 +143,7 @@ EID.ItemStats = {
     [C_ID .. 237] = { Damage = 1.5, Tears = -0.3, TearSizeMultiplier =2 }, -- Death's Touch
     [C_ID .. 238] = { AngelChance = 25 }, -- Key Piece 1
     [C_ID .. 239] = { AngelChance = 25 }, -- Key Piece 2
+    [C_ID .. 240] = { RandomStatUp = 4, RandomStatDown = 2 }, -- Experimental Treatment
     [C_ID .. 251] = { Spawns = { Card = 1 }  }, -- Starter Deck
     [C_ID .. 252] = { Spawns = { Pill = 1 } }, -- Little Baggy
     [C_ID .. 253] = { RedHeart = 1, Luck = 1 }, -- Magic Scab
@@ -232,6 +239,7 @@ EID.ItemStats = {
     [C_ID .. 470] = { ContactDamagePerSecond = 30 }, -- Hushy
     [C_ID .. 473] = { ContactDamagePerSecond = 40.5, BlockProjectiles = true }, -- Big Chubby
     [C_ID .. 474] = { BlockProjectiles = true }, -- Tonsil
+	[C_ID .. 481] = { RandomStatUp = 1, RandomStatDown = 1 }, -- Dataminer
     [C_ID .. 492] = { Luck = 1 }, -- YO LISTEN!
     [C_ID .. 499] = { AngelChance = 100 }, -- Eucharist
 
@@ -246,6 +254,33 @@ EID.ItemStats = {
     [C_ID .. 542] = { Orbital = true }, -- Slipped Rib
     [C_ID .. 547] = { Tears = 0.7, BoneHeart = 1 }, -- Divorce Papers
     [C_ID .. 548] = { ContactDamagePerSecond = 7 }, -- Jaw Bone
+---------- Trinkets ----------
+
+
+---------- Cards ----------
+
+    
+---------- Pills ----------
+    [Pill_ID .. 3] = { SoulHeart = 2 }, -- Balls of Steel
+    [Pill_ID .. 6] = { FullHealth = true }, -- Full Health
+    [Pill_ID .. 7] = { RedHeart = -1 }, -- Health Down
+    [Pill_ID .. 8] = { EmptyHeart = 1 }, -- Health Up
+    [Pill_ID .. 11] = { Flies = 1 }, -- Pretty Fly
+    [Pill_ID .. 12] = { Range = -2 }, -- Range Down
+    [Pill_ID .. 13] = { Range = 2.5 }, -- Range Up
+    [Pill_ID .. 14] = { Speed = -0.12 }, -- Speed Down
+    [Pill_ID .. 15] = { Speed = 0.15 }, -- Speed Up
+    [Pill_ID .. 16] = { Tears = -0.28 }, -- Tears Down
+    [Pill_ID .. 17] = { Tears = 0.35 }, -- Tears Up
+    [Pill_ID .. 18] = { Luck = -1 }, -- Luck Down
+    [Pill_ID .. 19] = { Luck = 1 }, -- Luck Up
+    [Pill_ID .. 21] = { Spawns = {Battery = {1,2}} }, -- 48 Hour Energy!
+    [Pill_ID .. 22] = { Spawns = {RedHeart = {1,4}} }, -- Hematemesis
+    [Pill_ID .. 33] = { SizeUp = true }, -- One makes you larger
+    [Pill_ID .. 34] = { SizeDown = true }, -- One makes you small
+    [Pill_ID .. 39] = { Spawns = {BlueFly = 3} }, -- Friends Till The End!
+
+
 }
 
 
@@ -280,6 +315,6 @@ for k, v in ipairs(todo) do
     end
     
     print("[C_ID .. "..v[1].."] = { "..statString.." }, -- "..v[2])
-    print("--"..v[3])
+    print("[C_ID .. "..v[1].."] = \""..v[3].."\", -- "..v[2])
 end
 ]]--

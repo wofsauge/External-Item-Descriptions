@@ -12,7 +12,7 @@ local languageCode = "en_us"
 
 ---------- Collectibles ----------
 local C_ID = "5.100."
-local additionalInformations={
+local additionalCollectibleInformations = {
 	[C_ID .. 13] = "{{Poison}} Touching enemies poisons them#Isaac deals 48 contact damage per second", -- The Virus
 	[C_ID .. 30] = "Isaac deals 24 contact damage per second", -- Mom's Heels
 	[C_ID .. 37] = "Drops a large bomb below Isaac which deals 185 damage", -- Mr. Boom
@@ -353,9 +353,63 @@ local additionalInformations={
 	[C_ID .. 731] = "↑ {{Damage}} x1.28 Damage multiplier for the right eye#↑ {{Range}} +6.5 Range for the right eye#↓ {{Shotspeed}} -0.3 Shot speed for the right eye", -- Stye
 	[C_ID .. 732] = "{{Rune}} Spawns a random rune or soul stone", -- Mom's Ring
 }
+EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
-EID:CompareWithPreviousDLC(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:updateDescriptionsViaTable(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
+
+---------- Pills ----------
+
+local Pill_ID = "5.70."
+local HorseID = PillColor.PILL_GIANT_FLAG
+
+local additionalPillInformations = {
+	[Pill_ID .. 4] = "Swaps Isaac's number of {{Bomb}} bombs and {{Key}} keys#Golden bombs and keys are also swapped", -- Bombs are Key
+	[Pill_ID .. 38] = "{{Timer}} Pixelates the screen for 30 seconds", -- Retro Vision
+	[Pill_ID .. 42] = "{{Slow}} Slows Isaac and all enemies in the room", -- I'm Drowsy...
+	[Pill_ID .. 43] = "{{Timer}} Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds", -- I'm Excited!!
+	[Pill_ID .. 9999] = "Random pill effect#Has a chance to destroy itself with each use", -- Golden Pill
+    ---------- Horse Pills ----------
+    [Pill_ID .. (HorseID + 1)] = "{{Poison}} Poisons the entire room", -- Bad Gas
+    [Pill_ID .. (HorseID + 2)] = "{{Warning}} Deals 2 hearts of damage to Isaac#Becomes a Full Health horse pill (+3 Soul Hearts) at 1 heart or less", -- Bad Trip
+    [Pill_ID .. (HorseID + 4)] = "Swaps Isaac's number of {{Bomb}} bombs and {{Key}} keys#Increases bomb and key count by 50%#Golden bombs and keys are also swapped", -- Bombs are Key
+    [Pill_ID .. (HorseID + 5)] = "Spawns a few homing Mega Troll Bombs", -- Explosive Diarrhea
+    [Pill_ID .. (HorseID + 7)] = "Becomes a Health Up horse pill at 0 or 1 heart containers", -- Health Down
+    [Pill_ID .. (HorseID + 9)] = "No effect", -- I Found Pills
+    [Pill_ID .. (HorseID + 10)] = "No effect#Eating 3 grants the Adult transformation:#↑ {{Heart}} +1 Health", -- Puberty
+    [Pill_ID .. (HorseID + 11)] = "{{Collectible279}} Grants a Big Fan orbital#There is no limit on the number of Big Fans Isaac can have", -- Pretty Fly
+    [Pill_ID .. (HorseID + 20)] = "Teleports Isaac to a random room", -- Telepills
+    [Pill_ID .. (HorseID + 21)] = "{{Battery}} Fully recharges active items", -- 48 Hour Energy!
+    [Pill_ID .. (HorseID + 22)] = "{{EmptyHeart}} Drains all but one heart container", -- Hematemesis
+    [Pill_ID .. (HorseID + 23)] = "Prevents Isaac from moving and shooting for 4 seconds", -- Paralysis
+    [Pill_ID .. (HorseID + 24)] = "{{SecretRoom}} Opens secret room entrances on the floor#Full mapping effect", -- I can see forever!
+    [Pill_ID .. (HorseID + 25)] = "{{Charm}} Turns every enemy in the room permanently friendly", -- Pheromones
+    [Pill_ID .. (HorseID + 26)] = "{{CurseLost}} Hides the floor map", -- Amnesia
+    [Pill_ID .. (HorseID + 27)] = "Spawns a puddle of creep the size of a room which damages enemies", -- Lemon Party
+    [Pill_ID .. (HorseID + 28)] = "{{Timer}} Isaac shoots diagonally for 60 seconds", -- R U a Wizard?
+    [Pill_ID .. (HorseID + 29)] = "{{Timer}} Reduces all damage taken to half a heart for the room", -- Percs!
+    [Pill_ID .. (HorseID + 30)] = "{{Timer}} Increases all damage taken to a full heart for the room", -- Addicted!
+    [Pill_ID .. (HorseID + 31)] = "Isaac spawns poop behind him for 10 seconds", -- Re-Lax
+    [Pill_ID .. (HorseID + 32)] = "{{CurseMaze}} Curse of the Maze effect for the floor", -- ???
+    [Pill_ID .. (HorseID + 33)] = "Greatly increases Isaac's size#Doesn't affect his hitbox", -- One makes you larger
+    [Pill_ID .. (HorseID + 34)] = "Greatly decreases Isaac's size#Also decreases his hitbox's size", -- One makes you small
+    [Pill_ID .. (HorseID + 35)] = "Spawns 2 blue spiders for each poop in the room", -- Infested!
+    [Pill_ID .. (HorseID + 36)] = "Spawn 2 blue spiders for each enemy in the room#Spawns 2-6 blue spiders if there are no enemies in the room", -- Infested?
+    [Pill_ID .. (HorseID + 37)] = "{{Timer}} Receive for the room:#↑ {{Damage}} +7 Damage#↑ {{Range}} +3 Range#{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HealingRed}} Eating 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room", -- Power Pill!
+    [Pill_ID .. (HorseID + 38)] = "Pixelates the screen for 90 seconds", -- Retro Vision
+    [Pill_ID .. (HorseID + 40)] = "Spawns a pool of long lasting slippery creep", -- X-Lax
+    [Pill_ID .. (HorseID + 41)] = "{{Slow}} Spawns a pool of long lasting slowing creep", -- Something's wrong...
+    [Pill_ID .. (HorseID + 42)] = "{{Slow}} Slows Isaac and all enemies in the room", -- I'm Drowsy...
+    [Pill_ID .. (HorseID + 43)] = "Speeds up Isaac and all enemies in the room#Triggers again after 30 and 60 seconds", -- I'm Excited!!
+    [Pill_ID .. (HorseID + 44)] = "Consumes Isaac's trinket and grants its effects permanently", -- Gulp!
+    [Pill_ID .. (HorseID + 45)] = "{{Collectible149}} Shoots a cluster of Ipecac tears", -- Horf!
+    [Pill_ID .. (HorseID + 46)] = "{{Timer}} Receive for 6.5 seconds:#Invincibility#Isaac can't shoot but deals 40 contact damage per second#{{HealingRed}} Eating 2 enemies heals half a heart#{{Fear}} Fears all enemies in the room", -- Feels like I'm walking on sunshine!
+    [Pill_ID .. (HorseID + 47)] = "Spawns the last pill Isaac used as a horse pill", -- Vurp!
+    [Pill_ID .. (HorseID + 50)] = "↑ Increases 1 random stat twice#↓ Decreases 1 random stat twice", -- Experimental Pill
+    [Pill_ID .. (HorseID + 9999)] = "Random horse pill effect#Has a chance to destroy itself with each use", -- Golden Pill
+}
+EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+
 
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "↓ {{Tears}} x0.51 Fire rate multiplier#Isaac shoots 3 tears at once"}, -- The Inner Eye
