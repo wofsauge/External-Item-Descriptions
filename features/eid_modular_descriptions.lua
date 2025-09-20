@@ -36,7 +36,9 @@ EID.StatisticsData = {
     ["BoneHeart"] = { Priority = 8940, Icon = "{{EmptyBoneHeart}}" },
     ["EternalHeart"] = { Priority = 8930, Icon = "{{EternalHeart}}" },
     ["GoldenHeart"] = { Priority = 8920, Icon = "{{GoldenHeart}}" },
-    ["EmptyHeart"] = { Priority = 8910, Icon = "{{EmptyHeart}}" },
+    ["RottenHeart"] = { Priority = 8910, Icon = "{{RottenHeart}}" },
+    ["BrokenHeart"] = { Priority = 8910, Icon = "{{BrokenHeart}}" },
+    ["EmptyHeart"] = { Priority = 8900, Icon = "{{EmptyHeart}}" },
 
     -- Pickups / Spawns
     ["Coin"] = { Priority = 7990, Icon = "{{Coin}}" },
@@ -76,6 +78,7 @@ EID.StatisticsData = {
             EmptyHeart = "{{EmptyHeart}}",
             Bomb = "{{Bomb}}",
             Key = "{{Key}}",
+            Coin = "{{Coin}}",
             RandomCoin = "{{Coin}}",
             Card = "{{Card}}",
             Pill = "{{Pill}}",
@@ -338,6 +341,27 @@ local ignoreList = {
     ["5.100.531"] = true,
     ["5.100.541"] = true,
     ["5.100.548"] = true,
+    -- Repentance
+    ["5.100.554"] = true,
+    ["5.100.555"] = true,
+    ["5.100.561"] = true,
+    ["5.100.573"] = true,
+    ["5.100.584"] = true,
+    ["5.100.594"] = true, -- TODO (Jupiter): Heals 0.5 Heart looks weird
+
+    ["5.100.605"] = true,
+    ["5.100.607"] = true,
+    ["5.100.624"] = true,
+    ["5.100.633"] = true,
+    ["5.100.645"] = true,
+    ["5.100.659"] = true,
+    ["5.100.669"] = true,
+    ["5.100.686"] = true,
+    ["5.100.688"] = true,
+    ["5.100.693"] = true,
+    ["5.100.694"] = true,
+    
+    ["5.100.716"] = true,
 }
 
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
