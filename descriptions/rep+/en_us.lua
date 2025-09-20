@@ -11,18 +11,43 @@
 local languageCode = "en_us"
 
 ---------- Collectibles ----------
+local C_ID = "5.100."
 local additionalInformations={
 	-- Change: added "Creep persists until you exit the room"
-	[56] = "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room", -- Lemon Mishap
+	[C_ID .. 56] = "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room", -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second#Persists between rooms if player is at 1/2 hearts", -- Dead Bird
+	[C_ID .. 117] = "Taking damage spawns a bird that attacks enemies#Persists between rooms if player is at 1/2 hearts", -- Dead Bird
 	-- Change: added "Spawns a random penny trinket"
-	[141] = "{{Coin}} Spawns 7 random coins#Spawns a random penny trinket", -- Pageant Boy
+	[C_ID .. 141] = "Spawns a random penny trinket", -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
-	-- Change: added "Blocks enemy tears"
-	[281] = "Decoy familiar#Enemies target him instead of Isaac#Blocks enemy tears", -- Punching Bag
+	[C_ID .. 186] = "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
+	-- Change: Complete rewrite
+	[C_ID .. 351] = "{{Petrify}} Deals 100 damage and petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Can open secret rooms and break rocks" , -- Mega Bean
+	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
+	[C_ID .. 420] = "Walking in a circle draws a pentagram on the floor, which deals 130 damage over 4 seconds#Grants bigger explosions#Fireplaces explode when extinguished" , -- Black Powder
+	-- Change: Complete rewrite
+	[C_ID .. 436] = "Blocks enemy projectiles#{{Tears}} After 10 hits, it breaks and grants a Tears up for the remainder of the floor" , -- Milk!
+	-- Change: Complete rewrite
+	[C_ID .. 447] = "Firing without pause for 4 seconds spawns a poop cloud#The cloud increases its size over 10 seconds#The cloud deals less damage the bigger it gets#It can be moved by shooting it" , -- Linger Bean
+	-- Change: added " and fires radial bursts of tears"
+	[C_ID .. 470] = "Bounces around the room#Stops moving when Isaac shoots#Blocks projectiles when stopped and fires radial bursts of tears" , -- Hushy
+	-- Change: added "10 to 12 seconds for Delirium and Mother"
+	[C_ID .. 475] = "Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later#10 to 12 seconds for Delirium and Mother" , -- Plan C
+	-- Change: added "Turns item pedestals into glitched items"
+	[C_ID .. 481] = "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#Turns item pedestals into glitched items#{{Blank}} Corrupts all sprites and music in the room" , -- Dataminer
+	-- Change: Reduced the chance of removing the most recent item to 50%
+	[C_ID .. 482] = "Changes your character to a random character#50% chance of removing the most recent item collected" , -- Clicker
+	-- Change: Complete rewrite
+	[C_ID .. 510] = "Spawns a friendly delirium version of a boss#Persists between rooms#{{Warning}} Only one boss can be active at a time#The health of the boss deteriorates over time", -- Delirious
+	-- Change: added "Tears leave a pool of creep on impact"
+	[C_ID .. 560] = "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac#Tears leave a pool of creep on impact", -- It Hurts
+	-- Change: Added ring of fire on impact description
+	[C_ID .. 593] = "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burning}} Creates a ring of fire on impact", -- Mars
+	-- Change: Heals 2 hearts instead of 1/2
+	[C_ID .. 594] = "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.3 Speed#{{HealingRed}} Heals 2 heart#{{Speed}} Speed builds up to +0.5 while standing still#{{Poison}} Moving releases poison clouds#{{Poison}} Poison immunity", -- Jupiter
+	
 }
+EID:CompareWithPreviousDLC(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
 EID:updateDescriptionsViaTable(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 local collectibles = {

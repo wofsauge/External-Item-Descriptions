@@ -3,6 +3,8 @@
 local C_ID = "5.100."
 
 local repentancePlusItemStats = {
-    [C_ID .. 141] = { Spawns = {RandomCoin = 7} }, -- Pageant Boy
+    [C_ID .. 281] = { BlockProjectiles = true }, -- Punching Bag
+    [C_ID .. 329] = { ShotSpeed = 0.2 }, -- The Ludovico Technique
+    [C_ID .. 554] = { Tears = 0.5, ShotSpeed = 0.2 },  -- 2Spooky
 }
 EID:updateDescriptionsViaTable(repentancePlusItemStats, EID.ItemStats)
