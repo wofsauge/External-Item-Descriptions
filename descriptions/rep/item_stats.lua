@@ -107,5 +107,55 @@ local repentanceItemStats = {
 
     [C_ID .. 509] = { DamagePerTear = 3.5, ContactDamagePerSecond = 20 }, -- Bloodshot Eye
     [C_ID .. 531] = { DamageMultiplier = 1.5, Damage = 1, FireRateMultiplier = 0.33, RangeMultiplier = 0.8 }, -- Haemolacria
+    -- Repentance Items
+    [C_ID .. 555] = { Coin = 5 }, -- Golden Razor
+    [C_ID .. 563] = { Bomb = 5 }, -- Nancy Bombs
+	[C_ID .. 564] = { Tears = 0.5, ShotSpeed = 0.2 }, -- A Bar of Soap
+    [C_ID .. 561] = { FireRateMultiplier = 4, DamageMultiplier = 0.3, TearSize = -0.16 }, -- Almond Milk
+	[C_ID .. 571] = { Speed = 0.3, SoulHeart = 2,  }, -- Orphan Socks
+	[C_ID .. 572] = { Damage = 1, Range = 2, ShotSpeed = -0.16,  }, -- Eye of the Occult
+	[C_ID .. 573] = { RedHeart = 1, DamageMultiplier = 1.2, FullHealth = true }, -- Immaculate Heart
+    [C_ID .. 581] = { ContactDamagePerSecond = 15 }, -- Psy Fly
+	[C_ID .. 582] = { FireRate = 0.75, Speed = -0.03,  }, -- Wavy Cap
+	[C_ID .. 583] = { Bomb = 5 }, -- Rocket in a Jar
+	[C_ID .. 584] = { AngelChance = 12.5 }, -- Book of Virtues
+    [C_ID .. 590] = { Speed = 0.4 }, -- Mercurius
+	[C_ID .. 591] = { RedHeart = 1, HealingRed = 1 }, -- Venus
+	[C_ID .. 592] = { Damage = 1 }, -- Terra
+	[C_ID .. 594] = { EmptyHeart = 2, Speed = -0.3, HealingRed = 0.5 }, -- Jupiter
+	[C_ID .. 598] = { Tears = 0.7 }, -- Pluto
+
+    [C_ID .. 601] = { Tears = 0.7, EternalHeart = 1 }, -- Act of Contrition
+    [C_ID .. 603] = { Spawns = {Battery = {2,4}} }, -- Battery Pack
+	[C_ID .. 605] = { ContactDamagePerSecond = 36 }, -- The Scooper
+	[C_ID .. 607] = { DamagePerTear = {3.5 , 5.25} }, -- Boiled Baby
+    [C_ID .. 614] = { RedHeart = 1, HealingRed = 4 }, -- Blood Bombs
+	[C_ID .. 621] = { Damage = 21.6, FullHealth = true }, -- Red Stew
+	[C_ID .. 623] = { Key = 5 }, -- Sharp Key
+	[C_ID .. 624] = { Spawns = { Card = 5 } }, -- Booster Pack
+	[C_ID .. 629] = { ContactDamagePerSecond = 3 }, -- Bot Fly
+	[C_ID .. 632] = { Luck = 2 }, -- Evil Charm
+	[C_ID .. 633] = { Speed = 0.1, Damage = 2, Flight = true }, -- Dogma
+	[C_ID .. 639] = { RottenHeart = 1 }, -- Yuck Heart
+	[C_ID .. 643] = { SoulHeart = 2, Flight = true }, -- Revelation
+	[C_ID .. 645] = { ContactDamagePerSecond = 3.5 }, -- Tinytoma
+	[C_ID .. 646] = { Bomb = 5 }, -- Brimstone Bombs
+	[C_ID .. 649] = { ContactDamagePerSecond = 6 }, -- Fruity Plum
+	[C_ID .. 654] = { BlackHeart = 1 }, -- False PHD
+	[C_ID .. 659] = { Range = 2.5, TearSize = 0.22 }, -- Tropicamide
+	[C_ID .. 664] = { RedHeart = 1, FullHealth = true }, -- Binge Eater
+	[C_ID .. 667] = { Bomb = 1 }, -- Strawman
+	[C_ID .. 669] = { RedHeart = 1, Speed = 0.2, Tears = 0.5, Damage = 0.5, Range = 2.5, ShotSpeed = 0.16, Luck = 1, FullHealth = true, AngelDevilChance = 6.9, PlanetariumChance = 6.9 }, -- Sausage
+	[C_ID .. 686] = { Spawns = { SoulHeart = 1 } }, -- Soul Locket
+	[C_ID .. 688] = { Life = 1 }, -- Inner Child
+	[C_ID .. 693] = { Flies = 8 }, -- The Swarm
+	[C_ID .. 694] = { BrokenHeart = 3 }, -- Heartbreak
+
+	[C_ID .. 707] = { RedHeart = 1, HealingRed = 1 }, -- Supper
+	[C_ID .. 708] = { Damage = 1,  }, -- Stapler
+	[C_ID .. 716] = { Spawns = {Coin = 3, Key = 1} }, -- Keeper's Sack
+	[C_ID .. 727] = { Bomb = 5 }, -- Ghost Bombs
+	[C_ID .. 730] = { Damage = 0.75, Luck = 1 }, -- Glass Eye
+	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
 }
 EID:updateDescriptionsViaTable(repentanceItemStats, EID.ItemStats)

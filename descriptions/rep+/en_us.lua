@@ -43,8 +43,19 @@ local additionalInformations={
 	[C_ID .. 560] = "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac#Tears leave a pool of creep on impact", -- It Hurts
 	-- Change: Added ring of fire on impact description
 	[C_ID .. 593] = "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burning}} Creates a ring of fire on impact", -- Mars
-	-- Change: Heals 2 hearts instead of 1/2
-	[C_ID .. 594] = "↑ {{EmptyHeart}} +2 Empty heart containers#↓ {{Speed}} -0.3 Speed#{{HealingRed}} Heals 2 heart#{{Speed}} Speed builds up to +0.5 while standing still#{{Poison}} Moving releases poison clouds#{{Poison}} Poison immunity", -- Jupiter
+	-- Change: Complete rewrite
+	[C_ID .. 632] = "Immune to {{Burning}} fire damage, {{Confusion}} confusion, {{Fear}} fear, {{Slow}} spider-webs and {{Poison}} poison effects#Grants 1 second immunity to creep", -- Evil Charm
+	-- Change: Adjusted the stat boost to match Hallowed Ground
+	[C_ID .. 651] = "Slowly travels from the first room of the floor to the {{BossRoom}} Boss Room#Moves faster if you're ahead of it, and slower if you're behind it#Standing in its aura grants:#↑ {{Tears}} x2.5 Tears multiplier#↑ {{Damage}} x1.2 Damage multiplier#Homing tears#50% chance to ignore damage", -- Star of Bethlehem
+	-- Change: Added Shop as a new destination
+	[C_ID .. 660] = "Spawns two portals in the first room of each floor#Leaving the room despawns the portals#{{Blank}} {{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{Blank}} {{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{Blank}} {{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room#{{Blank}} {{ColorGreen}}Green: {{CR}}{{Shop}} Shop", -- Card Reading
+	-- Change: Complete rewrite
+	[C_ID .. 681] = "Double-tapping a fire button launches the portal#Deals contact damage when launched#Consumes pickups in its path#Each pickup consumed increases its size, damage, and spawns a blue fly#Consuming 2-3 pickups spawns a portal to a special room and the familiar disappears for the rest of the floor#The content of the room persists for the rest of the run", -- Lil Portal
+	-- Change: Added into for first usage
+	[C_ID .. 685] = "Spawns 2 random wisps#Spawns one additional wisp with each use, up to 12", -- Jar of Wisps
+	-- Change: Added info about the damage based on item quality
+	[C_ID .. 706] = "Consumes all item pedestals in the room and spawns a locust familiar for each one#Some items spawn a special locust when consumed#{{Damage}} Locusts deal Isaac's damage multiplied by the item quality consumed:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x", -- Abyss
+
 	
 }
 EID:CompareWithPreviousDLC(additionalInformations, EID.descriptions[languageCode].AdditionalInformations)
