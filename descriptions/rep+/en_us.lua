@@ -95,6 +95,8 @@ local trinkets = {
 	[93] = { "93", "Used Diaper", "33% chance per room for all fly enemies to become friendly#Spawns 1 blue fly when entering a new room"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = { "97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars" }, -- Tonsil
+	-- Change: now affected by luck, maxing at 18 luck
+	[99] = { "99", "Super Ball", "10% chance to shoot bouncing tears#{{Luck}} 100% chance at 18 luck" }, -- Super Ball
 	-- Change: Added +2 Tears
 	[103] = {"103", "Equality!", "When Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal:#↑ {{Tears}} +2 Tears#Turns single pickups into double pickups"}, -- Equality!
 	-- Change: "2%" to "5%"
@@ -126,24 +128,14 @@ local goldenTrinketEffects = {
 	[21] = {"the effect of", "{{ColorGold}}two{{CR}} of the following effects", "{{ColorGold}}two{{CR}} of the following effects"},
 	-- Daemon's Tail (append):
 	[22] = {"{{BlackHeart}} Blue and Purple Fireplaces will now drop black hearts"},
-	-- Missing Poster (find replace):
-	[23] = { 33, 66, 100 },
 	-- Broken Ankh (find replace):
 	[28] = { 22, 33, 50 },
-	-- Pinky Eye (find replace):
-	[30] = { 10, 20, 33 },
-	-- Push Pin (find replace):
-	[31] = { 10, 20, 33 },
 	-- Umbilical Cord (find replace):
 	[33] = {"half a Red Heart", "a heart", "one and a half hearts"},
 	-- Child's Heart (find replace):
 	[34] = { 10, 20, 50,  33, 66, 100 },
 	-- Rusted Key (find replace):
 	[36] = { 10, 20, 50,  33, 66, 100 },
-	-- Mom's Pearl (find replace):
-	[38] = { 10, 20, 20 },
-	-- Red Patch (find replace):
-	[40] = { 20, 33, 50 },
 	-- Match Stick (find replace):
 	[41] = { 10, 20, 50,  33, 66, 100 },
 	-- Cursed Skull (replace):
@@ -155,12 +147,6 @@ local goldenTrinketEffects = {
 	[44] = { 10, 20, 50,  33, 66, 100 },
 	-- Ace of Spades (find replace):
 	[45] = { 10, 20, 50,  33, 66, 100 },
-	-- Bloody Penny (find replace):
-	[49] = { 25, 50, 75 },
-	-- Burnt Penny (find replace):
-	[50] = { 25, 50, 75 },
-	-- Flat Penny (find replace):
-	[51] = { 25, 50, 75 },
 	-- Counterfeit Penny (find replace):
 	[52] = {"another coin", "{{ColorGold}}2{{CR}} coins", "{{ColorGold}}3{{CR}} coins"},
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
@@ -180,8 +166,6 @@ local goldenTrinketEffects = {
 	[57] = {"Familiar that bounces", "{{CR}}Grants {{ColorGold}}2 {{CR}}familiars that bounce", "{{CR}}Grants {{ColorGold}}3 {{CR}}familiars that bounce"},
 	-- Samson's Lock (find replace):
 	[58] = { 6.66, 13, 25 },
-	-- Eve's Bird Foot (find replace):
-	[60] = { 5, 10, 15 },
 	-- The Left Hand (append):
 	[61] = {
 		"{{RedChest}} Red Chests will now contain extra loot",
@@ -197,8 +181,6 @@ local goldenTrinketEffects = {
 		"Reduces enemy explosion radius",
 		"Greatly reduces enemy explosion radius",
 	},
-	-- Cracked Dice (find replace):
-	[67] = { 50, 75, 100 },
 	-- Super Magnet (find replace):
 	[68] = {"pickups and enemies", "{{CR}}pickups, enemies, {{ColorGold}}sacks and trinkets", "{{CR}}pickups, enemies, {{ColorGold}}sacks, trinkets and chests"},
 	-- Louse (find replace):
@@ -207,8 +189,6 @@ local goldenTrinketEffects = {
 	[71] = {"Increased creep size", "Increased creep size and duration"},
 	-- Poker Chip (append):
 	[76] = {"{{Slotmachine}} Doubles payouts from gambling", "{{Slotmachine}} Triples payouts from gambling"},
-	-- Endless Nameless (find replace):
-	[79] = { 25, 33, 50 },
 	-- Store Key (append):
 	[83] = {"{{Shop}} Prevents shops from using low-quality layouts", "{{Shop}} Upgrades shop layouts"},
 	-- Rib of Greed (append):
@@ -217,16 +197,12 @@ local goldenTrinketEffects = {
 	[85] = {"1 luck", "2{{CR}} luck", "3{{CR}} luck"},
 	-- Mom's Locket (find replace):
 	[87] = {"half a heart", "a heart", "one and a half hearts"},
-	-- Child Leash (find replace):
-	[89] = { 25, 50, 75 },
 	-- Meconium (find replace):
 	[91] = { 33, 66, 100,  5, 7, 10 },
 	-- Used Diaper (find replace):
 	[93] = {"1 blue fly", "2{{CR}} blue flies", "3{{CR}} blue flies"},
 	-- Fish Tail (append):
 	[94] = {"20% chance to spawn 3 blue flies / spiders", "20% chance to spawn 4 blue flies / spiders"},
-	-- Black Tooth (find replace):
-	[95] = { 3, 6, 9 },
 	-- Tonsil (find replace):
 	[97] = {"2 familiars", "3{{CR}} familiars", "4{{CR}} familiars"},
 	-- Nose Goblin (replace):
@@ -234,16 +210,8 @@ local goldenTrinketEffects = {
 		"{{ColorGold}}20{{CR}}% chance to shoot a sticky tear#{{ColorGold}}75{{CR}}% chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 10 seconds",
 		"{{ColorGold}}30{{CR}}% chance to shoot a sticky {{ColorGold}}homing{{CR}} tear#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 10 seconds",
 	},
-	-- Super Ball (find replace):
-	[99] = { 10, 20, 33 },
 	-- Fragmented Card (append):
 	[102] = {"{{SecretRoom}} Reveals the location of one secret room", "{{SecretRoom}} Reveals the location of both secret rooms"},
-	-- Equality (find replace):
-	[103] = { 2, 4, 6 },
-	-- Wish Bone (find replace):
-	[104] = { 5, 10, 15 },
-	-- Bag Lunch (find replace):
-	[105] = { 5, 10, 15 },
 	-- Lost Cork
 	[106] = {"Increases", "Greatly{{CR}} increases"},
 	-- Crow Heart (append):
@@ -278,50 +246,32 @@ local goldenTrinketEffects = {
 		"{{CR}}Entering a hostile room spawns {{ColorGold}}2-5{{CR}} attack flies#Each fly deals 2x Isaac's damage",
 		"{{CR}}Entering a hostile room spawns {{ColorGold}}3-7{{CR}} attack flies#Each fly deals 2x Isaac's damage",
 	},
-	-- Bat Wing (find replace):
-	[118] = { 5, 10, 15 },
 	-- Stem Cell (find replace):
 	[119] = {"half", "all"},
 	-- Hairpin (find replace):
 	[120] = {"fully recharges", "overcharges"},
 	-- Wooden Cross (find replace):
 	[121] = {"a Holy shield", "2{{CR}} Holy shields"},
-	-- Butter! (find replace):
-	[122] = { 2, 4, 6},
 	-- Filigree Feather (append):
 	[123] = {"Angel bosses will also drop a half soul heart", "Angel bosses will also drop a soul heart"},
 	-- Door Stop (append):
 	[124] = {"Also keeps Boss Rush doors open", "Also keeps Boss Rush / Challenge Room doors open"},
-	-- Extension Cord (find replace):
-	[125] = { 6, 12, 18 },
 	-- Rotten Penny (find replace):
 	[126] = {"a blue fly", "2{{CR}} blue flies", "3{{CR}} blue flies"},
 	-- Baby-Bender (append):
 	[127] = {"Also grants them the {{Trinket144}} Brain Worm effect", "Also grants them the {{Trinket144}} Brain Worm and {{Trinket65}} Tape Worm effects"},
-	-- Finger Bone (find replace):
-	[128] = { 4, 8, 12 },
-	-- Jawbreaker (find replace):
-	[129] = { 10, 20, 30 },
-	-- Chewed Pen (find replace):
-	[130] = { 10, 20, 30 },
 	-- Blessed Penny (find replace):
 	[131] = { 17, 25, 30 },
 	-- Short Fuse (find replace):
 	[133] = { 15, 30, 50 },
 	-- Gigante Bean (append)
 	[134] = {"Increases fart knockback", "Increases fart knockback#{{ColorGold}}Farts confuses enemies for 3 seconds"},
-	-- A Lighter (find replace):
-	[135] = { 20, 33, 50 },
 	-- Broken Padlock (find replace):
 	[136] = {"Doors, key blocks and golden chests", "{{CR}}Doors, key blocks, golden chests, {{ColorGold}}Arcades and Challenge rooms", "{{CR}}Doors, key blocks, golden chests, {{ColorGold}}Arcades, Challenge and Boss rooms"},
-	-- Myosotis (find replace):
-	[137] = { 4, 6, 8 },
 	-- 'M (append):
 	[138] = {"10% chance of fully charging the rolled item", "20% chance of fully charging the rolled item"},
 	-- Apple of Sodom (find replace):
 	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts"},
-	-- Forgotten Lullaby (find replace):
-	[141] = { 2, 2.5, 3 },
 	-- Brain Worm (append):
 	[144] = {"25% chance to shoot piercing tears", "50% chance to shoot piercing tears"},
 	-- Devil’s Crown (append):
@@ -348,8 +298,6 @@ local goldenTrinketEffects = {
 	},
 	-- Torn Card (find replace):
 	[157] = { 15, 10, 5 },
-	-- Torn Pocket (find replace):
-	[158] = { 2, 3, 4 },
 	-- Gilded Key (full replace copying the entire original description, because the Golden version doesn't give a key on pickup):
 	[159] = {
 		"{{GoldenChest}} Replaces all chests (except Old/Mega) with golden chests#{{GoldenChest}} Golden chests can contain extra cards, pills or trinkets#{{GoldenChest}} {{ColorGold}}+10% chance to get a chest after clearing a room",
@@ -363,8 +311,6 @@ local goldenTrinketEffects = {
 	},
 	-- Nuh Uh! (append):
 	[165] = {"+10% chance for double pickups to spawn", "+20% chance for double pickups to spawn"},
-	-- Polished Bone (find replace):
-	[167] = { 25, 33, 50 },
 	-- Keeper’s Bargain (full replace):
 	[171] = {
 		"{{DevilRoom}} 100{{CR}}% chance for devil deals to cost coins instead of hearts",
@@ -374,8 +320,6 @@ local goldenTrinketEffects = {
 	[172] = {"Increased chance of being teleported into a special room"},
 	-- Your Soul (append):
 	[173] = {"10% chance to not consume the trinket", "20% chance to not consume the trinket"},
-	-- Number Magnet (find replace):
-	[174] = { 10, 15, 20 },
 	-- Strange Key (full replace):
 	[175] = {
 		"Opens the door to the Hush floor regardless of the timer#Using {{Collectible297}} Pandora's Box consumes the key and spawns {{ColorGold}}8{{CR}} items from random pools#{{ColorGold}}Allows to open all doors and chests on the Hush floor for free",
@@ -385,8 +329,6 @@ local goldenTrinketEffects = {
 	[177] = {"Permanently increases a random stat upon completing a Challenge room", "Permanently increases 2 random stats upon completing a Challenge room"},
 	-- RC Remote (append):
 	[179] = {"Familiars will deal 2 contact damage per tick", "Familiars will deal 5 contact damage per tick"},
-	-- Found Soul (find replace):
-	[180] = {50, 75, 100},
 	-- Expansion Pack (full replace):
 	[181] = {
 		"Using an active item triggers the effect of {{ColorGold}}2{{CR}} additional 1-2 charge active items",
@@ -396,10 +338,8 @@ local goldenTrinketEffects = {
 	[182] = {"50% chance for Angel room wisps to be special#{{ColorGold}}Beggars will spawn special wisps", "100% chance for Angel room wisps to be special#{{ColorGold}}Beggars will spawn special wisps"},
 	-- Adoption Papers (append):
 	[184] = {"Familiars will always be on sale", "Familiars will always be on sale#{{Card92}} {{ColorGold}}Shops will be able to sell \"Soul of Lilith\""},
-	-- Ice Cube (find replace):
-	[188] = { 20, 33, 50 },
 	-- Sigil of Baphomet (find replace):
-	[189] = { 1, 1.5, 2 },
+	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds"},
 }
 EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
@@ -412,53 +352,36 @@ local goldenTrinketData = {
 	[19] = {findReplace = true}, -- Paper Clip
 	[21] = {findReplace = true}, -- Mysterious Paper
 	[22] = {append = true}, -- Daemon's Tail
-	[23] = {findReplace = true}, -- Missing Poster
 	[28] = {findReplace = true}, -- Broken Ankh
-	[30] = {findReplace = true}, -- Pinky Eye
-	[31] = {findReplace = true}, -- Push Pin
 	[33] = {findReplace = true}, -- Umbilical Cord
 	[34] = {findReplace = true}, -- Child's Heart
 	[36] = {findReplace = true}, -- Rusted Key
-	[38] = {findReplace = true}, -- Mom's Pearl
-	[40] = {findReplace = true}, -- Red Patch
 	[41] = {findReplace = true}, -- Match Stick
 	[43] = {fullReplace = true}, -- Cursed Skull
 	[44] = {findReplace = true}, -- Safety Cap
 	[45] = {findReplace = true}, -- Ace of Spades
-	[49] = {findReplace = true}, -- Bloddy Penny
-	[50] = {findReplace = true}, -- Burnt Penny
-	[51] = {findReplace = true}, -- Flat Penny
 	[52] = {findReplace = true}, -- Counterfeit Penny
 	[54] = {findReplace = true}, -- Isaac's Head
 	[56] = {fullReplace = true}, -- Judas' Tongue
 	[57] = {findReplace = true}, -- ???'s Soul
 	[58] = {findReplace = true}, -- Samson's Lock
-	[60] = {findReplace = true}, -- Eve's Bird Foot
 	[61] = {append = true}, -- The Left Hand
 	[62] = {fullReplace = true}, -- Shiny Rock
 	[63] = {append = true}, -- Safety Scissors
-	[67] = {findReplace = true}, -- Cracked Dice
 	[68] = {findReplace = true}, -- Super Magnet
 	[70] = {findReplace = true}, -- Louse
 	[71] = {append = true}, -- Bob's Bladder
 	[76] = {append = true}, -- Poker Chip
-	[79] = {findReplace = true}, -- Endless Nameless
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
 	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
-	[89] = {findReplace = true}, -- Child Leash
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
 	[94] = {append = true}, -- Fish Tail
-	[95] = {findReplace = true}, -- Black Tooth
 	[97] = {findReplace = true}, -- Tonsil
 	[98] = {fullReplace = true}, -- Nose Goblin
-	[99] = {findReplace = true}, -- Super Ball
 	[102] = {append = true}, -- Fragmented Card
-	[103] = {findReplace = true}, -- Equality!
-	[104] = {findReplace = true}, -- Wish Bone
-	[105] = {findReplace = true}, -- Bag Lunch
 	[106] = {append = true}, -- Lost Cork
 	[107] = {append = true}, -- Crow Heart
 	[108] = {findReplace = true}, -- Wallnut
@@ -471,28 +394,19 @@ local goldenTrinketData = {
 	[115] = {findReplace = true}, -- Locust of Famine
 	[116] = {findReplace = true}, -- Locust of Death
 	[117] = {fullReplace = true}, -- Locust of Conquest
-	[118] = {findReplace = true}, -- Bat Wing
 	[119] = {findReplace = true}, -- Stem Cell
 	[120] = {findReplace = true}, -- Hairpin
 	[121] = {findReplace = true}, -- Wooden Cross
-	[122] = {findReplace = true}, -- Butter!
 	[123] = {append = true}, -- Filigree Feather
 	[124] = {append = true}, -- Door Stop
-	[125] = {findReplace = true}, -- Extension Cord
 	[126] = {findReplace = true}, -- Rotten Penny
 	[127] = {append = true}, -- Baby-Bender
-	[128] = {findReplace = true}, -- Finger Bone
-	[129] = {findReplace = true}, -- Jawbreaker
-	[130] = {findReplace = true}, -- Chewed Pen
 	[131] = {findReplace = true}, -- Blessed Penny
 	[133] = {findReplace = true}, -- Short Fuse
 	[134] = {append = true}, -- Gigante Bean
-	[135] = {findReplace = true}, -- A Lighter
 	[136] = {findReplace = true}, -- Broken Padlock
-	[137] = {findReplace = true}, -- Myosotis
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
-	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny
@@ -503,23 +417,18 @@ local goldenTrinketData = {
 	[152] = {fullReplace = true}, -- Telescope Lens
 	[155] = {fullReplace = true}, -- Holy Crown
 	[157] = {findReplace = true}, -- Torn Card
-	[158] = {findReplace = true}, -- Torn Pocket
 	[159] = {fullReplace = true}, -- Gilded Key
 	[161] = {fullReplace = true}, -- Wicked Crown
 	[165] = {append = true}, -- Nuh Uh!
-	[167] = {findReplace = true}, -- Polished Bone
 	[171] = {fullReplace = true}, -- Keeper’s Bargain
 	[172] = {append = true}, -- Cursed Penny
 	[173] = {append = true}, -- Your Soul
-	[174] = {findReplace = true}, -- Number Magnet
 	[175] = {fullReplace = true}, -- Strange Key
 	[177] = {append = true}, -- Temporary Tattoo
 	[179] = {append = true}, -- RC Remote
-	[180] = {findReplace = true}, -- Found Soul
 	[181] = {fullReplace = true}, -- Expansion Pack
 	[182] = {append = true}, -- Beth’s Essence
 	[184] = {append = true}, -- Adoption Papers
-	[188] = {findReplace = true}, -- Ice Cube
 	[189] = {findReplace = true}, -- Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode].goldenTrinketData)
