@@ -107,7 +107,7 @@ EID.descriptions[languageCode].collectibles={
 	{"44", "순간이동!", "사용 시 스테이지 안의 랜덤 방으로 순간이동합니다.#!!! 오류방으로는 이동하지 않습니다."}, -- Teleport!
 	{"45", "맛난 하트", "{{HealingRed}} 사용 시 체력 1칸을 회복합니다."}, -- Yum Heart
 	{"46", "행운의 발", "↑ {{LuckSmall}}행운 +1#↑ 방 클리어 보상이 등장할 확률이 대폭 증가합니다.#야바위와 도박기계의 성공 확률이 증가합니다."}, -- Lucky Foot
-	{"47", "박사의 원격 조종기", "{{Collectible168}} 사용 시 조준점을 이동시킨 곳으로 캐릭터의 공격력 x20의 미사일을 발사합니다."}, -- Doctor's Remote
+	{"47", "박사의 원격 조종기", "{{Collectible168}} 사용 시 조준점을 이동시킨 곳으로 공격력 x20의 미사일을 발사합니다."}, -- Doctor's Remote
 	{"48", "큐피드의 화살", "공격이 적을 관통합니다."}, -- Cupid's Arrow
 	{"49", "모두 다 사라져빔!!", "사용 시 공격방향으로 공격력 x2의 레이저포를 발사합니다."}, -- Shoop da Whoop!
 	{"50", "스티븐", "↑ {{DamageSmall}}공격력 +1"}, -- Steven
@@ -210,7 +210,7 @@ EID.descriptions[languageCode].collectibles={
 	{"147", "각진 곡괭이", "사용 시 그 방의 장애물을 부술 수 있습니다.#!!! 피격 시 해제됨"}, -- Notched Axe
 	{"148", "감염", "피격 시 파란 아군 파리를 1~3마리 소환합니다."}, -- Infestation
 	{"149", "구토제", "↑ {{DamageSmall}}공격력 +40#↓ {{TearsSmall}}공격 딜레이 x2.0 +10#폭발하는 독눈물을 곡선형으로 발사합니다."}, -- Ipecac
-	{"150", "사랑의 매", "10%의 확률로 캐릭터의 공격력 x3.2의 공격이 나갑니다.#{{LuckSmall}} 행운 9 이상일 때 100% 확률"}, -- Tough Love
+	{"150", "사랑의 매", "10%의 확률로 공격력 x3.2의 공격이 나갑니다.#{{LuckSmall}} 행운 9 이상일 때 100% 확률"}, -- Tough Love
 	{"151", "물리건", "적 명중 시 1/6 확률로 파란 아군 파리를 소환합니다."}, -- The Mulligan
 	{"152", "기계장치 2", "↓ {{TearsSmall}}공격 딜레이 x2.0#↓ {{DamageSmall}}공격력 배율 x0.65#오른쪽 눈에서 공격력 20%의 지속 레이저를 발사합니다."}, -- Technology 2
 	{"153", "돌연변이 거미", "↓ {{TearsSmall}}공격 딜레이 x2.1 +3#공격이 4발로 나갑니다."}, -- Mutant Spider
@@ -507,7 +507,7 @@ EID.descriptions[languageCode].collectibles={
 	{"444", "연필", "눈물을 15번 발사할 때마다 공격력 x2의 눈물 다발이 나갑니다."}, -- Lead Pencil
 	{"445", "개 이빨", "↑ {{DamageSmall}}공격력 +0.3#↑ {{SpeedSmall}}이동속도 +0.1#방에 {{SecretRoom}}{{SuperSecretRoom}}비밀방이나 {{LadderRoom}}사다리방이 연결되어 있을 경우 개 울음소리가 납니다."}, -- Dog Tooth
 	{"446", "죽은 이빨", "{{Poison}} 공격 시 캐릭터 주위에 적을 중독시키는 독가스가 나옵니다."}, -- Dead Tooth
-	{"447", "납작한 콩", "7.5초동안 공격을 멈추지 않고 공격을 유지할 시 그 방에서 15초동안 유지되는 갈색 구름이 생성되며;#구름에 닿은 적은 공격력 x5의 피해를 줍니다."}, -- Linger Bean
+	{"447", "납작한 콩", "7.5초동안 공격을 멈추지 않고 공격을 유지할 시 그 방에서 15초동안 유지되는 갈색 구름이 생성되며;#구름에 닿은 적은 캐릭터의 공격력 x5의 피해를 줍니다."}, -- Linger Bean
 	{"448", "유리 조각", "피격 시 25% 확률로 {{Heart}}빨간하트가 드랍되며;#10%의 확률로 그 방에서 캐릭터가 지나간 자리에 빨간 장판이 생깁니다.#장판은 지상의 적에게 초당 6의 피해를 줍니다."}, -- Shard of Glass
 	{"449", "강철판", "↑ {{SoulHeart}}소울하트 +1#적 탄환에 맞았을 때 25%의 확률로 유도 반사탄을 발사합니다."}, -- Metal Plate
 	{"450", "탐욕의 눈", "{{Petrify}} 눈물을 20번 발사할 때마다 {{ColorYellow}}동전을 1개 소모하고{{CR}} 캐릭터의 공격력 x2의 피해를 주며 적을 멈추게 만드는 눈물을 발사합니다.#멈춘 적 처치 시 {{Coin}}동전을 1~4개 드랍합니다."}, -- Eye of Greed
@@ -568,7 +568,7 @@ EID.descriptions[languageCode].collectibles={
 	{"505", "포켓 GO", "{{Friendly}} 방 입장 시 20%의 확률로 아래 중 하나의 아군 적을 소환합니다:#{{ArrowGrayRight}} Attack Fly#{{Blank}} Pooter#{{Blank}} One Tooth#{{Blank}} Fat Bat#{{Blank}} Frowning Gaper#{{Blank}} Vis"}, -- Poke Go
 	{"506", "배신자", "적을 뒤에서 공격할 시 2배의 피해를 입히고 {{BleedingOut}}출혈 상태로 만듭니다."}, -- BackStabber
 	{"507", "날카로운 빨대", "사용 시 그 방의 적에게 눈물 공격력 + 적 체력의 10%의 피해를 줍니다."}, -- Sharp Straw
-	{"508", "엄마의 면도칼", "{{BleedingOut}} 캐릭터 주위를 돌며 접촉하는 적에게 초당 공격력 x3의 피해를 출혈 피해를 줍니다."}, -- Mom's Razor
+	{"508", "엄마의 면도칼", "{{BleedingOut}} 캐릭터 주위를 돌며 접촉하는 적에게 초당 캐릭터의 공격력 x3의 피해를 출혈 피해를 줍니다."}, -- Mom's Razor
 	{"509", "피눈물 눈알", "캐릭터 주위를 돌며 자신이 바라보는 방향으로 공격력 3.5의 눈물을 발사합니다.#접촉하는 적에게 초당 30의 피해를 줍니다."}, -- Bloodshot Eye
 	{"510", "정신착란", "{{Timer}} 사용 시 그 방에서:#{{Friendly}} {{DeliriumSmall}} Delirium 버전의 아군 보스를 소환합니다."}, -- Delirious
 	{"511", "성난 파리", "적의 주위를 돌면서 접촉하는 적에게 초당 30의 피해를 줍니다."}, -- Angry Fly
@@ -685,7 +685,7 @@ EID.descriptions[languageCode].carBattery = {
 
 ---------- Trinkets ----------
 EID.descriptions[languageCode].trinkets={
-	{"1", "삼킨 동전", "{{Coin}} 피격 시 동전을 1~2개 드랍합니다."}, -- Swallowed Penny
+	{"1", "삼킨 동전", "{{Coin}} 피격 시 동전을 1개 드랍합니다."}, -- Swallowed Penny
 	{"2", "굳은 똥", "똥 파괴 시 픽업이 드랍될 확률이 50% 증가합니다."}, -- Petrified Poop
 	{"3", "AAA 건전지", "방 클리어 시 액티브 아이템의 충전량이 1칸 남았을 경우 액티브를 자동으로 충전합니다."}, -- AAA Battery
 	{"4", "고장난 조종기", "{{Collectible44}} 액티브 아이템 사용 시 스테이지 안의 랜덤 방으로 순간이동합니다."}, -- Broken Remote
@@ -713,7 +713,7 @@ EID.descriptions[languageCode].trinkets={
 	{"26", "꺾기벌레", "↑ {{RangeSmall}}사거리 +10#눈물이 지그재그로 날아갑니다."}, -- Hook Worm
 	{"27", "채찍벌레", "↑ {{ShotspeedSmall}}탄속 +0.5"}, -- Whip Worm
 	{"28", "부서진 앙크", "{{Player4}} 사망 시 22% 확률로 전 방에서 ??? 캐릭터로 부활합니다."}, -- Broken Ankh
-	{"29", "생선 머리", "피격 시 파란 아군 파리를 소환합니다."}, -- Fish Head
+	{"29", "생선 머리", "피격 시 파란 아군 파리를 하나 소환합니다."}, -- Fish Head
 	{"30", "분홍 눈알", "{{Poison}} 10%의 확률로 적을 중독시키는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Pinky Eye
 	{"31", "고정핀", "10%의 확률로 적과 장애물을 관통하는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Push Pin
 	{"32", "환각버섯", "방 입장 시 25% 확률로 그 방에서 랜덤 버섯 아이템 효과를 얻거나 맵에 특수방의 위치가 표시됩니다."}, -- Liberty Cap
@@ -775,7 +775,7 @@ EID.descriptions[languageCode].trinkets={
 	{"88", "필요없어!", "{{TreasureRoom}}보물방, {{Shop}}상점, {{DevilRoom}}악마방, {{AngelRoom}}천사방에서 99% 확률로 액티브 아이템이 나오지 않습니다."}, -- NO!
 	{"89", "미아 방지끈", "패밀리어들 사이의 간격이 가까워집니다."}, -- Child Leash
 	{"90", "갈색 마개", "!!! 똥 파괴시 똥이 폭발합니다."}, -- Brown Cap
-	{"91", "태변", "일반 똥이 확률적으로 검은 똥으로 대체됩니다.#{{BlackHeart}} 검은 똥 파괴시 확률적으로 블랙하트를 드랍합니다."}, -- Meconium
+	{"91", "태변", "일반 똥이 33%의 확률로 검은 똥으로 대체됩니다.#{{BlackHeart}} 검은 똥 파괴시 5%의 확률로 블랙하트를 드랍합니다."}, -- Meconium
 	{"92", "금이 간 왕관", "↑ {{TearsSmall}}연사 +0.2#각 능력치가 캐릭터 기본 능력치보다 높을 시 각 능력치가 33% 증가합니다."}, -- Cracked Crown
 	{"93", "다 쓴 기저귀", "방 입장 시 확률적으로 파리류 적들이 공격하지 않거나 약해집니다."}, -- Used Diaper
 	{"94", "생선 꼬리", "파란 아군 거미 또는 파리의 소환량이 2배로 증가합니다."}, -- Fish Tail
@@ -783,7 +783,7 @@ EID.descriptions[languageCode].trinkets={
 	{"96", "우주뱀 벌레", "↑ {{RangeSmall}}사거리 +4#↑ 눈물 높이 +2#눈물이 거대한 나선을 그리며 날아갑니다.#공격이 장애물을 관통합니다."}, -- Ouroboros Worm
 	{"97", "편도선", "{{Collectible474}} 12~20회 피격 시 Tonsil을 획득합니다.#{{Collectible474}} Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다."}, -- Tonsil
 	{"98", "콧물딱지", "10%의 확률로 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 60초동안 지속 피해를 줍니다.#접착 눈물을 발사할 때 50%의 확률로 유도 효과가 생깁니다."}, -- Nose Goblin
-	{"99", "탱탱볼", "확률적으로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
+	{"99", "탱탱볼", "10%의 확률로 공격이 무언가에 부딪힐 때 반대 각도로 튕겨져 나갑니다."}, -- Super Ball
 	{"100", "밝은 전구", "{{Battery}} 액티브 아이템의 충전량이 최대치일때:#{{ArrowGrayRight}} {{DamageSmall}}공격력 +0.5#{{ArrowGrayRight}} {{TearsSmall}}연사 +0.2#{{ArrowGrayRight}} {{RangeSmall}}사거리 +0.75#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.5#{{ArrowGrayRight}} {{ShotspeedSmall}}탄속 +0.1#{{ArrowGrayRight}} {{LuckSmall}}행운 +1"}, -- Vibrant Bulb
 	{"101", "꺼진 전구", "{{Battery}} 액티브 아이템의 충전량이 남아있지 않을때:#{{ArrowGrayRight}} {{DamageSmall}}공격력 +1.5#{{ArrowGrayRight}} {{TearsSmall}}연사 +0.4#{{ArrowGrayRight}} {{RangeSmall}}사거리 +1.5#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.5#{{ArrowGrayRight}} {{ShotspeedSmall}}탄속 +0.3#{{ArrowGrayRight}} {{LuckSmall}}행운 +2"}, -- Dim Bulb
 	{"102", "조각난 카드", "{{SecretRoom}} 스테이지 진입 시 비밀방이 하나 더 생성됩니다."}, -- Fragmented Card
@@ -792,17 +792,17 @@ EID.descriptions[languageCode].trinkets={
 	{"105", "점심 도시락", "!!! 일회용#피격 시 2% 확률로 {{Collectible22}}Lunch ({{Heart}}최대 체력 +1) 아이템을 생성합니다."}, -- Bag Lunch
 	{"106", "잃어버린 코르크", "캐릭터와 패밀리어가 생성하는 장판의 범위가 넓어집니다."}, -- Lost Cork
 	{"107", "까마귀 심장", "피격 시 빨간하트가 가장 우선적으로 소모됩니다.#!!! 악마방/천사방 확률을 방어해 주지 않습니다."}, -- Crow Heart
-	{"108", "호두", "!!! 일회용#캐릭터가 폭발에 휘말릴 경우 확률적으로 랜덤 픽업을 드랍합니다."}, -- Walnut
+	{"108", "호두", "!!! 일회용#캐릭터가 폭발에 휘말릴 경우 확률적으로 {{UnknownHeart}}하트, {{Coin}}동전, {{Key}}열쇠, {{Trinket}}장신구를 하나씩 드랍합니다."}, -- Walnut
 	{"109", "청테이프", "캐릭터의 위치를 기준으로 캐릭터를 따라오는 패밀리어의 위치를 고정시킵니다.#공전형 패밀리어가 회전하지 않습니다."}, -- Duct Tape
 	{"110", "은화", "{{Shop}} 7, 8 스테이지에서 상점이 생성됩니다."}, -- Silver Dollar
 	{"111", "피투성이 왕관", "{{TreasureRoom}} 7, 8 스테이지에서 보물방이 생성됩니다."}, -- Bloody Crown
 	{"112", "과금전사", "{{TreasureRoom}} 스테이지 진입 시 보물방에 재입고 기계가 생성됩니다."}, -- Pay To Win
-	{"113", "전쟁의 메뚜기", "{{Bomb}} 방 입장 시 적과 접촉 시 폭발하는 빨간 아군 파리를 소환합니다."}, -- Locust of War
-	{"114", "역병의 메뚜기", "{{Poison}} 방 입장 시 적을 중독시키는 초록 아군 파리를 소환합니다."}, -- Locust of Pestilence
-	{"115", "기근의 메뚜기", "{{Slow}} 방 입장 시 적을 느려지게 하는 노란 아군 파리를 소환합니다."}, -- Locust of Famine
-	{"116", "죽음의 메뚜기", "방 입장 시 공격력 4배의 피해를 주는 검은 아군 파리를 소환합니다."}, -- Locust of Death
-	{"117", "정복의 메뚜기", "방 입장 시 하얀 아군 파리를 2~5마리를 소환합니다."}, -- Locust of Conquest
-	{"118", "박쥐 날개", "적 처치 시 확률적으로 그 방에서 비행 능력을 얻습니다."}, -- Bat Wing
+	{"113", "전쟁의 메뚜기", "{{Bomb}} 방 입장 시 적과 접촉 시 폭발하는 빨간 아군 파리를 하나 소환합니다."}, -- Locust of War
+	{"114", "역병의 메뚜기", "{{Poison}} 방 입장 시 적을 중독시키는 초록 아군 파리를 하나 소환합니다."}, -- Locust of Pestilence
+	{"115", "기근의 메뚜기", "{{Slow}} 방 입장 시 적을 느려지게 하는 노란 아군 파리를 하나 소환합니다."}, -- Locust of Famine
+	{"116", "죽음의 메뚜기", "방 입장 시 공격력 4배의 피해를 주는 검은 아군 파리를 하나 소환합니다."}, -- Locust of Death
+	{"117", "정복의 메뚜기", "방 입장 시 하얀 아군 파리를 1~4마리 소환합니다."}, -- Locust of Conquest
+	{"118", "박쥐 날개", "적 처치 시 5%의 확률로 그 방에서 비행 능력을 얻습니다."}, -- Bat Wing
 	{"119", "줄기 세포", "{{HealingRed}} 스테이지 진입 시 체력을 반칸 회복합니다."}, -- Stem Cell
 	{"120", "머리핀", "{{Battery}} {{BossRoom}}보스방 최초 입장 시 액티브 아이템의 충전량을 모두 충전합니다."}, -- Hairpin
 	{"121", "나무 십자가", "{{HolyMantleSmall}} 스테이지 진입 시 피해 1번 무시하는 보호막을 생성합니다."}, -- Wooden Cross
@@ -810,7 +810,7 @@ EID.descriptions[languageCode].trinkets={
 	{"123", "세공 깃털", "{{AngelRoom}} Uriel/Gabriel이 Key Piece 대신 천사방 아이템을 드랍합니다.#!!! 한 종류의 Key Piece만 소지 시 Key Piece를 드랍합니다."}, -- Filigree Feather
 	{"124", "문 받침대", "방에 입장 시 들어왔던 문이 닫히지 않습니다."}, -- Door Stop
 	{"125", "연장 코드", "{{ColorCyan}}모든 캐릭터{{CR}}와 패밀리어 사이에 전류 레이저가 흐르며;#{{ArrowGrayRight}} 레이저에 접촉한 적은 초당 6의 피해를 받습니다."}, -- Extension Cord
-	{"126", "썩은 동전", "동전 획득 시 파란 아군 파리를 소환합니다."}, -- Rotten Penny
+	{"126", "썩은 동전", "동전 획득 시 파란 아군 파리를 하나 소환합니다."}, -- Rotten Penny
 	{"127", "아기 초능력자", "패밀리어의 공격에 유도 효과가 생깁니다."}, -- Baby-Bender
 	{"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 2% 확률로 뼈하트를 획득합니다."}, -- Finger Bone
 }
