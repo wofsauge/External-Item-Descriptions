@@ -408,7 +408,6 @@ function EID:GlyphOfBalancePrediction(player)
 		fullID = "5.10.3"
 	end
 	
-	--todo: in REPENTOGON, replace this whole function (in the eid_repentogon lua style)
 	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
 	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
 end

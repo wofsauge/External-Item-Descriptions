@@ -229,3 +229,20 @@ local function RepentogonModifierConditions(descObj)
 	return false
 end
 EID:addDescriptionModifier("EID Repentogon", RepentogonModifierConditions, nil)
+
+--------------------- Predictions ---------------------
+
+-- Glyph of Balance --
+-- Override existing function with one that uses Repentogon features
+function EID:GlyphOfBalancePrediction(player)
+	local dropIDTable = player:GetGlyphOfBalanceDrop(Variant, SubType)
+
+	-- build item string based on return value. Only add SubType, if its not equal 0
+	local fullID = "5.0"
+	if dropIDTable[1] ~= -1 then
+		fullID = "5." .. dropIDTable[1] .. (dropIDTable[2] ~= 0 and ("." .. dropIDTable[2]) or "")
+	end
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
+end
+
