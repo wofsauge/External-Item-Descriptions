@@ -72,7 +72,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
     Coin = "{value} Coin{pluralize}",
     Bomb = "{value} Bomb{pluralize}",
     Key = "{value} Key{pluralize}",
-    CoinBombKey= "{value} {{Coin}} coin{pluralize}, {{Bomb}} bomb{pluralize} and {{Key}} key{pluralize}",
+    CoinBombKey = "{value} {{Coin}} coin{pluralize}, {{Bomb}} bomb{pluralize} and {{Key}} key{pluralize}",
     -- Dynamic Spawns
     Spawns = {
         RandomPickup = "Spawns {value} random pickup{pluralize}",
@@ -611,7 +611,7 @@ local additionalPillInformations = {
     [Pill_ID .. 47] = "Spawns the last pill used before Vurp!", -- Vurp!
 }
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
-
+EID:CollectSimilarDescriptions(EID.descriptions[languageCode].AdditionalInformations)
 
 EID.descriptions[languageCode].collectibles={
 	{"1", "The Sad Onion", "↑ {{Tears}} +0.7 Tears"}, -- The Sad Onion

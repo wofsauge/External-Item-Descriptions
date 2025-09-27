@@ -126,6 +126,26 @@ function EID:CompareWithPreviousDLC(newTable, oldTable)
 	end
 end
 
+function EID:CollectSimilarDescriptions(tableToCheck)
+    local uniqueDescriptions = {}
+    for _, description in pairs(tableToCheck) do
+        for line in string.gmatch(description, "[^#]+") do
+            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("^%s+", "")
+            if uniqueDescriptions[line] then
+                uniqueDescriptions[line] = uniqueDescriptions[line] + 1
+            else
+                uniqueDescriptions[line] = 1
+            end
+        end
+    end
+    
+    for k, v in pairs(uniqueDescriptions) do
+        if v ~= 1 then
+            print(v,k)
+        end
+    end
+end
+
 -- Tries to generate a description for an item based on its stats defined in EID.ItemStats
 -- Returns an empty string if no stats are defined for the item
 function EID:GenerateDescription(itemID)
