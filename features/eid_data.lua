@@ -782,7 +782,6 @@ EID.InlineColors = {
 	end,
 	-- Subtle glow between green from Luck Clover and from the Quality 1 shield
 	["BlinkGreen"] = function(_)
-		local c = EID.InlineColors
 		return SwagColors({KColor(0.404, 0.663, 0.306, 1), KColor(0.443, 0.765, 0.247, 1)})
 	end,
 	-- Shiny purple color effect
