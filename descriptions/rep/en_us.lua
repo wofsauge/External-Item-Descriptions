@@ -409,7 +409,8 @@ local additionalPillInformations = {
 }
 EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
-
+print("--------------REP-------------")
+EID:CollectSimilarDescriptions(EID.descriptions[languageCode].AdditionalInformations)
 
 local repCollectibles={
 	[2] = {"2", "The Inner Eye", "↓ {{Tears}} x0.51 Fire rate multiplier#Isaac shoots 3 tears at once"}, -- The Inner Eye

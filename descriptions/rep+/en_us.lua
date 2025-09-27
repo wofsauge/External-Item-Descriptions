@@ -83,6 +83,8 @@ local additionalPillInformations = {
 EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
 
+print("--------------REP+-------------")
+EID:CollectSimilarDescriptions(EID.descriptions[languageCode].AdditionalInformations)
 
 
 
