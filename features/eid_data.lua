@@ -841,33 +841,121 @@ EID.ColorBlindColors = {
 -- mults: custom multipliers. A Missing Page's damage goes from 80 to 120 to 160; so its multipliers are 1.5 and 2, instead of 2 and 3
 -- append / findReplace / fullReplace: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) from goldenTrinketEffects
 EID.GoldenTrinketData = {
-	-- Swallowed Penny, Petrified Poop (50% -> 60%), Purple Heart (max 2x), a couple Worms, Black Lipstick, Bible Tract, Monkey's Paw
-	[1] = 1, [2] = {t={50}, mult=1.2}, [5] = {t={2}, mult=2}, [10] = {t={0.4,0}}, [11] = {t={0.4,0}}, [17] = 10, [18] = 3, [20] = 1,
-	-- Butt Penny, Hook Worm (two stats), Whip Worm, Fish Head, Liberty Cap (max 4x), Curved Horn, Goat Hoof, Mom's Pearl (2x becomes 3x)
-	[24] = {t={20}, mult=1.5}, [26] = {t={0.4, 1.5, 0}}, [27] = 0.5, [29] = 1, [32] = {t={25}, mult=4}, [35] = 2, [37] = 0.15, [38] = {t={10}, mult=2},
-	-- Cancer, Lucky Toe (just the Luck Up), Isaac's Fork (heart heal amount), A Missing Page (damage + necronomicon multiplier), Tick (the biggest pain)
-	[39] = 1, [42] = 1, [46] = {findReplace = true}, [48] = {t={2, 80},mults={1.5,2}}, [53] = {fullReplace = true},
-	-- Maggy's Faith, Rainbow Worm, Tape Worm, Lazy Worm, Louse, Watch Battery (just the charge amount), Exploding Cap, Stud Finder
-	[55] = 1, [64] = {append = true}, [65] = 3, [66] = 0.5, [70] = 1, [72] = 1, [73] = 10, [74] = {t={0.5}, mult=2},
-	-- Error (same as Rainbow Worm), Second Hand (max 2x -> 3x), Black Feather, Blind Rage, Golden Horse Shoe, Karma, Lil Larva
-	[75] = {append = true}, [78] = {t={2}, mult=1.5}, [80] = 0.5, [81] = 2, [82] = {t={15}, mult=2}, [85] = {t={1,1,1}}, [86] = {t={1}, mult=2},
-	-- NO!, Brown Cap, Cracked Crown, Ouroboros Worm, Broken Syringe, Teardrop Charm, Beth's Faith (possibly tripleable, but max 8 wisps in its ring)
-	[88] = {append = true}, [90] = {t={100}, mult=2}, [92] = 20, [96] = {t={0.4, 1.5}}, [132] = {t={25}, mult=4}, [139] = {t={4},mults={1.5,2}}, [142] = {t={4}, mult=2},
-	-- Old Capacitor (hard cap of 33% chance), Perfection, Mom's Lock, Dice Bag, Mother's Kiss
-	[143] = {t={20}, mult=1.65}, [145] = 10, [153] = {t={25}, mult=4}, [154] = {t={50}, mult=2}, [156] = {t={1,1}},
-	-- Gilded Key (Golden = no +1 key; probably a bug), Lucky Sack, Azazel's Stump (50/67/100), Dingle Berry, Ring Cap
-	[159] = {goldenOnly = true, fullReplace = true, mult=1}, [160] = 1, [162] = {t={50}, mults={1.32, 2}}, [163] = {t={1},mult=2}, [164] = 1,
-	-- Modeling Clay, Polished Bone (25, 33, 50), Hollow Heart, Kid's Drawing, Crystal Key
-	[166] = {t={50},mult=2}, [167] = {t={25}, mults={1.32, 2}}, [168] = 1, [169] = {t={1}, goldenOnly = true, mult = 2}, [170] = {t={33}, mults={1.5,3}},
-	-- Lil Clot, Swallowed M80, The Twins (effect chance rolls multiple times), Cricket Leg (17%, 1 in 6), Apollyon's Best Friend, Broken Glasses
-	[176] = 1, [178] = {t={50},mult=2}, [183] = {append = true}, [185] = 17, [186] = 1, [187] = {t={50,50}, mult=2},
+	[1] = 1, -- Swallowed Penny
+	[2] = {t={50}, mult=1.2}, -- Petrified Poop (50% -> 60%)
+	[5] = {t={2}, mult=2}, -- Purple Heart (max 2x)
+	[10] = {t={0.4,0}}, -- Wiggle Worm
+	[11] = {t={0.4,0}}, -- Ring Worm
+	[17] = 10, -- Black Lipstick
+	[18] = 3, -- Bible Tract
+	[20] = 1, -- Monkey's Paw
+	[24] = {t={20}, mult=1.5}, -- Butt Penny
+	[26] = {t={0.4, 1.5, 0}}, -- Hook Worm (two stats)
+	[27] = 0.5, -- Whip Worm
+	[29] = 1, -- Fish Head
+	[32] = {t={25}, mult=4}, -- Liberty Cap (max 4x)
+	[35] = 2, -- Curved Horn
+	[37] = 0.15, -- Goat Hoof
+	[38] = {t={10}, mult=2}, -- Mom's Pearl (2x becomes 3x)
+	[39] = 1, -- Cancer
+	[42] = 1, -- Lucky Toe (just the Luck Up)
+	[46] = {findReplace = true}, -- Isaac's Fork (heart heal amount)
+	[48] = {t={2, 80},mults={1.5,2}}, -- A Missing Page (damage + necronomicon multiplier)
+	[53] = {fullReplace = true}, -- Tick (the biggest pain)
+	[55] = 1, -- Maggy's Faith
+	[64] = {append = true}, -- Rainbow Worm
+	[65] = 3, -- Tape Worm
+	[66] = 0.5, -- Lazy Worm
+	[70] = 1, -- Louse
+	[72] = 1, -- Watch Battery (just the charge amount)
+	[73] = 10, -- Exploding Cap
+	[74] = {t={0.5}, mult=2},-- Stud Finder
+	[75] = {append = true}, -- Error (same as Rainbow Worm)
+	[78] = {t={2}, mult=1.5}, -- Second Hand (max 2x -> 3x)
+	[80] = 0.5, -- Black Feather
+	[81] = 2, -- Blind Rage
+	[82] = {t={15}, mult=2}, -- Golden Horse Shoe
+	[85] = {t={1,1,1}}, -- Karma
+	[86] = {t={1}, mult=2},-- Lil Larva
+	[88] = {append = true}, -- NO!
+	[90] = {t={100}, mult=2}, -- Brown Cap
+	[92] = 20, -- Cracked Crown
+	[96] = {t={0.4, 1.5}}, -- Ouroboros Worm
+	[132] = {t={25}, mult=4}, -- Broken Syringe
+	[139] = {t={4},mults={1.5,2}}, -- Teardrop Charm
+	[142] = {t={4}, mult=2}, -- Beth's Faith (possibly tripleable, but max 8 wisps in its ring)
+	[143] = {t={20}, mult=1.65}, -- Old Capacitor (hard cap of 33% chance)
+	[145] = 10, -- Perfection
+	[153] = {t={25}, mult=4}, -- Mom's Lock
+	[154] = {t={50}, mult=2}, -- Dice Bag
+	[156] = {t={1,1}}, -- Mother's Kiss
+	[159] = {goldenOnly = true, fullReplace = true, mult=1}, -- Gilded Key (Golden = no +1 key; probably a bug)
+	[160] = 1, -- Lucky Sack
+	[162] = {t={50}, mults={1.32, 2}}, -- Azazel's Stump (50/67/100)
+	[163] = {t={1},mult=2}, -- Dingle Berry
+	[164] = 1, -- Ring Cap
+	[166] = {t={50},mult=2}, -- Modeling Clay
+	[167] = {t={25}, mults={1.32, 2}}, -- Polished Bone (25, 33, 50)
+	[168] = 1, -- Hollow Heart
+	[169] = {t={1}, goldenOnly = true, mult = 2}, -- Kid's Drawing
+	[170] = {t={33}, mults={1.5,3}}, -- Crystal Key
+	[176] = 1, -- Lil Clot
+	[178] = {t={50},mult=2}, -- Swallowed M80
+	[183] = {append = true}, -- The Twins (effect chance rolls multiple times)
+	[185] = 17, -- Cricket Leg (17%, 1 in 6)
+	[186] = 1, -- Apollyon's Best Friend
+	[187] = {t={50,50}, mult=2}, -- Broken Glasses
 
 	-- NEW REP PATCH UPDATE
-	-- AAA Battery, Broken Remote (Teleport 2.0), Broken Magnet (coins -> pickups), Cartridge, Pulse Worm (default text), Flat Worm,
-	[3] = 1, [4] = {fullReplace = true, mult=1}, [6] = {findReplace = true, mult = 2}, [7] = {append = true}, [8] = 5, [9] = 0, [12] = 50,
-	-- Golden Store Credit, Lucky Rock (effect chance rolls multiple times), Mom's Toenail (20 -> 10 -> 6.66), Mysterious Candy (golden = golden poop)
-	[13] = {goldenOnly = true, fullReplace = true, mult=1}, [15] = {append = true}, [16] = {t={20}, mults={0.5, 0.333}}, [25] = {goldenOnly = true, findReplace = true, mult = 2},
+	[3] = 1, -- AAA Battery
+	[4] = {fullReplace = true, mult=1}, -- Broken Remote (Teleport 2.0)
+	[6] = {findReplace = true, mult = 2}, -- Broken Magnet (coins -> pickups)
+	[7] = {append = true}, -- Rosary Bead
+	[8] = 5, -- Cartridge
+	[9] = 0, -- Pulse Worm (default text)
+	[12] = 50, -- Flat Worm
+	[13] = {goldenOnly = true, fullReplace = true, mult=1}, -- Golden Store Credit
+	[15] = {append = true}, -- Lucky Rock (effect chance rolls multiple times)
+	[16] = {t={20}, mults={0.5, 0.333}}, -- Mom's Toenail (20 -> 10 -> 6.66)
+	[25] = {goldenOnly = true, findReplace = true, mult = 2}, -- Mysterious Candy (golden = golden poop)
 }
+if EID.isRepentancePlus then
+	EID.GoldenTrinketData[23] = {t={33}, mults={1.5,3}} -- Missing Poster
+	EID.GoldenTrinketData[30] = {t={10}, mults={2,3.3}} -- Pinky Eye
+	EID.GoldenTrinketData[31] = {t={10}, mults={2,3.3}} -- Push Pin
+	EID.GoldenTrinketData[38] = {t={10}, mults={2,2}} -- Mom's Pearl
+	EID.GoldenTrinketData[40] = {t={20}, mults={1.65,2.5}} -- Red Patch
+	EID.GoldenTrinketData[49] = 25 -- Bloody Penny
+	EID.GoldenTrinketData[50] = 25 -- Burnt Penny
+	EID.GoldenTrinketData[51] = 25 -- Flat Penny
+	EID.GoldenTrinketData[60] = {t={5}} -- Eve's Bird Foot
+	EID.GoldenTrinketData[67] = {t={50}, mults={1.5,2}} -- Cracked Dice
+	EID.GoldenTrinketData[79] = {t={25}, mults={1.32,2}} -- Endless Nameless
+	EID.GoldenTrinketData[86] = {t={1}} -- Lil Larva can be tripled now
+	EID.GoldenTrinketData[89] = 25 -- Child Leash
+	EID.GoldenTrinketData[95] = {t={3}} -- Black Tooth
+	EID.GoldenTrinketData[99] = {t={10}, mults={2,3.3}} -- Super Ball
+	EID.GoldenTrinketData[100] = {t={1,0.75,0.5,0.25,0.2,0.1}} -- Vibrant Bulb
+	EID.GoldenTrinketData[101] = {t={2,1.5,1.5,0.5,0.4,0.3}} -- Dim Bulb
+	EID.GoldenTrinketData[103] = 2 -- Equality!
+	EID.GoldenTrinketData[104] = 5 -- Wish Bone
+	EID.GoldenTrinketData[105] = 5 -- Bag Lunch
+	EID.GoldenTrinketData[118] = 5 -- Bat Wing
+	EID.GoldenTrinketData[122] = 2 -- Butter!
+	EID.GoldenTrinketData[125] = 6 -- Extension Cord
+	EID.GoldenTrinketData[128] = 4 -- Finger Bone
+	EID.GoldenTrinketData[129] = 10 -- Jawbreaker
+	EID.GoldenTrinketData[130] = 10 -- Chewed Pen
+	EID.GoldenTrinketData[135] = {t={20}, mults={1.65,2.5}} -- A Lighter
+	EID.GoldenTrinketData[137] = {t={4}, mults={1.5,2}} -- Myosotis
+	EID.GoldenTrinketData[141] = {t={2}, mults={1.25,1.5}} -- Forgotten Lullaby
+	EID.GoldenTrinketData[158] = {t={2}, mults={1.5,2}} -- Torn Pocket
+	EID.GoldenTrinketData[163] = {t={1}} -- Dingle Berry can be tripled now
+	EID.GoldenTrinketData[167] = {t={25}, mults={1.32,2}} -- Polished Bone
+	EID.GoldenTrinketData[174] = {t={10}, mults={1.5,2}} -- Number Magnet
+	EID.GoldenTrinketData[180] = {t={50}, mults={1.5,2}} -- Found Soul
+	EID.GoldenTrinketData[188] = {t={20}, mults={1.65,2.5}} -- Ice Cube
+end
 
 EID.MarkupSizeMap = {
 	["{{Damage}}"] = "{{DamageSmall}}",
