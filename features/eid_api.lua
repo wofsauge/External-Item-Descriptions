@@ -1340,6 +1340,14 @@ function EID:handleBulletpointIcon(text, ignoreBPConfig)
 	return "\007"
 end
 
+-- Find indentation markup, remove it and return the modified string and the number of indentations
+-- position of the markup in the text is irrelevant. it only affects the indentation of the bullet point
+---@param text string
+---@return string, integer
+function EID:handleTextIndentation(text)
+	return string.gsub(text, "{{Indent}}", "")
+end
+
 local colorFunc = nil
 ---Gets a KColor from a Markup-string (example Input: "{{ColorText}}").
 ---Returns the KColor object and a boolean value indicating if the given string was a color markup or not

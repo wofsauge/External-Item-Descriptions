@@ -133,6 +133,7 @@ EID.TextReplacementPairs = {
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
 	{"{{CONFIG_BoC_Toggle}}", function(_) return EID.ButtonToIconMap[EID.Config["BagOfCraftingToggleKey"]] or "{{ButtonSelect}}" end},
+	{"{{IND}}", "{{Indent}}"}, -- Shortcut for Indent
 	-- more common/official names
 	{"{{MimicChest}}", "{{TrapChest}}"},
 	{"{{EternalChest}}", "{{HolyChest}}"},
