@@ -357,21 +357,6 @@ function EID:InStageTheShop()
 	return EID:IsGreedMode() and EID:InStageNum(0)
 end
 
--- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
-function EID:CheckForNoRedHealthPlayer()
-	if EID.InsideItemReminder then
-		local player = EID.ItemReminderPlayerEntity
-		return EID.NoRedHeartsPlayerIDs[player:GetPlayerType()]
-	else
-		for _, player in ipairs(EID.coopAllPlayers) do
-			if EID.NoRedHeartsPlayerIDs[player:GetPlayerType()] then
-				return true
-			end
-		end
-	end
-	return false
-end
-
 function EID:CheckForTaintedPlayer()
 	if EID.InsideItemReminder then
 		local player = EID.ItemReminderPlayerEntity

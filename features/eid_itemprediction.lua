@@ -353,7 +353,7 @@ function EID:GlyphOfBalancePrediction(player)
 	local fullID = "5.0"
 	
 	local playerID = player:GetPlayerType()
-	local skipHearts = EID.isRepentance and EID.NoRedHeartsPlayerIDs[playerID] -- Soul Heart characters can't get hearts in Repentance
+	local skipHearts = EID.CharacterToHeartType[playerID] ~= "Red"
 	local skipSoulHearts = EID.isRepentance and (playerID == 18 or playerID == 14 or playerID == 33) -- Bethany and Keepers can't get Soul Hearts with 6 or less containers in Repentance
 	local skipBombs = EID.isRepentance and playerID == 25 -- Tainted ??? (the only character that can't have Bombs)
 	

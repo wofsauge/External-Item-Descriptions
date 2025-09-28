@@ -1138,30 +1138,26 @@ EID.TaintedToRegularID = { [20] = 19, [21] = 0, [22] = 1, [23] = 2, [24] = 3, [2
 -- Player IDs of Tainted characters
 EID.TaintedIDs = {}; for i = 21, 40 do EID.TaintedIDs[i] = true end
 
--- Character IDs that are Soul/Black Hearts only: ???, The Lost, The Soul
-EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [17] = true }
--- More separated table for more exact data
-EID.SpecialHeartPlayers = {}
-EID.SpecialHeartPlayers["Soul"] = { 4, 17 }
-EID.SpecialHeartPlayers["Black"] = {}
-EID.SpecialHeartPlayers["Coin"] = { 14 }
-EID.SpecialHeartPlayers["Bone"] = { 16 }
-EID.SpecialHeartPlayers["None"] = { 10 }
--- Lookup table for the type of health each player has
-EID.CharacterToHeartType = {}; for i = 0, 17 do EID.CharacterToHeartType[i] = "Red" end
-EID.CharacterToHeartType[4] = "Soul"; EID.CharacterToHeartType[10] = "None"; EID.CharacterToHeartType[14] = "Coin"; EID.CharacterToHeartType[16] = "Bone"; EID.CharacterToHeartType[17] = "Soul"
-
+-- lookup table of all characters with a given heart type
+EID.SpecialHeartPlayers = {
+	Soul = { 4, 17 },
+	Coin = { 14 },
+	Bone = { 16 },
+	None = { 10 },
+}
 if EID.isRepentance then
-	-- ???, The Lost, Black Judas, The Soul, Tainted Judas, Tainted ???, Tainted Lost, Tainted Forgotten, Tainted Bethany, Tainted Soul
-	EID.NoRedHeartsPlayerIDs = { [4] = true, [10] = true, [12] = true, [17] = true, [24] = true, [25] = true, [31] = true, [35] = true, [36] = true, [40] = true }
 	EID.SpecialHeartPlayers["Soul"] = { 4, 17, 25, 35, 36, 40 }
 	EID.SpecialHeartPlayers["Black"] = { 12, 24 }
 	EID.SpecialHeartPlayers["Coin"] = { 14, 33 }
 	EID.SpecialHeartPlayers["None"] = { 10, 31 }
-	
-	for i = 18, 40 do EID.CharacterToHeartType[i] = "Red" end
-	EID.CharacterToHeartType[12] = "Black"; EID.CharacterToHeartType[24] = "Black"; EID.CharacterToHeartType[25] = "Soul"; EID.CharacterToHeartType[31] = "None"; EID.CharacterToHeartType[33] = "Coin"; EID.CharacterToHeartType[35] = "Soul"; EID.CharacterToHeartType[36] = "Soul"; EID.CharacterToHeartType[40] = "Soul"; 
 end
+
+-- Lookup table for the type of health each player has
+EID.CharacterToHeartType = {}; for i = 0, 40 do EID.CharacterToHeartType[i] = "Red" end
+-- fill EID.CharacterToHeartType table with data from EID.SpecialHeartPlayers table
+for heartType, charTable in pairs(EID.SpecialHeartPlayers) do for _, charID in ipairs(charTable) do EID.CharacterToHeartType[charID] = heartType end end
+
+
 
 EID.HealthTypesWithoutHealing = {}
 EID.HealthTypesWithoutHealing["Soul"] = true
@@ -1172,9 +1168,9 @@ EID.HealthTypesWithoutHealing["None"] = true
 EID.PocketActivePlayerIDs = { [22] = 0, [23] = 2, [24] = 1, [25] = 2, [26] = 1, [29] = 0, [34] = 0, [36] = 0, [37] = 1, [38] = 0, [39] = 1 }
 
 -- "Evil" item IDs for Black Feather
-EID.blackFeatherItems = {[215]=true,[216]=true,[230]=true,[260]=true,[262]=true,[339]=true,[344]=true}
-if EID.isRepentance then EID.blackFeatherItems[654] = true end
-EID.blackFeatherTrinkets = {[17]=true,[22]=true}
+EID.BlackFeatherItems = { [215] = true, [216] = true, [230] = true, [260] = true, [262] = true, [339] = true, [344] = true }
+if EID.isRepentance then EID.BlackFeatherItems[654] = true end
+EID.BlackFeatherTrinkets = { [17] = true, [22] = true }
 
 -- Luck formulas
 EID.LuckFormulas = {}
