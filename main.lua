@@ -779,7 +779,7 @@ function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
 		local textColor = EID:getTextColor()
 
-		local indentOffset = numIndentations * textOffset
+		local indentOffset = textOffset * numIndentations
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
 			if i == 1 then
