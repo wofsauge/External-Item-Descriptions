@@ -3146,14 +3146,16 @@ end
 
 ---Super simple table concatenation: https://www.tutorialspoint.com/concatenation-of-tables-in-lua-programming
 ---@generic T
----@param t1 T[]
----@param t2 T[]
+---@param table1 T[]
+---@param table2 T[]
 ---@return T[]
-function EID:ConcatTables(t1, t2)
-	for i = 1, #t2 do
-		t1[#t1 + 1] = t2[i]
+function EID:ConcatTables(table1, table2)
+	if table1 == nil then table1 = {} end
+	if table2 == nil then table2 = {} end
+	for _, value in ipairs(table2) do
+		table.insert(table1, value)
 	end
-	return t1
+	return table1
 end
 
 ---Thing to fix find/replace pairs with hyphens (like "1-2") or pluses (like +1 Health) breaking because of special characters
