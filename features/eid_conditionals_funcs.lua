@@ -371,6 +371,21 @@ function EID:CheckForTaintedPlayer()
 	return false
 end
 
+-- Check if we have any characters that can't have Red Health, to print additions to descs like Dead Cat
+function EID:CheckForNoRedHealthPlayer()
+	if EID.InsideItemReminder then
+		local player = EID.ItemReminderPlayerEntity
+		return EID.CharacterToHeartType[player:GetPlayerType()] ~= "Red"
+	else
+		for _, player in ipairs(EID.coopAllPlayers) do
+			if EID.CharacterToHeartType[player:GetPlayerType()] ~= "Red" then
+				return true
+			end
+		end
+	end
+	return false
+end
+
 -- Check if we have characters with Schoolbag or a pocket active item
 function EID:CheckForMultipleActives(_, onlyChargeablePockets)
 	if EID.InsideItemReminder then
