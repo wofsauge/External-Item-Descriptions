@@ -278,8 +278,21 @@ EID.ItemStats = {
 
 
 ---------- Cards ----------
+    [Card_ID .. 4] = { RoomEffect = { Speed = 0.3, Damage = 1.5 }  }, -- III - The Empress
+    [Card_ID .. 6] = { Spawns = { SoulHeart = 2 } }, -- V - The Hierophant
+    [Card_ID .. 7] = { Spawns = { RedHeart = 2 } }, -- VI - The Lovers
+    [Card_ID .. 8] = { Timer = {Duration = 6, Speed = 0.28, Invincibility = true}  }, -- VII - The Chariot
+    [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 5.25, TearHeight = 0.5 } }, -- XI - Strength
+    [Card_ID .. 13] = { RoomEffect = { Flight = true } }, -- XII - The Hanged Man
+    [Card_ID .. 16] = { RoomEffect = { Damage = 2 } }, -- XV - The Devil
+    [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
+    [Card_ID .. 35] = { SoulHeart = 1 }, -- Dagaz
+    [Card_ID .. 38] = { Spawns = { BlueSpider = 3, BlueFly = 3} }, -- Berkano
+    [Card_ID .. 39] = { Variables = { [1] = 30} }, -- Algiz
+    [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 30, SizeUp = true } }, -- Huge Growth
+    [Card_ID .. 53] = { Spawns = { Card = 3 } }, -- Ancient Recall
+    [Card_ID .. 54] = { RoomEffect = { Speed = 0.5, ShotSpeed = -1 } }, -- Era Walk
 
-    
 ---------- Pills ----------
     [Pill_ID .. 3] = { SoulHeart = 2 }, -- Balls of Steel
     [Pill_ID .. 6] = { FullHealth = true }, -- Full Health
@@ -303,7 +316,7 @@ EID.ItemStats = {
 
 }
 
-
+EID:ValidateItemStatEntries("ab+")
 
 
 

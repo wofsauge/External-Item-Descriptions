@@ -326,10 +326,68 @@ local additionalCollectibleInformations = {
 	[C_ID .. 731] = "↑ {{Damage}} x1.28 Damage multiplier for the right eye#↑ {{Range}} +6.5 Range for the right eye#↓ {{Shotspeed}} -0.3 Shot speed for the right eye", -- Stye
 	[C_ID .. 732] = "{{Rune}} Spawns a random rune or soul stone", -- Mom's Ring
 }
-EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:CompareWithPreviousDLCNewDescriptions(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
+EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
+
+---------- Cards ----------
+
+local Card_ID = "5.300."
+local additionalCardInformations = {
+    [Card_ID .. 2] = "Homing tears", -- I - The Magician
+    [Card_ID .. 18] = "{{TreasureRoom}} Teleports Isaac to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead", -- XVII - The Stars
+    [Card_ID .. 20] = "Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)#{{CurseDarkness}} Removes Curse of Darkness", -- XIX - The Sun
+    [Card_ID .. 21] = "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#5% chance for it to be a Key Master, Bomb Bum, Battery Bum, or Rotten Beggar", -- XX - Judgement
+    [Card_ID .. 22] = "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)", -- XXI - The World
+    [Card_ID .. 27] = "{{Bomb}} Turns all pickups, chests and non-boss enemies into random bombs", -- Ace of Clubs
+    [Card_ID .. 28] = "{{Coin}} Turns all pickups, chests and non-boss enemies into random coins", -- Ace of Diamonds
+    [Card_ID .. 29] = "{{Key}} Turns all pickups, chests and non-boss enemies into random keys", -- Ace of Spades
+    [Card_ID .. 30] = "{{UnknownHeart}} Turns all pickups, chests and non-boss enemies into random hearts", -- Ace of Hearts
+    [Card_ID .. 34] = "Spawns a trapdoor to the next floor#{{LadderRoom}} Spawns a crawlspace if used on a decorative floor tile (grass, small rocks, papers, gems, etc.)", -- Ehwaz
+    [Card_ID .. 42] = "Using the card throws it in the direction Isaac is moving#Instantly kills ANY enemy it touches (except Delirium or the Beast)", -- Chaos Card
+    [Card_ID .. 51] = "{{HolyMantle}} A one-use Holy Mantle shield (prevents damage once)", -- Holy Card
+    [Card_ID .. 55] = "{{Rune}} Activates a random rune effect#The rune effect is weaker", -- Rune Shard
+    [Card_ID .. 56] = "Drops all of Isaac's hearts but one and all of his pickups on the floor#Coins and bombs are dropped as {{Collectible74}} The Quarter or {{Collectible19}} Boom! if possible", -- 0 - The Fool?
+    [Card_ID .. 57] = "{{Timer}} Grants an aura that repels enemies and projectiles for 60 seconds", -- I - The Magician?
+    [Card_ID .. 58] = "{{Timer}} Mom's Foot tries to stomp Isaac for 60 seconds", -- II - The High Priestess?
+    [Card_ID .. 60] = "Teleports Isaac to an extra Boss room that can be defeated for an item#The boss is chosen from two floors deeper than the current one", -- IV - The Emperor?
+    [Card_ID .. 62] = "Spawns an item from the current room's item pool#{{BrokenHeart}} Converts 1 heart container or 2 Soul Hearts into a Broken Heart", -- VI - The Lovers?
+    [Card_ID .. 63] = "Invincible but can't move", -- VII - The Chariot?
+    [Card_ID .. 64] = "{{GoldenChest}} Spawns 2-4 golden chests", -- VIII - Justice?
+    [Card_ID .. 65] = "{{Coin}} Turns all pickups and items in the room into a number of coins equal to their Shop value#If there is nothing to turn, spawns a Penny instead", -- IX - The Hermit?
+    [Card_ID .. 66] = "{{DiceRoom}} Triggers a random Dice Room effect", -- X - Wheel of Fortune?
+    [Card_ID .. 67] = "{{Timer}} Enemies in the room are {{Slow}} slowed and take double damage for 30 seconds", -- XI - Strength?
+    [Card_ID .. 68] = "Triple shot#{{Coin}} Killed enemies drop coins", -- XII - The Hanged Man?
+    [Card_ID .. 69] = "{{Collectible545}} Activates Book of the Dead#{{Friendly}} Spawns friendly Bone entities for each enemy killed in room", -- XIII - Death?
+    [Card_ID .. 70] = "{{Pill}} Forces Isaac to eat 5 random pills", -- XIV - Temperance?
+    [Card_ID .. 71] = "{{Timer}} Receive for 60 seconds:#{{Collectible33}} Activates The Bible (flight)#{{Collectible390}} Seraphim familiar#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan", -- XV - The Devil?
+    [Card_ID .. 72] = "Spawns 7 clusters of random rocks and obstacles#Clusters often contain Tinted Rocks", -- XVI - The Tower?
+    [Card_ID .. 73] = "Removes Isaac's oldest collected passive item (ignoring starting items)#Spawns 2 random items from the current room's item pool", -- XVII - The Stars?
+    [Card_ID .. 74] = "{{UltraSecretRoom}} Teleports Isaac to the Ultra Secret Room#Pathway back will be made of red rooms", -- XVIII - The Moon?
+    [Card_ID .. 75] = "{{Timer}} Receive for the floor:#↑ {{Damage}} +1.5 Damage#Flight and spectral tears#{{BoneHeart}} Converts heart containers into Bone Hearts (reverts)#{{CurseDarkness}} Curse of Darkness", -- XIX - The Sun?
+    [Card_ID .. 76] = "{{RestockMachine}} Spawns a Restock Machine", -- XX - Judgement?
+    [Card_ID .. 77] = "{{LadderRoom}} Spawns a trapdoor to a crawlspace", -- XXI - The World?
+    [Card_ID .. 78] = "{{Collectible580}} Single-use Red Key", -- Cracked Key
+    [Card_ID .. 80] = "Copies the effect of your most recently used pill, card, rune, soul stone or activated item", -- Wild Card
+    [Card_ID .. 81] = "Makes all item pedestals in the room cycle between two different items", -- Soul of Isaac
+    [Card_ID .. 82] = "{{Timer}} Effect lasts for the room:#{{HalfHeart}} Enemies killed drop half Red Hearts that disappear after 2 seconds", -- Soul of Magdalene
+    [Card_ID .. 83] = "Opens all doors in the room#{{Collectible580}} Creates red rooms on every wall possible", -- Soul of Cain
+    [Card_ID .. 84] = "{{Collectible705}} Activates Dark Arts with a 3 second duration#Temporary ↑ {{Damage}} damage up for every enemy/projectile hit", -- Soul of Judas
+    [Card_ID .. 85] = "{{Poison}} Causes 8 poison farts with brown creep, then quickly spawns 7 Butt Bombs#Standing on the creep grants:#↑ {{Tears}} +1.5 Fire rate#↑ {{Damage}} +1 Damage", -- Soul of ???
+    [Card_ID .. 86] = "{{Timer}} 14 Dead Bird familiars fly in and attack enemies for the room", -- Soul of Eve
+    [Card_ID .. 87] = "{{Collectible704}} Activates Berserk! for 10 seconds#{{Timer}} Each kill increases the duration by 1 second", -- Soul of Samson
+    [Card_ID .. 88] = "{{Collectible441}} Fires a Mega Blast beam for 7.5 seconds", -- Soul of Azazel
+    [Card_ID .. 89] = "Isaac dies and immediately revives at half a heart#This item is automatically used upon taking fatal damage (acts as an extra life)", -- Soul of Lazarus
+    [Card_ID .. 90] = "Rerolls item pedestals and pickups in the room#The rerolled items come from random item pools", -- Soul of Eden
+    [Card_ID .. 91] = "{{Player10}} Turns the player into The Lost for the room#Allows taking one {{DevilRoom}} Devil Room item for free#Allows entering the Mausoleum or Gehenna door for free", -- Soul of the Lost
+    [Card_ID .. 92] = "Permanently grants a random familiar", -- Soul of Lilith
+    [Card_ID .. 94] = "Spawns 15 random locusts", -- Soul of Apollyon
+    [Card_ID .. 95] = "{{Player16}} Spawns The Forgotten as a secondary character for the room", -- Soul of the Forgotten
+    [Card_ID .. 96] = "{{Collectible584}} Spawns 6 random Book of Virtues wisps", -- Soul of Bethany
+    [Card_ID .. 97] = "{{Player20}} Spawns Esau as a secondary character for the room#He spawns with as many passive items as the player", -- Soul of Jacob and Esau
+}
+EID:CompareWithPreviousDLC(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
+EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Pills ----------
 
@@ -381,8 +439,7 @@ local additionalPillInformations = {
     [Pill_ID .. (HorseID + 50)] = "↑ Increases 1 random stat twice#↓ Decreases 1 random stat twice", -- Experimental Pill
     [Pill_ID .. (HorseID + 9999)] = "Random horse pill effect#Has a chance to destroy itself with each use", -- Golden Pill
 }
-EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:CompareWithPreviousDLCNewDescriptions(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
+EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 local repCollectibles={

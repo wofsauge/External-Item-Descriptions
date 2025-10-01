@@ -58,9 +58,22 @@ local additionalCollectibleInformations = {
 
 	
 }
-EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:CompareWithPreviousDLCNewDescriptions(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
+EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
+
+---------- Cards ----------
+
+local Card_ID = "5.300."
+local additionalCardInformations = {
+-- Change: Added "1% chance for it to be a Crane Game"
+[Card_ID .. 11] = "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 24% chance for it to be a Fortune Telling Machine#{{CraneGame}} 1% chance for it to be a Crane Game", -- X - Wheel of Fortune
+-- Change: Added stone enemies and shields
+[Card_ID .. 32] = "Destroy all rocks and stone enemies in the room", -- Hagalaz
+-- Change: Complete rewrite
+[Card_ID .. 38] = "{{Collectible706}} Summons 3 Abyss locusts for the room", -- Berkano
+}
+EID:CompareWithPreviousDLC(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
+EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Pills ----------
 local Pill_ID = "5.70."
@@ -81,8 +94,7 @@ local additionalPillInformations = {
 	-- Change: Forces the effect to be a golden trinket
 	[Pill_ID .. (HorseID + 44)] = "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently", -- Gulp!
 }
-EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
-EID:CompareWithPreviousDLCNewDescriptions(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
+EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 
@@ -511,7 +523,6 @@ local goldenTrinketData = {
 EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode].goldenTrinketData)
 
 ---------- Cards ----------
-
 local cards = {
 	-- Change: Added "1% chance for it to be a Crane Game"
 	[11] = { "11", "X - Wheel of Fortune", "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 24% chance for it to be a Fortune Telling Machine#{{CraneGame}} 1% chance for it to be a Crane Game" }, -- X - Wheel of Fortune

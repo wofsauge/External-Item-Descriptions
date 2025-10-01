@@ -1,7 +1,9 @@
 -- Repentance Modular Descriptions
 -- Generates item descriptions based on stat changes defined in statValues
 local C_ID = "5.100."
+local T_ID = "5.350."
 local Pill_ID = "5.70."
+local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
 local repentanceItemStats = {
@@ -178,12 +180,24 @@ local repentanceItemStats = {
 	[C_ID .. 694] = { BrokenHeart = 3 }, -- Heartbreak
 
 	[C_ID .. 707] = { RedHeart = 1, HealingRed = 1 }, -- Supper
-	[C_ID .. 708] = { Damage = 1,  }, -- Stapler
+	[C_ID .. 708] = { Damage = 1 }, -- Stapler
 	[C_ID .. 716] = { Spawns = {Coin = 3, Key = 1} }, -- Keeper's Sack
 	[C_ID .. 727] = { Bomb = 5 }, -- Ghost Bombs
 	[C_ID .. 730] = { Damage = 0.75, Luck = 1 }, -- Glass Eye
 	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
 
+---------- Cards ----------
+    [Card_ID .. 2] = { RoomEffect = { Range = 3 }  }, -- I - The Magician
+    [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 2.5 } }, -- XI - Strength
+    [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
+    [Card_ID .. 39] = { Variables = { [1] = 20} }, -- Algiz
+    [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 3, SizeUp = true } }, -- Huge Growth
+    [Card_ID .. 59] = { Timer = { Duration = 6, Heart = 2, FireRate = 1.5, Speed = -0.1 } }, -- III - The Empress?
+    [Card_ID .. 61] = { Spawns = { BoneHeart = 2 } }, -- V - The Hierophant?
+    [Card_ID .. 63] = { Timer = { Duration = 10, FireRateMultiplier = 4} }, -- VII - The Chariot?
+    [Card_ID .. 68] = { Timer = { Duration = 30, Speed = -0.1 } }, -- XII - The Hanged Man?
+    [Card_ID .. 79] = { Spawns = { RedHeart = {1,20} } }, -- Queen of Hearts
+    [Card_ID .. 93] = { Spawns = { Coin = {1, 25} } }, -- Soul of the Keeper
 
 ---------- Pills ----------
 
@@ -216,4 +230,5 @@ local repentanceItemStats = {
 
 
 }
+EID:ValidateItemStatEntries("rep")
 EID:updateDescriptionsViaTable(repentanceItemStats, EID.ItemStats)
