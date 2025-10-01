@@ -59,6 +59,7 @@ local additionalCollectibleInformations = {
 	
 }
 EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:CompareWithPreviousDLCNewDescriptions(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Pills ----------
@@ -81,10 +82,8 @@ local additionalPillInformations = {
 	[Pill_ID .. (HorseID + 44)] = "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently", -- Gulp!
 }
 EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
+EID:CompareWithPreviousDLCNewDescriptions(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
-
-print("--------------REP+-------------")
-EID:CollectSimilarDescriptions(EID.descriptions[languageCode].AdditionalInformations)
 
 
 
