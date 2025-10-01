@@ -92,38 +92,72 @@ EID.StatisticsData = {
 -- add name value to EID.StatisticsData table
 for k,v in pairs(EID.StatisticsData) do v.Name = k end
 
+local function calculateCurrentChanceWithLuck(variableData)
+    local luckValue = 0
+    local top = variableData.Top or 1
+    local bottom = variableData.Bottom or 1
+    local multiplier = variableData.Multiplier or 1
+    local maximum = variableData.Maximum or 1
+    local luckFunc = variableData.Formula and EID.LuckFormulaPresets[variableData.Formula] or EID.LuckFormulaPresets.Default
+
+    local result = math.min(luckFunc.ChanceFunc(luckValue, top, bottom, multiplier), maximum)
+    -- if the luck value exceeds the maximum, it can produce negative values. we handle it as 100%
+    result = result >= 0 and result or maximum
+    return string.format("%.2f", result * 100):gsub("%.?0+$", "") .. "%"
+end
+
+EID.DynamicVariableHandlers = {
+    FORMATTED = function(variableData)
+        if type(variableData) == "table" then return tostring(variableData[1]) .. "-" .. tostring(variableData[2]) -- interpret a table as a range of numbers
+        elseif type(variableData) == "number" then return string.format("%.2f", variableData):gsub("%.?0+$", "") -- format numbers to look better
+        else return tostring(variableData) end -- return string otherwise
+    end,
+    RANGE = function(variableData) return tostring(variableData[1]) .. "-" .. tostring(variableData[2]) end,
+    LUCKCHANCE = calculateCurrentChanceWithLuck,
+}
+
+
+-- Formulas to calculate effect trigger change changes based on the player luck.
+-- Each entry requires 2 functions. One calculates the chance based on the given luck. The second calculates the required luck to reach the maximum luck
+EID.LuckFormulaPresets = {
+    -- default calculation using most common calculation method. Example for Apple! = 1/(15-Luck) (6.66% at 0 Luck)  = top = 1, bottom = 15, multiplier = 1, maximum = 1
+    Default = {
+        -- source: Items listed in https://bindingofisaacrebirth.wiki.gg/wiki/Luck
+        ChanceFunc = function(luckValue, top, bottom, multiplier)
+            return top / (bottom - (luckValue * multiplier))
+        end,
+        -- created by solving top formula for Luck (L)
+        -- T / (B - (L * M)) = MAX      | do * (B - (L * M))
+        -- T = MAX * (B - (L * M))      | do * 1/MAX
+        -- T / MAX = B - L * M          | do - B and * -1 and * 1/M
+        -- (-T / MAX + B) / M = L
+        MaxFunc = function(top, bottom, multiplier, maximum)
+            return (-top / maximum + bottom) / multiplier
+        end
+    },
+    Additive = {
+        ChanceFunc = function(luckValue, top, bottom, multiplier)
+            return top / bottom + (luckValue * multiplier)
+        end,
+        -- T/B + L*M = MAX | - T/B
+        -- L*M = MAX - T/B | / M
+        -- L = (MAX - T/B) / M
+        MaxFunc = function(top, bottom, multiplier, maximum)
+            return (maximum - top/bottom) / multiplier
+        end
+    }
+}
 
 
 -- DEBUG: Validate Stat table entry existance
-function EID:ValidateItemStatEntries()
+function EID:ValidateItemStatEntries(dlcName)
     for itemID, itemStatsEntry in pairs(EID.ItemStats) do
         for key, _ in pairs(itemStatsEntry) do
             if not EID.StatisticsData[key] then
-                print("[ERROR] Unknown item stat key '"..key.."' in entry :", itemID)
+                print("[ERROR:"..dlcName.."] Unknown item stat key '"..key.."' in entry :", itemID)
             end
         end
     end
-end
-
--- DEBUG: Compares an update table of a newr DLC with the previous DLC entries, to find duplicates or redundancies
-function EID:CompareWithPreviousDLC(newTable, oldTable)
-	for k, newValue in pairs(newTable) do
-		if oldTable[k] then
-            if type(oldTable[k]) == "table" then
-                local entriesEqual = true
-	            for k2, v2 in pairs(oldTable[k]) do
-                    if v2 ~= newValue[k2] then
-                        entriesEqual = false
-                    end
-                end
-                if entriesEqual then
-                    print("Table entry '"..k.."' is a duplicate!")
-                end
-            elseif oldTable[k] == newValue then
-                print("Table contains duplicate base-entry ("..k.."):", newValue)
-            end
-		end
-	end
 end
 
 function EID:CollectSimilarDescriptions(tableToCheck)
@@ -146,6 +180,56 @@ function EID:CollectSimilarDescriptions(tableToCheck)
     end
 end
 
+-- DEBUG: Compares an update table of a newer DLC with the previous DLC entries, to find duplicates or redundancies
+function EID:CompareWithPreviousDLC(newDLCTable, oldDLCTable, dlcName)
+    for id, description in pairs(newDLCTable) do
+        local equalLines = 0
+        local lineCountNew = 0
+        local lineCountOld = 0
+        local uniqueLinesNew = {}
+        for line in string.gmatch(description, "[^#]+") do
+            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
+            uniqueLinesNew[line] = true
+            lineCountNew = lineCountNew + 1
+        end
+
+        if oldDLCTable[id] then
+            for line in string.gmatch(oldDLCTable[id], "[^#]+") do
+                lineCountOld = lineCountOld + 1
+                line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
+                if uniqueLinesNew[line] then
+                    equalLines = equalLines + 1
+                end
+            end
+            if lineCountOld == lineCountNew and lineCountOld == equalLines then
+                print(dlcName, "Identical entry for " .. id .. " is a duplicate of the old one!")
+            elseif equalLines > 0 then
+                --print("Partial match for " .. id .. ": " .. oldDLCTable[id] .. " |||| " .. description)
+            end
+        end
+    end
+end
+
+-- Function to replace VAR markup with their specific content from the variables table
+function EID:HandleVariables(additionalInfo, itemStatsTable)
+    if not itemStatsTable.Variables then
+        return additionalInfo
+    end
+    additionalInfo = additionalInfo:gsub("{VAR:(.-)}", function(matchString)
+        -- Try to capture main text and optional trailing numbers used to add multiple variables of the same type
+        local variableName, number = matchString:match("^(.-)(%d*)$")
+        local handlerName = variableName == "" and "FORMATTED" or variableName -- if the variablename is only a number, use generic handler (Number / string / table)
+
+        -- if a function for the given variable exists, use it and return its value
+        local variableData = itemStatsTable.Variables[variableName] or itemStatsTable.Variables[tonumber(number)] or itemStatsTable.Variables[matchString]
+        if EID.DynamicVariableHandlers[handlerName] and variableData then
+            return EID.DynamicVariableHandlers[handlerName](variableData)
+        end
+        -- return nil if no function was found, to not replace the Variable string
+    end)
+    return additionalInfo
+end
+
 -- Tries to generate a description for an item based on its stats defined in EID.ItemStats
 -- Returns an empty string if no stats are defined for the item
 function EID:GenerateDescription(itemID)
@@ -153,7 +237,7 @@ function EID:GenerateDescription(itemID)
     local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", itemID)
     -- return empty string or additionalInfo, if no ItemStats are defined
     if not itemStatsTable then
-        return additionalInfo or "" , ""
+        return additionalInfo or "", ""
     end
 
     -- sort stats of selected Item by priority
@@ -186,6 +270,7 @@ function EID:GenerateDescription(itemID)
 
     -- Append additional informations
     if additionalInfo then
+        additionalInfo = EID:HandleVariables(additionalInfo, itemStatsTable)
         if description ~= "" then
             description = description .. "#" .. additionalInfo
         else
