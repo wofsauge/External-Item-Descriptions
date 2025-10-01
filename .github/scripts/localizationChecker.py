@@ -118,8 +118,14 @@ languageProgress = {}
 english_entries = {}
 for dlc in dlcs:
     lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
+    lua.execute('function EID:CompareWithPreviousDLC(_,_) end') # DEBUG function for modular descriptions
     g = lua.globals()
     addUpdatedTables("en_us", dlc)
+
+    # init game enums
+    enumsFile = glob.glob(os.path.dirname(SCRIPT_PATH)+"/**/enums_rep+.lua", recursive=True)[0]
+    print("reading:", enumsFile)
+    lua.execute(open(enumsFile, "r", encoding="UTF-8").read())
 
     # Read English language files first
     englishFile = glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/en_us.lua", recursive=True)[0]
@@ -137,7 +143,7 @@ for dlc in dlcs:
         langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
     # Read other language files
     for file in langFiles:
-        if "en_us" not in file and "transformations" not in file:
+        if "en_us" not in file and "transformations" not in file and "item_stats" not in file:
             languageCode = os.path.basename(file).replace(".lua","")
             print("reading:",file)
             addUpdatedTables(languageCode, dlc)
