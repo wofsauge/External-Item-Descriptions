@@ -80,6 +80,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
         RandomHeart = "Spawns {value} random heart{pluralize}",
     	RedHeart = "Spawns {value} Red Heart{pluralize}",
     	SoulHeart = "Spawns {value} Soul Heart{pluralize}",
+    	BoneHeart = "Spawns {value} Bone Heart{pluralize}",
     	Bomb = "Spawns {value} bomb{pluralize}",
     	Key = "Spawns {value} key{pluralize}",
         Coin = "Spawns {value} coin{pluralize}",
@@ -568,6 +569,60 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 551] = "Completes Mom's Shovel#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\"", -- Broken Shovel
 	[C_ID .. 552] = "Spawns a trapdoor to the next floor#10% chance for {{LadderRoom}} crawlspace trapdoor#{{Warning}} Use the shovel on the mound of dirt in the \"Dark Room\"", -- Mom's Shovel
 }
+
+
+---------- Cards ----------
+
+local Card_ID = "5.300."
+local additionalCardInformations = {
+	[Card_ID .. 1] = "Teleports Isaac to the first room of the floor", -- 0 - The Fool
+	[Card_ID .. 2] = "{{Timer}} Homing tears for the room", -- I - The Magician
+	[Card_ID .. 3] = "Mom's Foot stomps on an enemy#Mom's Foot stomps Isaac if there are no enemies", -- II - The High Priestess
+	[Card_ID .. 5] = "{{BossRoom}} Teleports Isaac to the Boss Room", -- IV - The Emperor
+	[Card_ID .. 8] = "Isaac can't shoot but deals 40 contact damage per second", -- VII - The Chariot
+	[Card_ID .. 9] = "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {{Key}} key", -- VIII - Justice
+	[Card_ID .. 10] = "{{Shop}} Teleports Isaac to the Shop", -- IX - The Hermit
+	[Card_ID .. 11] = "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 25% chance for it to be a Fortune Telling Machine", -- X - Wheel of Fortune
+	[Card_ID .. 14] = "Deals 40 damage to all enemies in the room", -- XIII - Death
+	[Card_ID .. 15] = "{{DonationMachine}} Spawns a Blood Donation Machine", -- XIV - Temperance
+	[Card_ID .. 17] = "Spawns 6 Troll Bombs", -- XVI - The Tower
+	[Card_ID .. 18] = "{{TreasureRoom}} Teleports Isaac to the Treasure Room", -- XVII - The Stars
+	[Card_ID .. 19] = "{{SecretRoom}} Teleports Isaac to the Secret Room", -- XVIII - The Moon
+	[Card_ID .. 20] = "Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)", -- XIX - The Sun
+	[Card_ID .. 21] = "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#2% chance for it to be a Key Master or Bomb Bum", -- XX - Judgement
+	[Card_ID .. 22] = "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)", -- XXI - The World
+	[Card_ID .. 23] = "{{Bomb}} Doubles Isaac's number of bombs", -- 2 of Clubs
+	[Card_ID .. 24] = "{{Coin}} Doubles Isaac's number of coins", -- 2 of Diamonds
+	[Card_ID .. 25] = "{{Key}} Doubles Isaac's number of keys", -- 2 of Spades
+	[Card_ID .. 26] = "{{HealingRed}} Doubles Isaac's number of Red Hearts {{ColorSilver}}(not containers){{CR}}", -- 2 of Hearts
+	[Card_ID .. 27] = "{{Bomb}} Turns all pickups into random bombs", -- Ace of Clubs
+	[Card_ID .. 28] = "{{Coin}} Turns all pickups into random coins", -- Ace of Diamonds
+	[Card_ID .. 29] = "{{Key}} Turns all pickups into random keys", -- Ace of Spades
+	[Card_ID .. 30] = "{{UnknownHeart}} Turns all pickups into random hearts", -- Ace of Hearts
+	[Card_ID .. 31] = "{{AngelDevilChance}} Teleports Isaac to the Devil or Angel Room", -- Joker
+	[Card_ID .. 32] = "Destroy all rocks in the room", -- Hagalaz
+	[Card_ID .. 33] = "Duplicates all pickups in room", -- Jera
+	[Card_ID .. 34] = "Spawns a trapdoor to the next floor#{{LadderRoom}} 8% chance for a crawlspace trapdoor", -- Ehwaz
+	[Card_ID .. 35] = "{{CurseCursed}} Removes all curses for the floor", -- Dagaz
+	[Card_ID .. 36] = "{{Timer}} Full mapping effect for the floor", -- Ansuz
+	[Card_ID .. 37] = "Rerolls all pedestal items in the room", -- Perthro
+	[Card_ID .. 39] = "{{Timer}} Makes Isaac invincible for {VAR:1} seconds", -- Algiz
+	[Card_ID .. 40] = "Triggers a random rune effect#25% chance to duplicate itself when used", -- Blank Rune
+	[Card_ID .. 41] = "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies", -- Black Rune
+	[Card_ID .. 42] = "Using the card throws it in the direction Isaac is moving#Instantly kills ANY enemy it touches (except Delirium)", -- Chaos Card
+	[Card_ID .. 43] = "Makes all items and pickups in a {{Shop}} Shop or {{DevilRoom}} Devil Room free", -- Credit Card
+	[Card_ID .. 44] = "Displays \"helpful\" tips on use", -- Rules Card
+	[Card_ID .. 45] = "Fills the whole room with poop", -- A Card Against Humanity
+	[Card_ID .. 46] = "Instantly kills Isaac and spawns 10 pickups or items on the floor#Spawned items will use the current room's item pool", -- Suicide King
+	[Card_ID .. 47] = "Open all doors in the room", -- Get Out Of Jail Free Card
+	[Card_ID .. 48] = "Uses Isaac's active item for free", -- ? Card
+	[Card_ID .. 49] = "Rerolls all item pedestals and pickups in the room", -- Dice Shard
+	[Card_ID .. 50] = "Two of Mom's Hands come down and grab an enemy each", -- Emergency Contact
+	[Card_ID .. 51] = "{{HolyMantle}} Holy Mantle shield for the room (prevents damage once)#25% chance to spawn another Holy Card", -- Holy Card
+	[Card_ID .. 52] = "Allows Isaac to destroy rocks by walking into them", -- Huge Growth
+	[Card_ID .. 54] = "{{Slow}} Slow down enemies", -- Era Walk
+}
+EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 
 ---------- Pills ----------

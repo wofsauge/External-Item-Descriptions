@@ -1,7 +1,9 @@
 -- Repentance Modular Descriptions
 -- Generates item descriptions based on stat changes defined in statValues
 local C_ID = "5.100."
+local T_ID = "5.350."
 local Pill_ID = "5.70."
+local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
 local repentancePlusItemStats = {
@@ -11,8 +13,12 @@ local repentancePlusItemStats = {
 	[C_ID .. 594] = { EmptyHeart = 2, Speed = -0.3, HealingRed = 2 }, -- Jupiter
 	[C_ID .. 643] = { Flight = true }, -- Revelation (Removed +2 Soul Hearts)
 
-    ---------- Horse Pills ----------
+---------- Cards ----------
+    [Card_ID .. 38] = { }, -- Berkano (replace blue spider/fly spawns with abyss locusts)
+    
+---------- Horse Pills ----------
     [Pill_ID .. (HorseID + 29)] = { FullHealth = true }, -- Percs! (Added full heal information)
     [Pill_ID .. (HorseID + 30)] = { BrokenHeart = 1 }, -- Addicted! (Added broken heart)
 }
+EID:ValidateItemStatEntries("rep+")
 EID:updateDescriptionsViaTable(repentancePlusItemStats, EID.ItemStats)

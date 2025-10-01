@@ -56,7 +56,8 @@ EID.StatisticsData = {
 
     -- Familiars
     ["Flies"] = { Priority = 5990, },
-    ["Orbital"] = { Priority = 5990, },
+    ["Orbital"] = { Priority = 5980, },
+    ["MimicMovement"] = { Priority = 5970, },
     ["BlockProjectiles"] = { Priority = -5950, HideSign = true },
     ["DamagePerTear"] = { Priority = -5960, HideSign = true },
     ["DamagePerShot"] = { Priority = -5970, HideSign = true },
@@ -88,6 +89,7 @@ EID.StatisticsData = {
             Battery = "{{Battery}}",
         }
     },
+    ["Variables"] = { SpecialHandling = true },
 }
 -- add name value to EID.StatisticsData table
 for k,v in pairs(EID.StatisticsData) do v.Name = k end
@@ -244,7 +246,7 @@ function EID:GenerateDescription(itemID)
     local sortedStatsPositivePrio = {}
     local sortedStatsNegativePrio = {}
     for statID, _ in pairs(itemStatsTable) do
-        if EID.StatisticsData[statID] then
+        if EID.StatisticsData[statID] and not EID.StatisticsData[statID].SpecialHandling then
             if EID.StatisticsData[statID].Priority > 0 then
                 table.insert(sortedStatsPositivePrio, EID.StatisticsData[statID])
             else
