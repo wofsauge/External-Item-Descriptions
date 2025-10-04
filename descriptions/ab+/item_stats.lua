@@ -96,7 +96,7 @@ EID.ItemStats = {
     [C_ID .. 143] = { Speed = 0.3, ShotSpeed = 0.2 }, -- Speed Ball
     [C_ID .. 145] = { Spawns = {BlueFly = {2,4}} }, -- Guppy's Head 
     [C_ID .. 146] = { EternalHeart = 1 }, -- Prayer Card
-    [C_ID .. 148] = { Variables = { Range = {1,3}} }, -- Infestation
+    [C_ID .. 148] = { Variables = { RANGE = {1,3}} }, -- Infestation
     [C_ID .. 149] = { Damage = 40, TearsMultiplier = 0.5, TearDelay = 10 }, -- Ipecac
     [C_ID .. 152] = { TearsMultiplier = 0.5, DamageMultiplier = 0.65 }, -- Technology 2
     [C_ID .. 153] = { TearsMultiplier = 0.48, TearDelay = 3 }, -- Mutant Spider
@@ -288,7 +288,7 @@ EID.ItemStats = {
     [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
     [Card_ID .. 35] = { SoulHeart = 1 }, -- Dagaz
     [Card_ID .. 38] = { Spawns = { BlueSpider = 3, BlueFly = 3} }, -- Berkano
-    [Card_ID .. 39] = { Variables = { [1] = 30} }, -- Algiz
+    [Card_ID .. 39] = { TimedEffect = { Duration = 30, Invincibility = true} }, -- Algiz
     [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 30, SizeUp = true } }, -- Huge Growth
     [Card_ID .. 53] = { Spawns = { Card = 3 } }, -- Ancient Recall
     [Card_ID .. 54] = { RoomEffect = { Speed = 0.5, ShotSpeed = -1 } }, -- Era Walk

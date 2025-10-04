@@ -27,8 +27,8 @@ EID.StatisticsData = {
     ["SizeDown"] = { Priority = 9560, Arrow = true },
     ["Flight"] = { Priority = 9550 },
     ["Invincibility"] = { Priority = 9540 },
-    ["RandomStatUp"] = { Priority = 9530 },
-    ["RandomStatDown"] = { Priority = 9520 },
+    ["RandomStatUp"] = { Priority = 9530, HideSign = true },
+    ["RandomStatDown"] = { Priority = 9520, HideSign = true },
 
     -- Health related
     ["RedHeart"] = { Priority = 8990, Arrow = true, Icon = "{{Heart}}" },
@@ -57,8 +57,8 @@ EID.StatisticsData = {
 
     -- Familiars
     ["Flies"] = { Priority = 5990, },
-    ["Orbital"] = { Priority = 5980, },
-    ["MimicMovement"] = { Priority = 5970, },
+    ["Orbital"] = { Priority = 5980 },
+    ["MimicMovement"] = { Priority = 5970, HideSign = true },
     ["BlockProjectiles"] = { Priority = -5950, HideSign = true },
     ["DamagePerTear"] = { Priority = -5960, HideSign = true },
     ["DamagePerShot"] = { Priority = -5970, HideSign = true },
@@ -105,6 +105,12 @@ EID.StatisticsData = {
                     itemStatsTableEntry[tonumber(number)] or itemStatsTableEntry[matchString]
                 if EID.DynamicVariableHandlers[handlerName] and variableData then
                     return EID.DynamicVariableHandlers[handlerName](variableData)
+                else
+                    if not EID.DynamicVariableHandlers[handlerName] then
+                        print("[ERROR] No handler found for variable '"..tostring(handlerName).."'")
+                    elseif not variableData then
+                        print("[ERROR] No data-entry found for variable '"..tostring(variableName).."'")
+                    end
                 end
                 -- return nil if no function was found, to not replace the Variable string
             end)
@@ -114,48 +120,13 @@ EID.StatisticsData = {
     ["RoomEffect"] = {
         Priority = -9900,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
-            -- generate room effect description
-            local textFragment = EID:getDescriptionEntry("ModularDescriptions", "RoomEffect") .. "#"
-            -- add subdata entries
-            local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
-            for _, statDataEntry in ipairs(sortedStats) do
-                local statID = statDataEntry.Name
-                if EID:ValidateItemStatEntry(statID, "Located in a 'RoomEffect' element") then
-                    textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
-                end
-            end
-            -- Try replace inline variable
-            local numReplaced = 0
-            description, numReplaced = description:gsub("{VAR:ROOMEFFECT}", textFragment)
-            if numReplaced == 0 then
-                return description .. textFragment
-            end
-            return description
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RoomEffect")
         end
     },
     ["TimedEffect"] = {
         Priority = -9900,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
-            -- generate room effect description
-            local textFragment = EID:getDescriptionEntry("ModularDescriptions", "TimedEffect") .. "#"
-            -- replace timer value
-            local timeValue = string.format("%.2f", itemStatsTableEntry.Duration or "UNDEFINED"):gsub("%.?0+$", "")
-            textFragment = textFragment:gsub("{value}", timeValue)
-            -- add subdata entries
-            local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
-            for _, statDataEntry in ipairs(sortedStats) do
-                local statID = statDataEntry.Name
-                if statID ~= "Duration" and EID:ValidateItemStatEntry(statID, "Located in a 'TimedEffect' element") then
-                    textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
-                end
-            end
-            -- Try replace inline variable
-            local numReplaced = 0
-            description, numReplaced = description:gsub("{VAR:TIMEDEFFECT}", textFragment)
-            if numReplaced == 0 then
-                return description .. textFragment
-            end
-            return description
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "TimedEffect", "Duration")
         end
     },
 }
@@ -289,12 +260,44 @@ function EID:HandleStatEntry(statDataEntry, itemStatsTableEntry, description)
     return EID:GenerateTextFromStatEntry(statDataEntry, itemStatsTableEntry, description)
 end
 
-function EID:GetSortedModularDescriptionEntries(itemStatsTable, combinedTables, validateEntries)
+-- Applies a modular description for a nested stat entry (e.g. TimedEffect or RoomEffect)
+-- If the statName is given, it will try to replace {VAR:statName}
+-- If applyValueWithName is given, it will replace {value} in the stat description with the value of the given name
+function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, statName, applyValueWithName)
+    -- Get base text fragment for the stat
+    local statText = EID:getDescriptionEntry("ModularDescriptions", statName)
+    local textFragment = statText and (statText .. "#") or ""
+
+    -- replace value if a specific value name is given
+    if applyValueWithName then
+        local value = string.format("%.2f", itemStatsTableEntry[applyValueWithName] or "UNDEFINED"):gsub("%.?0+$", "")
+        textFragment = textFragment:gsub("{value}", value)
+    end
+    -- add subdata entries
+    local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
+    for _, statDataEntry in ipairs(sortedStats) do
+        local statID = statDataEntry.Name
+        if EID:ValidateItemStatEntry(statID, "located in a '"..statName.."' element") then
+            if not (applyValueWithName and statID == applyValueWithName) then
+                textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)  
+            end
+        end
+    end
+    -- Try replace inline variable
+    local numReplaced = 0
+    description, numReplaced = description:gsub("{VAR:"..string.upper(statName).."}", textFragment)
+    if numReplaced == 0 then
+        return description .. textFragment
+    end
+    return description
+end
+
+function EID:GetSortedModularDescriptionEntries(itemStatsTable, combineTables, validateEntries, debugInfo)
     -- sort stats of selected Item by priority
     local sortedStatsPositivePrio = {}
     local sortedStatsNegativePrio = {}
     for statID, _ in pairs(itemStatsTable) do
-        if validateEntries and EID:ValidateItemStatEntry(statID, "In EID:GetSortedModularDescriptionEntries()") or EID.StatisticsData[statID] then
+        if validateEntries and EID:ValidateItemStatEntry(statID, "in "..debugInfo) or EID.StatisticsData[statID] then
             if EID.StatisticsData[statID].Priority > 0 then
                 table.insert(sortedStatsPositivePrio, EID.StatisticsData[statID])
             else
@@ -304,7 +307,7 @@ function EID:GetSortedModularDescriptionEntries(itemStatsTable, combinedTables, 
     end
     table.sort(sortedStatsPositivePrio, function(a, b) return a.Priority > b.Priority end)
     table.sort(sortedStatsNegativePrio, function(a, b) return a.Priority > b.Priority end)
-    if combinedTables then
+    if combineTables then
         return EID:ConcatTables(sortedStatsPositivePrio, sortedStatsNegativePrio)
     end
     return sortedStatsPositivePrio, sortedStatsNegativePrio
@@ -320,7 +323,7 @@ function EID:GenerateDescription(itemID)
         return additionalInfo or "", ""
     end
 
-    local sortedStatsPositivePrio, sortedStatsNegativePrio = EID:GetSortedModularDescriptionEntries(itemStatsTable, false, true)
+    local sortedStatsPositivePrio, sortedStatsNegativePrio = EID:GetSortedModularDescriptionEntries(itemStatsTable, false, true, itemID)
 
     local description = ""
 
@@ -435,9 +438,7 @@ end
 -- DEBUG FUNCTION
 -- Compare generated description with original description for an item
 local successCounter = 0
-local missingCounter = 0
 local partialCounter = 0
-local mismatchCounter = 0
 
 -- DEBUG ignore entries list, which are automated correctly, but maybe have different order of lines
 local ignoreList = {
@@ -445,6 +446,7 @@ local ignoreList = {
     ["5.100.5"] = true,
     ["5.100.6"] = true,
     ["5.100.12"] = true,
+    ["5.100.40"] = true,
     ["5.100.59"] = true,
     ["5.100.70"] = true,
     ["5.100.78"] = true,
@@ -502,8 +504,10 @@ local ignoreList = {
     ["5.100.445"] = true,
     ["5.100.451"] = true,
     ["5.100.458"] = true,
+    ["5.100.468"] = true,
     ["5.100.470"] = true,
     ["5.100.473"] = true,
+    ["5.100.481"] = true,
     ["5.100.499"] = true,
 
     ["5.100.511"] = true,
@@ -532,27 +536,45 @@ local ignoreList = {
     
     ["5.100.716"] = true,
 
-    ---------- CARDS--------
+    ---------- CARDS --------
     ["5.300.4"] = true,
     ["5.300.12"] = true,
     ["5.300.13"] = true,
+    ["5.300.39"] = true,
     ["5.300.52"] = true,
     ["5.300.53"] = true,
     ["5.300.59"] = true,
     ["5.300.93"] = true,
 
+    ---------- Pills --------
+    ["5.70.4"] = true,
+    ["5.70.6"] = true,
+    ["5.70.7"] = true,
+    ["5.70.8"] = true,
+    ["5.70.21"] = true,
+    ["5.70.22"] = true,
+    ["5.70.33"] = true,
+    ["5.70.34"] = true,
+
+    ["5.70.2054"] = true,
+    ["5.70.2055"] = true,
+    ["5.70.2056"] = true,
+    ["5.70.2065"] = true,
+    ["5.70.2069"] = true,
+    ["5.70.2070"] = true,
 }
 
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local itemTypeString = type .. "." .. variant .. "." .. subtype
     local original = EID:getDescriptionObj(type, variant, subtype, null, false)
+    local originalEntry = EID:getDescriptionEntry(EID:getTableName(type, variant, subtype), subtype % PillColor.PILL_GIANT_FLAG)
     local generated, additional = EID:GenerateDescription(itemTypeString)
     if ignoreList[itemTypeString] then
         successCounter = successCounter + 1
         return true
     end
 
-    if original.Description == generated then
+    if originalEntry[3] == generated then
         if not additional then
             successCounter = successCounter + 1
         else
@@ -564,25 +586,23 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
             successCounter = successCounter + 1
             return true
         end
-        print("No generated description for item " .. itemTypeString .. " (" .. original.Name .. ")")
-        missingCounter = missingCounter + 1
+        print("No generated description for item " .. itemTypeString .. " (" .. originalEntry[2] .. ")")
         return false
     else
-        local orig = original.Description
+        local orig = originalEntry[3]
         local replacedOriginal,count = orig:gsub(generated, "")
         if count > 0 then
-            print("Partial match for item " .. itemTypeString .. " (" .. original.Name .. ")")
+            print("Partial match for item " .. itemTypeString .. " (" .. originalEntry[2] .. ")")
             print(replacedOriginal)
             print("ORG: " .. orig)
             print("GEN: " .. generated)
             print("")
             partialCounter = partialCounter + 1
         else
-            print("Description mismatch for item " .. itemTypeString .. " ("..original.Name..")")
+            print("Description mismatch for item " .. itemTypeString .. " ("..originalEntry[2]..")")
             print("ORG: " .. orig)
             print("GEN: " .. generated)
             print("")
-            mismatchCounter = mismatchCounter + 1
         end
         return false
     end
@@ -590,13 +610,34 @@ end
 
 -- DEBUG FUNCTION
 -- Compare generated description with original description for an item
-function EID:CompareGeneralizedDescriptionsMulti(type, variant, startID, endID)
+function EID:CompareGeneralizedDescriptionsMulti(type, variant, startID, endID, DLCName)
     successCounter = 0
-    missingCounter = 0
     partialCounter = 0
-    mismatchCounter = 0
     for subtype = startID, endID do
         EID:CompareGeneralizedDescriptions(type, variant, subtype)
     end
-    print("Fully Automated:", successCounter, "| Partially:", partialCounter, "| Mismatch:", mismatchCounter, "| Missing:", missingCounter, "| Total:", (endID - startID + 1))
+    print("["..tostring(DLCName).."] Fully Automated:", successCounter, "| Partially:", partialCounter, "| Total:", (endID - startID + 1))
+    return successCounter, partialCounter, (endID - startID + 1)
 end
+
+function EID:MODULARTEST()
+    local totalsuccess, totalpartial, totaltotal = 0, 0, 0
+    local todo = {
+        {5,100,1,CollectibleType.NUM_COLLECTIBLES-1,"Collectibles"},
+        {5,300,1,Card.NUM_CARDS-1,"Cards"},
+        {5,70,1,44,"Pills 1-44"},-- skip 45
+        {5,70,46,PillEffect.NUM_PILL_EFFECTS-1,"Pills 46-max"},
+        {5,70,1+PillColor.PILL_GIANT_FLAG, 44 + PillColor.PILL_GIANT_FLAG,"Horsepills 1-44"},-- skip 45
+        {5,70,46+PillColor.PILL_GIANT_FLAG,PillEffect.NUM_PILL_EFFECTS-1+PillColor.PILL_GIANT_FLAG,"Horsepills 46-max"}
+        --{5,350,1,TrinketType.NUM_TRINKETS-1,"Trinkets"}, -- Trinkets are not yet supported
+    }
+
+    for _, params in ipairs(todo) do
+        local success, partial, total = EID:CompareGeneralizedDescriptionsMulti(params[1], params[2], params[3],
+            params[4], params[5])
+        totalsuccess = totalsuccess + success
+        totalpartial = totalpartial + partial
+        totaltotal = totaltotal + total
+    end
+    print("TOTAL: Fully Automated:", totalsuccess, "| Partially:", totalpartial, "| Total:", totaltotal)
+    end

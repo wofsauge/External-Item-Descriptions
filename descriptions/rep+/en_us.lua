@@ -34,7 +34,7 @@ local additionalCollectibleInformations = {
 	-- Change: added "10 to 12 seconds for Delirium and Mother"
 	[C_ID .. 475] = "Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later#10 to 12 seconds for Delirium and Mother" , -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
-	[C_ID .. 481] = "↑ Random stat up#↓ Random stat down#{{Timer}} Random tear effects for the room#Turns item pedestals into glitched items#{{Blank}} Corrupts all sprites and music in the room" , -- Dataminer
+	[C_ID .. 481] = "{{Timer}} Random tear effects for the room#Turns item pedestals into glitched items#{{Blank}} Corrupts all sprites and music in the room" , -- Dataminer
 	-- Change: Reduced the chance of removing the most recent item to 50%
 	[C_ID .. 482] = "Changes your character to a random character#50% chance of removing the most recent item collected" , -- Clicker
 	-- Change: Complete rewrite
