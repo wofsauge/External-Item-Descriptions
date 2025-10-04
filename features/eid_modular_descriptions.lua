@@ -26,8 +26,9 @@ EID.StatisticsData = {
     ["SizeUp"] = { Priority = 9570, Arrow = true },
     ["SizeDown"] = { Priority = 9560, Arrow = true },
     ["Flight"] = { Priority = 9550 },
-    ["RandomStatUp"] = { Priority = 9540 },
-    ["RandomStatDown"] = { Priority = 9530 },
+    ["Invincibility"] = { Priority = 9540 },
+    ["RandomStatUp"] = { Priority = 9530 },
+    ["RandomStatDown"] = { Priority = 9520 },
 
     -- Health related
     ["RedHeart"] = { Priority = 8990, Arrow = true, Icon = "{{Heart}}" },
@@ -89,7 +90,74 @@ EID.StatisticsData = {
             Battery = "{{Battery}}",
         }
     },
-    ["Variables"] = { SpecialHandling = true },
+    -- Variable-like entries that require special handling
+    ["Variables"] = {
+        Priority = -9900,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            -- Function to replace VAR markup with their specific content from the variables table
+            description = description:gsub("{VAR:(.-)}", function(matchString)
+                -- Try to capture main text and optional trailing numbers used to add multiple variables of the same type
+                local variableName, number = matchString:match("^(.-)(%d*)$")
+                -- if the variablename is a number, use generic handler
+                local handlerName = variableName == "" and "FORMATTED" or variableName
+                -- if a function for the given variable exists, use it and return its value
+                local variableData = itemStatsTableEntry[variableName] or
+                    itemStatsTableEntry[tonumber(number)] or itemStatsTableEntry[matchString]
+                if EID.DynamicVariableHandlers[handlerName] and variableData then
+                    return EID.DynamicVariableHandlers[handlerName](variableData)
+                end
+                -- return nil if no function was found, to not replace the Variable string
+            end)
+            return description
+        end
+    },
+    ["RoomEffect"] = {
+        Priority = -9900,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            -- generate room effect description
+            local textFragment = EID:getDescriptionEntry("ModularDescriptions", "RoomEffect") .. "#"
+            -- add subdata entries
+            local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
+            for _, statDataEntry in ipairs(sortedStats) do
+                local statID = statDataEntry.Name
+                if EID:ValidateItemStatEntry(statID, "Located in a 'RoomEffect' element") then
+                    textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
+                end
+            end
+            -- Try replace inline variable
+            local numReplaced = 0
+            description, numReplaced = description:gsub("{VAR:ROOMEFFECT}", textFragment)
+            if numReplaced == 0 then
+                return description .. textFragment
+            end
+            return description
+        end
+    },
+    ["TimedEffect"] = {
+        Priority = -9900,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            -- generate room effect description
+            local textFragment = EID:getDescriptionEntry("ModularDescriptions", "TimedEffect") .. "#"
+            -- replace timer value
+            local timeValue = string.format("%.2f", itemStatsTableEntry.Duration or "UNDEFINED"):gsub("%.?0+$", "")
+            textFragment = textFragment:gsub("{value}", timeValue)
+            -- add subdata entries
+            local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
+            for _, statDataEntry in ipairs(sortedStats) do
+                local statID = statDataEntry.Name
+                if statID ~= "Duration" and EID:ValidateItemStatEntry(statID, "Located in a 'TimedEffect' element") then
+                    textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
+                end
+            end
+            -- Try replace inline variable
+            local numReplaced = 0
+            description, numReplaced = description:gsub("{VAR:TIMEDEFFECT}", textFragment)
+            if numReplaced == 0 then
+                return description .. textFragment
+            end
+            return description
+        end
+    },
 }
 -- add name value to EID.StatisticsData table
 for k,v in pairs(EID.StatisticsData) do v.Name = k end
@@ -150,16 +218,13 @@ EID.LuckFormulaPresets = {
     }
 }
 
-
 -- DEBUG: Validate Stat table entry existance
-function EID:ValidateItemStatEntries(dlcName)
-    for itemID, itemStatsEntry in pairs(EID.ItemStats) do
-        for key, _ in pairs(itemStatsEntry) do
-            if not EID.StatisticsData[key] then
-                print("[ERROR:"..dlcName.."] Unknown item stat key '"..key.."' in entry :", itemID)
-            end
-        end
+function EID:ValidateItemStatEntry(statID, additionalInfo)
+    if not EID.StatisticsData[statID] then
+        print("[ERROR] Unknown item stat '"..statID.."'", additionalInfo)
+        return false
     end
+    return true
 end
 
 function EID:CollectSimilarDescriptions(tableToCheck)
@@ -212,24 +277,37 @@ function EID:CompareWithPreviousDLC(newDLCTable, oldDLCTable, dlcName)
     end
 end
 
--- Function to replace VAR markup with their specific content from the variables table
-function EID:HandleVariables(additionalInfo, itemStatsTable)
-    if not itemStatsTable.Variables then
-        return additionalInfo
+function EID:HandleStatEntry(statDataEntry, itemStatsTableEntry, description)
+    if not statDataEntry or not itemStatsTableEntry then
+        print("[ERROR] (EID:HandleStatEntry) Missing stat data entry or item stats table entry!", statDataEntry, itemStatsTableEntry, description)
+        return description
     end
-    additionalInfo = additionalInfo:gsub("{VAR:(.-)}", function(matchString)
-        -- Try to capture main text and optional trailing numbers used to add multiple variables of the same type
-        local variableName, number = matchString:match("^(.-)(%d*)$")
-        local handlerName = variableName == "" and "FORMATTED" or variableName -- if the variablename is only a number, use generic handler (Number / string / table)
+    if type(statDataEntry.BehaviorFunc) == "function" then
+        return statDataEntry.BehaviorFunc(statDataEntry, itemStatsTableEntry, description)
+    end
+    -- default behavior
+    return EID:GenerateTextFromStatEntry(statDataEntry, itemStatsTableEntry, description)
+end
 
-        -- if a function for the given variable exists, use it and return its value
-        local variableData = itemStatsTable.Variables[variableName] or itemStatsTable.Variables[tonumber(number)] or itemStatsTable.Variables[matchString]
-        if EID.DynamicVariableHandlers[handlerName] and variableData then
-            return EID.DynamicVariableHandlers[handlerName](variableData)
+function EID:GetSortedModularDescriptionEntries(itemStatsTable, combinedTables, validateEntries)
+    -- sort stats of selected Item by priority
+    local sortedStatsPositivePrio = {}
+    local sortedStatsNegativePrio = {}
+    for statID, _ in pairs(itemStatsTable) do
+        if validateEntries and EID:ValidateItemStatEntry(statID, "In EID:GetSortedModularDescriptionEntries()") or EID.StatisticsData[statID] then
+            if EID.StatisticsData[statID].Priority > 0 then
+                table.insert(sortedStatsPositivePrio, EID.StatisticsData[statID])
+            else
+                table.insert(sortedStatsNegativePrio, EID.StatisticsData[statID])
+            end
         end
-        -- return nil if no function was found, to not replace the Variable string
-    end)
-    return additionalInfo
+    end
+    table.sort(sortedStatsPositivePrio, function(a, b) return a.Priority > b.Priority end)
+    table.sort(sortedStatsNegativePrio, function(a, b) return a.Priority > b.Priority end)
+    if combinedTables then
+        return EID:ConcatTables(sortedStatsPositivePrio, sortedStatsNegativePrio)
+    end
+    return sortedStatsPositivePrio, sortedStatsNegativePrio
 end
 
 -- Tries to generate a description for an item based on its stats defined in EID.ItemStats
@@ -242,37 +320,20 @@ function EID:GenerateDescription(itemID)
         return additionalInfo or "", ""
     end
 
-    -- sort stats of selected Item by priority
-    local sortedStatsPositivePrio = {}
-    local sortedStatsNegativePrio = {}
-    for statID, _ in pairs(itemStatsTable) do
-        if EID.StatisticsData[statID] and not EID.StatisticsData[statID].SpecialHandling then
-            if EID.StatisticsData[statID].Priority > 0 then
-                table.insert(sortedStatsPositivePrio, EID.StatisticsData[statID])
-            else
-                table.insert(sortedStatsNegativePrio, EID.StatisticsData[statID])
-            end
-        end
-    end
-    table.sort(sortedStatsPositivePrio, function(a, b) return a.Priority > b.Priority end)
-    table.sort(sortedStatsNegativePrio, function(a, b) return a.Priority > b.Priority end)
-
+    local sortedStatsPositivePrio, sortedStatsNegativePrio = EID:GetSortedModularDescriptionEntries(itemStatsTable, false, true)
 
     local description = ""
 
     -- Add stat information with positive priority
     for _, statDataEntry in ipairs(sortedStatsPositivePrio) do
-        local statDescription = EID:GenerateTextFromStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name])
-        if statDescription then
-            description = description .. statDescription
-        end
+        description = EID:HandleStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name], description)
     end
+
     -- remove trailing #
     description = description:gsub("#$", "")
 
     -- Append additional informations
     if additionalInfo then
-        additionalInfo = EID:HandleVariables(additionalInfo, itemStatsTable)
         if description ~= "" then
             description = description .. "#" .. additionalInfo
         else
@@ -286,22 +347,19 @@ function EID:GenerateDescription(itemID)
 
     -- Add stat information with negative priority
     for _, statDataEntry in ipairs(sortedStatsNegativePrio) do
-        local statDescription = EID:GenerateTextFromStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name])
-        if statDescription then
-            description = description .. statDescription
-        end
+        description = EID:HandleStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name], description)
     end
-    -- remove trailing #
-    description = description:gsub("#$", "")
+    -- remove leading/trailing # and multiple # in a row. Makes translation more readable in some places, if a # is explicitly added
+    description = description:gsub("#$", ""):gsub("^#", ""):gsub("#+", "#")
 
     return description, additionalInfo
 end
 
-function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue)
+function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue, description)
     local statID = statDataEntry.Name
     local textFragment = EID:getDescriptionEntry("ModularDescriptions", statID)
+    local statDescription = ""
     if statDataEntry.IsSubCategory then
-        local statDescription = ""
         for subStatID, subValue in pairs(itemStatValue) do
             local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", statID)[subStatID]
             if not subTextFragment then
@@ -315,9 +373,11 @@ function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue)
             end
             statDescription = statDescription .. iconString .. subTextEntry
         end
-        return statDescription
     else
-        return EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
+        statDescription = EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
+    end
+    if statDescription then
+        return description .. statDescription
     end
 end
 
@@ -471,6 +531,16 @@ local ignoreList = {
     ["5.100.694"] = true,
     
     ["5.100.716"] = true,
+
+    ---------- CARDS--------
+    ["5.300.4"] = true,
+    ["5.300.12"] = true,
+    ["5.300.13"] = true,
+    ["5.300.52"] = true,
+    ["5.300.53"] = true,
+    ["5.300.59"] = true,
+    ["5.300.93"] = true,
+
 }
 
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
