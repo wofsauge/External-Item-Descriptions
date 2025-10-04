@@ -49,7 +49,7 @@ local repentanceItemStats = {
     [C_ID .. 138] = { RedHeart = 1, Damage = 0.3, HealingRed = 1 }, -- Stigmata
     [C_ID .. 139] = { Spawns = {RandomTrinket = 1}}, -- Mom's Purse
     [C_ID .. 140] = { Bomb = 5 }, -- Bob's Curse
-    [C_ID .. 148] = { Variables = { Range = {2,6}} }, -- Infestation
+    [C_ID .. 148] = { Variables = { RANGE = {2,6}} }, -- Infestation
     [C_ID .. 149] = { Damage = 40, FireRateMultiplier = 0.33, RangeMultiplier = 0.8, ShotSpeedMultiplier = 0.8 }, -- Ipecac
     [C_ID .. 152] = { FireRateMultiplier = 0.67 }, -- Technology 2
     [C_ID .. 153] = { FireRateMultiplier = 0.42 }, -- Mutant Spider
