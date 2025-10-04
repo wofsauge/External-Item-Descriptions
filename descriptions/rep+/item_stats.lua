@@ -20,5 +20,5 @@ local repentancePlusItemStats = {
     [Pill_ID .. (HorseID + 29)] = { FullHealth = true }, -- Percs! (Added full heal information)
     [Pill_ID .. (HorseID + 30)] = { BrokenHeart = 1 }, -- Addicted! (Added broken heart)
 }
-EID:ValidateItemStatEntries("rep+")
+
 EID:updateDescriptionsViaTable(repentancePlusItemStats, EID.ItemStats)

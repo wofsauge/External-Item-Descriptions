@@ -192,10 +192,10 @@ local repentanceItemStats = {
     [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
     [Card_ID .. 39] = { Variables = { [1] = 20} }, -- Algiz
     [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 3, SizeUp = true } }, -- Huge Growth
-    [Card_ID .. 59] = { Timer = { Duration = 6, Heart = 2, FireRate = 1.5, Speed = -0.1 } }, -- III - The Empress?
+    [Card_ID .. 59] = { TimedEffect = { Duration = 60, RedHeart = 2, FireRate = 1.5, Speed = -0.1 } }, -- III - The Empress?
     [Card_ID .. 61] = { Spawns = { BoneHeart = 2 } }, -- V - The Hierophant?
-    [Card_ID .. 63] = { Timer = { Duration = 10, FireRateMultiplier = 4} }, -- VII - The Chariot?
-    [Card_ID .. 68] = { Timer = { Duration = 30, Speed = -0.1 } }, -- XII - The Hanged Man?
+    [Card_ID .. 63] = { TimedEffect = { Duration = 10, FireRateMultiplier = 4} }, -- VII - The Chariot?
+    [Card_ID .. 68] = { TimedEffect = { Duration = 30, Speed = -0.1 } }, -- XII - The Hanged Man?
     [Card_ID .. 79] = { Spawns = { RedHeart = {1,20} } }, -- Queen of Hearts
     [Card_ID .. 93] = { Spawns = { Coin = {1, 25} } }, -- Soul of the Keeper
 
@@ -230,5 +230,4 @@ local repentanceItemStats = {
 
 
 }
-EID:ValidateItemStatEntries("rep")
 EID:updateDescriptionsViaTable(repentanceItemStats, EID.ItemStats)

@@ -334,7 +334,7 @@ EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptio
 
 local Card_ID = "5.300."
 local additionalCardInformations = {
-    [Card_ID .. 2] = "Homing tears", -- I - The Magician
+    [Card_ID .. 2] = "{VAR:ROOMEFFECT}#Homing tears", -- I - The Magician
     [Card_ID .. 18] = "{{TreasureRoom}} Teleports Isaac to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead", -- XVII - The Stars
     [Card_ID .. 20] = "Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)#{{CurseDarkness}} Removes Curse of Darkness", -- XIX - The Sun
     [Card_ID .. 21] = "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#5% chance for it to be a Key Master, Bomb Bum, Battery Bum, or Rotten Beggar", -- XX - Judgement
@@ -352,12 +352,12 @@ local additionalCardInformations = {
     [Card_ID .. 58] = "{{Timer}} Mom's Foot tries to stomp Isaac for 60 seconds", -- II - The High Priestess?
     [Card_ID .. 60] = "Teleports Isaac to an extra Boss room that can be defeated for an item#The boss is chosen from two floors deeper than the current one", -- IV - The Emperor?
     [Card_ID .. 62] = "Spawns an item from the current room's item pool#{{BrokenHeart}} Converts 1 heart container or 2 Soul Hearts into a Broken Heart", -- VI - The Lovers?
-    [Card_ID .. 63] = "Invincible but can't move", -- VII - The Chariot?
+    [Card_ID .. 63] = "{VAR:TIMEDEFFECT}#Invincible but can't move", -- VII - The Chariot?
     [Card_ID .. 64] = "{{GoldenChest}} Spawns 2-4 golden chests", -- VIII - Justice?
     [Card_ID .. 65] = "{{Coin}} Turns all pickups and items in the room into a number of coins equal to their Shop value#If there is nothing to turn, spawns a Penny instead", -- IX - The Hermit?
     [Card_ID .. 66] = "{{DiceRoom}} Triggers a random Dice Room effect", -- X - Wheel of Fortune?
     [Card_ID .. 67] = "{{Timer}} Enemies in the room are {{Slow}} slowed and take double damage for 30 seconds", -- XI - Strength?
-    [Card_ID .. 68] = "Triple shot#{{Coin}} Killed enemies drop coins", -- XII - The Hanged Man?
+    [Card_ID .. 68] = "{VAR:TIMEDEFFECT}#Triple shot#{{Coin}} Killed enemies drop coins", -- XII - The Hanged Man?
     [Card_ID .. 69] = "{{Collectible545}} Activates Book of the Dead#{{Friendly}} Spawns friendly Bone entities for each enemy killed in room", -- XIII - Death?
     [Card_ID .. 70] = "{{Pill}} Forces Isaac to eat 5 random pills", -- XIV - Temperance?
     [Card_ID .. 71] = "{{Timer}} Receive for 60 seconds:#{{Collectible33}} Activates The Bible (flight)#{{Collectible390}} Seraphim familiar#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan", -- XV - The Devil?

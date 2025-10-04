@@ -46,8 +46,9 @@ EID.descriptions["en_us"].ModularDescriptions = {
     SizeUp = "Size up",
     SizeDown = "Size down",
     Flight = "Flight",
-	RandomStatUp = "↑ Increases {value} random stat{pluralize}";
-	RandomStatDown = "↓ Decreases {value} random stat{pluralize}";
+	Invincibility = "Invincibility",
+	RandomStatUp = "↑ Increases {value} random stat{pluralize}",
+	RandomStatDown = "↓ Decreases {value} random stat{pluralize}",
 
     -- Health related
     RedHeart = "{value} Health",
@@ -101,6 +102,9 @@ EID.descriptions["en_us"].ModularDescriptions = {
     DamagePerSecond = "Deals {value} damage per second",
     ContactDamagePerSecond = "Deals {value} contact damage per second",
 	MimicMovement = "Mimics Isaac's movement on a {value} second delay",
+	-- Misc
+	RoomEffect = "{{Timer}} Receive for the room:",
+	TimedEffect = "{{Timer}} Receive for {value} seconds:",
 }
 
 
@@ -579,7 +583,7 @@ local additionalCardInformations = {
 	[Card_ID .. 2] = "{{Timer}} Homing tears for the room", -- I - The Magician
 	[Card_ID .. 3] = "Mom's Foot stomps on an enemy#Mom's Foot stomps Isaac if there are no enemies", -- II - The High Priestess
 	[Card_ID .. 5] = "{{BossRoom}} Teleports Isaac to the Boss Room", -- IV - The Emperor
-	[Card_ID .. 8] = "Isaac can't shoot but deals 40 contact damage per second", -- VII - The Chariot
+	[Card_ID .. 8] = "{VAR:TIMEDEFFECT}#Isaac can't shoot but deals 40 contact damage per second", -- VII - The Chariot
 	[Card_ID .. 9] = "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {{Key}} key", -- VIII - Justice
 	[Card_ID .. 10] = "{{Shop}} Teleports Isaac to the Shop", -- IX - The Hermit
 	[Card_ID .. 11] = "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 25% chance for it to be a Fortune Telling Machine", -- X - Wheel of Fortune
@@ -619,8 +623,8 @@ local additionalCardInformations = {
 	[Card_ID .. 49] = "Rerolls all item pedestals and pickups in the room", -- Dice Shard
 	[Card_ID .. 50] = "Two of Mom's Hands come down and grab an enemy each", -- Emergency Contact
 	[Card_ID .. 51] = "{{HolyMantle}} Holy Mantle shield for the room (prevents damage once)#25% chance to spawn another Holy Card", -- Holy Card
-	[Card_ID .. 52] = "Allows Isaac to destroy rocks by walking into them", -- Huge Growth
-	[Card_ID .. 54] = "{{Slow}} Slow down enemies", -- Era Walk
+	[Card_ID .. 52] = "{VAR:ROOMEFFECT}#Allows Isaac to destroy rocks by walking into them", -- Huge Growth
+	[Card_ID .. 54] = "{VAR:ROOMEFFECT}#{{Slow}} Slow down enemies", -- Era Walk
 }
 EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
