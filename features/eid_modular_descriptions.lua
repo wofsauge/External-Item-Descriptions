@@ -68,7 +68,6 @@ EID.StatisticsData = {
     -- Dynamic Spawns
     ["Spawns"] = {
         Priority = 5500,
-        IsSubCategory = true,
         HideSign = true,
         Icon = {
             RandomHeart = "{{UnknownHeart}}",
@@ -88,7 +87,47 @@ EID.StatisticsData = {
             Pill = "{{Pill}}",
             Rune = "{{Rune}}",
             Battery = "{{Battery}}",
-        }
+        },
+        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
+            local statDescription = ""
+            for subStatID, subValue in pairs(itemStatsTableEntry) do
+                local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[subStatID]
+                if not subTextFragment then
+                    print("[ERROR] Spawn translation not found!", subStatID)
+                end
+                local subTextEntry = EID:GenerateStatDescriptionText(statDataEntry, subValue, subTextFragment)
+                -- add icon of subentry to the beginning of the text
+                local iconString = ""
+                if statDataEntry.Icon and type(statDataEntry.Icon) == "table" and statDataEntry.Icon[subStatID] then
+                    iconString = statDataEntry.Icon[subStatID] .. " "
+                end
+                statDescription = statDescription .. iconString .. subTextEntry
+            end
+
+            if statDescription ~= "" then
+                description = description .. statDescription
+            end
+            return description
+        end
+    },
+    ["TearEffect"] = {
+        Priority = 5510,
+        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
+            -- support single and multiple tear effects by turning single entries into a table
+            if type(itemStatsTableEntry) ~= "table" then
+                itemStatsTableEntry = {itemStatsTableEntry}
+            end
+            local textFragment = ""
+            for _, effect in ipairs(itemStatsTableEntry) do
+                local effectText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[effect]
+                if not effectText then
+                    print("[ERROR] TearEffect translation not found!", effect)
+                else
+                    textFragment = textFragment .."#" .. effectText
+                end
+            end
+            return description .. textFragment
+        end
     },
     ["LuckChance"] = {
         Priority = -9940,
@@ -107,9 +146,33 @@ EID.StatisticsData = {
             return description
         end
     },
+    ["RoomEffect"] = {
+        Priority = -9930,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RoomEffect")
+        end
+    },
+    ["TimedEffect"] = {
+        Priority = -9920,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "TimedEffect", "Duration")
+        end
+    },
+    ["OnUseEffect"] = {
+        Priority = -9910,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "OnUseEffect")
+        end
+    },
+    ["HeldEffect"] = {
+        Priority = -9900,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "HeldEffect")
+        end
+    },
     -- Variable-like entries that require special handling
     ["Variables"] = {
-        Priority = -9900,
+        Priority = -9999,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
             -- Function to replace VAR markup with their specific content from the variables table
             description = description:gsub("{VAR:(.-)}", function(matchString)
@@ -132,18 +195,6 @@ EID.StatisticsData = {
                 -- return nil if no function was found, to not replace the Variable string
             end)
             return description
-        end
-    },
-    ["RoomEffect"] = {
-        Priority = -9900,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RoomEffect")
-        end
-    },
-    ["TimedEffect"] = {
-        Priority = -9900,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "TimedEffect", "Duration")
         end
     },
 }
@@ -221,9 +272,10 @@ function EID:ValidateItemStatEntry(statID, additionalInfo)
     return true
 end
 
-function EID:CollectSimilarDescriptions(tableToCheck)
+-- DEBUG: Lists all similar description lines in AdditionalInformations to find potential duplicates
+function EID:ListSimilarDescriptions()
     local uniqueDescriptions = {}
-    for _, description in pairs(tableToCheck) do
+    for _, description in pairs(EID.descriptions["en_us"].AdditionalInformations) do
         for line in string.gmatch(description, "[^#]+") do
             line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("^%s+", "")
             if uniqueDescriptions[line] then
@@ -384,24 +436,7 @@ end
 function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue, description)
     local statID = statDataEntry.Name
     local textFragment = EID:getDescriptionEntry("ModularDescriptions", statID)
-    local statDescription = ""
-    if statDataEntry.IsSubCategory then
-        for subStatID, subValue in pairs(itemStatValue) do
-            local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", statID)[subStatID]
-            if not subTextFragment then
-                print("[ERROR] Sub-Category translation not found!", subStatID)
-            end
-            local subTextEntry = EID:GenerateStatDescriptionText(statDataEntry, subValue, subTextFragment)
-            -- add icon of subentry to the beginning of the text
-            local iconString = ""
-            if statDataEntry.Icon and type(statDataEntry.Icon) == "table" and statDataEntry.Icon[subStatID] then
-                iconString = statDataEntry.Icon[subStatID] .. " "
-            end
-            statDescription = statDescription .. iconString .. subTextEntry
-        end
-    else
-        statDescription = EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
-    end
+    local statDescription = EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
     if statDescription then
         return description .. statDescription
     end
@@ -518,6 +553,7 @@ local ignoreList = {
     ["5.100.314"] = true,
     ["5.100.330"] = true,
     ["5.100.331"] = true,
+    ["5.100.336"] = true,
     ["5.100.340"] = true,
     ["5.100.342"] = true,
     ["5.100.354"] = true,
@@ -567,6 +603,7 @@ local ignoreList = {
     ["5.100.693"] = true,
     ["5.100.694"] = true,
     
+    ["5.100.704"] = true,
     ["5.100.716"] = true,
 
     ---------- CARDS --------

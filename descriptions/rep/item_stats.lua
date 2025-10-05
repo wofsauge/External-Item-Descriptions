@@ -29,21 +29,23 @@ local repentanceItemStats = {
     [C_ID .. 49] = { Variables = { [1] = 24, [2] = 0.83 } }, -- Shoop da Whoop!
     [C_ID .. 52] = { FireRateMultiplier = 0.4 }, -- Dr. Fetus
     [C_ID .. 55] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 2, Multiplier = 0.1 } }, -- Mom's Eye
+    [C_ID .. 59] = { AngelDevilChance = 12.5, RoomEffect = {Damage = 2} }, -- Book of Belial (passive)
     [C_ID .. 62] = { Damage = 0.3 }, -- Charm of the Vampire
-	[C_ID .. 67] = { TearFlags = { [TearFlags.TEAR_NORMAL] = 1 }, DamagePerTear = 6 }, -- Sister Maggy
+	[C_ID .. 67] = { DamagePerTear = 6 }, -- Sister Maggy
     [C_ID .. 70] = { Speed = 0.2, Damage = 1 }, -- Growth Hormones
     [C_ID .. 71] = { Speed = 0.3, Range = 2.5, SizeDown = 1 }, -- Mini Mush
     [C_ID .. 72] = { Tears = 0.5, SoulHeart = 3 }, -- Rosary
     [C_ID .. 79] = { Speed = 0.2, Damage = 1, BlackHeart = 1 }, -- The Mark
     [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, BlackHeart = 2 }, -- The Pact
+    [C_ID .. 83] = { OnUseEffect = { BlackHeart = 0.5 }, RoomEffect = {Damage = 2, Speed = -0.18 } }, -- The Nail
     [C_ID .. 87] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 4, Multiplier = 0.05  } }, -- Loki's Horns
     [C_ID .. 98] = { Variables = { RANGE = {7,8} } }, -- The Relic
 
     [C_ID .. 101] = { RedHeart = 1, Speed = 0.3, Tears = 0.2, Damage = 0.3, Range = 1.5, HealingRed = 1 }, -- The Halo
     [C_ID .. 106] = { BombDamage = 1.85, Bomb = 5 }, -- Mr. Mega
-    [C_ID .. 107] = { Variables = { [1] = 23.5 } }, -- The Pinking Shears
+    [C_ID .. 107] = { Variables = { [1] = 23.5 }, RoomEffect = { Flight = true} }, -- The Pinking Shears
     [C_ID .. 110] = { Range = 1.5, LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15, Maximum = 0.5 } }, -- Mom's Contacts
-    [C_ID .. 115] = { Tears = 0.5, TearFlags = { [TearFlags.TEAR_SPECTRAL] = 1 } }, -- Ouija Board
+    [C_ID .. 115] = { Tears = 0.5, TearEffect = "Spectral" }, -- Ouija Board
     [C_ID .. 118] = { FireRateMultiplier = 0.33, Variables = {[1] = 9, [2] = 0.63} }, -- Brimstone
     [C_ID .. 121] = { RedHeart = 1, Damage = 1, Range = 1.5, Speed = -0.2 }, -- Odd Mushroom (Large)
     [C_ID .. 129] = { RedHeart = 2, Speed = -0.2 }, -- Bucket of Lard
@@ -59,10 +61,10 @@ local repentanceItemStats = {
     [C_ID .. 172] = { Orbital = true, BlockProjectiles = true, ContactDamagePerSecond = 112.5 },  -- Sacrificial Dagger
     [C_ID .. 173] = { Variables = { [1] = 33 } }, -- Mitre
     [C_ID .. 176] = { RedHeart = 1, ShotSpeed = 0.16, HealingRed = 1 }, -- Stem Cells
-    [C_ID .. 182] = { RedHeart = 1, DamageMultiplier = 2.3, Damage = 1, Tears = -0.4, ShotSpeed = -0.25, FullHealth = 1, TearFlags = { [TearFlags.TEAR_HOMING] = 1 } }, -- Sacred Heart
+    [C_ID .. 182] = { RedHeart = 1, DamageMultiplier = 2.3, Damage = 1, Tears = -0.4, ShotSpeed = -0.25, FullHealth = 1, TearEffect = "Homing" }, -- Sacred Heart
     [C_ID .. 184] = { RedHeart = 1, HealingRed = 1, Flight = 1 }, -- Holy Grail
     [C_ID .. 189] = { RedHeart = 1, Speed = 0.2, Tears = 0.2, Damage = 0.3, Range = 2.5, FullHealth = 1 }, -- SMB Super Fan
-    [C_ID .. 192] = { TearFlags = { [TearFlags.TEAR_HOMING] = 1 } }, -- Telepathy for Dummies
+    [C_ID .. 192] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- Telepathy for Dummies
     [C_ID .. 193] = { RedHeart = 1, Damage = 0.3, HealingRed = 1 }, -- MEAT!
     [C_ID .. 194] = { ShotSpeed = 0.16, Spawns = {Card = 1}, PlanetariumChance = 15 }, -- Magic 8 Ball
     [C_ID .. 197] = { Damage = 0.5, Range = 1.5 }, -- Jesus Juice
@@ -78,7 +80,7 @@ local repentanceItemStats = {
     [C_ID .. 228] = { FireRate = 0.5 }, -- Mom's Perfume
     [C_ID .. 229] = { FireRateMultiplier = 0.23 }, -- Monstro's Lung
     [C_ID .. 230] = { Speed = 0.2, Damage = 1.5, BlackHeart = 2 }, -- Abaddon
-    [C_ID .. 233] = { Range = 6.5 }, -- Tiny Planet
+    [C_ID .. 233] = { TearEffect = "Spectral", Range = 6.5 }, -- Tiny Planet
     [C_ID .. 245] = { DamageMultiplier = 0.8 }, -- 20/20
     [C_ID .. 253] = { RedHeart = 1, HealingRed = 1, Luck = 1 }, -- Magic Scab
     [C_ID .. 254] = { Variables = { [1] = 2.75 } }, -- Blood Clot  (Removed tear Height)
@@ -100,8 +102,8 @@ local repentanceItemStats = {
     [C_ID .. 320] = { ContactDamagePerSecond = 15 },  -- ???'s Only Friend
     [C_ID .. 328] = { Damage = 1 },  -- The Negative
     [C_ID .. 330] = { FireRateMultiplier = 5.5, DamageMultiplier = 0.2, TearSize = -0.3 }, -- Soy Milk
-    [C_ID .. 331] = { Damage = 0.5, Tears = -0.3, ShotSpeed = -0.3 }, -- Godhead
-    [C_ID .. 336] = { Range = -1.5, TearSize = 0.22, ShotSpeed = -0.4 }, -- Dead Onion
+    [C_ID .. 331] = { Damage = 0.5, Tears = -0.3, ShotSpeed = -0.3, RoomEffect = { TearEffect = "Homing" } }, -- Godhead
+    [C_ID .. 336] = { Range = -1.5, TearSize = 0.22, ShotSpeed = -0.4, TearEffect = {"Spectral", "Piercing"} }, -- Dead Onion
     [C_ID .. 339] = { Range = 2.5, ShotSpeed = 0.16, BlackHeart = 1 }, -- Safety Pin
     [C_ID .. 342] = { RedHeart = 1, Tears = 0.7, ShotSpeed = -0.16, HealingRed = 1 }, -- Blue Cap
     [C_ID .. 345] = { Damage = 1, Range = 2.5 }, -- Synthoil
@@ -111,7 +113,7 @@ local repentanceItemStats = {
     [C_ID .. 355] = { Range = 2.5, Luck = 1, SoulHeart = 1 }, -- Mom's Pearls
     [C_ID .. 365] = { ContactDamagePerSecond = 30 },  -- Lost Fly
     [C_ID .. 366] = { Bomb = 5, Variables = { RANGE = {4,5} } }, -- Scatter Bombs
-    [C_ID .. 369] = { Range = 3  }, -- Continuum
+    [C_ID .. 369] = { Range = 3, TearEffect = "Spectral" }, -- Continuum
     [C_ID .. 370] = { Tears = 0.7, Range = 2.5, Spawns = {RandomHeart = 3}  }, -- Mr. Dolly
     [C_ID .. 376] = { }, -- Restock (no longer spawns pickups)
     [C_ID .. 394] = { Tears = 0.7, Range = 3 }, -- Marked
@@ -128,9 +130,10 @@ local repentanceItemStats = {
     [C_ID .. 455] = { Range = 2.5 }, -- Dad's Lost Coin
     [C_ID .. 456] = { RedHeart = 1, HealingRed = 1 }, -- Moldy Bread
 	[C_ID .. 459] = { Variables = { [1] = 10 } }, -- Sinus Infection
-    [C_ID .. 462] = { Range = 1.5 }, -- Eye of Belial
+    [C_ID .. 462] = { Range = 1.5, TearEffect = "Piercing" }, -- Eye of Belial
     [C_ID .. 468] = { ContactDamagePerSecond = 75, MimicMovement = 0.66, Variables = { [1] = 666 } }, -- Shade
     [C_ID .. 474] = { }, -- Glass Canon Item (Previously Tonsil)
+    [C_ID .. 487] = { RoomEffect = { Range = 1.5} }, -- Potato Peeler
     [C_ID .. 491] = { Variables = { [1] = 7 } }, -- Acid Baby
     [C_ID .. 495] = { LuckChance = {Top = 1, Bottom = 12, Maximum = 0.5 } }, -- Ghost Pepper
     [C_ID .. 496] = { LuckChance = {Top = 1, Bottom = 30, Multiplier = 2, Maximum = 0.25 } }, -- Euthanasia
@@ -187,6 +190,7 @@ local repentanceItemStats = {
 	[C_ID .. 693] = { Flies = 8 }, -- The Swarm
 	[C_ID .. 694] = { BrokenHeart = 3 }, -- Heartbreak
 
+    [C_ID .. 704] = { TimedEffect = { Duration = 5, Speed = 0.4, FireRateMultiplier = 0.5, FireRate = 2, Damage = 3 } }, -- Berserk!
 	[C_ID .. 707] = { RedHeart = 1, HealingRed = 1 }, -- Supper
 	[C_ID .. 708] = { Damage = 1 }, -- Stapler
 	[C_ID .. 716] = { Spawns = {Coin = 3, Key = 1} }, -- Keeper's Sack
@@ -195,7 +199,7 @@ local repentanceItemStats = {
 	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
 
 ---------- Cards ----------
-    [Card_ID .. 2] = { RoomEffect = { Range = 3 }  }, -- I - The Magician
+    [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- I - The Magician
     [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 2.5 } }, -- XI - Strength
     [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
     [Card_ID .. 39] = { Variables = { [1] = 20} }, -- Algiz
@@ -231,7 +235,9 @@ local repentanceItemStats = {
     [Pill_ID .. (HorseID + 19)] = { Luck = 2 }, -- Luck Up
     [Pill_ID .. (HorseID + 21)] = { Spawns = {Battery = {3,4}} }, -- 48 Hour Energy!
     [Pill_ID .. (HorseID + 22)] = { Spawns = {RedHeart = {1,4}} }, -- Hematemesis
+    [Pill_ID .. (HorseID + 37)] = { RoomEffect = { Damage = 7, Range = 3 }, TimedEffect = { Duration = 6.5, Invincibility = true } }, -- Power Pill!
     [Pill_ID .. (HorseID + 39)] = { Spawns = {BlueFly = 6} }, -- Friends Till The End!
+    [Pill_ID .. (HorseID + 46)] = { TimedEffect = { Duration = 6.5, Invincibility = true } }, -- Feels like I'm walking on sunshine!
     [Pill_ID .. (HorseID + 48)] = { ShotSpeed = -0.3 }, -- Shot speed Down
     [Pill_ID .. (HorseID + 49)] = { ShotSpeed = 0.3 }, -- Shot speed Up
 
