@@ -28,7 +28,7 @@ local repentanceItemStats = {
     [C_ID .. 40] = { Variables = { [1] = 185 } }, -- Kamikaze!
     [C_ID .. 49] = { Variables = { [1] = 24, [2] = 0.83 } }, -- Shoop da Whoop!
     [C_ID .. 52] = { FireRateMultiplier = 0.4 }, -- Dr. Fetus
-    [C_ID .. 59] = { AngelDevilChance = 12.5 }, -- Book of Belial (passive)
+    [C_ID .. 55] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 2, Multiplier = 0.1 } }, -- Mom's Eye
     [C_ID .. 62] = { Damage = 0.3 }, -- Charm of the Vampire
 	[C_ID .. 67] = { TearFlags = { [TearFlags.TEAR_NORMAL] = 1 }, DamagePerTear = 6 }, -- Sister Maggy
     [C_ID .. 70] = { Speed = 0.2, Damage = 1 }, -- Growth Hormones
@@ -36,12 +36,13 @@ local repentanceItemStats = {
     [C_ID .. 72] = { Tears = 0.5, SoulHeart = 3 }, -- Rosary
     [C_ID .. 79] = { Speed = 0.2, Damage = 1, BlackHeart = 1 }, -- The Mark
     [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, BlackHeart = 2 }, -- The Pact
+    [C_ID .. 87] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 4, Multiplier = 0.05  } }, -- Loki's Horns
     [C_ID .. 98] = { Variables = { RANGE = {7,8} } }, -- The Relic
 
     [C_ID .. 101] = { RedHeart = 1, Speed = 0.3, Tears = 0.2, Damage = 0.3, Range = 1.5, HealingRed = 1 }, -- The Halo
     [C_ID .. 106] = { BombDamage = 1.85, Bomb = 5 }, -- Mr. Mega
     [C_ID .. 107] = { Variables = { [1] = 23.5 } }, -- The Pinking Shears
-    [C_ID .. 110] = { Range = 1.5 }, -- Mom's Contacts
+    [C_ID .. 110] = { Range = 1.5, LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15, Maximum = 0.5 } }, -- Mom's Contacts
     [C_ID .. 115] = { Tears = 0.5, TearFlags = { [TearFlags.TEAR_SPECTRAL] = 1 } }, -- Ouija Board
     [C_ID .. 118] = { FireRateMultiplier = 0.33, Variables = {[1] = 9, [2] = 0.63} }, -- Brimstone
     [C_ID .. 121] = { RedHeart = 1, Damage = 1, Range = 1.5, Speed = -0.2 }, -- Odd Mushroom (Large)
@@ -131,6 +132,8 @@ local repentanceItemStats = {
     [C_ID .. 468] = { ContactDamagePerSecond = 75, MimicMovement = 0.66, Variables = { [1] = 666 } }, -- Shade
     [C_ID .. 474] = { }, -- Glass Canon Item (Previously Tonsil)
     [C_ID .. 491] = { Variables = { [1] = 7 } }, -- Acid Baby
+    [C_ID .. 495] = { LuckChance = {Top = 1, Bottom = 12, Maximum = 0.5 } }, -- Ghost Pepper
+    [C_ID .. 496] = { LuckChance = {Top = 1, Bottom = 30, Multiplier = 2, Maximum = 0.25 } }, -- Euthanasia
     [C_ID .. 500] = { Variables = { RANGE = {7,8} } }, -- Sack of Sacks
 
     [C_ID .. 509] = { DamagePerTear = 3.5, ContactDamagePerSecond = 20 }, -- Bloodshot Eye
@@ -156,14 +159,19 @@ local repentanceItemStats = {
     [C_ID .. 601] = { Tears = 0.7, EternalHeart = 1 }, -- Act of Contrition
     [C_ID .. 603] = { Spawns = {Battery = {2,4}} }, -- Battery Pack
 	[C_ID .. 605] = { ContactDamagePerSecond = 36 }, -- The Scooper
+    [C_ID .. 606] = { LuckChance = {Top = 1, Bottom = 20,  Maximum = 0.2 } }, -- Ocular Rift
 	[C_ID .. 607] = { DamagePerTear = {3.5 , 5.25} }, -- Boiled Baby
     [C_ID .. 614] = { RedHeart = 1, HealingRed = 4 }, -- Blood Bombs
+    [C_ID .. 616] = { LuckChance = {Top = 1, Bottom = 12,  Maximum = 0.5 } }, -- Bird's Eye
+    [C_ID .. 617] = { LuckChance = {Top = 1, Bottom = 6 } }, -- Lodestone
+    [C_ID .. 618] = { LuckChance = {Top = 1, Bottom = 6 } }, -- Rotten Tomato
 	[C_ID .. 621] = { Damage = 21.6, FullHealth = true }, -- Red Stew
 	[C_ID .. 623] = { Key = 5 }, -- Sharp Key
 	[C_ID .. 624] = { Spawns = { Card = 5 } }, -- Booster Pack
 	[C_ID .. 629] = { ContactDamagePerSecond = 3 }, -- Bot Fly
 	[C_ID .. 632] = { Luck = 2 }, -- Evil Charm
 	[C_ID .. 633] = { Speed = 0.1, Damage = 2, Flight = true }, -- Dogma
+    [C_ID .. 637] = { LuckChance = {Top = 1, Bottom = 10 } }, -- Rotten Tomato
 	[C_ID .. 639] = { RottenHeart = 1 }, -- Yuck Heart
 	[C_ID .. 643] = { SoulHeart = 2, Flight = true }, -- Revelation
 	[C_ID .. 645] = { ContactDamagePerSecond = 3.5 }, -- Tinytoma
