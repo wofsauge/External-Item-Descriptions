@@ -48,7 +48,7 @@ EID.ItemStats = {
     [C_ID .. 50] = { Damage = 1 }, -- Steven
     [C_ID .. 51] = { Damage = 1, AngelDevilChance = 10 }, -- Pentagram
     [C_ID .. 52] = { TearsMultiplier = 0.4 }, -- Dr. Fetus
-    [C_ID .. 55] = { Variables = { LUCKCHANCE = {Top = 1, Bottom = 2, Multiplier = 0.5 } } }, -- Mom's Eye
+    [C_ID .. 55] = { LuckChance = {Top = 1, Bottom = 2, Multiplier = 0.5 } }, -- Mom's Eye
     [C_ID .. 57] = { ContactDamagePerSecond = 75 }, -- Distant Admiration
 	[C_ID .. 67] = { TearFlags = { [TearFlags.TEAR_NORMAL] = 1 }, DamagePerTear = 3.5 }, -- Sister Maggy
     [C_ID .. 70] = { Speed = 0.4, Damage = 1 }, -- Growth Hormones
@@ -62,8 +62,9 @@ EID.ItemStats = {
     [C_ID .. 81] = { Life = 9 }, -- Dead Cat
     [C_ID .. 82] = { Speed = 0.3, Flight = 1 }, -- Lord of the Pit
     [C_ID .. 85] = { Spawns = {Card = 1} }, -- Deck of Cards
+    [C_ID .. 87] = { LuckChance = {Top = 1, Bottom = 8 } }, -- Loki's Horns
     [C_ID .. 88] = { ContactDamagePerSecond = 52.5 }, -- Little Chubby
-    [C_ID .. 89] = { TearFlags = { [TearFlags.TEAR_SLOW] = 0.25 } }, -- Spider Bite
+    [C_ID .. 89] = { LuckChance = {Top = 1, Bottom = 4, Multiplier = 0.2 } }, -- Spider Bite
     [C_ID .. 90] = { Tears = 0.2, Damage = 1, Speed = -0.2 }, -- Small Rock
     [C_ID .. 92] = { RedHeart = 1, HealingRed = 1, SoulHeart = 2 }, -- Super Bandage
     [C_ID .. 95] = { DamagePerShot = 3.5 }, -- Robo-Baby
@@ -74,10 +75,10 @@ EID.ItemStats = {
 
     [C_ID .. 101] = { RedHeart = 1, Speed = 0.3, Tears = 0.2, Damage = 0.3, Range = 0.25, TearHeight = 0.5 }, -- Halo
     [C_ID .. 102] = { Spawns = {Pill = 1} }, -- Mom's Bottle of Pills
-    [C_ID .. 103] = { TearFlags = { [TearFlags.TEAR_POISON] = 0.25 } }, -- The Common Cold
+    [C_ID .. 103] = { LuckChance = {Top = 1, Bottom = 4, Multiplier = 0.25 } }, -- The Common Cold
     [C_ID .. 106] = { BombDamage = 1.83, Bomb = 5 }, -- Mr. Mega
     [C_ID .. 107] = { Variables = { [1] = 82.5 } }, -- The Pinking Shears
-    [C_ID .. 110] = { Range = 0.25, TearHeight = 0.5 }, -- Mom's Contacts
+    [C_ID .. 110] = { Range = 0.25, TearHeight = 0.5, LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15, Maximum = 0.5 } }, -- Mom's Contacts
     [C_ID .. 112] = { Orbital = true, BlockProjectiles = true, ContactDamagePerSecond = 105 },  -- Guardian Angel
     [C_ID .. 113] = { DamagePerTear = 3 }, -- Demon Baby
     [C_ID .. 115] = { TearFlags = { [TearFlags.TEAR_SPECTRAL] = 1 }}, -- Ouija Board
@@ -98,10 +99,12 @@ EID.ItemStats = {
     [C_ID .. 146] = { EternalHeart = 1 }, -- Prayer Card
     [C_ID .. 148] = { Variables = { RANGE = {1,3}} }, -- Infestation
     [C_ID .. 149] = { Damage = 40, TearsMultiplier = 0.5, TearDelay = 10 }, -- Ipecac
+    [C_ID .. 150] = { LuckChance = {Top = 1, Bottom = 10 } }, -- Tough Love
     [C_ID .. 152] = { TearsMultiplier = 0.5, DamageMultiplier = 0.65 }, -- Technology 2
     [C_ID .. 153] = { TearsMultiplier = 0.48, TearDelay = 3 }, -- Mutant Spider
     [C_ID .. 155] = { ContactDamagePerSecond = 17 },  -- The Peeper
     [C_ID .. 159] = { Flight = 1, TearFlags = { [TearFlags.TEAR_SPECTRAL] = 1 }}, -- Spirit of the Night
+    [C_ID .. 162] = { LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15 } }, -- Celtic Cross
 	[C_ID .. 163] = { TearFlags = { [TearFlags.TEAR_SPECTRAL] = 1 }, DamagePerTear = 3.5 }, -- Ghost Baby
     [C_ID .. 165] = { Damage = 1, ShotSpeed = 0.23 }, -- Cat-o-nine-tails
 	[C_ID .. 167] = { DamagePerTear = 4 }, -- Harlequin Baby
@@ -124,8 +127,9 @@ EID.ItemStats = {
     [C_ID .. 196] = { Tears = 0.4, Spawns = {SoulHeart = 2} }, -- Squeezy
     [C_ID .. 197] = { Damage = 0.5, Range = 0.25, TearHeight = 0.5 }, -- Jesus Juice
     [C_ID .. 199] = { Key = 2 }, -- Mom's Key
+    [C_ID .. 200] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 1/3 } }, -- Mom's Eyeshadow
 
-    [C_ID .. 201] = { Damage = 0.3 }, -- Iron Bar
+    [C_ID .. 201] = { Damage = 0.3, LuckChance = {Top = 1, Bottom = 10, Multiplier = 1/3 } }, -- Iron Bar
     [C_ID .. 206] = { TearDelay = -1, Damage = 1, Variables = { [1] = 105 } }, -- Guillotine
     [C_ID .. 208] = { Damage = 1 }, -- Champion Belt
     [C_ID .. 209] = { Bomb = 5}, -- Butt Bombs
@@ -134,7 +138,7 @@ EID.ItemStats = {
     [C_ID .. 214] = { Range = 5 }, -- Anemic
     [C_ID .. 215] = { AngelDevilChance = 100 }, -- Goat Head
     [C_ID .. 216] = { Damage = 1, BlackHeart = 3 }, -- Ceremonial Robes
-    [C_ID .. 217] = { HealingRed = 1 }, -- Mom's Wig
+    [C_ID .. 217] = { HealingRed = 1, LuckChance = {Top = 1, Bottom = 20, Multiplier = 2 } }, -- Mom's Wig
     [C_ID .. 218] = { RedHeart = 1 }, -- Placenta
     [C_ID .. 219] = { EmptyHeart = 1, Variables = { [1] = 10 } }, -- Old Bandage
     [C_ID .. 220] = { Bomb = 5}, -- Sad Bombs
@@ -146,6 +150,7 @@ EID.ItemStats = {
     [C_ID .. 228] = { TearDelay = -1}, -- Mom's Perfume
     [C_ID .. 229] = { TearsMultiplier = 0.23  }, -- Monstro's Lung
     [C_ID .. 230] = { Speed = 0.2, Damage = 1.5, BlackHeart = 6 }, -- Abaddon
+    [C_ID .. 231] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.5 } }, -- Ball of Tar
     [C_ID .. 232] = { Speed = 0.3 }, -- Stop Watch
     [C_ID .. 233] = { TearHeight = 7 }, -- Tiny Planet
     [C_ID .. 237] = { Damage = 1.5, Tears = -0.3, TearSizeMultiplier =2 }, -- Death's Touch
@@ -158,7 +163,8 @@ EID.ItemStats = {
     [C_ID .. 254] = { TearHeight = 0.5, Variables = { [1] = 5 } }, -- Blood Clot
     [C_ID .. 255] = { Tears = 0.5, ShotSpeed = 0.2 }, -- Screw
     [C_ID .. 256] = { Bomb = 5,  }, -- Hot Bombs
-    [C_ID .. 259] = { Damage = 1}, -- Dark Matter
+    [C_ID .. 257] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.7 } }, -- Fire Mind
+    [C_ID .. 259] = { Damage = 1, LuckChance = {Top = 1, Bottom = 3, Multiplier = 0.1 }}, -- Dark Matter
     [C_ID .. 260] = { BlackHeart = 1, AngelDevilChance = 15 }, -- Black Candle
     [C_ID .. 261] = { DamageMultiplier = 2 }, -- Proptosis
     [C_ID .. 262] = { BlackHeart = 1 }, -- Missing Page 2
@@ -215,6 +221,7 @@ EID.ItemStats = {
     [C_ID .. 367] = { Bomb = 5 }, -- Sticky Bombs
     [C_ID .. 369] = { Range = 2.25, TearHeight = 1.5,  }, -- Continuum
     [C_ID .. 370] = { Tears = 0.7, Range = 5.25, TearHeight = 0.5, Spawns = {RandomHeart = 3}  }, -- Mr. Dolly
+    [C_ID .. 374] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.9, Maximum = 0.5 } }, -- Holy Light
     [C_ID .. 376] = { Spawns = { RandomPickup = 3 } }, -- Restock
     [C_ID .. 379] = { TearSizeMultiplier = 2 }, -- Pupula Duplex
     [C_ID .. 380] = { Coin = 5 }, -- Pay To Play
@@ -228,6 +235,7 @@ EID.ItemStats = {
     [C_ID .. 404] = { BlockProjectiles = true }, -- Farting Baby
     [C_ID .. 405] = { ContactDamagePerSecond = 120 }, -- GB Bug
     [C_ID .. 409] = { BlackHeart = 2 }, -- Empty Vessel
+    [C_ID .. 410] = { LuckChance = {Top = 1, Bottom = 30, Maximum = 0.1 } }, -- Evil Eye
     [C_ID .. 415] = { SoulHeart = 2 }, -- Crown Of Light
     [C_ID .. 426] = { ContactDamagePerSecond = 30, MimicMovement = 3 }, -- Obsessed Fan
     [C_ID .. 428] = { FullHealth = true, SoulHeart = 4 }, -- PJs
@@ -239,7 +247,7 @@ EID.ItemStats = {
     [C_ID .. 438] = { Tears = 0.75, SoulHeart = 1, SizeDown = true }, -- Binky
     [C_ID .. 439] = { Spawns = { RandomTrinket = 1 },  }, -- Mom's Box
     [C_ID .. 440] = { Speed = -0.2, Range = -17, TearHeight = 2 }, -- Kidney Stone
-    [C_ID .. 443] = { Tears = 0.3 }, -- Apple!
+    [C_ID .. 443] = { Tears = 0.3, LuckChance = {Top = 1, Bottom = 15 } }, -- Apple!
     [C_ID .. 445] = { Speed = 0.1, Damage = 0.3,  }, -- Dog Tooth
     [C_ID .. 449] = { SoulHeart = 1 }, -- Metal Plate
     [C_ID .. 451] = { Spawns = {Card = 1} }, -- Tarot Cloth
@@ -249,6 +257,7 @@ EID.ItemStats = {
     [C_ID .. 457] = { SoulHeart = 1 }, -- Cone Head
     [C_ID .. 458] = { Spawns = { RandomTrinket = 1 } }, -- Belly Button
 	[C_ID .. 459] = { Variables = { [1] = 60 } }, -- Sinus Infection
+    [C_ID .. 461] = { LuckChance = {Top = 1, Bottom = 7, Maximum = 0.5 } }, -- Parasitoid
     [C_ID .. 462] = { Range = 1.5, TearHeight = 1 }, -- Eye of Belial
     [C_ID .. 463] = { Damage = 0.3 }, -- Sulfuric Acid
     [C_ID .. 464] = { SoulHeart = 2 }, -- Glyph of Balance
@@ -260,9 +269,11 @@ EID.ItemStats = {
 	[C_ID .. 481] = { RandomStatUp = 1, RandomStatDown = 1 }, -- Dataminer
     [C_ID .. 491] = { Variables = { [1] = 3 } }, -- Acid Baby
     [C_ID .. 492] = { Luck = 1 }, -- YO LISTEN!
+    [C_ID .. 496] = { LuckChance = {Top = 1, Bottom = 30, Multiplier = 2 } }, -- Euthanasia
     [C_ID .. 499] = { AngelChance = 100 }, -- Eucharist
     [C_ID .. 500] = { Variables = { RANGE = {5,6} } }, -- Sack of Sacks
 
+    [C_ID .. 503] = { LuckChance = {Top = 1, Bottom = 20,  Maximum = 0.2 } }, -- Little Horn
     [C_ID .. 509] = { DamagePerTear = 3.5, ContactDamagePerSecond = 30 }, -- Bloodshot Eye
     [C_ID .. 511] = { ContactDamagePerSecond = 30 }, -- Angry Fly
     [C_ID .. 513] = { Damage = 0.1, SoulHeart = 1 }, -- Bozo

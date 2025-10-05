@@ -90,6 +90,23 @@ EID.StatisticsData = {
             Battery = "{{Battery}}",
         }
     },
+    ["LuckChance"] = {
+        Priority = -9940,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            -- build max luck information line
+            local maxLuckText = EID:getDescriptionEntry("ModularDescriptions", "MaxLuck")
+            local maxLuckPercent = string.format("%.2f", (itemStatsTableEntry.Maximum or 1) * 100):gsub("%.?0+$", "")
+            maxLuckText = maxLuckText:gsub("{max}", maxLuckPercent)
+            maxLuckText = maxLuckText:gsub("{value}", EID:CalculateChanceWithLuck(itemStatsTableEntry, true))
+            -- append max luck info after the affected line
+            local _, chanceVarPos = string.find(description, "{VAR:LUCKCHANCE}", 1, true)
+            local nextLineStart = string.find(description, "#", chanceVarPos or 1, true)
+            description = string.sub(description, 0 , nextLineStart) .. maxLuckText .. string.sub(description, nextLineStart or 0)
+            -- replace variable with calculated chance
+            description = description:gsub("{VAR:LUCKCHANCE}", EID:CalculateChanceWithLuck(itemStatsTableEntry, false))
+            return description
+        end
+    },
     -- Variable-like entries that require special handling
     ["Variables"] = {
         Priority = -9900,
@@ -133,18 +150,25 @@ EID.StatisticsData = {
 -- add name value to EID.StatisticsData table
 for k,v in pairs(EID.StatisticsData) do v.Name = k end
 
-local function calculateCurrentChanceWithLuck(variableData)
+function EID:CalculateChanceWithLuck(variableData, useMax)
     local luckValue = 0
     local top = variableData.Top or 1
     local bottom = variableData.Bottom or 1
     local multiplier = variableData.Multiplier or 1
     local maximum = variableData.Maximum or 1
-    local luckFunc = variableData.Formula and EID.LuckFormulaPresets[variableData.Formula] or EID.LuckFormulaPresets.Default
-
-    local result = math.min(luckFunc.ChanceFunc(luckValue, top, bottom, multiplier), maximum)
-    -- if the luck value exceeds the maximum, it can produce negative values. we handle it as 100%
-    result = result >= 0 and result or maximum
-    return string.format("%.2f", result * 100):gsub("%.?0+$", "") .. "%"
+    local luckFunc = variableData.Formula and EID.LuckFormulaPresets[variableData.Formula] or
+    EID.LuckFormulaPresets.Default
+    if useMax then
+        local result = luckFunc.MaxFunc(top, bottom, multiplier, maximum)
+        result = string.format("%.0f", result)
+        return result
+    else
+        local result = math.min(luckFunc.ChanceFunc(luckValue, top, bottom, multiplier), maximum)
+        -- if the luck value exceeds the maximum, it can produce negative values. we handle it as 100%
+        result = result >= 0 and result or maximum
+        result = string.format("%.2f", result * 100):gsub("%.?0+$", "")
+        return result
+    end
 end
 
 EID.DynamicVariableHandlers = {
@@ -154,7 +178,6 @@ EID.DynamicVariableHandlers = {
         else return tostring(variableData) end -- return string otherwise
     end,
     RANGE = function(variableData) return tostring(variableData[1]) .. "-" .. tostring(variableData[2]) end,
-    LUCKCHANCE = calculateCurrentChanceWithLuck,
 }
 
 
@@ -446,10 +469,13 @@ local ignoreList = {
     ["5.100.5"] = true,
     ["5.100.6"] = true,
     ["5.100.12"] = true,
+    ["5.100.34"] = true,
     ["5.100.40"] = true,
+    ["5.100.58"] = true,
     ["5.100.59"] = true,
     ["5.100.70"] = true,
     ["5.100.78"] = true,
+    ["5.100.83"] = true, -- +0.5 Black heart looks weird
 
     ["5.100.101"] = true,
     ["5.100.106"] = true,
@@ -480,6 +506,7 @@ local ignoreList = {
     ["5.100.251"] = true,
     ["5.100.252"] = true,
     ["5.100.253"] = true,
+    ["5.100.259"] = true,
     ["5.100.260"] = true,
     ["5.100.263"] = true,
     ["5.100.267"] = true,
@@ -501,13 +528,16 @@ local ignoreList = {
     ["5.100.404"] = true,
     ["5.100.433"] = true,
     ["5.100.439"] = true,
+    ["5.100.443"] = true,
     ["5.100.445"] = true,
     ["5.100.451"] = true,
     ["5.100.458"] = true,
+    ["5.100.461"] = true,
     ["5.100.468"] = true,
     ["5.100.470"] = true,
     ["5.100.473"] = true,
     ["5.100.481"] = true,
+    ["5.100.495"] = true,
     ["5.100.499"] = true,
 
     ["5.100.511"] = true,
@@ -524,6 +554,9 @@ local ignoreList = {
 
     ["5.100.605"] = true,
     ["5.100.607"] = true,
+    ["5.100.616"] = true,
+    ["5.100.617"] = true,
+    ["5.100.618"] = true,
     ["5.100.624"] = true,
     ["5.100.633"] = true,
     ["5.100.645"] = true,
