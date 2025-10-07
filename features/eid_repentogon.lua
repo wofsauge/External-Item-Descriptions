@@ -1,6 +1,20 @@
 if not REPENTOGON then
 	return
 end
+
+-- Backwards compatibility for Repentogon on older isaac versions--
+
+-- Remove Necromancer transformation, as it doesnt exist in Version 1.9.7.12
+-- The following removes the data from EID, to prevent errors
+EID.TransformationData[tostring(EID.TRANSFORMATION.NECROMANCER)] = nil
+EID.TRANSFORMATION["NECROMANCER"] = nil
+-- remove Necromancer transformations from items that grant them
+EID.EntityTransformations["5.100.35"] = "12"	-- The Necronomicon: Bookworm, Necromancer
+EID.EntityTransformations["5.100.262"] = nil	-- Missing Page 2: Necromancer
+EID.EntityTransformations["5.350.48"] = nil	-- A Missing Page: Necromancer
+
+
+
 ---@diagnostic disable: duplicate-set-field
 local game = Game()
 local maxVanillaItemID = CollectibleType.NUM_COLLECTIBLES -- sanity backup
@@ -229,3 +243,20 @@ local function RepentogonModifierConditions(descObj)
 	return false
 end
 EID:addDescriptionModifier("EID Repentogon", RepentogonModifierConditions, nil)
+
+--------------------- Predictions ---------------------
+
+-- Glyph of Balance --
+-- Override existing function with one that uses Repentogon features
+function EID:GlyphOfBalancePrediction(player)
+	local dropIDTable = player:GetGlyphOfBalanceDrop(Variant, SubType)
+
+	-- build item string based on return value. Only add SubType, if its not equal 0
+	local fullID = "5.0"
+	if dropIDTable[1] ~= -1 then
+		fullID = "5." .. dropIDTable[1] .. (dropIDTable[2] ~= 0 and ("." .. dropIDTable[2]) or "")
+	end
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
+end
+

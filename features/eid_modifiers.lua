@@ -226,10 +226,10 @@ local function BlackFeatherCallback(descObj)
 		local playerType = player:GetPlayerType()
 		
 		local itemCounter = 0
-		for itemID, _ in pairs(EID.blackFeatherItems) do
+		for itemID, _ in pairs(EID.BlackFeatherItems) do
 			itemCounter = itemCounter + player:GetCollectibleNum(itemID)
 		end
-		for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
+		for trinketID, _ in pairs(EID.BlackFeatherTrinkets) do
 			if EID.isRepentance then
 				itemCounter = itemCounter + player:GetTrinketMultiplier(trinketID)
 			else
@@ -607,30 +607,41 @@ if EID.isRepentance then
 				end)
 				count = count + numReplacements
 			end
-			--replacing a phrase, such as "half a heart"
+			--replacing a phrase, such as "half a heart", with a double or tripled version
+			--the table should be 3 entries long (can also be 6, 9, etc. for multiple find+replaces)
+			--it can be 2 entries long if there's no triple effect
+			--If you need to differentiate between Golden and Mom's, use fullReplace
 			if data.findReplace then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
 				if textTable then
-					descObj.Description, count = string.gsub(descObj.Description, textTable[1], "{{ColorGold}}" .. textTable[multiplier] .. "{{ColorText}}", 1)
+					for i=1,#textTable,3 do
+						local newText = textTable[math.min(i+multiplier-1, #textTable)]
+						descObj.Description, count = string.gsub(descObj.Description, textTable[i], "{{ColorGold}}" .. newText .. "{{ColorText}}", 1)
+					end
 				end
 			end
 			--append some new text to the description
+			--the append table can be 1, 2, or 3 entries long (2 entries = double and triple, 3 entries = Golden, Mom's, Both)
 			if data.append then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID)
 				if textTable then
-					textChoice = math.min(textChoice, #textTable) -- some items have only 1 append description
+					if #textTable == 2 and textChoice == 2 then textChoice = 1 -- some items have only 2 descriptions (double and triple), so Golden and Mom's should both choose text #1
+					else textChoice = math.min(textChoice, #textTable) end -- some items have only 1 description
+					
 					if textTable[textChoice] ~= "" then
 						descObj.Description = descObj.Description .. "#{{ColorGold}}" .. textTable[textChoice]
 						count = 1
 					end
 				end
 			end
-			--the nuclear option: replacing the entire description; 1 = Gold, 2 = Mom's Box, 3 = Both
+			--the nuclear option: replacing the entire description; 1 = Golden, 2 = Mom's Box, 3 = Both
 			--only replace if the chosen language has defined it
 			if data.fullReplace then
 				local textTable = EID:getDescriptionEntry("goldenTrinketEffects", trinketID, true)
 				if (textTable) then
-					textChoice = math.min(textChoice, #textTable)
+					if #textTable == 2 and textChoice == 2 then textChoice = 1 -- some items have only 2 descriptions (double and triple), so Golden and Mom's should both choose text #1
+					else textChoice = math.min(textChoice, #textTable) end -- some items have only 1 description
+					
 					descObj.Description = textTable[textChoice]
 					count = 1
 				end

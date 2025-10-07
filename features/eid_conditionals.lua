@@ -335,8 +335,8 @@ EID:AddSynergyConditional({127, 297, 347, 475, 483, 490, 515, 536}, "5.300.48", 
 if EID.isRepentance then EID:AddSynergyConditional({577, 585, 628, 636}, "5.300.48", "? Card Single Use") end -- ? Card + Single Use Actives
 
 EID:AddConditional(521, EID.PlayersHaveRestock) -- Coupon + Restock/Greed
-for k,_ in pairs(EID.blackFeatherItems) do EID:AddItemConditional(k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
-for k,_ in pairs(EID.blackFeatherTrinkets) do EID:AddItemConditional("5.350." .. k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
+for k,_ in pairs(EID.BlackFeatherItems) do EID:AddItemConditional(k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
+for k,_ in pairs(EID.BlackFeatherTrinkets) do EID:AddItemConditional("5.350." .. k, "5.350.80", "Black Feather", {lineColor="BlinkGray"}) end -- Black Feather
 EID:AddItemConditional("5.70.28", 358) -- Wizard pill + The Wiz
 EID:AddItemConditional(523, 477) -- Moving Box is a passive to Void
 EID:AddItemConditional({8, 113, 163, 167, 99, 100, 174, 95, 268, 67}, 322, "Mongo Babies") -- Mongo Baby + Copiable familiars
