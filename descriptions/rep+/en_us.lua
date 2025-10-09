@@ -61,6 +61,46 @@ local additionalCollectibleInformations = {
 EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
+
+local T_ID = "5.350."
+local additionalTrinketInformations = {
+	-- Change: Added champion loot information
+	[T_ID .. 5] = "2x chance for champion enemies#50% chance for champion enemies to drop loot#Doubles champion enemy loot", -- Purple Heart
+-- Change: Added info about devil deals
+	[T_ID .. 7] = "{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries#Forces {{DevilChance}}Devil Deals to be {{AngelChance}}Angel Deals", -- Rosary Bead
+-- Change: added info about dropping the item
+	[T_ID .. 16] = "{{MomBoss}} Dropping the trinket in hostile rooms will cause Mom's Foot to stomp its location", -- Mom's Toenail
+-- Change: added Super Secret Room info
+	[T_ID .. 23] = "{{Player10}} Respawn as The Lost on death#{{SuperSecretRoom}} 33% chance to reveal Super Secret Room on new floor", -- Missing Poster
+-- Change: added ", {{Trinket135}} A Lighter"
+	[T_ID .. 53] = "{{HealingRed}} Heals 1 heart when entering a {{BossRoom}} Boss Room#-15% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}} Match Stick, {{Trinket135}} A Lighter or gulping", -- Tick
+-- Change: Complete rewrite
+	[T_ID .. 70] = "Spawns a blue spider every 30 seconds in hostile rooms#Spawns a blue spider on room clear", -- Louse
+-- Change: Added more loot information
+	[T_ID .. 76] = "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly#Increases payout odds of slots and other machines#If chest contains an item, its forced to be quality 3 or higher#Chest content can occasionally be items outside the golden chest item pool", -- Poker Chip
+-- Change: Added additional effects
+	[T_ID .. 85] = "{{DonationMachine}} Using any type of Donation Machine has a 33% chance to:#{{HealingRed}} Heal 1 heart (40%)#{{Coin}} Give 1 coin (40%)#{{Luck}} Grant +1 luck (15%)#{{Beggar}} Spawn a Beggar (5%)#{{DonationMachine}} Donation machines are less likely to jam#Also affects Beggar donations and Restock machines", -- Karma
+-- Change: Added damage up information
+	[T_ID .. 89] = "Familiars stay closer to Isaac#{{Damage}} 25% Increased familiar damage", -- Child Leash
+-- Change: 33% chance, Spawns blue fly on new room
+	[T_ID .. 93] = "33% chance per room for all fly enemies to become friendly#Spawns 1 blue fly when entering a new room", -- Used Diaper
+-- Change: now affected by luck
+	[T_ID .. 99] = "{VAR:LUCKCHANCE}% chance to shoot bouncing tears", -- Super Ball
+-- Change: Added +2 Tears
+	[T_ID .. 103] = "When Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal:#↑ {{Tears}} +2 Tears#Turns single pickups into double pickups", -- Equality!
+-- Change: added "Bombs deal 15% more damage"
+	[T_ID .. 133] = "Isaac's bombs explode faster#Bombs deal 15% more damage", -- Short Fuse
+-- Change: added "Removes Tick"
+	[T_ID .. 135] = "{{Burning}} Entering a room has a 20% chance to burn random enemies#{{Warning}} Removes {{Trinket53}} Tick", -- A Lighter
+-- Change: Added coin type based information
+	[T_ID .. 172] = "Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms#The type of coin affects the selected room type", -- Cursed Penny
+}
+EID:CompareWithPreviousDLC(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
+EID:updateDescriptionsViaTable(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations)
+
+
+
+
 ---------- Cards ----------
 
 local Card_ID = "5.300."
