@@ -605,6 +605,19 @@ local ignoreList = {
     
     ["5.100.704"] = true,
     ["5.100.716"] = true,
+    ---------- TRINKETS --------
+    ["5.350.7"] = true,
+    ["5.350.48"] = true,
+    ["5.350.58"] = true,
+    ["5.350.95"] = true,
+    ["5.350.96"] = true,
+    ["5.350.100"] = true,
+    ["5.350.101"] = true,
+    ["5.350.135"] = true,
+    ["5.350.143"] = true,
+    ["5.350.145"] = true,
+    ["5.350.159"] = true,
+    ["5.350.188"] = true,
 
     ---------- CARDS --------
     ["5.300.4"] = true,
@@ -698,8 +711,8 @@ function EID:MODULARTEST()
         {5,70,1,44,"Pills 1-44"},-- skip 45
         {5,70,46,PillEffect.NUM_PILL_EFFECTS-1,"Pills 46-max"},
         {5,70,1+PillColor.PILL_GIANT_FLAG, 44 + PillColor.PILL_GIANT_FLAG,"Horsepills 1-44"},-- skip 45
-        {5,70,46+PillColor.PILL_GIANT_FLAG,PillEffect.NUM_PILL_EFFECTS-1+PillColor.PILL_GIANT_FLAG,"Horsepills 46-max"}
-        --{5,350,1,TrinketType.NUM_TRINKETS-1,"Trinkets"}, -- Trinkets are not yet supported
+        {5,70,46+PillColor.PILL_GIANT_FLAG,PillEffect.NUM_PILL_EFFECTS-1+PillColor.PILL_GIANT_FLAG,"Horsepills 46-max"},
+        {5,350,1,TrinketType.NUM_TRINKETS-1,"Trinkets"},
     }
 
     for _, params in ipairs(todo) do
@@ -709,5 +722,5 @@ function EID:MODULARTEST()
         totalpartial = totalpartial + partial
         totaltotal = totaltotal + total
     end
-    print("TOTAL: Fully Automated:", totalsuccess, "| Partially:", totalpartial, "| Total:", totaltotal)
+    print("TOTAL: Fully Automated:", totalsuccess, "| Partially:", totalpartial, "| Total:", totaltotal, "(".. string.format("%.2f", (totalsuccess / totaltotal) * 100).."%)")
     end

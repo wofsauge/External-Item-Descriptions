@@ -294,8 +294,41 @@ EID.ItemStats = {
     [C_ID .. 542] = { Orbital = true }, -- Slipped Rib
     [C_ID .. 547] = { Tears = 0.7, BoneHeart = 1 }, -- Divorce Papers
     [C_ID .. 548] = { ContactDamagePerSecond = 7 }, -- Jaw Bone
----------- Trinkets ----------
 
+---------- Trinkets ----------
+    [T_ID .. 7] = { AngelChance = 50 }, -- Rosary Bead
+    [T_ID .. 8] = { LuckChance = {Top = 1, Bottom = 20, Multiplier = 0.5 } }, -- Cartridge
+    [T_ID .. 10] = { Tears = 0.3 }, -- Wiggle Worm
+	[T_ID .. 16] = { Variables = {[1] = 60 } }, -- Mom's Toenail
+    [T_ID .. 26] = { Range = 10 }, -- Hook Worm
+    [T_ID .. 27] = { ShotSpeed = 0.5 }, -- Whip Worm
+    [T_ID .. 30] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.5 } }, -- Pinky Eye
+    [T_ID .. 31] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.5 } }, -- Push Pin
+    [T_ID .. 35] = { Damage = 2 }, -- Curved Horn
+    [T_ID .. 37] = { Speed = 0.15 }, -- Goat Hoof
+    [T_ID .. 39] = { TearsDelay = -2 }, -- Cancer
+    [T_ID .. 40] = { LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.5 } }, -- Red Patch
+    [T_ID .. 42] = { Luck = 1 }, -- Lucky Toe
+    [T_ID .. 46] = { LuckChance = {Top = 1, Bottom = 10, Multiplier = 0.5 } }, -- Isaac's Fork
+    [T_ID .. 48] = { LuckChance = {Top = 1, Bottom = 20, Multiplier = 0.3, Maximum = 0.5 } }, -- A Missing Page
+    [T_ID .. 54] = { DamagePerTear = 3.5 }, -- Isaac's Head
+    [T_ID .. 57] = { DamagePerTear = 3.5 }, -- ???'s Soul
+    [T_ID .. 58] = { LuckChance = {Top = 1, Bottom = 15, Multiplier = 1.4 } }, -- Samson's Lock
+    [T_ID .. 59] = { LuckChance = {Top = 1, Bottom = 4 } }, -- Cain's Eye
+    [T_ID .. 60] = { LuckChance = {Formula = "Additive", Top = 1, Bottom = 20, Multiplier = 0.125 } }, -- Eve's Bird Foot  (Change calculation is not documented on the wiki. This is a best guess)
+    [T_ID .. 65] = { RangeMultiplier = 2, TearHeightMultiplier = 0.5 }, -- Tape Worm
+    [T_ID .. 66] = { Range = 4, ShotSpeed = -0.4, TearHeight = 2 }, -- Lazy Worm
+	[T_ID .. 80] = { Variables = { [1] = 0.2 } }, -- Black Feather
+    [T_ID .. 92] = { TearDelayMultiplier = 0.8 }, -- Cracked Crown
+    [T_ID .. 95] = { LuckChance = {Top = 1, Bottom = 33 } }, -- Black Tooth
+    [T_ID .. 96] = { Range = 4, TearHeight = 2, TearEffect = "Spectral", LuckChance = {Formula = "Additive", Top = 1, Bottom = 10, Multiplier = 0.1 } }, -- Ouroboros Worm (Initial Luck chance is not documented on the wiki. This is a best guess)
+    [T_ID .. 97] = { Variables = { RANGE = {12,20} } }, --Tonsil
+    [T_ID .. 98] = { Variables = { [1] = 60 } }, -- Nose Goblin
+    [T_ID .. 100] = { EffectList = { Speed = 0.25, Tears = 0.2, Damage = 0.5, Range = 0.75, ShotSpeed = 0.1, Luck = 1 } }, -- Vibrant Bulb
+    [T_ID .. 101] = { EffectList = { Speed = 0.5, Tears = 0.4, Damage = 1.5, Range = 1.5, ShotSpeed = 0.3, Luck = 2 } }, -- Dim Bulb
+    [T_ID .. 104] = { Variables = { [1] = 2 } }, -- Wish Bone
+    [T_ID .. 105] = { Variables = { [1] = 2 } }, -- Bag Lunch
+	[T_ID .. 128] = { Variables = { [1] = 2 } }, -- Finger Bone
 
 ---------- Cards ----------
     [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing" } }, -- I - The Magician
@@ -335,7 +368,6 @@ EID.ItemStats = {
     [Pill_ID .. 37] = { TimedEffect = { Duration = 6.5, Invincibility = true } }, -- Power Pill!
     [Pill_ID .. 39] = { Spawns = {BlueFly = 3} }, -- Friends Till The End!
     [Pill_ID .. 46] = { TimedEffect = { Duration = 6, Invincibility = true } }, -- Feels like I'm walking on sunshine!
-
 
 }
 

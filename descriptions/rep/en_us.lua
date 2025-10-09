@@ -323,6 +323,88 @@ local additionalCollectibleInformations = {
 EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
+---------- Trinkets ----------
+local T_ID = "5.350."
+local additionalTrinketInformations = {
+    [T_ID .. 15] = "{{Coin}} Destroying rocks has a 33% chance to spawn a coin", -- Lucky Rock
+    [T_ID .. 24] = "{{Coin}} 20% higher chance for coins to spawn from poop#{{Poison}} Picking up coins makes Isaac fart, which poisons and knocks back enemies and projectiles", -- Butt Penny
+    [T_ID .. 32] = "25% chance for a random mushroom effect per room", -- Liberty Cap
+    [T_ID .. 33] = "{{HalfHeart}} Having half a Red Heart or less grants {{Collectible100}} Little Steven#{{Collectible318}} Taking damage has a high chance to spawn a Gemini familiar for the room", -- Umbilical Cord
+    [T_ID .. 48] = "Taking damage has a 5% chance to deal 80 damage to all enemies in the room#{{Collectible35}} Black Hearts and Necronomicon-like effects deal double damage", -- A Missing Page
+    [T_ID .. 49] = "{{HalfHeart}} Picking up a coin has a 25% chance to spawn a half Red Heart#Higher chance from nickels and dimes", -- Bloody Penny
+    [T_ID .. 50] = "{{Bomb}} Picking up a coin has a 25% chance to spawn a bomb#Higher chance from nickels and dimes", -- Burnt Penny
+    [T_ID .. 51] = "{{Key}} Picking up a coin has a 25% chance to spawn a key#Higher chance from nickels and dimes", -- Flat Penny
+    [T_ID .. 67] = "Taking damage has a 50% chance to trigger one of these effects:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20", -- Cracked Dice
+    [T_ID .. 69] = "Randomly camouflages Isaac#{{Confusion}} Confuses enemies#Can be used to open the \"Strange Door\" in \"Depths II\"", -- Faded Polaroid
+    [T_ID .. 92] = "↑ x1.33 Stat multiplier (except fire rate) for the stats that are above 1 {{Speed}} speed, 2.73 {{Tears}} tears, 3.5 {{Damage}} damage, 6.5 {{Range}} range, 1 {{Shotspeed}} shot speed", -- Cracked Crown
+    [T_ID .. 107] = "Taking damage depletes Red Hearts before Soul/Black Hearts#{{Warning}} Taking Red Heart damage will reduce Devil/Angel Room chance", -- Crow Heart
+    [T_ID .. 110] = "{{Shop}} Shops appear in the Womb and Corpse", -- Silver Dollar
+    [T_ID .. 111] = "{{TreasureRoom}} Treasure Rooms appear in the Womb and Corpse", -- Bloody Crown
+    [T_ID .. 119] = "{{HealingRed}} Entering a new floor heals half of Isaac's empty Red/Bone Hearts#{{HealingRed}} Heals half a heart minimum", -- Stem Cell
+    [T_ID .. 129] = "{{Damage}} {VAR:LUCKCHANCE}% chance to shoot teeth that deal 3.2x Isaac's damage", -- Jawbreaker
+    [T_ID .. 130] = "{{Slow}} {VAR:LUCKCHANCE}% chance to shoot slowing tears", -- Chewed Pen
+    [T_ID .. 131] = "{{HalfSoulHeart}} Picking up a coin has a 17% chance to spawn a half Soul Heart#Higher chance from nickels and dimes", -- Blessed Penny
+    [T_ID .. 132] = "25% chance to get a random syringe effect each room", -- Broken Syringe
+    [T_ID .. 133] = "Isaac's bombs explode faster", -- Short Fuse
+    [T_ID .. 134] = "Increases fart size", -- Gigante Bean
+    [T_ID .. 135] = "{{Burning}} Entering a room has a {VAR:LUCKCHANCE}% chance to burn random enemies", -- A Lighter
+    [T_ID .. 136] = "Doors, key blocks and golden chests can be opened with explosions#Explosions can also open the \"Strange Door\" in \"Depths II\"", -- Broken Padlock
+    [T_ID .. 137] = "Entering a new floor spawns up to 4 uncollected pickups from the previous floor in the starting room", -- Myosotis
+    [T_ID .. 138] = "Using an active item rerolls it", -- 'M
+    [T_ID .. 139] = "{{Luck}} +4 Luck towards luck-based tear effects", -- Teardrop Charm
+    [T_ID .. 140] = "Picking up Red Hearts can convert them into blue spiders#Works even while at full health#Effect may consume hearts needed for healing", -- Apple of Sodom
+    [T_ID .. 141] = "2x Fire rate for familiars", -- Forgotten Lullaby
+    [T_ID .. 142] = "{{Collectible584}} Entering a new floor spawns 4 Book of Virtues wisps", -- Beth's Faith
+    [T_ID .. 143] = "{{Battery}} Prevents active item from charging by clearing a room#{{Battery}} Clearing a room has a {VAR:LUCKCHANCE}% chance to spawn a battery", -- Old Capacitor
+    [T_ID .. 144] = "Tears turn 90 degrees to target enemies that they may have missed", -- Brain Worm
+    [T_ID .. 145] = "Taking damage destroys the trinket", -- Perfection
+    [T_ID .. 146] = "{{RedTreasureRoom}} Treasure Room items are replaced with devil deals", -- Devil's Crown
+    [T_ID .. 147] = "{{Battery}} Picking up a coin has a 17% chance to add 1 charge to the active item#Higher chance from nickels and dimes", -- Charged Penny
+    [T_ID .. 148] = "All familiars orbit around Isaac", -- Friendship Necklace
+    [T_ID .. 149] = "Right before taking damage, uses the active item if it is charged", -- Panic Button
+    [T_ID .. 150] = "Locked doors can be opened for free, but Isaac has to clear a room from the Hush floor before accessing the room behind them", -- Blue Key
+    [T_ID .. 151] = "Retracts most spikes, rendering them harmless#Also affects {{CursedRoom}} Curse Room doors, mimics and any spike obstacle", -- Flat File
+    [T_ID .. 152] = "Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb and Corpse", -- Telescope Lens
+    [T_ID .. 153] = "25% chance for a random Mom item effect each room", -- Mom's Lock
+    [T_ID .. 154] = "50% chance per new room to grant a single use die consumable item#The die disappears when leaving#The die does not take up a pill/card slot", -- Dice Bag
+    [T_ID .. 155] = "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Cathedral", -- Holy Crown
+    [T_ID .. 156] = "{{Heart}} +1 Heart container while held", -- Mother's Kiss
+    [T_ID .. 157] = "Every 15 shots, Isaac shoots an {{Collectible149}} Ipecac + {{Collectible5}} My Reflection tear with a very high range value", -- Torn Card
+    [T_ID .. 158] = "Taking damage makes Isaac drop 2 of his coins, keys or bombs#The pickups can be replaced with other variants, such as golden keys, nickels, dimes, etc.", -- Torn Pocket
+    [T_ID .. 159] = "{{GoldenChest}} Replaces all chests (except Old/Mega) with golden chests#{{GoldenChest}} Golden chests can contain extra cards, pills or trinkets", -- Gilded Key
+    [T_ID .. 160] = "{{GrabBag}} Entering a new floor spawns a sack", -- Lucky Sack
+    [T_ID .. 161] = "Spawns a {{TreasureRoom}} Treasure Room and {{Shop}} Shop in Sheol", -- Wicked Crown
+    [T_ID .. 162] = "{{Player7}} Clearing a room has a 33% chance to turn the player into Azazel#{{Timer}} Effect lasts until clearing and leaving another room", -- Azazel's Stump
+    [T_ID .. 163] = "All Dip (small poop) enemies are friendly#Clearing a room spawns 1 random Dip", -- Dingle Berry
+    [T_ID .. 164] = "{{Bomb}} Spawns 1 extra bomb for each bomb placed", -- Ring Cap
+    [T_ID .. 165] = "On Womb and beyond, replaces all coin and key spawns with a bomb, heart, pill, card, trinket, battery, or enemy fly", -- Nuh Uh!
+    [T_ID .. 166] = "50% chance to grant the effect of a random passive item each room", -- Modeling Clay
+    [T_ID .. 167] = "{{Friendly}} Clearing a room has a 25% chance to spawn a friendly Bony", -- Polished Bone
+    [T_ID .. 168] = "{{EmptyBoneHeart}} Entering a new floor grants +1 Bone Heart", -- Hollow Heart
+    [T_ID .. 169] = "{{Guppy}} Counts as 1 item towards the Guppy transformation while held", -- Kid's Drawing
+    [T_ID .. 170] = "{{Collectible580}} Clearing a room has a 33% chance to create a Red Key room#Lower chance to occur when in a red room", -- Crystal Key
+    [T_ID .. 171] = "{{DevilRoom}} 50% chance for devil deals to cost coins instead of hearts", -- Keeper's Bargain
+    [T_ID .. 172] = "Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms", -- Cursed Penny
+    [T_ID .. 173] = "{{DevilRoom}} Allows Isaac to take 1 Devil Room item for free#{{Warning}} The free Devil deal still affects Angel Room chance", -- Your Soul
+    [T_ID .. 174] = "Prevents Krampus from appearing in Devil Rooms#Devil Rooms are special variants with more deals, Black Hearts and enemies", -- Number Magnet
+    [T_ID .. 175] = "Opens the door to the Hush floor regardless of the timer#Using {{Collectible297}} Pandora's Box consumes the key and spawns 6 items from random pools", -- Strange Key
+    [T_ID .. 176] = "Spawns a blood clot that mimics Isaac's movement#Copies Isaac's stats, tear effects and 35% of his damage#Respawns each room", -- Lil Clot
+    [T_ID .. 177] = "{{Chest}} Clearing a {{ChallengeRoom}} Challenge Room spawns a chest#Clearing a {{BossRushRoom}} Boss Challenge Room spawns an item", -- Temporary Tattoo
+    [T_ID .. 178] = "Taking damage has a 50% chance for Isaac to explode#Doesn't destroy Blood Donation Machines or Confessionals, while spawning pickups as if it did", -- Swallowed M80
+    [T_ID .. 179] = "Familiars mimic Isaac's movement#Hold the drop button ({{ButtonRT}}) to keep the familiars in place", -- RC Remote
+    [T_ID .. 180] = "Follows Isaac's movement and shoots spectral tears#Copies Isaac's stats, tear effects and 50% of his damage#Uses most active items when Isaac does#Dies in one hit#Respawns each floor", -- Found Soul
+    [T_ID .. 181] = "Using an active item triggers the effect of an additional 1-2 charge active item", -- Expansion Pack
+    [T_ID .. 182] = "Entering an {{AngelRoom}} Angel Room spawns 5 wisps#Donating to Beggars has a 25% chance to spawn a wisp", -- Beth's Essence
+    [T_ID .. 183] = "50% chance to duplicate a familiar each room#Grants {{Collectible8}} Brother Bobby or {{Collectible67}} Sister Maggy if Isaac has no familiars", -- The Twins
+    [T_ID .. 184] = "{{Shop}} Shops sell familiars for 10 coins", -- Adoption Papers
+    [T_ID .. 185] = "Killing an enemy has a 17% chance to spawn a random locust", -- Cricket Leg
+    [T_ID .. 186] = "{{Collectible706}} Grants 1 Abyss locust", -- Apollyon's Best Friend
+    [T_ID .. 187] = "{{TreasureRoom}} 50% chance of adding an extra blind item in Treasure Rooms#50% chance to reveal the blind item in alt path Treasure Rooms", -- Broken Glasses
+    [T_ID .. 188] = "{{Petrify}} Entering a room has a {VAR:LUCKCHANCE}% chance to petrify random enemies#{{Freezing}} Killing a petrified enemy freezes it", -- Ice Cube
+    [T_ID .. 189] = "Killing an enemy makes Isaac invincible for 1 second#Invincibility stacks with successive enemy kills", -- Sigil of Baphomet
+}
+EID:CompareWithPreviousDLC(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
+EID:updateDescriptionsViaTable(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Cards ----------
 

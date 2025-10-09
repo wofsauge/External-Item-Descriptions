@@ -198,6 +198,29 @@ local repentanceItemStats = {
 	[C_ID .. 730] = { Damage = 0.75, Luck = 1 }, -- Glass Eye
 	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
 
+---------- Trinkets ----------
+    [T_ID .. 10] = { Tears = 0.4, TearEffect = "Spectral"  }, -- Wiggle Worm
+    [T_ID .. 11] = { Tears = 0.47, TearEffect = "Spectral" }, -- Ring Worm
+	[T_ID .. 16] = { Variables = { [1] = 20 } }, -- Mom's Toenail
+    [T_ID .. 26] = { Tears = 0.4, Range = 1.5, TearEffect = "Spectral" }, -- Hook Worm
+    [T_ID .. 39] = { FireRate = 1 }, -- Cancer
+    [T_ID .. 65] = { Range = 3 }, -- Tape Worm
+    [T_ID .. 66] = { ShotSpeed = -0.5 }, -- Lazy Worm
+	[T_ID .. 80] = { Variables = { [1] = 0.5 } }, -- Black Feather
+    [T_ID .. 96] = {Tears = 0.4, Range = 1.5, TearEffect = "Spectral", LuckChance = {Formula = "Additive", Top = 1, Bottom = 10, Multiplier = 0.1 } }, -- Ouroboros Worm (Initial Luck chance is not documented on the wiki. This is a best guess)
+	[T_ID .. 98] = { Variables = { [1] = 10 } }, -- Nose Goblin
+    [T_ID .. 101] = { EffectList = { Speed = 0.5, Tears = 0.5, Damage = 1.5, Range = 1.5, ShotSpeed = 0.3, Luck = 2 } }, -- Dim Bulb
+	[T_ID .. 128] = { Variables = { [1] = 4 } }, -- Finger Bone
+    [T_ID .. 129] = { LuckChance = { Top = 1, Bottom = 10 } }, -- Jawbreaker
+    [T_ID .. 130] = { LuckChance = { Top = 1, Bottom = 10, Multiplier = 0.5 }  }, -- Chewed Pen
+    [T_ID .. 135] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 5, Multiplier = 0.05 } }, -- A Lighter (Formula is not documented on the wiki. This is a best guess)
+    [T_ID .. 143] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 5, Multiplier = 0.03, Maximum = 1/3 } }, -- Old Capacitor
+    [T_ID .. 145] = { Luck = 10 }, -- Perfection
+    [T_ID .. 152] = { PlanetariumChance = 9 }, -- Telescope Lens
+    [T_ID .. 159] = { Key = 1 }, -- Gilded Key
+    [T_ID .. 174] = { DevilChance = 10 }, -- Number Magnet
+    [T_ID .. 188] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 5, Multiplier = 0.02 } }, -- Ice Cube (Formula is not documented on the wiki. This is a best guess)
+
 ---------- Cards ----------
     [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- I - The Magician
     [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 2.5 } }, -- XI - Strength

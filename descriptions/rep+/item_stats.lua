@@ -13,6 +13,13 @@ local repentancePlusItemStats = {
 	[C_ID .. 594] = { EmptyHeart = 2, Speed = -0.3, HealingRed = 2 }, -- Jupiter
 	[C_ID .. 643] = { Flight = true }, -- Revelation (Removed +2 Soul Hearts)
 
+---------- Trinkets ----------
+	[T_ID .. 7] = { AngelChance = 50 }, -- Rosary Bead
+	[T_ID .. 66] = { Damage = 0.5, ShotSpeed = -0.5 }, -- Lazy Worm
+    [T_ID .. 97] = { Variables = { RANGE = {6, 12} } }, --Tonsil
+	[T_ID .. 99] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 10, Multiplier = 0.05 } }, -- Super Ball (Formula is not documented on the wiki. This is a best guess)
+    [T_ID .. 104] = { Variables = { [1] = 5 } }, -- Wish Bone
+    [T_ID .. 105] = { Variables = { [1] = 5 } }, -- Bag Lunch
 ---------- Cards ----------
     [Card_ID .. 38] = { }, -- Berkano (replace blue spider/fly spawns with abyss locusts)
     
