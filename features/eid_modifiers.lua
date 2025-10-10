@@ -287,26 +287,6 @@ local function VurpCallback(descObj)
 	return descObj
 end
 
--- Handle dynamic Luck chance modifiers
-local function LuckChanceCallback(descObj)
-	for i = 1,#EID.coopAllPlayers do
-		local player = EID.coopAllPlayers[i]
-		if player.Luck ~= 0 then
-			local playerType = player:GetPlayerType()
-			
-			local result = math.max(math.min(EID.LuckFormulas[descObj.fullItemString](player.Luck), 100), 0)
-			local luckLine = EID:getDescriptionEntry("LuckModifier")
-			luckLine = EID:ReplaceVariableStr(luckLine, 1, string.format("%.3g", result))
-			luckLine = EID:ReplaceVariableStr(luckLine, 2, "{{BlinkGreen}}" .. string.format("%.3g", player.Luck) .. "{{CR}}")
-			
-			if #EID.coopAllPlayers == 1 then EID:appendToDescription(descObj, "#{{Luck}} ")
-			else EID:appendToDescription(descObj, "#" .. EID:GetPlayerIcon(playerType, "P" .. i .. ":") .. " ") end
-			EID:appendToDescription(descObj, "{{NoLB}}" .. luckLine)
-		end
-	end
-	return descObj
-end
-
 -- Handle changing health up text for non-red HP players
 local function HealthUpCallback(descObj)
 	if not EID.Config["DynamicHealthUps"] then return descObj end
@@ -1278,7 +1258,6 @@ local function EIDConditionsAB(descObj)
 
 	local callbacks = {}
 
-	if EID.LuckFormulas[descObj.fullItemString] then table.insert(callbacks, LuckChanceCallback) end
 	local adjustedSubtype = EID:getAdjustedSubtype(descObj.ObjType, descObj.ObjVariant, descObj.ObjSubType)
 	local typeVarSub = descObj.ObjType.."."..descObj.ObjVariant.."."..adjustedSubtype
 	if EID.HealthUpData[typeVarSub] or EID.HealingItemData[typeVarSub] then table.insert(callbacks, HealthUpCallback) end

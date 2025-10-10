@@ -245,7 +245,7 @@ EID.StatisticsData = {
 for k,v in pairs(EID.StatisticsData) do v.Name = k end
 
 function EID:CalculateChanceWithLuck(variableData, useMax)
-    local luckValue = 0
+    local luckValue = EID.player and EID.player.Luck or 0
     local top = variableData.Top or 1
     local bottom = variableData.Bottom or 1
     local multiplier = variableData.Multiplier or 1
@@ -261,7 +261,8 @@ function EID:CalculateChanceWithLuck(variableData, useMax)
         -- if the luck value exceeds the maximum, it can produce negative values. we handle it as 100%
         result = result >= 0 and result or maximum
         result = string.format("%.2f", result * 100):gsub("%.?0+$", "")
-        return result
+        -- Colorize chance, if different than default
+        return luckValue ~= 0 and "{{BlinkGreen}}"..result.."{{CR}}" or result
     end
 end
 
@@ -317,22 +318,25 @@ function EID:ValidateItemStatEntry(statID, additionalInfo)
 end
 
 -- DEBUG: Lists all similar description lines in AdditionalInformations to find potential duplicates
-function EID:ListSimilarDescriptions()
+function EID:ListSimilarDescriptions(limit)
     local uniqueDescriptions = {}
     for _, description in pairs(EID.descriptions["en_us"].AdditionalInformations) do
         for line in string.gmatch(description, "[^#]+") do
-            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("^%s+", "")
-            if uniqueDescriptions[line] then
-                uniqueDescriptions[line] = uniqueDescriptions[line] + 1
-            else
-                uniqueDescriptions[line] = 1
+            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("{{.*}}", ""):gsub("{.*}", ""):gsub("↓", ""):gsub("^%s+", ""):gsub("%s+$", "")
+            if line ~= "" then
+                if uniqueDescriptions[line] then
+                    uniqueDescriptions[line] = uniqueDescriptions[line] + 1
+                else
+                    uniqueDescriptions[line] = 1
+                end
             end
         end
     end
     
     for k, v in pairs(uniqueDescriptions) do
-        if v ~= 1 then
+        if v >= limit then
             print(v,k)
+            --Isaac.DebugString(v..";"..k)
         end
     end
 end
@@ -651,6 +655,43 @@ local ignoreList = {
     ["5.70.2094"] = true,
 }
 
+        
+local oldWordCount = {}
+function EID:DEBUGCountWordsOld(DLC, tablesTODO)
+    oldWordCount[DLC] = 0
+    for _, v in ipairs(tablesTODO) do
+        for _, desc in pairs(v) do
+            -- gather word count statistics
+            local cleaned = desc[3]:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
+            local _, wordCount = cleaned:gsub("%S+", "")
+            oldWordCount[DLC] = oldWordCount[DLC] + wordCount
+        end
+    end
+end
+
+local newWordCount = {}
+function EID:DEBUGCountWordsNew(DLC, tablesTODO)
+    newWordCount[DLC] = 0
+    for _, v in ipairs(tablesTODO) do
+        for _, desc in pairs(v) do
+            if type(desc) == "string" then
+            -- gather word count statistics
+            local cleaned = desc:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
+            local _, wordCount = cleaned:gsub("%S+", "")
+            newWordCount[DLC] = newWordCount[DLC] + wordCount
+            else
+                for _, desc2 in pairs(desc) do
+                    if type(desc2) == "string" then
+                        -- gather word count statistics
+                        local cleaned = desc2:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
+                        local _, wordCount = cleaned:gsub("%S+", "")
+                        newWordCount[DLC] = newWordCount[DLC] + wordCount
+                    end
+                end
+            end
+        end
+    end
+end
 
 local function splitLines(s)
     local t = {}
@@ -664,8 +705,6 @@ end
 -- Compare generated description with original description for an item
 local successCounter = 0
 local partialCounter = 0
-local originalWords = 0
-local additionalWords = 0
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local itemTypeString = type .. "." .. variant .. "." .. subtype
     local original = EID:getDescriptionObj(type, variant, subtype, null, false)
@@ -673,14 +712,6 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local origText = originalEntry[3]
     
     local generated, additional = EID:GenerateDescription(itemTypeString)
-
-    -- gather word count statistics
-    local _, wordCount = origText:gsub("#", " "):gsub("%S+","")
-    originalWords = originalWords + wordCount
-    if additional then
-        local _, awordCount = additional:gsub("#", " "):gsub("%S+","")
-        additionalWords = additionalWords + awordCount
-    end
 
     -- Evaluate the completeness of the generated description compared to the original description
     if origText == generated then
@@ -738,18 +769,15 @@ end
 function EID:CompareGeneralizedDescriptionsMulti(type, variant, startID, endID, DLCName)
     successCounter = 0
     partialCounter = 0
-    originalWords = 0
-    additionalWords = 0
     for subtype = startID, endID do
         EID:CompareGeneralizedDescriptions(type, variant, subtype)
     end
     print("<"..tostring(DLCName).."> Fully Automated:", successCounter, "| Partially:", partialCounter, "| Total:", (endID - startID + 1))
-    print("<"..tostring(DLCName).."> Words before:", originalWords, "| after:", additionalWords, "| Diff:", string.format("%.2f%%", (additionalWords/originalWords-1) * 100))
-    return successCounter, partialCounter, (endID - startID + 1), originalWords, additionalWords
+    return successCounter, partialCounter, (endID - startID + 1)
 end
 
 function EID:MODULARTEST()
-    local totalsuccess, totalpartial, totaltotal, totalOrigWords, totalAddWords = 0, 0, 0, 0, 0
+    local totalsuccess, totalpartial, totaltotal = 0, 0, 0
     local todo = {
         {5,100,1,CollectibleType.NUM_COLLECTIBLES-1,"Collectibles"},
         {5,300,1,Card.NUM_CARDS-1,"Cards"},
@@ -761,15 +789,23 @@ function EID:MODULARTEST()
     }
 
     for _, params in ipairs(todo) do
-        local success, partial, total, origWords, addWords = EID:CompareGeneralizedDescriptionsMulti(params[1], params[2], params[3],
+        local success, partial, total = EID:CompareGeneralizedDescriptionsMulti(params[1], params[2], params[3],
             params[4], params[5])
         totalsuccess = totalsuccess + success
         totalpartial = totalpartial + partial
         totaltotal = totaltotal + total
-        totalOrigWords = totalOrigWords + origWords
-        totalAddWords = totalAddWords + addWords
     end
+
     print("TOTAL: Fully Automated:", totalsuccess, "| Partially:", totalpartial, "| Total:", totaltotal, "(".. string.format("%.2f", (totalsuccess / totaltotal) * 100).."%)")
+    
+    -- Get word counts
+    local totalOrigWords = 0
+    local totalAddWords = 0
+    for dlc, val in pairs(oldWordCount) do
+        totalOrigWords = totalOrigWords + val
+        totalAddWords = totalAddWords + newWordCount[dlc]
+        print("Word cound '"..dlc.."':", "old:",val, "new:",newWordCount[dlc])
+    end
     print("TOTAL: Words before:", totalOrigWords, "| after:", totalAddWords, "| Diff:", string.format("%.2f%%", (totalAddWords/totalOrigWords-1) * 100))
     
 end

@@ -1172,14 +1172,6 @@ EID.BlackFeatherItems = { [215] = true, [216] = true, [230] = true, [260] = true
 if EID.isRepentance then EID.BlackFeatherItems[654] = true end
 EID.BlackFeatherTrinkets = { [17] = true, [22] = true }
 
--- Luck formulas
-EID.LuckFormulas = {}
-EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.floor(luck*0.3)), 50) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
-if EID.isRepentance then
-	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
-	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
-end
-
 -- Number of Health Ups you get from a Health Up item
 -- (Pill ID is off by 1 because of EID one-indexed pill effects)
 EID.HealthUpData = {["5.70.7"] = -1, ["5.70.8"] = 1, ["5.70.2055"] = -2, ["5.70.2056"] = 2, ["5.70.10"] = 1, ["5.100.12"] = 1, ["5.100.15"] = 1, ["5.100.16"] = 2, ["5.100.22"] = 1, ["5.100.23"] = 1, ["5.100.24"] = 1, ["5.100.25"] = 1, ["5.100.26"] = 1, ["5.100.92"] = 1, ["5.100.101"] = 1, ["5.100.119"] = 1, ["5.100.121"] = 1, ["5.100.129"] = 2, ["5.100.138"] = 1, ["5.100.176"] = 1, ["5.100.182"] = 1, ["5.100.184"] = 1, ["5.100.189"] = 1, ["5.100.193"] = 1, ["5.100.218"] = 1, ["5.100.219"] = 1, ["5.100.226"] = 1, ["5.100.253"] = 1, ["5.100.307"] = 1, ["5.100.312"] = 1, ["5.100.314"] = 1, ["5.100.334"] = 3, ["5.100.342"] = 1, ["5.100.346"] = 1, ["5.100.354"] = 1, ["5.100.456"] = 1, ["5.300.12"] = 1 }
@@ -1191,24 +1183,6 @@ if EID.isRepentance then
 	EID.HealingItemData["5.100.621"] = true; EID.HealingItemData["5.70.46"] = true;
 
 	EID.BloodUpData = {["5.70.10"] = 2, ["5.350.156"] = 2, ["5.300.12"] = 2, ["5.300.59"] = 4, [12] = 12, [15] = 12, [16] = 12, [22] = 4, [23] = 4, [24] = 4, [25] = 4, [26] = 4, [75] = 4, [92] = 4, [101] = 4, [119] = 10, [121] = 2, [129] = 4, [138] = 4, [176] = 4, [182] = 12, [184] = 4, [189] = 12, [193] = 4, [217] = 2, [218] = 4, [226] = 4, [253] = 4, [307] = 4, [312] = 4, [314] = 4, [334] = 6, [342] = 4, [346] = 4, [354] = 4, [428] = 12, [456] = 4, [535] = 2, [573] = 12, [591] = 4, [594] = 1, [614] = 10, [621] = 12, [664] = 12, [669] = 12, [707] = 4 }
-end
-
-EID.SingleUseCollectibles = {
-	[127] = true, -- Forget Me Now
-	[297] = true, -- Pandora's Box
-	[347] = true, -- Diplopia
-	[475] = true, -- Plan C
-	[483] = true, -- Mama Mega!
-	[490] = true, -- Eden's Soul
-	[515] = true, -- Mystery Gift
-	[536] = true, -- Sacrificial Altar
-}
-if EID.isRepentance then
-	EID.SingleUseCollectibles[577] = true -- Damocles
-	EID.SingleUseCollectibles[585] = true -- Alabaster Box
-	EID.SingleUseCollectibles[622] = true -- Genesis
-	EID.SingleUseCollectibles[628] = true -- Death Certificate
-	EID.SingleUseCollectibles[636] = true -- R Key
 end
 
 ---------------- BAG OF CRAFTING DATA ------------------

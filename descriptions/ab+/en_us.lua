@@ -1888,13 +1888,9 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage",
 EID.descriptions[languageCode].CrookedPennyHeads = "Heads"
 EID.descriptions[languageCode].CrookedPennyTails = "Tails"
 
-EID.descriptions[languageCode].LuckModifier = "{1}% chance at {2} luck"
-
 EID.descriptions[languageCode].CollectionPageInfo = "This item needs to be picked up for the collection page!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} items currently held (+{2} Damage)"
-
-EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} SINGLE USE {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {pluralize} = plural character
@@ -2120,8 +2116,10 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.18 (Greed)"] = {"{{TreasureRoom}} Teleports Isaac to a random Treasure Room"}, -- XVII - The Stars (Greed)
 	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
-	
 }
+
+EID:DEBUGCountWordsOld("AB+", {EID.descriptions[languageCode].collectibles, EID.descriptions[languageCode].trinkets, EID.descriptions[languageCode].cards, EID.descriptions[languageCode].pills})
+EID:DEBUGCountWordsNew("AB+", {EID.descriptions[languageCode].AdditionalInformations, EID.descriptions[languageCode].ModularDescriptions})
 
 
 
