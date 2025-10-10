@@ -45,8 +45,6 @@ local additionalCollectibleInformations = {
 	[C_ID .. 593] = "Double-tapping a movement key makes Isaac dash#{{Damage}} During a dash, Isaac is invincible and deals 4x his damage +8#{{Timer}} 3 seconds cooldown#{{Burning}} Creates a ring of fire on impact", -- Mars
 	-- Change: Complete rewrite
 	[C_ID .. 632] = "Immune to {{Burning}} fire damage, {{Confusion}} confusion, {{Fear}} fear, {{Slow}} spider-webs and {{Poison}} poison effects#Grants 1 second immunity to creep", -- Evil Charm
-	-- Change: Adjusted the stat boost to match Hallowed Ground
-	[C_ID .. 651] = "Slowly travels from the first room of the floor to the {{BossRoom}} Boss Room#Moves faster if you're ahead of it, and slower if you're behind it#Standing in its aura grants:#↑ {{Tears}} x2.5 Tears multiplier#↑ {{Damage}} x1.2 Damage multiplier#Homing tears#50% chance to ignore damage", -- Star of Bethlehem
 	-- Change: Added Shop as a new destination
 	[C_ID .. 660] = "Spawns two portals in the first room of each floor#Leaving the room despawns the portals#{{Blank}} {{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{Blank}} {{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{Blank}} {{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room#{{Blank}} {{ColorGreen}}Green: {{CR}}{{Shop}} Shop", -- Card Reading
 	-- Change: Complete rewrite
@@ -651,3 +649,6 @@ if EID.enableDebug then
 	EID.descriptions[languageCode].repPlusCollectibles = collectibles
 	EID.descriptions[languageCode].repPlusTrinkets = trinkets
 end
+
+EID:DEBUGCountWordsOld("Rep+", {cards, horsepills, collectibles, trinkets})
+EID:DEBUGCountWordsNew("Rep+", {additionalCollectibleInformations, additionalTrinketInformations, additionalPillInformations, additionalCardInformations})

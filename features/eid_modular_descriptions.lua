@@ -30,6 +30,8 @@ EID.StatisticsData = {
     ["Invincibility"] = { Priority = 9540 },
     ["RandomStatUp"] = { Priority = 9530, HideSign = true },
     ["RandomStatDown"] = { Priority = 9520, HideSign = true },
+    ["CantShoot"] = { Priority = 9510, HideSign = true },
+    ["PlayerContactDamage"] = { Priority = 9500, HideSign = true },
 
     -- Health related
     ["RedHeart"] = { Priority = 8990, Arrow = true, Icon = "{{Heart}}" },
@@ -134,7 +136,7 @@ EID.StatisticsData = {
         end
     },
     ["LuckChance"] = {
-        Priority = -9940,
+        Priority = -9950,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
             -- build max luck information line
             local maxLuckText = EID:getDescriptionEntry("ModularDescriptions", "MaxLuck")
@@ -148,6 +150,25 @@ EID.StatisticsData = {
             -- replace variable with calculated chance
             description = description:gsub("{VAR:LUCKCHANCE}", EID:CalculateChanceWithLuck(itemStatsTableEntry, false))
             return description
+        end
+    },
+    ["EffectList"] = {
+        -- Generic list of Effects to be placed inside the description, without any title text
+        Priority = -9940,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "EffectList")
+        end
+    },
+    ["RightEye"] = {
+        Priority = 9500,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RightEye")
+        end
+    },
+    ["LeftEye"] = {
+        Priority = 9500,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "LeftEye")
         end
     },
     ["RoomEffect"] = {
@@ -172,6 +193,24 @@ EID.StatisticsData = {
         Priority = -9900,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
             return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "HeldEffect")
+        end
+    },
+    ["ItemDescription"] = {
+        -- Adds the description of another item
+        Priority = -9980,
+        BehaviorFunc = function(_, itemStatsTableEntry, description)
+            local itemDesc =  EID:GenerateDescription(itemStatsTableEntry)
+            if itemDesc and itemDesc ~= "" then
+                local numReplaced = 0
+                description, numReplaced = description:gsub("{VAR:ITEMDESCRIPTION}", itemDesc)
+                if numReplaced == 0 then
+                    if not description:find("#$") then
+                        return description .."#".. itemDesc
+                    end
+                    return description .. itemDesc
+                end
+            end
+            return description
         end
     },
     -- Variable-like entries that require special handling
@@ -233,6 +272,7 @@ EID.DynamicVariableHandlers = {
         else return tostring(variableData) end -- return string otherwise
     end,
     RANGE = function(variableData) return tostring(variableData[1]) .. "-" .. tostring(variableData[2]) end,
+    TEXT = function(variableData) return variableData end,
 }
 
 
@@ -358,14 +398,22 @@ function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, sta
         local statID = statDataEntry.Name
         if EID:ValidateItemStatEntry(statID, "located in a '"..statName.."' element") then
             if not (applyValueWithName and statID == applyValueWithName) then
-                textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)  
+                textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
             end
         end
     end
+    -- remove leading/trailing # and multiple # in a row. Makes translation more readable in some places, if a # is explicitly added
+    textFragment = textFragment:gsub("#$", ""):gsub("^#", ""):gsub("#+", "#")
+    -- Indent content by one
+    textFragment = textFragment:gsub("#", "#{{IND}}")
+
     -- Try replace inline variable
     local numReplaced = 0
     description, numReplaced = description:gsub("{VAR:"..string.upper(statName).."}", textFragment)
     if numReplaced == 0 then
+        if not description:find("#$") then
+            return description .."#".. textFragment
+        end
         return description .. textFragment
     end
     return description
@@ -502,21 +550,30 @@ end
 local ignoreList = {
     ["5.100.34"] = true,
     ["5.100.40"] = true,
+    ["5.100.41"] = true,
     ["5.100.58"] = true,
     ["5.100.59"] = true,
+    ["5.100.77"] = true,
     ["5.100.78"] = true,
     ["5.100.83"] = true, -- +0.5 Black heart looks weird
+    ["5.100.93"] = true,
 
     ["5.100.106"] = true,
     ["5.100.112"] = true,
     ["5.100.117"] = true,
+    ["5.100.154"] = true,
+    ["5.100.155"] = true,
     ["5.100.172"] = true,
 
     ["5.100.219"] = true,
     ["5.100.251"] = true,
     ["5.100.252"] = true,
+    ["5.100.254"] = true,
     ["5.100.263"] = true,
     ["5.100.281"] = true,
+    ["5.100.287"] = true,
+    ["5.100.288"] = true,
+    ["5.100.298"] = true,
 
     ["5.100.336"] = true,
     ["5.100.340"] = true,
@@ -528,33 +585,55 @@ local ignoreList = {
     ["5.100.451"] = true,
     ["5.100.458"] = true,
     ["5.100.468"] = true,
+    ["5.100.471"] = true,
     ["5.100.473"] = true,
     ["5.100.481"] = true,
+    ["5.100.487"] = true,
     ["5.100.499"] = true,
 
+    ["5.100.503"] = true,
+    ["5.100.504"] = true,
     ["5.100.511"] = true,
     ["5.100.548"] = true,
     -- Repentance
     ["5.100.555"] = true,
+    ["5.100.556"] = true,
     ["5.100.584"] = true,
+    ["5.100.588"] = true,
     ["5.100.594"] = true, -- TODO (Jupiter): Heals 0.5 Heart looks weird
 
+    ["5.100.600"] = true,
+    ["5.100.601"] = true,
     ["5.100.605"] = true,
     ["5.100.607"] = true,
     ["5.100.624"] = true,
+    ["5.100.625"] = true,
+    ["5.100.626"] = true,
+    ["5.100.627"] = true,
     ["5.100.633"] = true,
+    ["5.100.655"] = true,
     ["5.100.686"] = true,
     ["5.100.693"] = true,
     
     ["5.100.716"] = true,
+    ["5.100.731"] = true,
     ---------- TRINKETS --------
     ["5.350.7"] = true, -- Line fix: Angel room chance
+    ["5.350.8"] = true,
+    ["5.350.21"] = true,
+    ["5.350.33"] = true,
+    ["5.350.67"] = true,
     ["5.350.96"] = true, -- Line fix: Homing tears
     ["5.350.145"] = true, -- Line fix: Luck up
+    ["5.350.157"] = true,
     ["5.350.159"] = true, -- Line fix: Keys on Pickup
+    ["5.350.175"] = true,
+    ["5.350.183"] = true,
 
     ---------- CARDS --------
+    ["5.300.8"] = true,
     ["5.300.13"] = true,
+    ["5.300.39"] = true,
     ["5.300.53"] = true,
     ["5.300.93"] = true,
 
@@ -563,12 +642,15 @@ local ignoreList = {
     ["5.70.8"] = true,
     ["5.70.33"] = true,
     ["5.70.34"] = true,
+    ["5.70.37"] = true,
+    ["5.70.46"] = true,
 
     ["5.70.2056"] = true,
     ["5.70.2069"] = true,
+    ["5.70.2085"] = true,
+    ["5.70.2094"] = true,
 }
 
-        
 
 local function splitLines(s)
     local t = {}

@@ -12,6 +12,7 @@ local repentancePlusItemStats = {
     [C_ID .. 554] = { Tears = 0.5, ShotSpeed = 0.2 },  -- 2Spooky
 	[C_ID .. 594] = { EmptyHeart = 2, Speed = -0.3, HealingRed = 2 }, -- Jupiter
 	[C_ID .. 643] = { Flight = true }, -- Revelation (Removed +2 Soul Hearts)
+    [C_ID .. 651] = { EffectList = { TearsMultiplier = 2.5, DamageMultiplier = 1.2, TearEffect = "Homing"} }, -- Star of Bethlehem (Changed DamageMultiplier)
 
 ---------- Trinkets ----------
 	[T_ID .. 7] = { AngelChance = 50 }, -- Rosary Bead
@@ -24,8 +25,8 @@ local repentancePlusItemStats = {
     [Card_ID .. 38] = { }, -- Berkano (replace blue spider/fly spawns with abyss locusts)
     
 ---------- Horse Pills ----------
-    [Pill_ID .. (HorseID + 29)] = { FullHealth = true }, -- Percs! (Added full heal information)
-    [Pill_ID .. (HorseID + 30)] = { BrokenHeart = 1 }, -- Addicted! (Added broken heart)
+    [Pill_ID .. (HorseID + 29)] = { FullHealth = true, ItemDescription = "5.70.29"  }, -- Percs! (Added full heal information)
+    [Pill_ID .. (HorseID + 30)] = { BrokenHeart = 1, ItemDescription = "5.70.30" }, -- Addicted! (Added broken heart)
 }
 
 EID:updateDescriptionsViaTable(repentancePlusItemStats, EID.ItemStats)
