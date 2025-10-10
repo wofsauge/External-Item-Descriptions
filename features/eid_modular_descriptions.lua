@@ -498,170 +498,110 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
 end
 
 -- DEBUG FUNCTION
--- Compare generated description with original description for an item
-local successCounter = 0
-local partialCounter = 0
-
 -- DEBUG ignore entries list, which are automated correctly, but maybe have different order of lines
 local ignoreList = {
-    ["5.100.4"] = true,
-    ["5.100.5"] = true,
-    ["5.100.6"] = true,
-    ["5.100.12"] = true,
     ["5.100.34"] = true,
     ["5.100.40"] = true,
     ["5.100.58"] = true,
     ["5.100.59"] = true,
-    ["5.100.70"] = true,
     ["5.100.78"] = true,
     ["5.100.83"] = true, -- +0.5 Black heart looks weird
 
-    ["5.100.101"] = true,
     ["5.100.106"] = true,
     ["5.100.112"] = true,
     ["5.100.117"] = true,
-    ["5.100.119"] = true,
-    ["5.100.120"] = true,
-    ["5.100.121"] = true,
-    ["5.100.129"] = true,
-    ["5.100.138"] = true,
-    ["5.100.149"] = true,
-    ["5.100.159"] = true,
-    ["5.100.169"] = true,
     ["5.100.172"] = true,
-    ["5.100.176"] = true,
-    ["5.100.179"] = true,
-    ["5.100.182"] = true,
-    ["5.100.184"] = true,
-    ["5.100.185"] = true,
-    ["5.100.194"] = true,
 
-    ["5.100.215"] = true,
     ["5.100.219"] = true,
-    ["5.100.230"] = true,
-    ["5.100.237"] = true,
-    ["5.100.238"] = true,
-    ["5.100.239"] = true,
     ["5.100.251"] = true,
     ["5.100.252"] = true,
-    ["5.100.253"] = true,
-    ["5.100.259"] = true,
-    ["5.100.260"] = true,
     ["5.100.263"] = true,
-    ["5.100.267"] = true,
     ["5.100.281"] = true,
 
-    ["5.100.302"] = true,
-    ["5.100.307"] = true,
-    ["5.100.310"] = true,
-    ["5.100.314"] = true,
-    ["5.100.330"] = true,
-    ["5.100.331"] = true,
     ["5.100.336"] = true,
     ["5.100.340"] = true,
-    ["5.100.342"] = true,
     ["5.100.354"] = true,
-    ["5.100.363"] = true,
-    ["5.100.365"] = true,
     
-    ["5.100.402"] = true,
     ["5.100.404"] = true,
     ["5.100.433"] = true,
     ["5.100.439"] = true,
-    ["5.100.443"] = true,
-    ["5.100.445"] = true,
     ["5.100.451"] = true,
     ["5.100.458"] = true,
-    ["5.100.461"] = true,
     ["5.100.468"] = true,
-    ["5.100.470"] = true,
     ["5.100.473"] = true,
     ["5.100.481"] = true,
-    ["5.100.495"] = true,
     ["5.100.499"] = true,
 
     ["5.100.511"] = true,
-    ["5.100.531"] = true,
-    ["5.100.541"] = true,
     ["5.100.548"] = true,
     -- Repentance
-    ["5.100.554"] = true,
     ["5.100.555"] = true,
-    ["5.100.561"] = true,
-    ["5.100.573"] = true,
     ["5.100.584"] = true,
     ["5.100.594"] = true, -- TODO (Jupiter): Heals 0.5 Heart looks weird
 
     ["5.100.605"] = true,
     ["5.100.607"] = true,
-    ["5.100.616"] = true,
-    ["5.100.617"] = true,
-    ["5.100.618"] = true,
     ["5.100.624"] = true,
     ["5.100.633"] = true,
-    ["5.100.645"] = true,
-    ["5.100.659"] = true,
-    ["5.100.669"] = true,
     ["5.100.686"] = true,
-    ["5.100.688"] = true,
     ["5.100.693"] = true,
-    ["5.100.694"] = true,
     
-    ["5.100.704"] = true,
     ["5.100.716"] = true,
     ---------- TRINKETS --------
-    ["5.350.7"] = true,
-    ["5.350.48"] = true,
-    ["5.350.58"] = true,
-    ["5.350.95"] = true,
-    ["5.350.96"] = true,
-    ["5.350.100"] = true,
-    ["5.350.101"] = true,
-    ["5.350.135"] = true,
-    ["5.350.143"] = true,
-    ["5.350.145"] = true,
-    ["5.350.159"] = true,
-    ["5.350.188"] = true,
+    ["5.350.7"] = true, -- Line fix: Angel room chance
+    ["5.350.96"] = true, -- Line fix: Homing tears
+    ["5.350.145"] = true, -- Line fix: Luck up
+    ["5.350.159"] = true, -- Line fix: Keys on Pickup
 
     ---------- CARDS --------
-    ["5.300.4"] = true,
-    ["5.300.12"] = true,
     ["5.300.13"] = true,
-    ["5.300.39"] = true,
-    ["5.300.52"] = true,
     ["5.300.53"] = true,
-    ["5.300.59"] = true,
     ["5.300.93"] = true,
 
     ---------- Pills --------
-    ["5.70.4"] = true,
     ["5.70.6"] = true,
-    ["5.70.7"] = true,
     ["5.70.8"] = true,
-    ["5.70.21"] = true,
-    ["5.70.22"] = true,
     ["5.70.33"] = true,
     ["5.70.34"] = true,
 
-    ["5.70.2054"] = true,
-    ["5.70.2055"] = true,
     ["5.70.2056"] = true,
-    ["5.70.2065"] = true,
     ["5.70.2069"] = true,
-    ["5.70.2070"] = true,
 }
 
+        
+
+local function splitLines(s)
+    local t = {}
+    for line in string.gmatch(s or "", "[^#]+") do
+        line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
+        if line ~= "" then table.insert(t, line) end
+    end
+    return t
+end
+
+-- Compare generated description with original description for an item
+local successCounter = 0
+local partialCounter = 0
+local originalWords = 0
+local additionalWords = 0
 function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local itemTypeString = type .. "." .. variant .. "." .. subtype
     local original = EID:getDescriptionObj(type, variant, subtype, null, false)
     local originalEntry = EID:getDescriptionEntry(EID:getTableName(type, variant, subtype), subtype % PillColor.PILL_GIANT_FLAG)
+    local origText = originalEntry[3]
+    
     local generated, additional = EID:GenerateDescription(itemTypeString)
-    if ignoreList[itemTypeString] then
-        successCounter = successCounter + 1
-        return true
+
+    -- gather word count statistics
+    local _, wordCount = origText:gsub("#", " "):gsub("%S+","")
+    originalWords = originalWords + wordCount
+    if additional then
+        local _, awordCount = additional:gsub("#", " "):gsub("%S+","")
+        additionalWords = additionalWords + awordCount
     end
 
-    if originalEntry[3] == generated then
+    -- Evaluate the completeness of the generated description compared to the original description
+    if origText == generated then
         if not additional then
             successCounter = successCounter + 1
         else
@@ -673,23 +613,39 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
             successCounter = successCounter + 1
             return true
         end
-        print("No generated description for item " .. itemTypeString .. " (" .. originalEntry[2] .. ")")
+        print("[ERROR] No generated description for item " .. itemTypeString .. " (" .. originalEntry[2] .. ")")
         return false
     else
-        local orig = originalEntry[3]
-        local replacedOriginal,count = orig:gsub(generated, "")
-        if count > 0 then
-            print("Partial match for item " .. itemTypeString .. " (" .. originalEntry[2] .. ")")
-            print(replacedOriginal)
-            print("ORG: " .. orig)
-            print("GEN: " .. generated)
-            print("")
-            partialCounter = partialCounter + 1
+        if ignoreList[itemTypeString] then
+            successCounter = successCounter + 1
+            return true
+        end
+
+        local origLines = splitLines(origText)
+        local generatedLines = splitLines(generated)
+        local matchButNotSorted = true
+        -- compare lines individually to find missing lines
+        for _, origLine in pairs(origLines) do
+            local hasMatch = false
+            for _, genLine in pairs(generatedLines) do
+                if origLine == genLine then
+                    hasMatch = true
+                    break
+                end
+            end
+            if not hasMatch then
+                print("[ERROR] Line not found in generated description '"..itemTypeString.."' (" .. originalEntry[2] .. "): " .. origLine)
+                matchButNotSorted = false
+            end
+        end
+
+        if matchButNotSorted then
+            successCounter = successCounter + 1
+            return true
         else
-            print("Description mismatch for item " .. itemTypeString .. " ("..originalEntry[2]..")")
-            print("ORG: " .. orig)
-            print("GEN: " .. generated)
-            print("")
+            print("Original:", origText)
+            print("Generated:", generated)
+            print() -- empty line
         end
         return false
     end
@@ -700,15 +656,18 @@ end
 function EID:CompareGeneralizedDescriptionsMulti(type, variant, startID, endID, DLCName)
     successCounter = 0
     partialCounter = 0
+    originalWords = 0
+    additionalWords = 0
     for subtype = startID, endID do
         EID:CompareGeneralizedDescriptions(type, variant, subtype)
     end
-    print("["..tostring(DLCName).."] Fully Automated:", successCounter, "| Partially:", partialCounter, "| Total:", (endID - startID + 1))
-    return successCounter, partialCounter, (endID - startID + 1)
+    print("<"..tostring(DLCName).."> Fully Automated:", successCounter, "| Partially:", partialCounter, "| Total:", (endID - startID + 1))
+    print("<"..tostring(DLCName).."> Words before:", originalWords, "| after:", additionalWords, "| Diff:", string.format("%.2f%%", (additionalWords/originalWords-1) * 100))
+    return successCounter, partialCounter, (endID - startID + 1), originalWords, additionalWords
 end
 
 function EID:MODULARTEST()
-    local totalsuccess, totalpartial, totaltotal = 0, 0, 0
+    local totalsuccess, totalpartial, totaltotal, totalOrigWords, totalAddWords = 0, 0, 0, 0, 0
     local todo = {
         {5,100,1,CollectibleType.NUM_COLLECTIBLES-1,"Collectibles"},
         {5,300,1,Card.NUM_CARDS-1,"Cards"},
@@ -720,11 +679,15 @@ function EID:MODULARTEST()
     }
 
     for _, params in ipairs(todo) do
-        local success, partial, total = EID:CompareGeneralizedDescriptionsMulti(params[1], params[2], params[3],
+        local success, partial, total, origWords, addWords = EID:CompareGeneralizedDescriptionsMulti(params[1], params[2], params[3],
             params[4], params[5])
         totalsuccess = totalsuccess + success
         totalpartial = totalpartial + partial
         totaltotal = totaltotal + total
+        totalOrigWords = totalOrigWords + origWords
+        totalAddWords = totalAddWords + addWords
     end
     print("TOTAL: Fully Automated:", totalsuccess, "| Partially:", totalpartial, "| Total:", totaltotal, "(".. string.format("%.2f", (totalsuccess / totaltotal) * 100).."%)")
-    end
+    print("TOTAL: Words before:", totalOrigWords, "| after:", totalAddWords, "| Diff:", string.format("%.2f%%", (totalAddWords/totalOrigWords-1) * 100))
+    
+end
