@@ -4,6 +4,7 @@
 -- IsMultiplier indicates if the stat is a multiplier (e.g. TearsMultiplier) and should be formatted with "x" instead of "+".
 -- HideSign indicates if the sign (+/-/x) should be hidden for the stat value
 EID.StatisticsData = {
+    ["SingleUseInfo"] = { Priority = 11000, HideSign = true },
     -- Player Stats
     ["TearsMultiplier"] = { Priority = 9990, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
     ["Tears"] = { Priority = 9980, Arrow = true, Icon = "{{Tears}}" },
@@ -64,6 +65,9 @@ EID.StatisticsData = {
     ["DamagePerShot"] = { Priority = -5970, HideSign = true },
     ["DamagePerSecond"] = { Priority = -5980, HideSign = true },
     ["ContactDamagePerSecond"] = { Priority = -5990, HideSign = true },
+
+    -- Miscellaneous
+    ["NoEffect"] = { Priority = 5000, HideSign = true },
 
     -- Dynamic Spawns
     ["Spawns"] = {

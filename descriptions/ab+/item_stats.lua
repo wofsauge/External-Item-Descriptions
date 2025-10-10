@@ -92,6 +92,7 @@ EID.ItemStats = {
     [C_ID .. 120] = { Speed = 0.3, Tears = 1.7, DamageMultiplier = 0.9, Damage = -0.4 }, -- Odd Mushroom (Thin)
     [C_ID .. 121] = { EmptyHeart = 1, Damage = 0.3, Range = 0.25, TearHeight = 0.5, Speed = -0.1 }, -- Odd Mushroom (Large)
     [C_ID .. 125] = { Bomb = 5 }, -- Bobby-Bomb
+	[C_ID .. 127] = { SingleUseInfo = true }, -- Forget Me Now
     [C_ID .. 128] = { ContactDamagePerSecond = 30 },  -- Forever Alone
     [C_ID .. 129] = { EmptyHeart = 2, Speed = -0.2, HealingRed = 0.5 }, -- Bucket of Lard
     [C_ID .. 137] = { Bomb = 5 }, -- Remote Detonator
@@ -185,6 +186,7 @@ EID.ItemStats = {
     [C_ID .. 288] = { Spawns = { BlueSpider= { 1 , 4 } } }, -- Box of Spiders
     [C_ID .. 292] = { BlackHeart = 1}, -- Satanic Bible
     [C_ID .. 293] = { Variables = { [1] = 440 } }, -- Head of Krampus
+	[C_ID .. 297] = { SingleUseInfo = true }, -- Pandora's Box
     [C_ID .. 298] = { TimedEffect = { Duration = 6, Speed = 0.28, Invincibility = true } }, -- Unicorn Stump
     [C_ID .. 299] = { Speed = -0.3 }, -- Taurus
 
@@ -216,6 +218,7 @@ EID.ItemStats = {
     [C_ID .. 344] = { BlackHeart = 1, Spawns = { Bomb = 3} }, -- Match Book
     [C_ID .. 345] = { Damage = 1, Range = 5.25, TearHeight = 0.5 }, -- Synthoil
     [C_ID .. 346] = { RedHeart = 1 }, -- A Snack
+	[C_ID .. 347] = { SingleUseInfo = true }, -- Diplopia
     [C_ID .. 349] = { Variables = { [1] = 56 } }, -- Wooden Nickel
     [C_ID .. 353] = { Bomb = 5 }, -- Bomber Boy
     [C_ID .. 354] = { RedHeart = 1, Spawns = { RandomTrinket = 1 } }, -- Crack Jacks
@@ -274,8 +277,11 @@ EID.ItemStats = {
     [C_ID .. 470] = { ContactDamagePerSecond = 30 }, -- Hushy
     [C_ID .. 473] = { ContactDamagePerSecond = 40.5, BlockProjectiles = true }, -- Big Chubby
     [C_ID .. 474] = { BlockProjectiles = true }, -- Tonsil
+	[C_ID .. 475] = { SingleUseInfo = true }, -- Plan C
 	[C_ID .. 481] = { RandomStatUp = 1, RandomStatDown = 1 }, -- Dataminer
+	[C_ID .. 483] = { SingleUseInfo = true }, -- Mama Mega!
     [C_ID .. 487] = { RoomEffect = { Range = 5} }, -- Potato Peeler
+	[C_ID .. 490] = { SingleUseInfo = true }, -- Eden's Soul
     [C_ID .. 491] = { Variables = { [1] = 3 } }, -- Acid Baby
     [C_ID .. 492] = { Luck = 1 }, -- YO LISTEN!
     [C_ID .. 496] = { LuckChance = {Top = 1, Bottom = 30, Multiplier = 2 } }, -- Euthanasia
@@ -286,8 +292,10 @@ EID.ItemStats = {
     [C_ID .. 509] = { DamagePerTear = 3.5, ContactDamagePerSecond = 30 }, -- Bloodshot Eye
     [C_ID .. 511] = { ContactDamagePerSecond = 30 }, -- Angry Fly
     [C_ID .. 513] = { Damage = 0.1, SoulHeart = 1 }, -- Bozo
+	[C_ID .. 515] = { SingleUseInfo = true }, -- Mystery Gift
     [C_ID .. 517] = { Bomb = 7 }, -- Fast Bombs
     [C_ID .. 531] = { DamageMultiplier = 1.31, TearsMultiplier = 0.5, TearDelay = 10  }, -- Haemolacria
+	[C_ID .. 536] = { SingleUseInfo = true }, -- Sacrificial Altar
     [C_ID .. 535] = { HealingRed = 1, SoulHeart = 1 }, -- Blanket
     [C_ID .. 538] = { Spawns = { RandomTrinket = 3 } }, -- Marbles
     [C_ID .. 541] = { BoneHeart = 1, Spawns = { RedHeart = 3 } }, -- Marrow
@@ -352,6 +360,8 @@ EID.ItemStats = {
     [Pill_ID .. 6] = { FullHealth = true }, -- Full Health
     [Pill_ID .. 7] = { RedHeart = -1 }, -- Health Down
     [Pill_ID .. 8] = { EmptyHeart = 1 }, -- Health Up
+    [Pill_ID .. 9] = { NoEffect = true }, -- I Found Pills
+    [Pill_ID .. 10] = { NoEffect = true }, -- Puberty
     [Pill_ID .. 11] = { Flies = 1 }, -- Pretty Fly
     [Pill_ID .. 12] = { Range = -2 }, -- Range Down
     [Pill_ID .. 13] = { Range = 2.5 }, -- Range Up

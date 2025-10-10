@@ -115,6 +115,9 @@ EID.descriptions["en_us"].ModularDescriptions = {
 	OnUseEffect = "Upon use:",
 	HeldEffect = "While held:",
 	MaxLuck = "{{Luck}} {max}% chance at {value} luck",
+	------------- TODO
+	SingleUseInfo = "{{Warning}} SINGLE USE {{Warning}}",
+	NoEffect = "No effect",
 }
 
 
@@ -762,8 +765,7 @@ local additionalPillInformations = {
     [Pill_ID .. 4] = "Swaps Isaac's number of {{Bomb}} bombs and {{Key}} keys", -- Bombs are Key
     [Pill_ID .. 5] = "Isaac quickly spawns 5 lit bombs", -- Explosive Diarrhea
     [Pill_ID .. 7] = "Becomes a Health Up pill at 0 or 1 heart containers", -- Health Down
-    [Pill_ID .. 9] = "No effect", -- I Found Pills
-    [Pill_ID .. 10] = "No effect#Eating 3 grants the Adult transformation:#↑ {{Heart}} +1 Health", -- Puberty
+    [Pill_ID .. 10] = "Eating 3 grants the Adult transformation:#↑ {{Heart}} +1 Health", -- Puberty
     [Pill_ID .. 20] = "Teleports Isaac to a random room#{{ErrorRoom}} Small chance to teleport Isaac to the I AM ERROR room", -- Telepills
     [Pill_ID .. 21] = "{{Battery}} Fully recharges the active item", -- 48 Hour Energy!
     [Pill_ID .. 22] = "{{Warning}} Drains all but one heart container", -- Hematemesis

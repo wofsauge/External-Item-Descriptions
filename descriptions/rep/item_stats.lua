@@ -149,10 +149,12 @@ local repentanceItemStats = {
 	[C_ID .. 571] = { Speed = 0.3, SoulHeart = 2,  }, -- Orphan Socks
 	[C_ID .. 572] = { Damage = 1, Range = 2, ShotSpeed = -0.16,  }, -- Eye of the Occult
 	[C_ID .. 573] = { RedHeart = 1, DamageMultiplier = 1.2, FullHealth = true }, -- Immaculate Heart
+    [C_ID .. 577] = { SingleUseInfo = true }, -- Damocles
     [C_ID .. 581] = { ContactDamagePerSecond = 15 }, -- Psy Fly
 	[C_ID .. 582] = { FireRate = 0.75, Speed = -0.03,  }, -- Wavy Cap
 	[C_ID .. 583] = { Bomb = 5 }, -- Rocket in a Jar
 	[C_ID .. 584] = { AngelChance = 12.5 }, -- Book of Virtues
+    [C_ID .. 585] = { SingleUseInfo = true }, -- Alabaster Box
     [C_ID .. 590] = { Speed = 0.4 }, -- Mercurius
 	[C_ID .. 591] = { RedHeart = 1, HealingRed = 1 }, -- Venus
 	[C_ID .. 592] = { Damage = 1 }, -- Terra
@@ -169,11 +171,14 @@ local repentanceItemStats = {
     [C_ID .. 617] = { LuckChance = {Top = 1, Bottom = 6 } }, -- Lodestone
     [C_ID .. 618] = { LuckChance = {Top = 1, Bottom = 6 } }, -- Rotten Tomato
 	[C_ID .. 621] = { Damage = 21.6, FullHealth = true }, -- Red Stew
+    [C_ID .. 622] = { SingleUseInfo = true }, -- Genesis
 	[C_ID .. 623] = { Key = 5 }, -- Sharp Key
 	[C_ID .. 624] = { Spawns = { Card = 5 } }, -- Booster Pack
+    [C_ID .. 628] = { SingleUseInfo = true }, -- Death Certificate
 	[C_ID .. 629] = { ContactDamagePerSecond = 3 }, -- Bot Fly
 	[C_ID .. 632] = { Luck = 2 }, -- Evil Charm
 	[C_ID .. 633] = { Speed = 0.1, Damage = 2, Flight = true }, -- Dogma
+    [C_ID .. 636] = { SingleUseInfo = true }, -- R Key
     [C_ID .. 637] = { LuckChance = {Top = 1, Bottom = 10 } }, -- Rotten Tomato
 	[C_ID .. 639] = { RottenHeart = 1 }, -- Yuck Heart
 	[C_ID .. 643] = { SoulHeart = 2, Flight = true }, -- Revelation
@@ -225,7 +230,7 @@ local repentanceItemStats = {
     [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- I - The Magician
     [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 2.5 } }, -- XI - Strength
     [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
-    [Card_ID .. 39] = { Variables = { [1] = 20} }, -- Algiz
+    [Card_ID .. 39] = { TimedEffect = { Duration = 20, Invincibility = true} }, -- Algiz
     [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 3, SizeUp = true } }, -- Huge Growth
     [Card_ID .. 59] = { TimedEffect = { Duration = 60, RedHeart = 2, FireRate = 1.5, Speed = -0.1 } }, -- III - The Empress?
     [Card_ID .. 61] = { Spawns = { BoneHeart = 2 } }, -- V - The Hierophant?
@@ -248,6 +253,8 @@ local repentanceItemStats = {
     [Pill_ID .. (HorseID + 6)] = { SoulHeart = 3, FullHealth = true }, -- Full Health
     [Pill_ID .. (HorseID + 7)] = { RedHeart = -2 }, -- Health Down
     [Pill_ID .. (HorseID + 8)] = { EmptyHeart = 2 }, -- Health Up
+    [Pill_ID .. (HorseID + 9)] = { NoEffect = true }, -- I Found Pills
+    [Pill_ID .. (HorseID + 10)] = { NoEffect = true }, -- Puberty
     [Pill_ID .. (HorseID + 12)] = { Range = -2 }, -- Range Down
     [Pill_ID .. (HorseID + 13)] = { Range = 2.5 }, -- Range Up
     [Pill_ID .. (HorseID + 14)] = { Speed = -0.24 }, -- Speed Down
