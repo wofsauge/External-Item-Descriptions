@@ -64,7 +64,7 @@ local collectibles = {
 	-- Change: Added into for first usage
 	[685] = { "685", "Giara di Fiammelle", "Genera 2 fiammelle casuali#Ad ogni uso genera 1 fiammella aggiuntiva, fino ad arrivare a 12" }, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
-	[706] = { "706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera un famiglio locusta per ciascuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano 1 locusta speciale#{{Damage}} Le locuste infliggono i danni di Isaac moltiplicati per la qualità dell'oggetto consumato:#{{Quality0}} - x0.5#{{Quality1}} - x0.75#{{Quality2}} - x1.0#{{Quality3}} - x1.5#{{Quality4}} - x2.0" }, -- Abyss
+	[706] = { "706", "Abisso", "Consuma tutti i piedistalli nella stanza e genera 1 famiglio locusta per ognuno di essi#Le locuste infliggono i danni di Isaac 2-3 volte ad attacco#Alcuni oggetti se consumati generano 1 locusta speciale#{{Damage}} Le locuste infliggono i danni di Isaac moltiplicati per la qualità dell'oggetto consumato:#{{Quality0}} - x0.5#{{Quality1}} - x0.75#{{Quality2}} - x1.0#{{Quality3}} - x1.5#{{Quality4}} - x2.0" }, -- Abyss
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -86,15 +86,15 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "Pidocchio", "Durante una lotta genera 1 ragno blu ogni 30 secondi#A completamento stanza genera 1 ragno blu"}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "Fiche da Poker", "↑ 50% di chance che i bauli generino consumabili extra#↓ 50% di chance che i bauli contengano solo 1 mosca#Aumenta le chance di ricompense da Slot Machine e altre macchine#Se un baule contiene un oggetto, lo forza a Qualità 3 o maggiore#Certe volte i bauli possono contenere oggetti al di fuori della categoria dei bauli dorati"}, -- Poker Chip
+	[76] = {"76", "Fiche da Poker", "↑ 50% di chance che i bauli generino consumabili extra#↓ 50% di chance che i bauli contengano solo 1 mosca#Aumenta le chance di ricompense da Slot Machine e altre macchine#Se un baule contiene 1 oggetto, lo forza a Qualità 3 o maggiore#Certe volte i bauli possono contenere oggetti al di fuori della categoria dei bauli dorati"}, -- Poker Chip
 	-- Change: Added additional effects
-	[85] = {"85", "Karma", "{{DonationMachine}} Usare qualsiasi Macchina di Donazione ha il 33% di chance di:#{{HealingRed}} Curare di 1 cuore (40%)#{{Coin}} Conferire 1 moneta (40%)#{{Luck}} Conferire +1 Fortuna (15%)#{{Beggar}} Generare un Mendicante (5%)#{{DonationMachine}} Le Macchine di Donazione inceppano più raramente#Influenza anche le donazioni ai Mendicanti e alle Macchine di Rifornimento"}, -- Karma
+	[85] = {"85", "Karma", "{{DonationMachine}} Usare qualsiasi Macchina di Donazione ha il 33% di chance di:#{{HealingRed}} Curare di 1 cuore (40%)#{{Coin}} Conferire 1 moneta (40%)#{{Luck}} Conferire +1 Fortuna (15%)#{{Beggar}} Generare 1 Mendicante (5%)#{{DonationMachine}} Le Macchine di Donazione inceppano più raramente#Influenza anche le donazioni ai Mendicanti e alle Macchine di Rifornimento"}, -- Karma
 	-- Change: Added damage up information
 	[89] = {"89", "Guinzaglio per Bambini", "I famigli restano vicini ad Isaac#{{Damage}} Aumento di 25% dei danni dei famigli"}, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
 	[93] = { "93", "Pannolino Usato", "33% di chance per stanza che tutte le mosche nemiche diventino amichevoli#Genera 1 mosca blu quando si entra in una nuova stanza"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
-	[97] = { "97", "Tonsilla", "Subire danni 6-12 volte genera un famiglio che blocca i proiettili#Si massimizza a 2 famigli#Sparisce dopo aver generato 2 famigli" }, -- Tonsil
+	[97] = { "97", "Tonsilla", "Subire danni 6-12 volte genera 1 famiglio che blocca i proiettili#Si massimizza a 2 famigli#Sparisce dopo aver generato 2 famigli" }, -- Tonsil
 	-- Change: now affected by luck, maxing at 18 luck
 	[99] = { "99", "Super Ball", "10% chance di sparare lacrime rimbalzanti#{{Luck}} 100% di chance con 18 in Fortuna" }, -- Super Ball	
 	-- Change: Added +2 Tears
@@ -125,13 +125,13 @@ local goldenTrinketEffects = {
 	-- Paper Clip (find replace):
 	[19] = {"Bauli Dorati", "{{CR}}Bauli Dorati {{ColorGold}}e blocchi chiave", "{{CR}}Bauli Dorati, {{ColorGold}}Blocchi e porte chiusi a chiave"},
 	-- Mysterious Paper (find replace):
-	[21] = {"uno", "{{ColorGold}}2{{CR}}", "{{ColorGold}}2{{CR}}"},
+	[21] = {"1", "{{ColorGold}}2{{CR}}", "{{ColorGold}}2{{CR}}"},
 	-- Daemon's Tail (append):
 	[22] = {"{{BlackHeart}} I focolari blu e viola ora lasciano Cuori Neri"},
 	-- Broken Ankh (find replace):
 	[28] = { 22, 33, 50 },
 	-- Umbilical Cord (find replace):
-	[33] = {"mezzo cuore", "un cuore", "un cuore e mezzo"},
+	[33] = {"mezzo cuore", "1 cuore", "1 cuore e mezzo"},
 	-- Child's Heart (find replace):
 	[34] = { 10, 20, 50,  33, 66, 100 },
 	-- Rusted Key (find replace):
@@ -141,7 +141,7 @@ local goldenTrinketEffects = {
 	-- Cursed Skull (replace):
 	[43] = {
 		"Quando i danni riducono Isaac a mezzo cuore o meno, viene teletrasportato in una stanza {{ColorGold}}speciale{{CR}}",
-		"Quando i danni riducono Isaac a {{ColorGold}}un cuore{{CR}} o meno, viene teletrasportato in una stanza {{ColorGold}}speciale{{CR}}",
+		"Quando i danni riducono Isaac a {{ColorGold}}1 cuore{{CR}} o meno, viene teletrasportato in una stanza {{ColorGold}}speciale{{CR}}",
 	},
 	-- Safety Cap (find replace):
 	[44] = { 10, 20, 50,  33, 66, 100 },
@@ -300,9 +300,9 @@ local goldenTrinketEffects = {
 	[157] = { 15, 10, 5 },
 	-- Gilded Key (full replace copying the entire original description, because the Golden version doesn't give a key on pickup):
 	[159] = {
-		"{{GoldenChest}} Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+10% di chance di ottenere un baule a completamento stanza",
-		"{{Key}} +1 Chiave quando viene raccolto#Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+10% di chance di ottenere un baule a completamento stanza",
-		"{{GoldenChest}} Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+20% di chance di ottenere un baule a completamento stanza"
+		"{{GoldenChest}} Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+10% di chance di ottenere 1 baule a completamento stanza",
+		"{{Key}} +1 Chiave quando viene raccolto#Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+10% di chance di ottenere 1 baule a completamento stanza",
+		"{{GoldenChest}} Rimpiazza tutti i bauli (eccetto quelli Vecchi/Mega) con Bauli Dorati#I {{GoldenChest}} Bauli Dorati possono contenere carte, pillole o ninnoli extra#{{GoldenChest}} {{ColorGold}}+20% di chance di ottenere 1 baule a completamento stanza"
 	},
 	-- Wicked Crown (full replace):
 	[161] = {
