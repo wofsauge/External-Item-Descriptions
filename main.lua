@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.06
-EID.ModVersionCommit = "f43b628"
+EID.ModVersion = 5.09
+EID.ModVersionCommit = "42f947e"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -767,30 +767,37 @@ end
 function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 	local textboxWidth = tonumber(EID.Config["TextboxWidth"])
 	local textScale = Vector(EID.Scale, EID.Scale)
+	local textOffset = Vector(12 * EID.Scale, 0) -- offset of the text to the bullet point
+	local bulletpointOffset = Vector(-3 * EID.Scale, 0) -- offset of bulletpoint icons relative to the default bulletpoint
+
 	description = EID:replaceNameMarkupStrings(description)
 	description = EID:replaceShortMarkupStrings(description)
 	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do
+		local numIndentations = 0
+		line, numIndentations = EID:handleTextIndentation(line)
 		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
 		local textColor = EID:getTextColor()
+
+		local indentOffset = textOffset * numIndentations
 		for i, lineToPrint in ipairs(formatedLines) do
 			-- render bulletpoint
 			if i == 1 then
 				local bpIcon, rejectedIcon = EID:handleBulletpointIcon(lineToPrint, ignoreBPConfig)
 				if EID:getIcon(bpIcon) ~= EID.InlineIcons["ERROR"] then
 					lineToPrint = string.gsub(lineToPrint, bpIcon, "", 1)
-					textColor =	EID:renderString(bpIcon, renderPos + Vector(-3 * EID.Scale, 0), textScale , textColor, true)
+					textColor =	EID:renderString(bpIcon, renderPos + bulletpointOffset + indentOffset, textScale , textColor, true)
 				else
 					if rejectedIcon then lineToPrint = string.gsub(lineToPrint, rejectedIcon, "", 1) end
-					textColor =	EID:renderString(bpIcon, renderPos, textScale , textColor)
+					textColor =	EID:renderString(bpIcon, renderPos + indentOffset, textScale , textColor)
 				end
 				EID.LastRenderCallColor = EID:copyKColor(textColor) -- Save line start Color for eventual Color Reset call
 			end
 			-- Remove leading spaces
 			lineToPrint = lineToPrint:match('^%s*(.*)')
 			-- render text
-			textColor =	EID:renderString(lineToPrint, renderPos + Vector(12 * EID.Scale, 0), textScale, textColor)
-				renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
+			textColor =	EID:renderString(lineToPrint, renderPos + textOffset + indentOffset, textScale, textColor)
+			renderPos.Y = renderPos.Y + EID.lineHeight * EID.Scale
 		end
 	end
 	return renderPos

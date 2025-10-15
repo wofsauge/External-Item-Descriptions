@@ -226,10 +226,10 @@ local function BlackFeatherCallback(descObj)
 		local playerType = player:GetPlayerType()
 		
 		local itemCounter = 0
-		for itemID, _ in pairs(EID.blackFeatherItems) do
+		for itemID, _ in pairs(EID.BlackFeatherItems) do
 			itemCounter = itemCounter + player:GetCollectibleNum(itemID)
 		end
-		for trinketID, _ in pairs(EID.blackFeatherTrinkets) do
+		for trinketID, _ in pairs(EID.BlackFeatherTrinkets) do
 			if EID.isRepentance then
 				itemCounter = itemCounter + player:GetTrinketMultiplier(trinketID)
 			else

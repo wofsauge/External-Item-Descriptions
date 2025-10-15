@@ -897,14 +897,14 @@ local repTrinkets={
 	[14] = {"14", "굳은살", "가시나 장판에 피해를 입지 않습니다.#!!! Mama Gurdy, The Pile 보스의 가시, 혹은 가시 돌에는 여전히 피해를 받습니다."}, -- Callus
 	[16] = {"16", "엄마의 발톱", "20초마다 엄마발이 랜덤 위치에 떨어집니다."}, -- Mom's Toenail
 	[15] = {"15", "행운의 돌조각", "{{Coin}} 장애물 파괴 시 33% 확률로 동전을 드랍합니다."}, -- Lucky Rock
-	[17] = {"17", "검은 립스틱", "{{BlackHeart}} 소울하트가 드랍될 때 블랙하트로 바뀔 확률 +5%p"}, -- Black Lipstick
-	[18] = {"18", "성경 책자", "{{EternalHeart}} 빨간하트가 드랍될 때 이터널하트로 바뀔 확률 +3.33%p"}, -- Bible Tract
+	[17] = {"17", "검은 립스틱", "{{BlackHeart}} 소울하트가 드랍될 때 블랙하트로 바뀔 확률 +10%p"}, -- Black Lipstick
+	[18] = {"18", "성경 책자", "{{EternalHeart}} 빨간하트가 드랍될 때 이터널하트로 바뀔 확률 +3%p"}, -- Bible Tract
 	[19] = {"19", "종이 클립", "열쇠가 필요한 모든 상자를 열쇠 소모 없이 열 수 있습니다."}, -- Paper Clip
 	[24] = {"24", "똥전", "{{Coin}} 똥 오브젝트에서 동전이 나올 확률이 20% 증가합니다.#{{Poison}} 동전 획득 시 적을 밀쳐내는 독성 방귀를 뀝니다."}, -- Butt Penny
 	[25] = {"25", "이상한 초콜릿", "!!! 30초마다 일정 확률로:#{{ArrowGrayRight}} 똥을 싸거나;#{{ArrowGrayRight}} 적과 탄환을 밀쳐내며 6의 피해를 주는 방귀를 뀝니다."}, -- Mysterious Candy
 	[26] = {"26", "꺾기벌레", "↑ {{TearsSmall}}연사 +0.4#↑ {{RangeSmall}}사거리 +1.5#눈물이 지그재그로 날아갑니다.#공격이 장애물을 관통합니다."}, -- Hook Worm
 	-- Original
-	[32] = {"32", "환각버섯", "!!! 방 입장 시 그 방에서 아래 중 랜덤 버섯 아이템 효과를 얻습니다:#{{ArrowGrayRight}} {{Collectible12}}{{Collectible71}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
+	[32] = {"32", "환각버섯", "!!! 방 입장 시 25%의 확률로 그 방에서 아래 중 랜덤 버섯 아이템 효과를 얻습니다:#{{ArrowGrayRight}} {{Collectible12}}{{Collectible71}}{{Collectible121}}{{Collectible120}}{{Collectible342}}{{Collectible398}}"}, -- Liberty Cap
 	[33] = {"33", "탯줄", "{{HalfHeart}} 방 입장 시 빨간하트가 반칸 이하일 때 {{Collectible100}}Little Steven을 소환합니다.#{{Collectible318}} 피격 시 확률적으로 그 방에서 Gemini 패밀리어를 소환합니다."}, -- Umbilical Cord
 	[39] = {"39", "암", "↑ {{TearsSmall}}연사(+상한) +1"}, -- Cancer
 	[48] = {"48", "찢어진 페이지", "{{Collectible35}} 피격 시 5%의 확률로 그 방의 적에게 80의 피해를 줍니다.#{{LuckSmall}} 행운 60 이상일 때 50% 확률#↑ {{Collectible35}} 블랙하트/The Necronomicon/The Devil의 공격력 +40"}, -- A Missing Page
@@ -914,21 +914,22 @@ local repTrinkets={
 	-- Afterbirth
 	[65] = {"65", "테이프 벌레", "↑ {{RangeSmall}}사거리 +3"}, -- Tape Worm
 	[66] = {"66", "게으른 벌레", "↓ {{ShotspeedSmall}}탄속 -0.5"}, -- Lazy Worm
-	[67] = {"67", "금이 간 주사위", "피격 시 확률적으로 {{Collectible105}}그 방의 아이템, {{Collectible166}}픽업, {{Collectible386}}오브젝트, {{Collectible406}}능력치 배율을 바꾸거나 {{Collectible285}}그 방의 적을 약화형 몬스터로 바꿉니다."}, -- Cracked Dice
-	[69] = {"69", "흐려진 즉석사진", "{{Confusion}} 때때로 그 방의 적들이 혼란에 걸립니다.#흡수하지 않은 경우 Depths 2(6 스테이지)에서 장신구를 소모하여 Home 스테이지로 진입할 수 있습니다. (해금 필요)"}, -- Faded Polaroid
+	[67] = {"67", "금이 간 주사위", "!!! 피격 시 50%의 확률로 아래 중 하나 발동:#{{ArrowGrayRight}} {{Collectible105}}그 방의 아이템 변경#{{ArrowGrayRight}} {{Collectible166}}그 방의 픽업 변경#{{ArrowGrayRight}} {{Collectible386}}그 방의 오브젝트 변경#{{ArrowGrayRight}} {{Collectible406}}캐릭터 능력치 배율 변경#{{ArrowGrayRight}} {{Collectible285}}그 방의 적을 약화형 몬스터로 변경"}, -- Cracked Dice
+	[69] = {"69", "흐려진 즉석사진", "{{Confusion}} 때때로 그 방의 적들이 혼란에 걸립니다.#(해금 필요) 흡수하지 않은 경우 Depths 2(6 스테이지)에서 장신구를 소모하여 Home 스테이지로 진입할 수 있습니다."}, -- Faded Polaroid
 	[80] = {"80", "검은 깃털", "Evil up 또는 Sin up 아이템 소지 시 개당 {{DamageSmall}}공격력이 0.5 증가합니다."}, -- Black Feather
 	[88] = {"88", "필요없어!", "모든 패시브 아이템이 등장하기 전까지 액티브 아이템이 등장하지 않습니다."}, -- NO!
+	[90] = {"90", "갈색 마개", "!!! 똥 파괴시 똥이 폭발하여 주변의 적에게 100의 피해를 줍니다."}, -- Brown Cap
 	-- Afterbirth +
 	[92] = {"92", "금이 간 왕관", "각 능력치가 캐릭터 기본 능력치보다 높을 시 각 능력치가 20% 증가합니다."}, -- Cracked Crown
 	[96] = {"96", "우주뱀 벌레", "↑ {{TearsSmall}}연사 +0.4#↑ {{RangeSmall}}사거리 +1.5#눈물이 거대한 나선을 그리며 날아갑니다.#공격이 장애물을 관통합니다.#10%의 확률로 유도 눈물을 발사합니다.#{{LuckSmall}} 행운 9 이상일 때 100% 확률"}, -- Ouroboros Worm
 	[97] = {"97", "편도선", "12~20회 피격 시 Tonsil 패밀리어를 소환합니다.#Tonsil은 캐릭터를 따라다니며 적의 탄환을 막아줍니다.#!!! 2회 소환 시 사라집니다."}, -- Tonsil
-	[98] = {"98", "콧물딱지", "10%의 확률로 접착 눈물이 나가며 접착 눈물이 적에게 붙을 시 10초동안 지속 피해를 줍니다.#접착 눈물을 발사할 때 50%의 확률로 유도 효과가 생깁니다."}, -- Nose Goblin
+	[98] = {"98", "콧물딱지", "10%의 확률로 접착 눈물이 나갑니다.#접착 눈물을 발사할 때 50%의 확률로 유도 효과가 생깁니다.#{{DamageSmall}} 접착 눈물이 적에게 붙을 시 10초동안 지속 피해를 줍니다."}, -- Nose Goblin
 	[101] = {"101", "꺼진 전구", "{{Battery}} 액티브 아이템의 충전량이 남아있지 않을때:#{{ArrowGrayRight}} {{DamageSmall}}공격력 +1.5#{{ArrowGrayRight}} {{TearsSmall}}연사 +0.5#{{ArrowGrayRight}} {{RangeSmall}}사거리 +1.5#{{ArrowGrayRight}} {{SpeedSmall}}이동속도 +0.5#{{ArrowGrayRight}} {{ShotspeedSmall}}탄속 +0.3#{{ArrowGrayRight}} {{LuckSmall}}행운 +2"}, -- Dim Bulb
 	[110] = {"110", "은화", "{{Shop}} Womb/Corpse 스테이지에서 상점이 등장합니다."},
 	[111] = {"111", "피투성이 왕관", "{{TreasureRoom}} Womb/Corpse 스테이지에서 보물방이 등장합니다."}, -- Bloody Crown
 	[119] = {"119", "줄기 세포", "{{HealingRed}} 스테이지 진입 시 최대 체력의 절반을 회복합니다.#{{HealingRed}} 체력이 최대 체력의 절반을 넘을 시 체력을 반칸 회복합니다."}, -- Stem Cell
 	[121] = {"121", "나무 십자가", "{{HolyMantle}} 스테이지 당 1번 피해를 무시하는 보호막을 생성합니다.#!!! {{Card51}}Holy Card로 생성된 보호막이 있을 경우 생성되지 않습니다."}, -- Wooden Cross
-	[128] = {"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 5% 확률로 뼈하트를 획득합니다."}, -- Finger Bone
+	[128] = {"128", "손가락 뼈", "{{EmptyBoneHeart}} 피격 시 4% 확률로 뼈하트를 획득합니다."}, -- Finger Bone
 	-- Repentance
 	[129] = {"129", "눈깔사탕", "{{Collectible150}} 10%의 확률로 공격력 x3.2의 공격이 나갑니다.#{{LuckSmall}} 행운 9 이상일 때 100% 확률"}, -- Jawbreaker
 	[130] = {"130", "씹던 펜", "{{Slow}} 10%의 확률로 적을 둔화시키는 공격이 나갑니다.#{{LuckSmall}} 행운 18 이상일 때 100% 확률"}, -- Chewed Pen
@@ -947,15 +948,15 @@ local repTrinkets={
 	[143] = {"143", "오래된 축전기", "!!! 방을 클리어해도 액티브 아이템이 충전되지 않습니다.#{{Battery}} 방 클리어 시 20%의 확률로 배터리 픽업을 드랍합니다.#{{LuckSmall}} 행운 5 이상일 때 33% 확률"}, -- Old Capacitor
 	[144] = {"144", "두뇌 벌레", "공격이 적이 있는 방향을 향해 직선으로 날아갑니다."}, -- Brain Worm
 	[145] = {"145", "올백", "↑ {{LuckSmall}}행운 +10#!!! 패널티 피격 시 사라집니다."}, -- Perfection
-	[146] = {"146", "악마의 왕관", "{{TreasureRoom}}보물방 아이템이 체력 거래가 필요한 {{DevilRoom}}악마방 아이템으로 대체됩니다."}, -- Devil's Crown
+	[146] = {"146", "악마의 왕관", "{{TreasureRoom}} 보물방이 체력 거래가 필요한 {{DevilRoom}}악마방 아이템이 나오는 붉은 보물방으로 대체됩니다."}, -- Devil's Crown
 	[147] = {"147", "충전된 동전", "{{Battery}} 동전 획득 시 17%의 확률로 액티브 아이템 충전량을 한칸 충전합니다.#동전 가치가 높을수록 확률 증가"}, -- Charged Penny
 	[148] = {"148", "우정의 목걸이", "패밀리어가 캐릭터의 주위를 돕니다."}, -- Friendship Necklace
 	[149] = {"149", "패닉 버튼", "액티브 아이템 충전량이 최대치일 때 피격 직전에 액티브 아이템을 사용합니다."}, -- Panic Button
-	[150] = {"150", "푸른 열쇠", "열쇠로 잠긴 방에 들어갈 때 열쇠를 소모하지 않으며 특수한 적이 있는 방 클리어 후 입장할 수 있습니다."}, -- Blue Key
+	[150] = {"150", "푸른 열쇠", "열쇠로 잠긴 방에 들어갈 때 열쇠를 소모하지 않으며 특수한 적이 있는 파란 방 클리어 후 입장할 수 있습니다."}, -- Blue Key
 	[151] = {"151", "쇠줄", "모든 바닥, 상자, 문, 바위의 가시를 제거합니다.#!!! 희생방의 가시도 제거합니다."}, -- Flat File
 	[152] = {"152", "망원경 렌즈", "↑ {{PlanetariumChanceSmall}}천체방 확률 +9%#↑ {{PlanetariumChanceSmall}}첫 천체방 확률 +15%#{{PlanetariumChanceSmall}} Womb/Corpse 스테이지에서 천체방이 등장할 수 있습니다."}, -- Telescope Lens
-	[153] = {"153", "엄마의 머리뭉치", "방 입장 시 확률적으로 그 방에서 랜덤 엄마 아이템 효과를 얻습니다."}, -- Mom's Lock
-	[154] = {"154", "주사위 가방", "방 입장 시 확률적으로 그 방에서 랜덤 일회용 주사위 아이템 픽업을 얻습니다."}, -- Dice Bag
+	[153] = {"153", "엄마의 머리뭉치", "방 입장 시 25%의 확률로 그 방에서 랜덤 엄마 아이템 효과를 얻습니다."}, -- Mom's Lock
+	[154] = {"154", "주사위 가방", "방 입장 시 50%의 확률로 그 방에서 랜덤 일회용 주사위 아이템 픽업을 얻습니다."}, -- Dice Bag
 	[155] = {"155", "신성한 왕관", "Cathedral 스테이지에서 {{TreasureRoom}}보물방과 {{Shop}}상점이 등장합니다."}, -- Holy Crown
 	[156] = {"156", "어머니의 키스", "{{Heart}} 소지중일 때 최대 체력 +1"}, -- Mother's Kiss
 	[157] = {"157", "찢어진 카드", "!!! 눈물을 15번 발사할 때 마다:#{{ArrowGrayRight}} {{Collectible5}}{{Collectible149}}캐릭터에게 되돌아오는 폭발하는 독성 눈물을 발사합니다."}, -- Torn Card
@@ -972,7 +973,7 @@ local repTrinkets={
 	[168] = {"168", "텅 빈 심장", "{{EmptyBoneHeart}} 스테이지 진입 시 뼈하트 +1"}, -- Hollow Heart
 	[169] = {"169", "아이의 그림", "소지중일 때 Guppy 세트에 포함됩니다."}, -- Kid's Drawing
 	[170] = {"170", "수정 열쇠", "{{RedRoom}} 방 클리어 시 33%의 확률로 가까운 벽에 빨간방으로 가는 문이 생성됩니다.#빨간방은 일반방 또는 특수방의 구조로 생성될 수 있습니다.#빨간방 안에서는 또다른 빨간방 생성 확률이 감소합니다."}, -- Crystal Key
-	[171] = {"171", "키퍼의 흥정", "50%의 확률로 체력 거래 아이템을 동전 거래로 바꿉니다."}, -- Keeper's Bargain
+	[171] = {"171", "키퍼의 흥정", "{{DevilRoom}} 50%의 확률로 체력 거래 아이템을 동전 거래로 바꿉니다."}, -- Keeper's Bargain
 	[172] = {"172", "저주받은 동전", "동전 획득 시 랜덤 방으로 순간이동합니다."}, -- Cursed Penny
 	[173] = {"173", "네 영혼", "!!! 일회용#체력 거래 시 체력 대신 장신구를 소모합니다.#!!! {{DevilRoom}}악마방/{{Collectible292}}Satanic Bible 거래 시 여전히 악마 거래로 취급됩니다."}, -- Your Soul
 	[174] = {"174", "숫자 자석", "↑ {{DevilChanceSmall}}악마방 확률 +10%#{{DevilRoom}} 악마방에서 Krampus 보스가 등장하지 않습니다.#{{DevilRoom}} 악마방 구조가 특수하게 변경되며 악마방에서 적들과 {{BlackHeart}}블랙하트의 등장 확률 및 빈도가 높아집니다."}, -- Number Magnet
@@ -981,7 +982,7 @@ local repTrinkets={
 	[177] = {"177", "스티커 문신", "{{ChallengeRoom}} 도전방 클리어 시 상자를 드랍합니다.#{{ChallengeRoom}} 보스 도전방 클리어 시 아이템을 생성합니다."}, -- Temporary Tattoo
 	[178] = {"178", "삼킨 M80", "피격 시 50% 확률로 캐릭터의 위치에 공격력 185의 폭발을 일으킵니다."}, -- Swallowed M80
 	[179] = {"179", "RC 리모콘", "패밀리어가 캐릭터가 움직이는 방향으로 이동합니다."}, -- RC Remote
-	[180] = {"180", "되찾은 영혼", "캐릭터와 같이 이동하며 공격방향으로 캐릭터의 공격과 같은 공격을 발사합니다.#적에게 맞을 시 사라지고 다음 스테이지에서 재소환됩니다."}, -- Found Soul
+	[180] = {"180", "되찾은 영혼", "캐릭터와 같이 이동하며 공격방향으로 캐릭터의 공격력 x0.5의 공격을 발사합니다.#적에게 맞을 시 사라지고 다음 스테이지에서 재소환됩니다."}, -- Found Soul
 	[181] = {"181", "확장팩", "액티브 아이템 사용 시 충전량이 1~2인 랜덤 액티브 아이템의 효과를 함께 발동합니다.#{{Blank}} (충전량이 없는 액티브 아이템의 경우 방당 1회 한정)"}, -- Expansion Pack
 	[182] = {"182", "베다니의 정수", "{{Collectible584}} {{AngelRoom}}천사방 입장 시 위습을 5마리 소환합니다.#{{Collectible584}} 거지에게 기부 시 25%의 확률로 위습을 소환합니다."}, -- Beth's Essence
 	[183] = {"183", "쌍둥이", "방 입장 시 50% 확률로 그 방에서 랜덤 패밀리어 중 하나를 복사합니다.#복사할 수 있는 패밀리어가 없다면 {{Collectible8}}Brother Bobby 혹은 {{Collectible67}}Sister Maggy를 대신 소환합니다."}, -- The Twins
@@ -1015,6 +1016,8 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[20] = {"하나", "2개", "3개"},
 	-- Golden Mysterious Candy makes Golden Poop
 	[25] = { "똥", "황금 똥" },
+	-- Fish Head
+	[29] = {"하나", "2마리", "3마리"},
 	-- Isaac's Fork (find+replace): find Phrase #1 in the localized description, change it to Phrase #2 or 3 for doubled/tripled
 	[46] = { "반칸", "한칸", "한칸 반" },
 	-- Tick (replace): A full replacement for Golden / Mom's Box / Both, as the Golden version can be removed and only one effect is tripled
@@ -1058,6 +1061,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 EID.descriptions[languageCode].goldenTrinketData = {
 	[8] = {append = true},
 	[20] = {findReplace = true},
+	[29] = {findReplace = true},
 	[70] = {findReplace = true},
 	[72] = {findReplace = true},
 	[85] = {fullReplace = true},
