@@ -753,10 +753,10 @@ EID.descriptions[languageCode].trinkets={
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
 	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
-	{"16", "Uña del pie de Mamá", "El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
+	{"16", "Uña del pie de Mamá", "{{MomBossSmall}} El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
 	{"18", "Folleto Biblico", "{{EternalHeart}} +3% de probabilidad de encontrar corazones eternos"}, -- Bible Tract
-	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
+	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los Cofres Dorados sin usar llaves"}, -- Paper Clip
 	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Warning}} Desaparece luego de 3 usos"}, -- Monkey Paw
 	{"21", "Papel misterioso", "Otorga aleatoriamente el efecto de:#{{Collectible327}} La Polaroid#{{Collectible328}} El Negativo#{{Trinket48}} Una página perdida#{{Trinket23}} Cartel de desaparición"}, -- Mysterious Paper
 	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones#{{BlackHeart}} Convierte los corazones en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
@@ -795,7 +795,7 @@ EID.descriptions[languageCode].trinkets={
 	{"55", "La fe de Maggy", "{{EternalHeart}} +1 Corazón Eterno al cambiar de piso"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
 	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Dispara lágrimas espectrales y teledirigidas"}, -- ???'s Soul
-	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
+	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene un 6.66% de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
 	{"59", "Ojo de Caín", "{{Collectible21}} 25% de probabilidad de revelar los iconos del mapa al empezar un nuevo piso#{{Luck}} 100% de probabilidad con 3 de suerte"}, -- Cain's Eye
 	{"60", "Pata del Ave de Eva", "{{Collectible117}} 5% de probabilidad de generar un pájaro muerto al matar un enemigo#{{Luck}} 100% de probabilidad con 8 de suerte"}, -- Eve's Bird Foot
 	{"61", "La Mano izquierda", "{{RedChest}} Reemplaza todos los cofres por Cofres Rojos"}, -- The Left Hand
@@ -805,7 +805,7 @@ EID.descriptions[languageCode].trinkets={
 	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ Altura de lágrima x0.5"}, -- Tape Worm
 	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ Altura de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.5"}, -- Lazy Worm
 	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"}, -- Cracked Dice
-	{"68", "Súper Imán", "Atrae a los recolectables y enemigos hacia el jugador"}, -- Super Magnet
+	{"68", "Súper Imán", "{{Collectible53}} Atrae los recolectables y enemigos hacia el jugador"}, -- Super Magnet
 	{"69", "Polaroid Desvanecida", "Te camufla de forma aleatoria#{{Confusion}} Confunde a los enemigos"}, -- Faded Polaroid
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas dejan fluido"}, -- Bob's Bladder
@@ -850,7 +850,7 @@ EID.descriptions[languageCode].trinkets={
 	{"110", "Dólar de Plata", "{{Shop}} Aparecerán tiendas en el Útero"}, -- Silver Dollar
 	{"111", "Corona sangrienta", "{{TreasureRoom}} Aparecerán salas del tesoro en el Útero"}, -- Bloody Crown
 	{"112", "Pay To Win", "{{RestockMachine}} Las máquinas de reabastecimiento siempre aparecen en las {{TreasureRoom}} Salas del Tesoro"}, -- Pay To Win
-	{"113", "Langosta de Guerra", "Genera una langosta explosiva al entrar en una habitación hostil#Las langostas infligen el doble de tu daño + la explosión"}, -- Locust of War
+	{"113", "Langosta de Guerra", "{{Bomb}} Genera una langosta explosiva al entrar en una habitación hostil#Las langostas infligen el doble de tu daño + la explosión"}, -- Locust of War
 	{"114", "Langosta de Pestilencia", "{{Poison}} Genera una langosta venenosa al entrar en una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Pestilence
 	{"115", "Langosta de Hambruna", "{{Slow}} Genera una langosta que ralentiza al entrar en una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Famine
 	{"116", "Langosta de Muerte", "Genera una langosta al entrar en una habitación hostil#Las langostas infligen cuatro veces tu daño"}, -- Locust of Death
