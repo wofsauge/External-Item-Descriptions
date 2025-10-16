@@ -27,7 +27,7 @@ EID.ItemStats = {
     [C_ID .. 17] = { Key = 99 }, -- Skeleton Key
     [C_ID .. 18] = { Coin = 99 }, -- Dollar
     [C_ID .. 19] = { Bomb = 10 }, -- Boom
-    [C_ID .. 20] = { Flight = 1 }, -- Transcendence
+    [C_ID .. 20] = { Flight = true }, -- Transcendence
     [C_ID .. 22] = { RedHeart = 1 }, -- Lunch
     [C_ID .. 23] = { RedHeart = 1 }, -- Dinner
     [C_ID .. 24] = { RedHeart = 1 }, -- Dessert
@@ -40,6 +40,7 @@ EID.ItemStats = {
     [C_ID .. 31] = { Range = 5.25, TearHeight = 0.5 }, -- Mom's Lipstick
     [C_ID .. 32] = { Tears = 0.7 }, -- Wire Coat Hanger
     [C_ID .. 34] = { HeldEffect = {AngelDevilChance = 12.5}, RoomEffect = {Damage = 2} }, -- Book of Belial
+    [C_ID .. 35] = { DamageToAllEnemies = 40 }, -- The Necronomicon
     [C_ID .. 37] = { Variables = { [1] = 110 } }, -- Mr. Boom
     [C_ID .. 45] = { HealingRed = 1 }, -- Yum Heart
     [C_ID .. 46] = { Luck = 1 }, -- Lucky Foot
@@ -62,7 +63,7 @@ EID.ItemStats = {
     [C_ID .. 79] = { Speed = 0.2, Damage = 1, SoulHeart = 1 }, -- The Mark
     [C_ID .. 80] = { Tears = 0.7, Damage = 0.5, SoulHeart = 2 }, -- The Pact
     [C_ID .. 81] = { Life = 9 }, -- Dead Cat
-    [C_ID .. 82] = { Speed = 0.3, Flight = 1 }, -- Lord of the Pit
+    [C_ID .. 82] = { Speed = 0.3, Flight = true }, -- Lord of the Pit
     [C_ID .. 83] = { OnUseEffect = { SoulHeart = 1}, RoomEffect = { Damage = 0.7, Speed = -0.18, PlayerContactDamage = 40 } }, -- The Nail
     [C_ID .. 85] = { Spawns = {Card = 1} }, -- Deck of Cards
     [C_ID .. 87] = { LuckChance = {Top = 1, Bottom = 8 } }, -- Loki's Horns
@@ -81,7 +82,7 @@ EID.ItemStats = {
     [C_ID .. 102] = { Spawns = {Pill = 1} }, -- Mom's Bottle of Pills
     [C_ID .. 103] = { LuckChance = {Top = 1, Bottom = 4, Multiplier = 0.25 } }, -- The Common Cold
     [C_ID .. 106] = { BombDamage = 1.83, Bomb = 5 }, -- Mr. Mega
-    [C_ID .. 107] = { Variables = { [1] = 82.5 }, RoomEffect = { Flight = true} }, -- The Pinking Shears
+    [C_ID .. 107] = { Variables = { [1] = 82.5 }, RoomEffect = { Flight = true } }, -- The Pinking Shears
     [C_ID .. 110] = { Range = 0.25, TearHeight = 0.5, LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15, Maximum = 0.5 } }, -- Mom's Contacts
     [C_ID .. 112] = { Orbital = true, BlockProjectiles = true, ContactDamagePerSecond = 105 },  -- Guardian Angel
     [C_ID .. 113] = { DamagePerTear = 3 }, -- Demon Baby
@@ -110,12 +111,15 @@ EID.ItemStats = {
     [C_ID .. 153] = { TearsMultiplier = 0.48, TearDelay = 3 }, -- Mutant Spider
 	[C_ID .. 154] = { LeftEye = { Damage = 2 } }, -- Chemical Peel
     [C_ID .. 155] = { ContactDamagePerSecond = 17 },  -- The Peeper
-    [C_ID .. 159] = { Flight = 1, TearEffect = "Spectral" }, -- Spirit of the Night
+	[C_ID .. 158] = { EffectList = { FullMapping = "Exception"} }, -- Crystal Ball
+    [C_ID .. 159] = { Flight = true, TearEffect = "Spectral" }, -- Spirit of the Night
     [C_ID .. 162] = { LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15 } }, -- Celtic Cross
 	[C_ID .. 163] = { DamagePerTear = 3.5 }, -- Ghost Baby
     [C_ID .. 165] = { Damage = 1, ShotSpeed = 0.23 }, -- Cat-o-nine-tails
 	[C_ID .. 167] = { DamagePerTear = 4 }, -- Harlequin Baby
     [C_ID .. 169] = { Damage = 4, DamageMultiplier = 2, TearsMultiplier = 0.48, TearDelay = 3 }, -- Polyphemus
+    [C_ID .. 170] = { DamagePerSecond = 40 }, -- Daddy Longlegs
+    [C_ID .. 171] = { DamageToAllEnemies = 10 }, -- Spider Butt
     [C_ID .. 172] = { Orbital = true, BlockProjectiles = true, ContactDamagePerSecond = 225 },  -- Sacrificial Dagger
     [C_ID .. 173] = { Variables = { [1] = 50 } }, -- Mitre
 	[C_ID .. 174] = { DamagePerTear = {3, 5} }, -- Rainbow Baby
@@ -124,7 +128,8 @@ EID.ItemStats = {
     [C_ID .. 182] = { RedHeart = 1, DamageMultiplier = 2.3, Damage = 1, Range = 0.38, TearHeight = 0.75, Tears = -0.4, ShotSpeed = -0.25, FullHealth = 1, TearEffect = "Homing" }, -- Sacred Heart
     [C_ID .. 183] = { Tears = 0.7, ShotSpeed = 0.16 }, -- Tooth Picks
     [C_ID .. 184] = { RedHeart = 1, Flight = 1 }, -- Holy Grail
-    [C_ID .. 185] = { TearEffect = "Spectral", Flight = 1 }, -- Dead Dove
+    [C_ID .. 185] = { TearEffect = "Spectral", Flight = true }, -- Dead Dove
+    [C_ID .. 186] = { DamageToAllEnemies = 40 }, -- Blood Rights
     [C_ID .. 188] = { DamagePerTear = 3.5 }, -- Abel
     [C_ID .. 189] = { RedHeart = 1, Speed = 0.2, Tears = 0.2, Damage = 0.3, Range = 0.5, TearHeight = 1, FullHealth = 1 }, -- SMB Super Fan
     [C_ID .. 190] = { Bomb = 99 }, -- Pyro
@@ -281,9 +286,9 @@ EID.ItemStats = {
     [C_ID .. 470] = { ContactDamagePerSecond = 30 }, -- Hushy
     [C_ID .. 473] = { ContactDamagePerSecond = 40.5, BlockProjectiles = true }, -- Big Chubby
     [C_ID .. 474] = { BlockProjectiles = true }, -- Tonsil
-	[C_ID .. 475] = { SingleUseInfo = true }, -- Plan C
+	[C_ID .. 475] = { SingleUseInfo = true, DamageToAllEnemies = "9,999,999" }, -- Plan C
 	[C_ID .. 481] = { RandomStatUp = 1, RandomStatDown = 1 }, -- Dataminer
-	[C_ID .. 483] = { SingleUseInfo = true }, -- Mama Mega!
+	[C_ID .. 483] = { SingleUseInfo = true, EffectList = { DamageToAllEnemies = 200 } }, -- Mama Mega!
     [C_ID .. 487] = { RoomEffect = { Range = 5 }, EffectList = { Damage = 0.2 } }, -- Potato Peeler
 	[C_ID .. 490] = { SingleUseInfo = true }, -- Eden's Soul
     [C_ID .. 491] = { Variables = { [1] = 3 } }, -- Acid Baby
@@ -311,6 +316,7 @@ EID.ItemStats = {
 	[C_ID .. 549] = { EffectList = { Tears = 0.5} }, -- Brittle Bones
 
 ---------- Trinkets ----------
+
     [T_ID .. 7] = { AngelChance = 50 }, -- Rosary Bead
     [T_ID .. 8] = { LuckChance = { Top = 1, Bottom = 20, Multiplier = 0.5 }, ItemDescription = "5.100.93" }, -- Cartridge
     [T_ID .. 10] = { Tears = 0.3 }, -- Wiggle Worm
@@ -348,6 +354,7 @@ EID.ItemStats = {
 	[T_ID .. 128] = { Variables = { [1] = 2 } }, -- Finger Bone
 
 ---------- Cards ----------
+
     [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing" } }, -- I - The Magician
     [Card_ID .. 4] = { RoomEffect = { Speed = 0.3, Damage = 1.5 }  }, -- III - The Empress
     [Card_ID .. 6] = { Spawns = { SoulHeart = 2 } }, -- V - The Hierophant
@@ -355,16 +362,21 @@ EID.ItemStats = {
     [Card_ID .. 8] = { TimedEffect = { Duration = 6, Speed = 0.28, Invincibility = true, CantShoot = true, PlayerContactDamage = 40 }  }, -- VII - The Chariot
     [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 5.25, TearHeight = 0.5 } }, -- XI - Strength
     [Card_ID .. 13] = { RoomEffect = { Flight = true } }, -- XII - The Hanged Man
+    [Card_ID .. 14] = { DamageToAllEnemies = 40 }, -- XIII - Death
     [Card_ID .. 16] = { RoomEffect = { Damage = 2 } }, -- XV - The Devil
-    [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
+    [Card_ID .. 20] = { FullHealth = true, DamageToAllEnemies = 100, FullMapping = "Exception" }, -- XIX - The Sun
+    [Card_ID .. 22] = { FullMapping = "Exception" }, -- XXI - The World
     [Card_ID .. 35] = { SoulHeart = 1 }, -- Dagaz
+	[Card_ID .. 36] = { FullMapping = true }, -- Ansuz
     [Card_ID .. 38] = { Spawns = { BlueSpider = 3, BlueFly = 3} }, -- Berkano
     [Card_ID .. 39] = { TimedEffect = { Duration = 30, Invincibility = true} }, -- Algiz
+    [Card_ID .. 41] = { DamageToAllEnemies = 40 }, -- Black Rune
     [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 30, SizeUp = true } }, -- Huge Growth
     [Card_ID .. 53] = { Spawns = { Card = 3 } }, -- Ancient Recall
     [Card_ID .. 54] = { RoomEffect = { Speed = 0.5, ShotSpeed = -1 } }, -- Era Walk
 
 ---------- Pills ----------
+
     [Pill_ID .. 3] = { SoulHeart = 2 }, -- Balls of Steel
     [Pill_ID .. 6] = { FullHealth = true }, -- Full Health
     [Pill_ID .. 7] = { RedHeart = -1 }, -- Health Down
@@ -387,7 +399,6 @@ EID.ItemStats = {
     [Pill_ID .. 37] = { ItemDescription = "5.100.93" }, -- Power Pill! (Reuse The Gamekid)
     [Pill_ID .. 39] = { Spawns = {BlueFly = 3} }, -- Friends Till The End!
     [Pill_ID .. 46] = { TimedEffect = { Duration = 6, Invincibility = true, CantShoot = true } }, -- Feels like I'm walking on sunshine!
-
 }
 
 -- Splits the input text at '#' and extracts stat name and value from each part

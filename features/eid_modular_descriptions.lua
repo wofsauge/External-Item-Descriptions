@@ -8,6 +8,7 @@ EID.StatisticsData = {
     -- Player Stats
     ["TearsMultiplier"] = { Priority = 9990, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
     ["Tears"] = { Priority = 9980, Arrow = true, Icon = "{{Tears}}" },
+    ["TearDelayMultiplier"] = { Priority = 9970, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true, InvertArrow = true },
     ["TearDelay"] = { Priority = 9970, Arrow = true, Icon = "{{Tears}}" },
     ["FireRateMultiplier"] = { Priority = 9960, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
     ["FireRate"] = { Priority = 9950, Arrow = true, Icon = "{{Tears}}" },
@@ -67,9 +68,9 @@ EID.StatisticsData = {
     ["DamagePerShot"] = { Priority = -5970, HideSign = true },
     ["DamagePerSecond"] = { Priority = -5980, HideSign = true },
     ["ContactDamagePerSecond"] = { Priority = -5990, HideSign = true },
-
     -- Miscellaneous
     ["NoEffect"] = { Priority = 5000, HideSign = true },
+    ["DamageToAllEnemies"] =  { Priority = 5010, HideSign = true },
 
     -- Dynamic Spawns
     ["Spawns"] = {
@@ -133,6 +134,23 @@ EID.StatisticsData = {
                 end
             end
             return description .. textFragment
+        end
+    },
+    ["FullMapping"] = {
+        Priority = 5520,
+        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
+            local baseText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)["BaseDesc"]
+            local valueText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[itemStatsTableEntry] or ""
+            if not baseText then
+                print("[ERROR] BaseDesc translation not found!", effect)
+            else
+                baseText = baseText:gsub("{exception}", valueText):gsub("%s+$", "")
+                if not description:find("#$") then
+                    return description .."#".. baseText
+                end
+                return description .. baseText
+            end
+            return description
         end
     },
     ["LuckChance"] = {
@@ -199,15 +217,22 @@ EID.StatisticsData = {
         -- Adds the description of another item
         Priority = -9980,
         BehaviorFunc = function(_, itemStatsTableEntry, description)
-            local itemDesc =  EID:GenerateDescription(itemStatsTableEntry)
-            if itemDesc and itemDesc ~= "" then
-                local numReplaced = 0
-                description, numReplaced = description:gsub("{VAR:ITEMDESCRIPTION}", itemDesc)
-                if numReplaced == 0 then
-                    if not description:find("#$") then
-                        return description .."#".. itemDesc
+            -- support single and multiple tear effects by turning single entries into a table
+            if type(itemStatsTableEntry) ~= "table" then
+                itemStatsTableEntry = {itemStatsTableEntry}
+            end
+            for _, itemID in ipairs(itemStatsTableEntry) do
+                local itemDesc =  EID:GenerateDescription(itemID)
+                if itemDesc and itemDesc ~= "" then
+                    local numReplaced = 0
+                    description, numReplaced = description:gsub("{VAR:ITEMDESCRIPTION}", itemDesc)
+                    if numReplaced == 0 then
+                        if not description:find("#$") then
+                            description = description .."#".. itemDesc
+                        else
+                            description = description .. itemDesc
+                        end
                     end
-                    return description .. itemDesc
                 end
             end
             return description
@@ -230,9 +255,9 @@ EID.StatisticsData = {
                     return EID.DynamicVariableHandlers[handlerName](variableData)
                 else
                     if not EID.DynamicVariableHandlers[handlerName] then
-                        print("[ERROR] No handler found for variable '"..tostring(handlerName).."'")
+                        print("[ERROR] No handler found for variable '"..tostring(handlerName).."' CurDescription:", description)
                     elseif not variableData then
-                        print("[ERROR] No data-entry found for variable '"..tostring(variableName).."'")
+                        print("[ERROR] No data-entry found for variable '"..tostring(variableName).."' CurDescription:", description)
                     end
                 end
                 -- return nil if no function was found, to not replace the Variable string
@@ -336,7 +361,7 @@ function EID:ListSimilarDescriptions(limit)
     for k, v in pairs(uniqueDescriptions) do
         if v >= limit then
             print(v,k)
-            --Isaac.DebugString(v..";"..k)
+            Isaac.DebugString(v..";"..k)
         end
     end
 end
@@ -409,7 +434,7 @@ function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, sta
     -- remove leading/trailing # and multiple # in a row. Makes translation more readable in some places, if a # is explicitly added
     textFragment = textFragment:gsub("#$", ""):gsub("^#", ""):gsub("#+", "#")
     -- Indent content by one
-    textFragment = textFragment:gsub("#", "#{{IND}}")
+    textFragment = textFragment:gsub("#", "#{{IND}}"):gsub("%%", "%%%%")
 
     -- Try replace inline variable
     local numReplaced = 0
@@ -494,7 +519,11 @@ function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue, description
     local textFragment = EID:getDescriptionEntry("ModularDescriptions", statID)
     local statDescription = EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
     if statDescription then
-        return description .. statDescription
+        if not description:find("#$") then
+            return description .."#".. statDescription
+        else
+            return description .. statDescription
+        end
     end
 end
 
@@ -510,30 +539,40 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
             value = value[2] -- for pluralization, take the maximum value
         else
             -- If value is not of type number, we assume 1
-            if type(value) ~= "number" then
-                value = 1
-            end
-            -- formated and without trailing zeros
-            local formattedValue = string.format("%.2f", value):gsub("%.?0+$", "")
+            if type(value) == "number" then
+                -- formated and without trailing zeros
+                local formattedValue = string.format("%.2f", value):gsub("%.?0+$", "")
 
-            -- Handle sign
-            if not statDataEntry.HideSign then
-                local sign = isMultiplier and "x" or value > 0 and "+" or ""
-                formattedValue = sign .. formattedValue
+                -- Handle sign
+                if not statDataEntry.HideSign then
+                    local sign = isMultiplier and "x" or value > 0 and "+" or ""
+                    formattedValue = sign .. formattedValue
+                end
+                -- Put formatted value into text fragment
+                textFragment = textFragment:gsub("{value}", formattedValue)
+            else
+                textFragment = textFragment:gsub("{value}", tostring(value))
+                value = 1 -- for further evaluations
             end
-            -- Put formatted value into text fragment
-            textFragment = textFragment:gsub("{value}", formattedValue)
         end
     end
 
     -- arrow up/down and icon decoration
     local decoration = ""
     if statDataEntry.Arrow then
-        -- multipliers smaller 1 are a negative effect
-        if isMultiplier then
-            decoration = value >= 1 and "↑ " or "↓ "
+        if statDataEntry.InvertArrow then
+            if isMultiplier then
+                decoration = value >= 1 and "↓ " or "↑ "
+            else
+                decoration = value >= 0 and "↓ " or "↑ "
+            end
         else
-            decoration = value >= 0 and "↑ " or "↓ "
+            if isMultiplier then
+                -- multipliers smaller 1 are a negative effect
+                decoration = value >= 1 and "↑ " or "↓ "
+            else
+                decoration = value >= 0 and "↑ " or "↓ "
+            end
         end
     end
     if statDataEntry.Icon and type(statDataEntry.Icon) ~= "table" then
@@ -553,10 +592,12 @@ end
 -- DEBUG ignore entries list, which are automated correctly, but maybe have different order of lines
 local ignoreList = {
     ["5.100.34"] = true,
+    ["5.100.35"] = true,
     ["5.100.40"] = true,
     ["5.100.41"] = true,
     ["5.100.58"] = true,
     ["5.100.59"] = true,
+    ["5.100.72"] = true,
     ["5.100.77"] = true,
     ["5.100.78"] = true,
     ["5.100.83"] = true, -- +0.5 Black heart looks weird
@@ -567,7 +608,9 @@ local ignoreList = {
     ["5.100.117"] = true,
     ["5.100.154"] = true,
     ["5.100.155"] = true,
+    ["5.100.158"] = true,
     ["5.100.172"] = true,
+    ["5.100.186"] = true,
 
     ["5.100.219"] = true,
     ["5.100.251"] = true,
@@ -637,6 +680,7 @@ local ignoreList = {
     ---------- CARDS --------
     ["5.300.8"] = true,
     ["5.300.13"] = true,
+    ["5.300.14"] = true,
     ["5.300.39"] = true,
     ["5.300.53"] = true,
     ["5.300.93"] = true,
@@ -651,11 +695,12 @@ local ignoreList = {
 
     ["5.70.2056"] = true,
     ["5.70.2069"] = true,
+    ["5.70.2072"] = true,
     ["5.70.2085"] = true,
     ["5.70.2094"] = true,
 }
 
-        
+
 local oldWordCount = {}
 function EID:DEBUGCountWordsOld(DLC, tablesTODO)
     oldWordCount[DLC] = 0

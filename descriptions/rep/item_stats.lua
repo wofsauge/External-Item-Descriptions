@@ -7,6 +7,7 @@ local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
 local repentanceItemStats = {
+
 ---------- Collectibles ----------
 
     [C_ID .. 2] = { FireRateMultiplier = 0.51 }, -- Inner Eye
@@ -44,7 +45,7 @@ local repentanceItemStats = {
 
     [C_ID .. 101] = { RedHeart = 1, Speed = 0.3, Tears = 0.2, Damage = 0.3, Range = 1.5, HealingRed = 1 }, -- The Halo
     [C_ID .. 106] = { BombDamage = 1.85, Bomb = 5 }, -- Mr. Mega
-    [C_ID .. 107] = { Variables = { [1] = 23.5 }, RoomEffect = { Flight = true} }, -- The Pinking Shears
+    [C_ID .. 107] = { Variables = { [1] = 23.5 }, RoomEffect = { Flight = true } }, -- The Pinking Shears
     [C_ID .. 110] = { Range = 1.5, LuckChance = {Top = 1, Bottom = 5, Multiplier = 0.15, Maximum = 0.5 } }, -- Mom's Contacts
     [C_ID .. 115] = { Tears = 0.5, TearEffect = "Spectral" }, -- Ouija Board
     [C_ID .. 118] = { FireRateMultiplier = 0.33, Variables = {[1] = 9, [2] = 0.63} }, -- Brimstone
@@ -58,12 +59,13 @@ local repentanceItemStats = {
     [C_ID .. 152] = { FireRateMultiplier = 0.67 }, -- Technology 2
     [C_ID .. 153] = { FireRateMultiplier = 0.42 }, -- Mutant Spider
     [C_ID .. 155] = { ContactDamagePerSecond = 17.1, LeftEye = { DamageMultiplier = 1.35 } },  -- The Peeper
+	[C_ID .. 158] = { EffectList = { FullMapping = "Exception", HeldEffect = { PlanetariumChance = 15 } } }, -- Crystal Ball
     [C_ID .. 169] = { Damage = 4, DamageMultiplier = 2, FireRateMultiplier = 0.42 }, -- Polyphemus
     [C_ID .. 172] = { Orbital = true, BlockProjectiles = true, ContactDamagePerSecond = 112.5 },  -- Sacrificial Dagger
     [C_ID .. 173] = { Variables = { [1] = 33 } }, -- Mitre
     [C_ID .. 176] = { RedHeart = 1, ShotSpeed = 0.16, HealingRed = 1 }, -- Stem Cells
     [C_ID .. 182] = { RedHeart = 1, DamageMultiplier = 2.3, Damage = 1, Tears = -0.4, ShotSpeed = -0.25, FullHealth = 1, TearEffect = "Homing" }, -- Sacred Heart
-    [C_ID .. 184] = { RedHeart = 1, HealingRed = 1, Flight = 1 }, -- Holy Grail
+    [C_ID .. 184] = { RedHeart = 1, HealingRed = 1, Flight = true }, -- Holy Grail
     [C_ID .. 189] = { RedHeart = 1, Speed = 0.2, Tears = 0.2, Damage = 0.3, Range = 2.5, FullHealth = 1 }, -- SMB Super Fan
     [C_ID .. 192] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- Telepathy for Dummies
     [C_ID .. 193] = { RedHeart = 1, Damage = 0.3, HealingRed = 1 }, -- MEAT!
@@ -218,6 +220,7 @@ local repentanceItemStats = {
 	[C_ID .. 732] = { Damage = 1 }, -- Mom's Ring
 
 ---------- Trinkets ----------
+
     [T_ID .. 10] = { Tears = 0.4, TearEffect = "Spectral"  }, -- Wiggle Worm
     [T_ID .. 11] = { Tears = 0.47, TearEffect = "Spectral" }, -- Ring Worm
 	[T_ID .. 16] = { Variables = { [1] = 20 } }, -- Mom's Toenail
@@ -242,9 +245,9 @@ local repentanceItemStats = {
     [T_ID .. 188] = { LuckChance = { Formula = "Additive", Top = 1, Bottom = 5, Multiplier = 0.02 } }, -- Ice Cube (Formula is not documented on the wiki. This is a best guess)
 
 ---------- Cards ----------
+
     [Card_ID .. 2] = { RoomEffect = { TearEffect = "Homing", Range = 3 } }, -- I - The Magician
     [Card_ID .. 12] = { RoomEffect = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 2.5 } }, -- XI - Strength
-    [Card_ID .. 20] = { FullHealth = true }, -- XIX - The Sun
     [Card_ID .. 39] = { TimedEffect = { Duration = 20, Invincibility = true} }, -- Algiz
     [Card_ID .. 52] = { RoomEffect = { Damage = 7, Range = 3, SizeUp = true } }, -- Huge Growth
     [Card_ID .. 59] = { TimedEffect = { Duration = 60, RedHeart = 2, FireRate = 1.5, Speed = -0.1 } }, -- III - The Empress?
@@ -282,6 +285,7 @@ local repentanceItemStats = {
     [Pill_ID .. (HorseID + 20)] = { ItemDescription = "5.70.20" }, -- Telepills
     [Pill_ID .. (HorseID + 21)] = { Spawns = {Battery = {3,4}} }, -- 48 Hour Energy!
     [Pill_ID .. (HorseID + 22)] = { Spawns = {RedHeart = {1,4}} }, -- Hematemesis
+    [Pill_ID .. (HorseID + 24)] = { ItemDescription = {"5.100.333", "5.70.24"} }, -- I can see forever!
     [Pill_ID .. (HorseID + 26)] = { ItemDescription = "5.70.26" }, -- Amnesia
     [Pill_ID .. (HorseID + 29)] = { ItemDescription = "5.70.29" }, -- Percs!
     [Pill_ID .. (HorseID + 30)] = { ItemDescription = "5.70.30" }, -- Addicted!
@@ -290,8 +294,6 @@ local repentanceItemStats = {
     [Pill_ID .. (HorseID + 46)] = { ItemDescription = "5.100.93" }, -- Feels like I'm walking on sunshine!
     [Pill_ID .. (HorseID + 48)] = { ShotSpeed = -0.3 }, -- Shot speed Down
     [Pill_ID .. (HorseID + 49)] = { ShotSpeed = 0.3 }, -- Shot speed Up
-
-
-
 }
+
 EID:updateDescriptionsViaTable(repentanceItemStats, EID.ItemStats)

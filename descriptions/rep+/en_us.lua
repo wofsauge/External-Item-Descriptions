@@ -19,8 +19,6 @@ local additionalCollectibleInformations = {
 	[C_ID .. 117] = "Taking damage spawns a bird that attacks enemies#Persists between rooms if player is at 1/2 hearts", -- Dead Bird
 	-- Change: added "Spawns a random penny trinket"
 	[C_ID .. 141] = "Spawns a random penny trinket", -- Pageant Boy
-	-- Change: added Fire rate information
-	[C_ID .. 186] = "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
 	-- Change: Complete rewrite
 	[C_ID .. 351] = "{{Petrify}} Deals 100 damage and petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Can open secret rooms and break rocks" , -- Mega Bean
 	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
@@ -32,7 +30,7 @@ local additionalCollectibleInformations = {
 	-- Change: added " and fires radial bursts of tears"
 	[C_ID .. 470] = "Bounces around the room#Stops moving when Isaac shoots#Blocks projectiles when stopped and fires radial bursts of tears" , -- Hushy
 	-- Change: added "10 to 12 seconds for Delirium and Mother"
-	[C_ID .. 475] = "Deals 9,999,999 damage to all enemies#{{Warning}} Kills Isaac 3 seconds later#10 to 12 seconds for Delirium and Mother" , -- Plan C
+	[C_ID .. 475] = "{{Warning}} Kills Isaac 3 seconds later#10 to 12 seconds for Delirium and Mother" , -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
 	[C_ID .. 481] = "{{Timer}} Random tear effects for the room#Turns item pedestals into glitched items#{{Blank}} Corrupts all sprites and music in the room" , -- Dataminer
 	-- Change: Reduced the chance of removing the most recent item to 50%

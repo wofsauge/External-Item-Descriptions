@@ -10,6 +10,8 @@
 
 local languageCode = "en_us"
 
+EID.descriptions["en_us"].ModularDescriptions.FullMapping.Exception = "(except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)"
+
 ---------- Collectibles ----------
 local C_ID = "5.100."
 local additionalCollectibleInformations = {
@@ -32,11 +34,11 @@ local additionalCollectibleInformations = {
     [C_ID .. 147] = "Using the item makes Isaac hold the axe#Holding the axe allows Isaac to break rocks, secret room entrances and damage enemies#Landing a hit with the axe reduces its charge#Entering a new floor fully recharges the axe", -- Notched Axe
     [C_ID .. 149] = "Isaac's tears are fired in an arc#{{Poison}} The tears explode and poison enemies where they land", -- Ipecac
     [C_ID .. 152] = "Replaces Isaac's right eye tears with a continuous laser#{{Damage}} The laser deals 2x Isaac's damage per second", -- Technology 2
-    [C_ID .. 158] = "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}}{{UltraSecretRoom}} Super/Ultra Secret Room)#While held:#{{PlanetariumChance}} +15% Planetarium chance#{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped", -- Crystal Ball
-    [C_ID .. 171] = "{{Slow}} Slows down enemies for 4 seconds#Deals 10 damage to all enemies#Enemies killed by the item spawn blue spiders", -- Spider Butt
+    [C_ID .. 158] = "Spawns a {{SoulHeart}} Soul Heart, {{Rune}} rune or {{Card}} card#{VAR:EFFECTLIST}#{{IND}}{{PlanetariumChance}} +100% if a {{TreasureRoom}} Treasure Room was skipped", -- Crystal Ball
+    [C_ID .. 171] = "{{Slow}} Slows down enemies for 4 seconds#Enemies killed by the item spawn blue spiders", -- Spider Butt
     [C_ID .. 178] = "{{Throwable}} Launches itself in the direction Isaac shoots#Breaks and deals 7 damage upon hitting an enemy#{{Petrify}} Leaves a pool of petrifying + damaging creep", -- Holy Water
     [C_ID .. 180] = "Isaac farts multiple times when damaged#{{Poison}} The farts leave poison clouds and deflects projectiles", -- The Black Bean
-    [C_ID .. 186] = "Deals 40 damage to every enemy#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
+    [C_ID .. 186] = "{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first", -- Blood Rights
 
 	[C_ID .. 203] = "Pickups have a 50% chance to be doubled", -- Humbleing Bundle
 	[C_ID .. 205] = "{{Battery}} Using an uncharged active item fully recharges it at the cost of half a heart per missing charge#{{Heart}} Removes Red Hearts first", -- Sharp Plug
@@ -399,9 +401,8 @@ EID:updateDescriptionsViaTable(additionalTrinketInformations, EID.descriptions[l
 local Card_ID = "5.300."
 local additionalCardInformations = {
     [Card_ID .. 18] = "{{TreasureRoom}} Teleports Isaac to the Treasure Room#{{Planetarium}} If there is a Planetarium, it teleports there instead", -- XVII - The Stars
-    [Card_ID .. 20] = "Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)#{{CurseDarkness}} Removes Curse of Darkness", -- XIX - The Sun
+    [Card_ID .. 20] = "{{CurseDarkness}} Removes Curse of Darkness", -- XIX - The Sun
     [Card_ID .. 21] = "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#5% chance for it to be a Key Master, Bomb Bum, Battery Bum, or Rotten Beggar", -- XX - Judgement
-    [Card_ID .. 22] = "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)", -- XXI - The World
     [Card_ID .. 27] = "{{Bomb}} Turns all pickups, chests and non-boss enemies into random bombs", -- Ace of Clubs
     [Card_ID .. 28] = "{{Coin}} Turns all pickups, chests and non-boss enemies into random coins", -- Ace of Diamonds
     [Card_ID .. 29] = "{{Key}} Turns all pickups, chests and non-boss enemies into random keys", -- Ace of Spades
@@ -473,7 +474,6 @@ local additionalPillInformations = {
     [Pill_ID .. (HorseID + 21)] = "{{Battery}} Fully recharges active items", -- 48 Hour Energy!
     [Pill_ID .. (HorseID + 22)] = "{{EmptyHeart}} Drains all but one heart container", -- Hematemesis
     [Pill_ID .. (HorseID + 23)] = "Prevents Isaac from moving and shooting for 4 seconds", -- Paralysis
-    [Pill_ID .. (HorseID + 24)] = "{{SecretRoom}} Opens secret room entrances on the floor#Full mapping effect", -- I can see forever!
     [Pill_ID .. (HorseID + 25)] = "{{Charm}} Turns every enemy in the room permanently friendly", -- Pheromones
     [Pill_ID .. (HorseID + 27)] = "Spawns a puddle of creep the size of a room which damages enemies", -- Lemon Party
     [Pill_ID .. (HorseID + 28)] = "{{Timer}} Isaac shoots diagonally for 60 seconds", -- R U a Wizard?
