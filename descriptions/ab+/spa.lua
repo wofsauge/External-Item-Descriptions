@@ -753,10 +753,10 @@ EID.descriptions[languageCode].trinkets={
 	{"13", "Tarjeta de crédito", "{{Shop}} Permite llevarse un objeto de la tienda gratis"}, -- Credit Card
 	{"14", "Callo", "Otorga inmunidad a las espinas de suelo y el fluido"}, -- Callus
 	{"15", "Roca de la suerte", "{{Coin}} Genera monedas al destruir rocas"}, -- Lucky Rock
-	{"16", "Uña del pie de Mamá", "El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
+	{"16", "Uña del pie de Mamá", "{{MomBossSmall}} El Pie de Mamá pisoteará un lugar aleatorio de la habitación cada 60 segundos"}, -- Mom's Toenail
 	{"17", "Pintalabios negro", "{{BlackHeart}} +5% de probabilidad de reemplazar los corazones de alma por corazones negros"}, -- Black Lipstick
 	{"18", "Folleto Biblico", "{{EternalHeart}} +3% de probabilidad de encontrar corazones eternos"}, -- Bible Tract
-	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los cofres dorados sin usar llaves"}, -- Paper Clip
+	{"19", "Clip de Papel", "{{GoldenChest}} Permite abrir los Cofres Dorados sin usar llaves"}, -- Paper Clip
 	{"20", "Pata de mono", "{{BlackHeart}} Al tener medio corazón, deja caer un corazón negro#{{Warning}} Desaparece luego de 3 usos"}, -- Monkey Paw
 	{"21", "Papel misterioso", "Otorga aleatoriamente el efecto de:#{{Collectible327}} La Polaroid#{{Collectible328}} El Negativo#{{Trinket48}} Una página perdida#{{Trinket23}} Cartel de desaparición"}, -- Mysterious Paper
 	{"22", "Cola de Demonio", "{{Heart}} Disminuye a 20% la probabilidad de generar corazones#{{BlackHeart}} Convierte los corazones en corazones negros#{{Key}} Aumenta la probabilidad de generar llaves"}, -- Daemon's Tail
@@ -770,7 +770,7 @@ EID.descriptions[languageCode].trinkets={
 	{"30", "Ojo Rojo", "{{Poison}} 10% de probabilidad de disparar lágrimas venenosas#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Pinky Eye
 	{"31", "Chincheta", "10% de probabilidad de disparar lágrimas perforantes y espectrales#{{Luck}} 100% de probabilidad con 18 de suerte"}, -- Push Pin
 	{"32", "Monguis", "25% de probabilidad de activar un efecto de hongo aleatorio para la habitación actual#Puede revelar la ubicación de habitaciones especiales en el mapa"}, -- Liberty Cap
-	{"33", "Cordón umbilical", "{{Timer}} Genera un {{Collectible 100}} Pequeño Steven para la sala cuando tu salud es reducida a medio corazón rojo"}, -- Umbilical Cord
+	{"33", "Cordón umbilical", "{{Timer}} Otorga un {{Collectible 100}} Pequeño Steven durante la sala cuando tu salud es reducida a medio corazón rojo"}, -- Umbilical Cord
 	{"34", "Corazón de niño", "{{UnknownHeart}} 10% de probabilidad de que la recompensa de la sala sea un corazón aleatorio#{{Heart}} 33% de probabilidad de obtener corazones extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Child's Heart
 	{"35", "Cuerno Curvo", "↑ {{Damage}} Daño +2"}, -- Cuerno Curvo
 	{"36", "Llave oxidada", "{{Key}} 10% de probabilidad de que la recompensa de la sala sea una llave#{{Key}} 33% de probabilidad de obtener llaves extra de algunos cofres, las rocas marcadas, algunas máquinas destruidas y algunos mendigos"}, -- Rusted Key
@@ -795,17 +795,17 @@ EID.descriptions[languageCode].trinkets={
 	{"55", "La fe de Maggy", "{{EternalHeart}} +1 Corazón Eterno al cambiar de piso"}, -- Maggy's Faith
 	{"56", "Lengua de Judas", "{{DevilRoom}} Reduce los precios de los pactos del Diablo a un corazón#{{SoulHeart}} No reduce los pactos de 3 Corazones de Alma"}, -- Judas' Tongue
 	{"57", "Alma de ???", "Familiar que rebota por la habitación#Dispara en la misma dirección que el jugador#Inflige 3.5 de daño#Dispara lágrimas espectrales y teledirigidas"}, -- ???'s Soul
-	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene 1/15 de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
+	{"58", "Mechón de Sansón", "{{Timer}} Matar a un enemigo tiene un 6.66% de probabilidad de otorgar ↑ {{Damage}} Daño +0.5 por la habitación#{{Luck}} 100% de probabilidad con 10 de suerte"}, -- Samson's Lock
 	{"59", "Ojo de Caín", "{{Collectible21}} 25% de probabilidad de revelar los iconos del mapa al empezar un nuevo piso#{{Luck}} 100% de probabilidad con 3 de suerte"}, -- Cain's Eye
 	{"60", "Pata del Ave de Eva", "{{Collectible117}} 5% de probabilidad de generar un pájaro muerto al matar un enemigo#{{Luck}} 100% de probabilidad con 8 de suerte"}, -- Eve's Bird Foot
-	{"61", "La Mano izquierda", "{{RedChest}} Reemplaza todos los cofres por cofres rojos"}, -- La Mano izquierda
-	{"62", "Rocas brillantes", "Las rocas marcadas y de trampilla parpadean cada 10 segundos"}, -- Shiny Rock
+	{"61", "La Mano izquierda", "{{RedChest}} Reemplaza todos los cofres por Cofres Rojos"}, -- The Left Hand
+	{"62", "Rocas brillantes", "Las rocas marcadas y de trampilla parpadearán cada 10 segundos"}, -- Shiny Rock
 	{"63", "Tijeras de Seguridad", "{{Bomb}} Convierte las bombas troll en bombas recolectables"}, -- Safety Scissors
 	{"64", "Gusano de Arcoíris", "Otorga un efecto de gusano aleatorio cada 3 segundos"}, -- Rainbow Worm
 	{"65", "Gusano Estirado", "↑ {{Range}} Alcance x2#↓ Altura de lágrima x0.5"}, -- Tape Worm
 	{"66", "Gusano Perezoso", "↑ {{Range}} Alcance +4#↑ Altura de lágrima +2#↓ {{Shotspeed}} Vel. de lágrimas -0.5"}, -- Lazy Worm
 	{"67", "Dado Roto", "Recibir daño activa uno de los siguientes efectos:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible386}} D12 #{{Collectible166}} D20"}, -- Cracked Dice
-	{"68", "Súper Imán", "Atrae a los recolectables y enemigos hacia el jugador"}, -- Super Magnet
+	{"68", "Súper Imán", "{{Collectible53}} Atrae los recolectables y enemigos hacia el jugador"}, -- Super Magnet
 	{"69", "Polaroid Desvanecida", "Te camufla de forma aleatoria#{{Confusion}} Confunde a los enemigos"}, -- Faded Polaroid
 	{"70", "Piojo", "Genera aleatoriamente una araña azul en habitaciónes hostiles"}, -- Louse
 	{"71", "Vejiga de Bob", "Las bombas dejan fluido"}, -- Bob's Bladder
@@ -835,7 +835,7 @@ EID.descriptions[languageCode].trinkets={
 	{"95", "Diente negro", "{{Poison}} 3% de probabilidad de disparar un diente negro venenoso#Los dientes infligen el doble de tu daño#{{Luck}} 100% de probabilidad con 32 de suerte"}, -- Black Tooth
 	{"96", "Gusano Ouroboros", "↑ {{Range}} +4 de Alcance#↑ Altura de lágrima +2#Lágrimas espectrales#Probabilidad de disparar lágrimas teledirigidas#{{Luck}} 100% de probabilidad con 9 de suerte#Las lágrimas se mueven rapidamente en espiral"}, -- Ouroboros Worm
 	{"97", "Angina", "Recibir daño 12-20 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares"}, -- Tonsil
-	{"98", "Duende de Nariz", "10% de probabilidad de disparar lágrimas de moco#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 60 segundos#50% de probabilidad de que los mocos sean teledirigidos"}, -- Nose Goblin
+	{"98", "Duende de Nariz", "10% de probabilidad de disparar una lágrima de moco pegajosa#50% de probabilidad de que sea teledirigida#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 60 segundos"}, -- Nose Goblin
 	{"99", "Super Bola", "10% de probabilidad de disparar lágrimas que rebotan"}, -- Super Ball
 	{"100", "Bombilla Vibrante", "Otorga al tener un objeto activo cargado:#↑ {{Speed}} Velocidad +0.25#↑ {{Tears}} Lágrimas +0.2#↑ {{Damage}} Daño +0.5#↑ {{Range}} Alcance +0.75#↑ {{Shotspeed}} Vel. de lágrimas +0.1#↑ Altura de lágrima +0.5#↑ {{Luck}} +1 de Suerte"}, -- Vibrant Bulb
 	{"101", "Bombilla Muerta", "Otorga al tener un objeto activo descargado:#↑ {{Speed}} Velocidad +0.5#↑ {{Tears}} Lágrimas +0.4#↑ {{Damage}} Daño +1.5#↑ {{Range}} Alcance +1.5#↑ {{Shotspeed}} Vel. de lágrimas +0.3#↑ Altura de lágrima +1#↑ {{Luck}} +2 de Suerte"}, -- Dim Bulb
@@ -847,20 +847,20 @@ EID.descriptions[languageCode].trinkets={
 	{"107", "Corazón de cuervo", "{{Heart}} Los corazones rojos recibirán el daño antes que los de alma o negros#{{AngelDevilChance}} El daño a corazones rojos no reduce la probabilidad de encontrar salas del Diablo/Ángel"}, -- Crow Heart
 	{"108", "Nuez", "Tras ser golpeado por 1-9 explosiones:#Destruye el trinket#Suelta un {{UnknownHeart}} corazón, {{Coin}} moneda, {{Key}} llave y {{Trinket}} trinket aleatorios"}, -- Walnut
 	{"109", "Cinta adhesiva", "Los familiares se moverán de forma relativa a tu posición"}, -- Duct Tape
-	{"110", "Dólar de Plata", "{{Shop}} Las tiendas aparecerán en el Útero"}, -- Silver Dollar
-	{"111", "Corona sangrienta", "{{TreasureRoom}} Las Salas del Tesoro aparecerán en el Útero"}, -- Bloody Crown
+	{"110", "Dólar de Plata", "{{Shop}} Aparecerán tiendas en el Útero"}, -- Silver Dollar
+	{"111", "Corona sangrienta", "{{TreasureRoom}} Aparecerán salas del tesoro en el Útero"}, -- Bloody Crown
 	{"112", "Pay To Win", "{{RestockMachine}} Las máquinas de reabastecimiento siempre aparecen en las {{TreasureRoom}} Salas del Tesoro"}, -- Pay To Win
-	{"113", "Langosta de Guerra", "Genera una langosta explosiva al entrar a una habitación hostil#Las langostas infligen el doble de tu daño + la explosión"}, -- Locust of War
-	{"114", "Langosta de Pestilencia", "{{Poison}} Genera una langosta venenosa al entrar a una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Pestilence
-	{"115", "Langosta de Hambruna", "{{Slow}} Genera una langosta que ralentiza al entrar a una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Famine
-	{"116", "Langosta de Muerte", "Genera una langosta al entrar a una habitación hostil#Las langostas infligen cuatro veces tu daño"}, -- Locust of Death
-	{"117", "Langosta de Conquista", "Genera 2-5 langostas al entrar a una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Conquest
+	{"113", "Langosta de Guerra", "{{Bomb}} Genera una langosta explosiva al entrar en una habitación hostil#Las langostas infligen el doble de tu daño + la explosión"}, -- Locust of War
+	{"114", "Langosta de Pestilencia", "{{Poison}} Genera una langosta venenosa al entrar en una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Pestilence
+	{"115", "Langosta de Hambruna", "{{Slow}} Genera una langosta que ralentiza al entrar en una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Famine
+	{"116", "Langosta de Muerte", "Genera una langosta al entrar en una habitación hostil#Las langostas infligen cuatro veces tu daño"}, -- Locust of Death
+	{"117", "Langosta de Conquista", "Genera 2-5 langostas al entrar en una habitación hostil#Las langostas infligen el doble de tu daño"}, -- Locust of Conquest
 	{"118", "Ala de murciélago", "5% de probabilidad de otorgar vuelo durante la habitación al matar un enemigo"}, -- Bat Wing
 	{"119", "Célula madre", "{{HealingRed}} Cura medio corazón al entrar a un nuevo piso"}, -- Stem Cell
 	{"120", "Horquilla", "{{Battery}} Entrar en una sala de jefe recarga completamente tu objeto activo"},-- Hairpin
-	{"121", "Cruz de madera", "{{Collectible313}} Otorga un escudo de un solo uso en cada piso"}, -- Wooden Cross
+	{"121", "Cruz de madera", "{{Collectible313}} Otorga un escudo sagrado de un solo uso por piso"}, -- Wooden Cross
 	{"122", "Mantequilla", "Suelta el objeto activo tras usarlo#2% de probabilidad de soltar uno de tus objetos pasivos al recibir daño"}, -- Butter!
-	{"123", "Pluma de filigrana", "Los ángeles soltarán objetos de ángel en lugar de piezas de llave"}, -- Filigree Feather
+	{"123", "Pluma de filigrana", "Los Ángeles soltarán objetos de ángel en lugar de piezas de llave"}, -- Filigree Feather
 	{"124", "Tope de puerta", "Mantiene abierta la última puerta utilizada"}, -- Door Stop
 	{"125", "Cable de Extensión", "Conecta a los familiares entre si con rayos de electricidad#Los rayos infligen 6 de daño"}, -- Extension Cord
 	{"126", "Moneda Podrida", "Recoger una moneda genera una mosca azul"}, -- Rotten Penny
