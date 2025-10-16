@@ -143,7 +143,6 @@ EID.descriptions[languageCode].AdditionalInformations = {
 	[C_ID .. 13] = "{{Poison}} Touching enemies poisons them#{{BlackHeart}} Poisoned enemies can drop Black Hearts", -- The Virus
 	[C_ID .. 21] = "Reveals icons on the map#Does not reveal the layout of the map", -- The Compass
 	[C_ID .. 33] = "{{Timer}} Flight for the room#{{MomsHeart}} Kills Mom's Foot and Mom's Heart instantly#{{Warning}} Kills Isaac when used on Satan", -- The Bible
-	[C_ID .. 35] = "Deals 40 damage to all enemies in the room", -- The Necronomicon
 	[C_ID .. 36] = "Spawns one poop and knocks back enemies#Can be placed next to a pit and destroyed with a bomb to make a bridge", -- The Poop
 	[C_ID .. 37] = "Drops a large bomb below Isaac which deals {VAR:1} damage", -- Mr. Boom
 	[C_ID .. 38] = "Shoots 10 tears in a circle around Isaac#The tears copy Isaac's tear effects, plus 25 damage", -- Tammy's Head

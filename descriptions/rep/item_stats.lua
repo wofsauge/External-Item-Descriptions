@@ -205,15 +205,17 @@ local repentanceItemStats = {
 	[C_ID .. 664] = { RedHeart = 1, FullHealth = true }, -- Binge Eater
 	[C_ID .. 667] = { Bomb = 1 }, -- Strawman
 	[C_ID .. 669] = { RedHeart = 1, Speed = 0.2, Tears = 0.5, Damage = 0.5, Range = 2.5, ShotSpeed = 0.16, Luck = 1, FullHealth = true, AngelDevilChance = 6.9, PlanetariumChance = 6.9 }, -- Sausage
-	[C_ID .. 686] = { Spawns = { SoulHeart = 1 } }, -- Soul Locket
+	[C_ID .. 673] = { EffectList = {Damage = 1, SoulHeart = 1 } }, -- Redemption
+    [C_ID .. 686] = { Spawns = { SoulHeart = 1 } }, -- Soul Locket
 	[C_ID .. 688] = { Life = 1 }, -- Inner Child
 	[C_ID .. 693] = { Flies = 8 }, -- The Swarm
 	[C_ID .. 694] = { BrokenHeart = 3 }, -- Heartbreak
 
     [C_ID .. 704] = { TimedEffect = { Duration = 5, Speed = 0.4, FireRateMultiplier = 0.5, FireRate = 2, Damage = 3 } }, -- Berserk!
+    [C_ID .. 705] = { EffectList = { Speed = 1 } }, -- Dark Arts
 	[C_ID .. 707] = { RedHeart = 1, HealingRed = 1 }, -- Supper
 	[C_ID .. 708] = { Damage = 1 }, -- Stapler
-	[C_ID .. 716] = { Spawns = {Coin = 3, Key = 1} }, -- Keeper's Sack
+	[C_ID .. 716] = { Spawns = { Coin = 3, Key = 1}, EffectList = { Speed = 0.03, Damage =0.5, Range =0.25 } }, -- Keeper's Sack
 	[C_ID .. 727] = { Bomb = 5 }, -- Ghost Bombs
 	[C_ID .. 730] = { Damage = 0.75, Luck = 1 }, -- Glass Eye
     [C_ID .. 731] = { RightEye = { DamageMultiplier = 1.28, Range = 6.5, ShotSpeed = -0.3 } }, -- Stye
@@ -254,6 +256,7 @@ local repentanceItemStats = {
     [Card_ID .. 61] = { Spawns = { BoneHeart = 2 } }, -- V - The Hierophant?
     [Card_ID .. 63] = { TimedEffect = { Duration = 10, FireRateMultiplier = 4} }, -- VII - The Chariot?
     [Card_ID .. 68] = { TimedEffect = { Duration = 30, Speed = -0.1 } }, -- XII - The Hanged Man?
+    [Card_ID .. 75] = { EffectList = { Damage = 1.5, Flight = true, TearEffect = "Spectral" }}, -- XIX - The Sun?
     [Card_ID .. 79] = { Spawns = { RedHeart = {1,20} } }, -- Queen of Hearts
     [Card_ID .. 85] = { EffectList = { FireRate = 1.5, Damage = 1 } }, -- Soul of ???
     [Card_ID .. 93] = { Spawns = { Coin = {1, 25} } }, -- Soul of the Keeper
