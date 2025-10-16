@@ -78,7 +78,7 @@ local trinkets = {
 	-- Change: Added info about devil deals
 	[7] = { "7", "Cuenta de rosario", "{{AngelChance}} 50% mayor probabilidad de encontrar Salas de Ángel#{{Collectible33}} Mayor probabilidad de encontrar La Bíblia en {{Shop}} Tiendas y {{Library}} Bibliotecas#Reemplaza la {{DevilRoom}} Sala del Diablo por una {{AngelRoom}} Sala del Ángel" }, -- Rosary Bead
 	-- Change: added info about dropping the item
-	[16] = { "16", "Uña del pie de Mamá", "Al soltar el trinket en una habitación hostil, el Pie de Mamá pisoteará en su ubicación" }, -- Mom's Toenail
+	[16] = { "16", "Uña del pie de Mamá", "{{MomBossSmall}} Soltar el trinket en una habitación hostil hará que el Pie de Mamá pisotée en su ubicación" }, -- Mom's Toenail
 	-- Change: added Super Secret Room info
 	[23] = { "23", "Cartel de Desaparecido", "{{Player10}} Reaparecerás como \"El Perdido\" tras morir#{{SuperSecretRoom}} 33% de probabilidad de revelar Habitaciones Super Secretas al cambiar de piso" }, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
@@ -97,6 +97,8 @@ local trinkets = {
 	[93] = { "93", "Pañal usado", "33% de probabilidad por habitación de volver amistosas a todas las moscas enemigas#Genera una mosca azul al entrar a una nueva sala" }, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = { "97", "Amígdala", "Recibir daño 6-12 veces genera un familiar que bloquea proyectiles#Limite de 2 familiares a la vez" }, -- Amígdala
+	-- Change: now affected by luck, maxing at 18 luck
+	[99] = { "99", "Super Bola", "10% de probabilidad de disparar lágrimas que rebotan#{{Luck}} 100% de probabilidad con 18 de suerte" }, -- Super Ball
 	-- Change: Added +2 Tears
 	[103] = { "103", "Equality!", "Al tener el mismo número de {{Coin}} monedas, {{Bomb}} bombas y {{Key}} llaves:#↑ {{Tears}} Lágrimas +2#Convierte los recolectables en sus versiones dobles" }, -- Equality!
 	-- Change: "2%" to "5%"
@@ -106,7 +108,7 @@ local trinkets = {
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = { "133", "Mecha corta", "Las bombas colocadas explotan más rápido#Las bombas hacen un 15% mas de daño" }, -- Short Fuse
 	-- Change: Added coin type based information
-	[172] = { "172", "Moneda maldita", "Recoger una moneda te teletransporta a una habitación aleatoria#Puede teletransportarte a habitaciones secretas#El tipo de habitación dependerá de la calidad de moneda recogida" }, -- Cursed Penny
+	[172] = { "172", "Moneda maldita", "Recoger una moneda te teletransporta a una habitación aleatoria#{{SecretRoom}} Puede teletransportarte a habitaciones secretas#El tipo de habitación dependerá de la calidad de moneda recogida" }, -- Cursed Penny
 
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
@@ -114,21 +116,21 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 ------- Golden Trinkets -------
 
 local goldenTrinketEffects = {
-	-- Purple Heart (replace):
+	-- Purple Heart (full replace):
 	[5] = {
-		"{{ColorGold}}Triplica {{CR}}la probabilidad de encontrar enemigos campeones#{{ColorGold}}66{{CR}}% de probabilidad de que los enemigos campeones suelten recolectables#Los enemigos campeones sueltan el doble recolectables",
-		"{{ColorGold}}Cuatriplica {{CR}}la probabilidad de encontrar enemigos campeones#{{ColorGold}}75{{CR}}% de probabilidad de que los enemigos campeones suelten recolectables#Los enemigos campeones sueltan el doble recolectables",
+		"{{ColorGold}}Triplica {{CR}}la probabilidad de encontrar enemigos campeones#{{ColorGold}}66{{CR}}% de probabilidad de que los enemigos campeones suelten recolectables#Los enemigos campeones soltarán el doble de recolectables",
+		"{{ColorGold}}Cuatriplica {{CR}}la probabilidad de encontrar enemigos campeones#{{ColorGold}}75{{CR}}% de probabilidad de que los enemigos campeones suelten recolectables#Los enemigos campeones soltarán el doble de recolectables",
 	},
 	-- Callus (append):
 	[14] = { "{{SacrificeRoom}} Reduce el daño de las espinas en la sala del sacrificio a medio corazón", "{{Collectible108}} Reduce la mayoria del daño recibido a medio corazón" },
 	-- Mom's Toenail (find replace):
-	[16] = { "pisoteará", "{{CR}}pisoteará {{ColorGold}}2 veces", "{{CR}}pisoteará {{ColorGold}}3 veces" },
+	[16] = { "pisotée", "{{CR}}pisotée {{ColorGold}}2 veces", "{{CR}}pisotée {{ColorGold}}3 veces" },
 	-- Paper Clip (find replace):
-	[19] = { "cofres dorados", "{{CR}}cofres dorados {{ColorGold}}y candados", "{{CR}}cofres dorados, {{ColorGold}}candados y puertas cerradas" },
+	[19] = { "Cofres Dorados", "{{CR}}cofres dorados {{ColorGold}}y candados", "{{CR}}cofres dorados, {{ColorGold}}candados y puertas cerradas" },
 	-- Mysterious Paper (find replace):
 	[21] = { "el efecto de", "{{ColorGold}}2{{CR}} de los siguientes efectos", "{{ColorGold}}2{{CR}} de los siguientes efectos" },
 	-- Daemon's Tail (append):
-	[22] = { "{{BlackHeart}} Las fogatas azules y moradas ahora dejarán caer corazones negros" },
+	[22] = { "{{BlackHeart}} Las fogatas azules y moradas dejarán caer corazones negros" },
 	-- Broken Ankh (find replace):
 	[28] = { 22, 33, 50 },
 	-- Umbilical Cord (find replace):
@@ -139,7 +141,7 @@ local goldenTrinketEffects = {
 	[36] = { 10, 20, 50,  33, 66, 100 },
 	-- Match Stick (find replace):
 	[41] = { 10, 20, 50,  33, 66, 100 },
-	-- Cursed Skull (replace):
+	-- Cursed Skull (full replace):
 	[43] = {
 		"Al recibir daño hasta quedar a medio corazón o menos, te teletransporta a una habitación {{ColorGold}}especial",
 		"Al recibir daño hasta quedar a {{ColorGold}}un corazón {{CR}}o menos, te teletransporta a una habitación {{ColorGold}}especial",
@@ -149,19 +151,19 @@ local goldenTrinketEffects = {
 	-- Ace of Spades (find replace):
 	[45] = { 10, 20, 50,  33, 66, 100 },
 	-- Counterfeit Penny (find replace):
-	[52] = { "incrementar +1", "{{CR}}incrementar {{ColorGold}}+2", "{{CR}}incrementar {{ColorGold}}+3" },
-	-- Tick (replace): added "{{Trinket135}} A Lighter"
+	[52] = { 1, 2, 3 },
+	-- Tick (full replace): added "{{Trinket135}} A Lighter"
 	[53] = {
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 		"{{HealingRed}} Cura {{ColorGold}}2{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{Warning}} Este trinket no puede ser soltado#Solo puedes deshacerte de él con {{Trinket41}} La cerilla, {{Trinket135}} el Mechero o tragándolo",
 		"{{HealingRed}} Cura {{ColorGold}}3{{CR}} Corazones rojos al entrar a una {{BossRoom}} Sala del Jefe#{{CR}}Reduce un {{ColorGold}}30{{CR}}% la salud del jefe#{{ColorGold}}Puede ser soltado",
 	},
 	-- Isaac's Head (find replace):
-	[54] = { "3.5 de daño", "tu daño", "1.5 veces tu daño" },
-	-- Judas' Tongue (replace):
+	[54] = { "3.5 de daño", "el mismo daño que el jugador", "1.5 veces tu daño" },
+	-- Judas' Tongue (full replace):
 	[56] = {
 		"{{DevilRoom}} Reduce los precios de {{ColorGold}}todos{{CR}} los pactos del Diablo a un contenedor de corazón",
-		"{{DevilRoom}} Reduce los precios de {{ColorGold}}todos{{CR}} los pactos del Diablo a un contenedor de corazón#{{ColorGold}}Los pactos de espinas pagarán al primer intento"
+		"{{DevilRoom}} Reduce los precios de {{ColorGold}}todos{{CR}} los pactos del Diablo a un contenedor de corazón#{{Collectible692}} {{ColorGold}}Los pactos de espinas pagarán al primer intento"
 	},
 	-- ???'s Soul (find replace):
 	[57] = { "Familiar que rebota", "{{CR}}Otorga {{ColorGold}}2 {{CR}}familiares que rebotan", "{{CR}}Otorga {{ColorGold}}3 {{CR}}familiares que rebotan" },
@@ -169,18 +171,18 @@ local goldenTrinketEffects = {
 	[58] = { 6.66, 13, 25 },
 	-- The Left Hand (append):
 	[61] = {
-		"{{RedChest}} Los Cofres Rojos contendrán recolectables extra",
-		"{{RedChest}} Los Cofres Rojos contendrán recolectables extra#{{ColorGold}}Los Cofres Rojos no generarán Arañas Rojas",
+		"{{RedChest}} Los Cofres Rojos tendrán recolectables extra",
+		"{{RedChest}} Los Cofres Rojos tendrán recolectables extra#{{RedChest}} {{ColorGold}}Los Cofres Rojos no tendrán Arañas Rojas",
 	},
-	-- Shiny Rock (replace):
+	-- Shiny Rock (full replace):
 	[62] = {
 		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas/super secretas {{CR}}parpadearán cada 10 segundos",
 		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas/super secretas {{CR}}parpadearán cada {{ColorGold}}5 {{CR}}segundos",
 	},
 	-- Safety Scissors (append):
 	[63] = {
-		"Reduce el radio de explosiones enemigas",
-		"Reduce en gran medida el radio de explosiones enemigas",
+		"Reduce el radio de las explosiones enemigas",
+		"Reduce en gran medida el radio de las explosiones enemigas",
 	},
 	-- Super Magnet (find replace):
 	[68] = { "recolectables y enemigos", "{{CR}}recolectables, enemigos, {{ColorGold}}sacos y trinkets", "{{CR}}recolectables, enemigos, {{ColorGold}}sacos, trinkets y cofres" },
@@ -194,8 +196,11 @@ local goldenTrinketEffects = {
 	[83] = { "{{Shop}} Evita que las tiendas sean de baja calidad", "{{Shop}} Mejora las tiendas" },
 	-- Rib of Greed (append):
 	[84] = { "{{Coin}} Aumenta la probabilidad de duplicar todo tipo de monedas" },
-	-- Karma (find replace):
-	[85] = { "Suerte +1", "{{CR}}Suerte {{ColorGold}}+2", "{{CR}}Suerte {{ColorGold}}+3" },
+	-- Karma (full replace):
+	[85] = {
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}2 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento",
+		"{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +{{ColorGold}}3 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento",
+	},
 	-- Mom's Locket (find replace):
 	[87] = { "medio corazón", "un corazón", "un corazón y medio" },
 	-- Meconium (find replace):
@@ -206,7 +211,7 @@ local goldenTrinketEffects = {
 	[94] = { "20% de probabilidad de generar 3 moscas/arañas azules", "20% de probabilidad de generar 4 moscas/arañas azules" },
 	-- Tonsil (find replace):
 	[97] = { "2 familiares", "3{{CR}} familiares", "4{{CR}} familiares" },
-	-- Nose Goblin (replace):
+	-- Nose Goblin (full replace):
 	[98] = {
 		"{{ColorGold}}20{{CR}}% de probabilidad de disparar una lágrima de moco pegajosa#{{ColorGold}}75{{CR}}% de probabilidad de que sea teledirigida#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 10 segundos",
 		"{{ColorGold}}30{{CR}}% de probabilidad de disparar una lágrima de moco pegajosa y {{ColorGold}}teledirigida#{{Damage}} Los mocos infligen tu daño una vez cada segundo#Los mocos se pegan durante 10 segundos",
@@ -231,7 +236,7 @@ local goldenTrinketEffects = {
 	-- Silver Dollar (find replace):
 	[110] = { "tiendas", "{{CR}}tiendas {{ColorGold}}mejoradas" },
 	-- Bloody Crown (append):
-	[111] = { "Estas tendrán 2 objetos para elegir" },
+	[111] = { "{{TreasureRoom}} Las Salas del tesoro del Utero y del Cadaver tendrán 2 Objetos para elegir" },
 	-- Pay To Win (append):
 	[112] = { "{{RestockMachine}} Reduce la probabilidad de que las máquinas de reabastecimiento exploten" },
 	-- Locust of War (find replace):
@@ -254,9 +259,9 @@ local goldenTrinketEffects = {
 	-- Wooden Cross (find replace):
 	[121] = { "un escudo sagrado", "2{{CR}} escudos sagrados" },
 	-- Filigree Feather (append):
-	[123] = { "Los Ángeles también soltarán medio corazón de alma", "Los Ángeles también soltarán un corazón de alma" },
+	[123] = { "{{HalfSoulHeart}} Los Ángeles también soltarán medio corazón de alma", "{{SoulHeart}} Los Ángeles también soltarán un corazón de alma" },
 	-- Door Stop (append):
-	[124] = { "También mantiene abiertas las puertas de Boss Rush", "También mantiene abiertas las puertas de Boss Rush y salas de desafío" },
+	[124] = { "{{BossRushRoom}} También mantiene abiertas las puertas de Boss Rush", "{{BossRushRoom}} También mantiene abiertas las puertas de Boss Rush y salas de desafío" },
 	-- Rotten Penny (find replace):
 	[126] = { "una mosca azul", "2{{CR}} moscas azules", "3{{CR}} moscas azules" },
 	-- Baby-Bender (append):
@@ -265,14 +270,19 @@ local goldenTrinketEffects = {
 	[131] = { 17, 25, 30 },
 	-- Short Fuse (find replace):
 	[133] = { 15, 30, 50 },
-	-- Gigante Bean (append)
-	[134] = { "Aumenta el empuje de los pedos", "Aumenta el empuje de los pedos#{{Confusion}} {{ColorGold}}Los pedos confunden a los enemigos durante 3 segundos" },
+	-- Gigante Bean (full replace)
+	[134] = { 
+		"{{Poison}} Aumenta el tamaño y {{ColorGold}}empuje {{CR}}de los pedos",
+		"{{Poison}} Aumenta el tamaño y {{ColorGold}}empuje {{CR}}de los pedos#{{Confusion}} {{ColorGold}}Los pedos confunden a los enemigos durante 3 segundos",
+	},
 	-- Broken Padlock (find replace):
-	[136] = { "puertas, candados y cofres dorados", "{{CR}}puertas, candados. cofres dorados, {{ColorGold}}Arcades y salas de desafío", "{{CR}}puertas, candados. cofres dorados chests, {{ColorGold}}Arcades, salas de jefe y de desafío" },
+	[136] = { "Puertas, Candados y Cofres Dorados", "{{CR}}Puertas, Candados. Cofres Dorados, {{ColorGold}}Arcades y Salas de Desafío", "{{CR}}Puertas, Candados. Cofres Dorados, {{ColorGold}}Arcades, Salas de Desafío y de Jefe" },
 	-- 'M (append):
 	[138] = { "{{Battery}} 10% de probabilidad de recargar el objeto cambiado por completo", "{{Battery}} 20% de probabilidad de recargar el objeto cambiado por completo" },
 	-- Apple of Sodom (find replace):
 	[140] = { "corazones rojos", "cualquier tipo {{CR}}de corazones" },
+	-- Forgottem Lullaby (find replace):
+	[141] = { "Duplica", "Triplica" },
 	-- Brain Worm (append):
 	[144] = { "25% de probabilidad de disparar lágrimas perforantes", "50% de probabilidad de disparar lágrimas perforantes" },
 	-- Devil’s Crown (append):
@@ -280,17 +290,17 @@ local goldenTrinketEffects = {
 	-- Charged Penny (find replace):
 	[147] = { "una carga", "2{{CR}} cargas", "3{{CR}} cargas" },
 	-- Friendship Necklace (append):
-	[148] = { "Aumenta la velocidad de los familiares orbitales", "Aumenta enormemente la velocidad de los familiares orbitales" },
+	[148] = { "Aumenta la velocidad de los familiares orbitales", "Aumenta en gran medida la velocidad de los familiares orbitales" },
 	-- Panic Button (append):
 	[149] = { "10% de probabilidad de usar el objeto activo gratis", "20% de probabilidad de usar el objeto activo gratis" },
 	-- Blue Key (append):
 	[150] = { "Duplica las recompensas al completar habitaciones azules", "Triplica las recompensas al completar habitaciones azules" },
 	-- Flat File (append):
-	[151] = { "Tambien afecta a Jefes, Grudges, y Bolas con Cadena" },
+	[151] = { "Tambien afecta a Jefes, Grudges y Bolas con Cadena" },
 	-- Telescope Lens (full replace):
 	[152] = {
-		"{{PlanetariumChance}} +18{{CR}}% de probabilidad de Planetario#+15% de probabilidad adicional si aún no has entrado a un Planetario#Los planetarios pueden generarse en el Útero y el Cadáver",
-		"{{PlanetariumChance}} +33{{CR}}% de probabilidad de Planetario#+15% de probabilidad adicional si aún no has entrado a un Planetario#Los planetarios pueden generarse en el Útero, el Cadáver, {{ColorGold}}Sheol y la Catedral",
+		"{{PlanetariumChance}} +{{ColorGold}}18{{CR}}% de probabilidad de Planetario#{{Planetarium}} +15% de probabilidad adicional si aún no has entrado a un Planetario#Los planetarios pueden generarse en el Útero y el Cadáver",
+		"{{PlanetariumChance}} +{{ColorGold}}33{{CR}}% de probabilidad de Planetario#{{Planetarium}} +15% de probabilidad adicional si aún no has entrado a un Planetario#Los planetarios pueden generarse en el Útero, el Cadáver, {{ColorGold}}Sheol y la Catedral",
 	},
 	-- Holy Crown (full replace):
 	[155] = {
@@ -307,15 +317,15 @@ local goldenTrinketEffects = {
 	},
 	-- Wicked Crown (full replace):
 	[161] = {
-		"{{CR}}Genera una {{TreasureRoom}} Sala del tesoro y una {{Shop}} Shop {{ColorGold}}mejorada {{CR}}en Sheol#{{TreasureRoom}} {{ColorGold}}Las Salas del tesoro en Sheol tendrán 2 Objetos para elegir",
-		"{{CR}}Genera una {{TreasureRoom}} Sala del tesoro y una {{Shop}} Shop {{ColorGold}}mejorada {{CR}}en Sheol#{{TreasureRoom}} {{ColorGold}}Las Salas del tesoro en Sheol tendrán 2 Objetos para elegir#{{ColorGold}}Revela la ubicación de la Sala del tesoro y la Tienda en Sheol",
+		"{{CR}}Genera una {{TreasureRoom}} Sala del tesoro y una {{Shop}} Tienda {{ColorGold}}mejorada {{CR}}en Sheol#{{TreasureRoom}} {{ColorGold}}Las Salas del tesoro en Sheol tendrán 2 Objetos para elegir",
+		"{{CR}}Genera una {{TreasureRoom}} Sala del tesoro y una {{Shop}} Tienda {{ColorGold}}mejorada {{CR}}en Sheol#{{TreasureRoom}} {{ColorGold}}Las Salas del tesoro en Sheol tendrán 2 Objetos para elegir#{{ColorGold}}Revela la ubicación de la Sala del tesoro y la Tienda en Sheol",
 	},
 	-- Nuh Uh! (append):
 	[165] = { "+10% de probabilidad de encontrar recolectables dobles", "+20% de probabilidad de encontrar recolectables dobles" },
 	-- Keeper’s Bargain (full replace):
 	[171] = {
-		"{{DevilRoom}} 100{{CR}}% chance for devil deals to cost coins instead of hearts",
-		"{{DevilRoom}} 100{{CR}}% chance for devil deals to cost coins instead of hearts#{{ColorGold}}Increases chance of Devil deals being on sale",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}% chance for devil deals to cost coins instead of hearts",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}% chance for devil deals to cost coins instead of hearts#{{ColorGold}}Increases chance of Devil deals being on sale",
 	},
 	-- Cursed Penny (append):
 	[172] = { "Aumenta la probabilidad de ser teletransportado a una habitacion especial" },
@@ -327,7 +337,7 @@ local goldenTrinketEffects = {
 		"Abre el pasaje hacia \"???\" (Vientre azul) sin importar el tiempo#Using {{Collectible297}} La Caja de Pandora consume la llave y genera {{ColorGold}}10 {{CR}}objetos de grupos aleatorios#{{ColorGold}}Permite abrir todas las puertas y cofres en el \"Vientre azul\" gratis",
 	},
 	-- Temporary Tattoo (append):
-	[177] = { "Aumenta permanentemente una estadística aleatoria al completar una Sala del Desafio", "Aumenta permanentemente 2 estadísticas aleatorias al completar una Sala del Desafio" },
+	[177] = { "{{ChallengeRoom}} Aumenta permanentemente una estadística aleatoria al completar una Sala del Desafio", "{{ChallengeRoom}} Aumenta permanentemente 2 estadísticas aleatorias al completar una Sala del Desafio" },
 	-- RC Remote (append):
 	[179] = { "Los familiares infligen 2 de daño por contacto por tick", "Los familiares infligen 5 de daño por contacto por tick" },
 	-- Expansion Pack (full replace):
@@ -375,7 +385,7 @@ local goldenTrinketData = {
 	[76] = {append = true}, -- Poker Chip
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
-	[85] = {findReplace = true}, -- Karma
+	[85] = {fullReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
@@ -404,10 +414,11 @@ local goldenTrinketData = {
 	[127] = {append = true}, -- Baby-Bender
 	[131] = {findReplace = true}, -- Blessed Penny
 	[133] = {findReplace = true}, -- Short Fuse
-	[134] = {append = true}, -- Gigante Bean
+	[134] = {fullReplace = true}, -- Gigante Bean
 	[136] = {findReplace = true}, -- Broken Padlock
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
+	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny
