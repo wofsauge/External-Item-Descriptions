@@ -1242,7 +1242,7 @@ local repCharacterInfo = {
 	[20] = {"Esau", "Điều khiển Jacob và Esau cùng lúc#Cả hai nhân vật thả bom khi một người dùng#Esau đứng yên khi giữ {{ButtonRT}}#{{ButtonLT}} dùng vật phẩm hoạt động của Jacob, {{ButtonRB}} dùng của Esau, giữ {{ButtonRT}} để dùng lá bài/thuốc của họ#Khi có lựa chọn giữa các vật phẩm, Jacob và Esau có thể lấy hai cùng lúc"},
 	
 	[21] = {"Tainted Isaac", "Bệ vật phẩm chuyển đổi giữa 2 lựa chọn#Chỉ có thể mang 8 vật phẩm thụ động#Thay đổi vật phẩm sẽ bị làm rơi cho vật phẩm thứ 9 bằng {{ButtonRT}}"},
-	[22] = {"Tainted Magdalene", "Máu trên 2 Trái tim đỏ sẽ từ từ cạn#Khi tiếp xúc, thực hiện cú đánh cận chiến gây sát thương gấp 6#{{HalfRedHeart}} Cơ hội để kẻ thù làm rơi Nửa Trái tim đỏ biến mất sau 2 giây#Đảm bảo rơi khi giết bằng cận chiến#{{Collectible45}} Hồi máu gấp đôi từ nguồn không phải vật phẩm nhặt#{{AngelDevilChance}} Sát thương lên trái tim cạn không ảnh hưởng đến cơ hội Giao kèo Quỷ"},
+	[22] = {"Tainted Magdalene", "Máu trên 2 Trái tim đỏ sẽ từ từ cạn#Khi tiếp xúc, thực hiện cú đánh cận chiến gây sát thương gấp 6#{{HalfHeart}} Cơ hội để kẻ thù làm rơi Nửa Trái tim đỏ biến mất sau 2 giây#Đảm bảo rơi khi giết bằng cận chiến#{{Collectible45}} Hồi máu gấp đôi từ nguồn không phải vật phẩm nhặt#{{AngelDevilChance}} Sát thương lên trái tim cạn không ảnh hưởng đến cơ hội Giao kèo Quỷ"},
 	[23] = {"Tainted Cain", "Chạm vào bệ vật phẩm biến nó thành nhiều loại vật phẩm nhặt khác nhau"},
 	[24] = {"Tainted Judas", "Không thể có Trái tim đỏ#{{BlackHeart}} Tăng máu tặng Trái tim đen"},
 	[25] = {"Tainted ???", "Bom được thay bằng Phép Phân#{{Crafting29}} Gây sát thương tạo vật phẩm nhặt phân#{{Collectible715}} Bạn có thể lưu phép tiếp theo để dùng sau bằng Hold"},

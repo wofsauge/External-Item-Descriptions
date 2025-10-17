@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.09
-EID.ModVersionCommit = "42f947e"
+EID.ModVersion = 5.10
+EID.ModVersionCommit = "374cded"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -774,9 +774,8 @@ function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 	description = EID:replaceShortMarkupStrings(description)
 	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do
-		local numIndentations = 0
-		line, numIndentations = EID:handleTextIndentation(line)
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
+		local editedLine, numIndentations = EID:handleTextIndentation(line)
+		local formatedLines = EID:fitTextToWidth(editedLine, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
 		local textColor = EID:getTextColor()
 
 		local indentOffset = textOffset * numIndentations

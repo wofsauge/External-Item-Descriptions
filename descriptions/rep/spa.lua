@@ -1298,7 +1298,7 @@ local repCharacterInfo = {
 	[20] = {"Esaú", "Controlas a Jacob y Esaú al mismo tiempo#Ambos personajes sueltan una bomba al usarlas#Esaú se queda quieto al mantener {{ButtonRT}}#{{ButtonLT}} activa el objeto de Jacob, {{ButtonRB}} activa el objeto de Esau, manten presionado {{ButtonRT}} para usar su carta/pildora"},
 
 	[21] = {"Isaac Corrupto", "Los objetos en pedestales alternan entre 2 objetos#Solo puedes llevar 8 objetos pasivos#Puedes cambiar el orden de los objetos pasivos presionando {{ButtonRT}}"},
-	[22] = {"Magdalena Corrupta", "Drena lentamente tu salud al tener mas de 2 corazones#On contact, do a melee swing for 6x damage#{{HalfRedHeart}} Chance for enemies to drop Half Red Hearts that disappear in 2 seconds#Drop is guaranteed on melee kill#{{Collectible45}} Duplica la curación de objetos#{{AngelDevilChance}} Damage taken to draining hearts doesn't affect Devil Deal chance"},
+	[22] = {"Magdalena Corrupta", "Drena lentamente tu salud al tener mas de 2 corazones#On contact, do a melee swing for 6x damage#{{HalfHeart}} Chance for enemies to drop Half Red Hearts that disappear in 2 seconds#Drop is guaranteed on melee kill#{{Collectible45}} Duplica la curación de objetos#{{AngelDevilChance}} Damage taken to draining hearts doesn't affect Devil Deal chance"},
 	[23] = {"Caín Corrupto", "Los objetos en pedestales se transforman al tocarlos en varios recolectables"},
 	[24] = {"Judas Corrupto", "No puedes tener Corazones rojos#{{BlackHeart}} los Objetos de vida otorgan Corazones Negros"},
 	[25] = {"??? Corrupto", "Reemplaza tus bombas por Hechizos de caca#{{Crafting29}} Probabilidad de generar recursos de caca al matar enemigos#{{Collectible715}} Puedes almacenar el siguiente hechizo presionando {{ButtonRB}}"},
