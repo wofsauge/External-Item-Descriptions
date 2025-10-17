@@ -774,9 +774,8 @@ function EID:printBulletPoints(description, renderPos, ignoreBPConfig)
 	description = EID:replaceShortMarkupStrings(description)
 	description = EID:replaceMarkupSize(description)
 	for line in string.gmatch(description, "([^#]+)") do
-		local numIndentations = 0
-		line, numIndentations = EID:handleTextIndentation(line)
-		local formatedLines = EID:fitTextToWidth(line, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
+		local editedLine, numIndentations = EID:handleTextIndentation(line)
+		local formatedLines = EID:fitTextToWidth(editedLine, textboxWidth, EID.BreakUtf8CharsLanguage[EID:getLanguage()])
 		local textColor = EID:getTextColor()
 
 		local indentOffset = textOffset * numIndentations
