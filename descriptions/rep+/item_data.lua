@@ -1,12 +1,12 @@
 -- Repentance Modular Descriptions
--- Generates item descriptions based on stat changes defined in statValues
+-- Used to generate item descriptions based on modules and data entries
 local C_ID = "5.100."
 local T_ID = "5.350."
 local Pill_ID = "5.70."
 local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
-local repentancePlusItemStats = {
+local itemData = {
 
 ---------- Collectibles ----------
 
@@ -37,4 +37,4 @@ local repentancePlusItemStats = {
     [Pill_ID .. (HorseID + 30)] = { BrokenHeart = 1, ItemDescription = "5.70.30" }, -- Addicted! (Added broken heart)
 }
 
-EID:updateDescriptionsViaTable(repentancePlusItemStats, EID.ItemStats)
+EID:updateDescriptionsViaTable(itemData, EID.ItemData)

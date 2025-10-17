@@ -1,11 +1,11 @@
 -- AB+ Modular Descriptions
--- Generates item descriptions based on stat changes defined in statValues
+-- Used to generate item descriptions based on modules and data entries
 local C_ID = "5.100."
 local T_ID = "5.350."
 local Pill_ID = "5.70."
 local Card_ID = "5.300."
 
-EID.ItemStats = {
+EID.ItemData = {
 
 ---------- Collectibles ----------
 

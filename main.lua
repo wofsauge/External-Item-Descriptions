@@ -386,7 +386,7 @@ function EID:CheckVoidAbsorbs(_, _, player)
 	EID.absorbedItems[tostring(playerID)] = EID.absorbedItems[tostring(playerID)] or {}
 	for _,itemID in ipairs(EID:VoidRoomCheck()) do
 		-- Don't include single use items in Repentance, since they are not permanently absorbed
-		if not(EID.isRepentance and (EID.ItemStats[itemID] and EID.ItemStats[itemID].SingleUseInfo)) then
+		if not(EID.isRepentance and (EID.ItemData[itemID] and EID.ItemData[itemID].SingleUseInfo)) then
 			EID.absorbedItems[tostring(playerID)][tostring(itemID)] = true
 		end
 	end

@@ -1,11 +1,21 @@
--- List of available stats in order of priority. Higher priority stats are listed first in the description.
--- Arrow indicates if an up/down arrow should be shown for positive/negative values.
--- Icon indicates what icon should be shown before the stat.
--- IsMultiplier indicates if the stat is a multiplier (e.g. TearsMultiplier) and should be formatted with "x" instead of "+".
--- HideSign indicates if the sign (+/-/x) should be hidden for the stat value
-EID.StatisticsData = {
+-- Table defining the construction bahavior of modular descriptions.
+-- A modular description is constructed by looking up the EID.ItemData entry for the given item id (for example: 5.100.123).
+-- Each item data coresponds to an entry in the "EID.ModuleBehaviors" table below, which defines how the description is constructed.
+-- If no BehaviorFunc is defined, the default constructor is used, which takes the "EID.descriptions[<CurrentLanguage>].ModularDescriptions" entry with the 
+-- same name as the ModuleBehavior, and tries to use the provided data from the ItemData entry to fill the {value} placeholder in the description module text 
+
+---- Argument -----
+-- The key is the name of the module. It should be the exact same as the data entry in EID.ItemData and the entry of the translation text to be used (in EID.descriptions["en_us"].ModularDescriptions)
+-- Priority defines the order of which the modules are added to the description. Positive values get added before the "Additional Informations". Negative priority modules get added afterwards
+-- Arrow indicates if an up/down arrow should be shown at the front of a description for positive/negative values.
+-- InvertArrow inverts the Arrow direction, pointing up for negative values and down for positive.
+-- Icon indicates what icon should be shown before the modular description.
+-- IsMultiplier indicates if the modular description describes a multiplier (e.g. TearsMultiplier) and its value should be formatted with an "x" instead of "+/-".
+-- HideSign indicates if the sign (+/-/x) should be hidden for the modular description value
+-- BehaviorFunc can be used to define a custom behavior for building the modular description. its a function that takes 3 arguments and should return the altered description.
+EID.ModuleBehaviors = {
     ["SingleUseInfo"] = { Priority = 11000, HideSign = true },
-    -- Player Stats
+    -- Player Modules
     ["TearsMultiplier"] = { Priority = 9990, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true },
     ["Tears"] = { Priority = 9980, Arrow = true, Icon = "{{Tears}}" },
     ["TearDelayMultiplier"] = { Priority = 9970, Arrow = true, Icon = "{{Tears}}", IsMultiplier = true, InvertArrow = true },
@@ -95,38 +105,38 @@ EID.StatisticsData = {
             Rune = "{{Rune}}",
             Battery = "{{Battery}}",
         },
-        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
-            local statDescription = ""
-            for subStatID, subValue in pairs(itemStatsTableEntry) do
-                local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[subStatID]
+        BehaviorFunc = function(moduleBehaviorEntry, itemDataTableEntry, description)
+            local moduleDescription = ""
+            for subModuleID, subValue in pairs(itemDataTableEntry) do
+                local subTextFragment = EID:getDescriptionEntry("ModularDescriptions", moduleBehaviorEntry.Name)[subModuleID]
                 if not subTextFragment then
-                    print("[ERROR] Spawn translation not found!", subStatID)
+                    print("[ERROR] Spawn translation not found!", subModuleID)
                 end
-                local subTextEntry = EID:GenerateStatDescriptionText(statDataEntry, subValue, subTextFragment)
+                local subTextEntry = EID:FormatModuleDescription(moduleBehaviorEntry, subValue, subTextFragment)
                 -- add icon of subentry to the beginning of the text
                 local iconString = ""
-                if statDataEntry.Icon and type(statDataEntry.Icon) == "table" and statDataEntry.Icon[subStatID] then
-                    iconString = statDataEntry.Icon[subStatID] .. " "
+                if moduleBehaviorEntry.Icon and type(moduleBehaviorEntry.Icon) == "table" and moduleBehaviorEntry.Icon[subModuleID] then
+                    iconString = moduleBehaviorEntry.Icon[subModuleID] .. " "
                 end
-                statDescription = statDescription .. iconString .. subTextEntry
+                moduleDescription = moduleDescription .. iconString .. subTextEntry
             end
 
-            if statDescription ~= "" then
-                description = description .. statDescription
+            if moduleDescription ~= "" then
+                description = description .. moduleDescription
             end
             return description
         end
     },
     ["TearEffect"] = {
         Priority = 5510,
-        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
+        BehaviorFunc = function(moduleBehaviorEntry, itemDataTableEntry, description)
             -- support single and multiple tear effects by turning single entries into a table
-            if type(itemStatsTableEntry) ~= "table" then
-                itemStatsTableEntry = {itemStatsTableEntry}
+            if type(itemDataTableEntry) ~= "table" then
+                itemDataTableEntry = {itemDataTableEntry}
             end
             local textFragment = ""
-            for _, effect in ipairs(itemStatsTableEntry) do
-                local effectText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[effect]
+            for _, effect in ipairs(itemDataTableEntry) do
+                local effectText = EID:getDescriptionEntry("ModularDescriptions", moduleBehaviorEntry.Name)[effect]
                 if not effectText then
                     print("[ERROR] TearEffect translation not found!", effect)
                 else
@@ -138,9 +148,9 @@ EID.StatisticsData = {
     },
     ["FullMapping"] = {
         Priority = 5520,
-        BehaviorFunc = function(statDataEntry, itemStatsTableEntry, description)
-            local baseText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)["BaseDesc"]
-            local valueText = EID:getDescriptionEntry("ModularDescriptions", statDataEntry.Name)[itemStatsTableEntry] or ""
+        BehaviorFunc = function(moduleBehaviorEntry, itemDataTableEntry, description)
+            local baseText = EID:getDescriptionEntry("ModularDescriptions", moduleBehaviorEntry.Name)["BaseDesc"]
+            local valueText = EID:getDescriptionEntry("ModularDescriptions", moduleBehaviorEntry.Name)[itemDataTableEntry] or ""
             if not baseText then
                 print("[ERROR] BaseDesc translation not found!", effect)
             else
@@ -155,73 +165,73 @@ EID.StatisticsData = {
     },
     ["LuckChance"] = {
         Priority = -9950,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
+        BehaviorFunc = function(_, itemDataTableEntry, description)
             -- build max luck information line
             local maxLuckText = EID:getDescriptionEntry("ModularDescriptions", "MaxLuck")
-            local maxLuckPercent = string.format("%.2f", (itemStatsTableEntry.Maximum or 1) * 100):gsub("%.?0+$", "")
+            local maxLuckPercent = string.format("%.2f", (itemDataTableEntry.Maximum or 1) * 100):gsub("%.?0+$", "")
             maxLuckText = maxLuckText:gsub("{max}", maxLuckPercent)
-            maxLuckText = maxLuckText:gsub("{value}", EID:CalculateChanceWithLuck(itemStatsTableEntry, true))
+            maxLuckText = maxLuckText:gsub("{value}", EID:CalculateChanceWithLuck(itemDataTableEntry, true))
             -- append max luck info after the affected line
             local _, chanceVarPos = string.find(description, "{VAR:LUCKCHANCE}", 1, true)
             local nextLineStart = string.find(description, "#", chanceVarPos or 1, true)
             description = string.sub(description, 0 , nextLineStart) .. maxLuckText .. string.sub(description, nextLineStart or 0)
             -- replace variable with calculated chance
-            description = description:gsub("{VAR:LUCKCHANCE}", EID:CalculateChanceWithLuck(itemStatsTableEntry, false))
+            description = description:gsub("{VAR:LUCKCHANCE}", EID:CalculateChanceWithLuck(itemDataTableEntry, false))
             return description
         end
     },
     ["EffectList"] = {
         -- Generic list of Effects to be placed inside the description, without any title text
         Priority = -9940,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "EffectList")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "EffectList")
         end
     },
     ["RightEye"] = {
         Priority = 9500,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RightEye")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "RightEye")
         end
     },
     ["LeftEye"] = {
         Priority = 9500,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "LeftEye")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "LeftEye")
         end
     },
     ["RoomEffect"] = {
         Priority = -9930,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "RoomEffect")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "RoomEffect")
         end
     },
     ["TimedEffect"] = {
         Priority = -9920,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "TimedEffect", "Duration")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "TimedEffect", "Duration")
         end
     },
     ["OnUseEffect"] = {
         Priority = -9910,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "OnUseEffect")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "OnUseEffect")
         end
     },
     ["HeldEffect"] = {
         Priority = -9900,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
-            return EID:ApplyModularNestedDescription(itemStatsTableEntry, description, "HeldEffect")
+        BehaviorFunc = function(_, itemDataTableEntry, description)
+            return EID:ApplyModularNestedDescription(itemDataTableEntry, description, "HeldEffect")
         end
     },
     ["ItemDescription"] = {
         -- Adds the description of another item
         Priority = -9980,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
+        BehaviorFunc = function(_, itemDataTableEntry, description)
             -- support single and multiple tear effects by turning single entries into a table
-            if type(itemStatsTableEntry) ~= "table" then
-                itemStatsTableEntry = {itemStatsTableEntry}
+            if type(itemDataTableEntry) ~= "table" then
+                itemDataTableEntry = {itemDataTableEntry}
             end
-            for _, itemID in ipairs(itemStatsTableEntry) do
+            for _, itemID in ipairs(itemDataTableEntry) do
                 local itemDesc =  EID:GenerateDescription(itemID)
                 if itemDesc and itemDesc ~= "" then
                     local numReplaced = 0
@@ -241,7 +251,7 @@ EID.StatisticsData = {
     -- Variable-like entries that require special handling
     ["Variables"] = {
         Priority = -9999,
-        BehaviorFunc = function(_, itemStatsTableEntry, description)
+        BehaviorFunc = function(_, itemDataTableEntry, description)
             -- Function to replace VAR markup with their specific content from the variables table
             description = description:gsub("{VAR:(.-)}", function(matchString)
                 -- Try to capture main text and optional trailing numbers used to add multiple variables of the same type
@@ -249,8 +259,8 @@ EID.StatisticsData = {
                 -- if the variablename is a number, use generic handler
                 local handlerName = variableName == "" and "FORMATTED" or variableName
                 -- if a function for the given variable exists, use it and return its value
-                local variableData = itemStatsTableEntry[variableName] or
-                    itemStatsTableEntry[tonumber(number)] or itemStatsTableEntry[matchString]
+                local variableData = itemDataTableEntry[variableName] or
+                    itemDataTableEntry[tonumber(number)] or itemDataTableEntry[matchString]
                 if EID.DynamicVariableHandlers[handlerName] and variableData then
                     return EID.DynamicVariableHandlers[handlerName](variableData)
                 else
@@ -266,8 +276,8 @@ EID.StatisticsData = {
         end
     },
 }
--- add name value to EID.StatisticsData table
-for k,v in pairs(EID.StatisticsData) do v.Name = k end
+-- add name value to EID.ModuleBehaviors table
+for k,v in pairs(EID.ModuleBehaviors) do v.Name = k end
 
 function EID:CalculateChanceWithLuck(variableData, useMax)
     local luckValue = EID.player and EID.player.Luck or 0
@@ -333,10 +343,10 @@ EID.LuckFormulaPresets = {
     }
 }
 
--- DEBUG: Validate Stat table entry existance
-function EID:ValidateItemStatEntry(statID, additionalInfo)
-    if not EID.StatisticsData[statID] then
-        print("[ERROR] Unknown item stat '"..statID.."'", additionalInfo)
+-- DEBUG: Validate Module table entry existance
+function EID:ValidateModuleEntry(ModuleID, additionalInfo)
+    if not EID.ModuleBehaviors[ModuleID] then
+        print("[ERROR] Unknown item Modul '"..ModuleID.."'", additionalInfo)
         return false
     end
     return true
@@ -396,38 +406,39 @@ function EID:CompareWithPreviousDLC(newDLCTable, oldDLCTable, dlcName)
     end
 end
 
-function EID:HandleStatEntry(statDataEntry, itemStatsTableEntry, description)
-    if not statDataEntry or not itemStatsTableEntry then
-        print("[ERROR] (EID:HandleStatEntry) Missing stat data entry or item stats table entry!", statDataEntry, itemStatsTableEntry, description)
+-- Handles a modular description entry by calling its BehaviorFunc or the default generator
+function EID:HandleModuleEntry(moduleBehaviorEntry, itemDataTableEntry, description)
+    if not moduleBehaviorEntry or not itemDataTableEntry then
+        print("[ERROR] (EID:HandleModuleEntry) Missing ModuleBehavior entry or ItemData table entry!", moduleBehaviorEntry, itemDataTableEntry, description)
         return description
     end
-    if type(statDataEntry.BehaviorFunc) == "function" then
-        return statDataEntry.BehaviorFunc(statDataEntry, itemStatsTableEntry, description)
+    if type(moduleBehaviorEntry.BehaviorFunc) == "function" then
+        return moduleBehaviorEntry.BehaviorFunc(moduleBehaviorEntry, itemDataTableEntry, description)
     end
     -- default behavior
-    return EID:GenerateTextFromStatEntry(statDataEntry, itemStatsTableEntry, description)
+    return EID:GenerateDefaultModuleDescription(moduleBehaviorEntry, itemDataTableEntry, description)
 end
 
--- Applies a modular description for a nested stat entry (e.g. TimedEffect or RoomEffect)
--- If the statName is given, it will try to replace {VAR:statName}
--- If applyValueWithName is given, it will replace {value} in the stat description with the value of the given name
-function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, statName, applyValueWithName)
-    -- Get base text fragment for the stat
-    local statText = EID:getDescriptionEntry("ModularDescriptions", statName)
-    local textFragment = statText and (statText .. "#") or ""
+-- Applies a modular description for a nested modular entry (e.g. TimedEffect or RoomEffect)
+-- If the moduleName is given, it will try to replace {VAR:moduleName}
+-- If applyValueWithName is given, it will replace {value} in the module description with the value of the given name
+function EID:ApplyModularNestedDescription(itemDataTableEntry, description, moduleName, applyValueWithName)
+    -- Get base text fragment for the module
+    local moduleText = EID:getDescriptionEntry("ModularDescriptions", moduleName)
+    local textFragment = moduleText and (moduleText .. "#") or ""
 
     -- replace value if a specific value name is given
     if applyValueWithName then
-        local value = string.format("%.2f", itemStatsTableEntry[applyValueWithName] or "UNDEFINED"):gsub("%.?0+$", "")
+        local value = string.format("%.2f", itemDataTableEntry[applyValueWithName] or "UNDEFINED"):gsub("%.?0+$", "")
         textFragment = textFragment:gsub("{value}", value)
     end
     -- add subdata entries
-    local sortedStats = EID:GetSortedModularDescriptionEntries(itemStatsTableEntry, true)
-    for _, statDataEntry in ipairs(sortedStats) do
-        local statID = statDataEntry.Name
-        if EID:ValidateItemStatEntry(statID, "located in a '"..statName.."' element") then
-            if not (applyValueWithName and statID == applyValueWithName) then
-                textFragment = EID:HandleStatEntry(EID.StatisticsData[statID], itemStatsTableEntry[statID], textFragment)
+    local sortedmodules = EID:GetSortedModularDescriptionEntries(itemDataTableEntry, true)
+    for _, moduleBehaviorEntry in ipairs(sortedmodules) do
+        local moduleID = moduleBehaviorEntry.Name
+        if EID:ValidateModuleEntry(moduleID, "located in a '"..moduleName.."' element") then
+            if not (applyValueWithName and moduleID == applyValueWithName) then
+                textFragment = EID:HandleModuleEntry(EID.ModuleBehaviors[moduleID], itemDataTableEntry[moduleID], textFragment)
             end
         end
     end
@@ -438,7 +449,7 @@ function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, sta
 
     -- Try replace inline variable
     local numReplaced = 0
-    description, numReplaced = description:gsub("{VAR:"..string.upper(statName).."}", textFragment)
+    description, numReplaced = description:gsub("{VAR:"..string.upper(moduleName).."}", textFragment)
     if numReplaced == 0 then
         if not description:find("#$") then
             return description .."#".. textFragment
@@ -448,44 +459,44 @@ function EID:ApplyModularNestedDescription(itemStatsTableEntry, description, sta
     return description
 end
 
-function EID:GetSortedModularDescriptionEntries(itemStatsTable, combineTables, validateEntries, debugInfo)
-    -- sort stats of selected Item by priority
-    local sortedStatsPositivePrio = {}
-    local sortedStatsNegativePrio = {}
-    for statID, _ in pairs(itemStatsTable) do
-        if validateEntries and EID:ValidateItemStatEntry(statID, "in "..debugInfo) or EID.StatisticsData[statID] then
-            if EID.StatisticsData[statID].Priority > 0 then
-                table.insert(sortedStatsPositivePrio, EID.StatisticsData[statID])
+function EID:GetSortedModularDescriptionEntries(itemDataTable, combineTables, validateEntries, debugInfo)
+    -- sort modules of selected Item by priority
+    local sortedModulesPositivePrio = {}
+    local sortedModulesNegativePrio = {}
+    for moduleID, _ in pairs(itemDataTable) do
+        if validateEntries and EID:ValidateModuleEntry(moduleID, "in "..debugInfo) or EID.ModuleBehaviors[moduleID] then
+            if EID.ModuleBehaviors[moduleID].Priority > 0 then
+                table.insert(sortedModulesPositivePrio, EID.ModuleBehaviors[moduleID])
             else
-                table.insert(sortedStatsNegativePrio, EID.StatisticsData[statID])
+                table.insert(sortedModulesNegativePrio, EID.ModuleBehaviors[moduleID])
             end
         end
     end
-    table.sort(sortedStatsPositivePrio, function(a, b) return a.Priority > b.Priority end)
-    table.sort(sortedStatsNegativePrio, function(a, b) return a.Priority > b.Priority end)
+    table.sort(sortedModulesPositivePrio, function(a, b) return a.Priority > b.Priority end)
+    table.sort(sortedModulesNegativePrio, function(a, b) return a.Priority > b.Priority end)
     if combineTables then
-        return EID:ConcatTables(sortedStatsPositivePrio, sortedStatsNegativePrio)
+        return EID:ConcatTables(sortedModulesPositivePrio, sortedModulesNegativePrio)
     end
-    return sortedStatsPositivePrio, sortedStatsNegativePrio
+    return sortedModulesPositivePrio, sortedModulesNegativePrio
 end
 
--- Tries to generate a description for an item based on its stats defined in EID.ItemStats
--- Returns an empty string if no stats are defined for the item
+-- Tries to generate a description for an item based on its modules defined in EID.ItemData
+-- Returns an empty string if no modules are defined for the item
 function EID:GenerateDescription(itemID)
-    local itemStatsTable = EID.ItemStats[itemID]
+    local itemDataTable = EID.ItemData[itemID]
     local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", itemID)
-    -- return empty string or additionalInfo, if no ItemStats are defined
-    if not itemStatsTable then
+    -- return empty string or additionalInfo, if no ItemData are defined
+    if not itemDataTable then
         return additionalInfo or "", ""
     end
 
-    local sortedStatsPositivePrio, sortedStatsNegativePrio = EID:GetSortedModularDescriptionEntries(itemStatsTable, false, true, itemID)
+    local sortedModulesPositivePrio, sortedModulesNegativePrio = EID:GetSortedModularDescriptionEntries(itemDataTable, false, true, itemID)
 
     local description = ""
 
-    -- Add stat information with positive priority
-    for _, statDataEntry in ipairs(sortedStatsPositivePrio) do
-        description = EID:HandleStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name], description)
+    -- Add module information with positive priority
+    for _, moduleBehaviorEntry in ipairs(sortedModulesPositivePrio) do
+        description = EID:HandleModuleEntry(moduleBehaviorEntry, itemDataTable[moduleBehaviorEntry.Name], description)
     end
 
     -- remove trailing #
@@ -499,14 +510,14 @@ function EID:GenerateDescription(itemID)
             description = additionalInfo
         end
     end
-    -- add linebreak between additional information and negative priority stats
+    -- add linebreak between additional information and negative priority modules
     if not string.find(description, "#$") then
         description = description .. "#"
     end
 
-    -- Add stat information with negative priority
-    for _, statDataEntry in ipairs(sortedStatsNegativePrio) do
-        description = EID:HandleStatEntry(statDataEntry, itemStatsTable[statDataEntry.Name], description)
+    -- Add module information with negative priority
+    for _, moduleBehaviorEntry in ipairs(sortedModulesNegativePrio) do
+        description = EID:HandleModuleEntry(moduleBehaviorEntry, itemDataTable[moduleBehaviorEntry.Name], description)
     end
     -- remove leading/trailing # and multiple # in a row. Makes translation more readable in some places, if a # is explicitly added
     description = description:gsub("#$", ""):gsub("^#", ""):gsub("#+", "#")
@@ -514,22 +525,23 @@ function EID:GenerateDescription(itemID)
     return description, additionalInfo
 end
 
-function EID:GenerateTextFromStatEntry(statDataEntry, itemStatValue, description)
-    local statID = statDataEntry.Name
-    local textFragment = EID:getDescriptionEntry("ModularDescriptions", statID)
-    local statDescription = EID:GenerateStatDescriptionText(statDataEntry, itemStatValue, textFragment)
-    if statDescription then
+-- Default modular description generator, used if no BehaviorFunc is defined
+function EID:GenerateDefaultModuleDescription(moduleBehaviorEntry, itemDataValue, description)
+    local moduleID = moduleBehaviorEntry.Name
+    local textFragment = EID:getDescriptionEntry("ModularDescriptions", moduleID)
+    local moduleDescription = EID:FormatModuleDescription(moduleBehaviorEntry, itemDataValue, textFragment)
+    if moduleDescription then
         if not description:find("#$") then
-            return description .."#".. statDescription
+            return description .."#".. moduleDescription
         else
-            return description .. statDescription
+            return description .. moduleDescription
         end
     end
 end
 
--- Generates the text fragment for a single stat entry
-function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
-    local isMultiplier = statDataEntry.IsMultiplier
+-- Formats a modular description line based on the module behavior entry and the given value
+function EID:FormatModuleDescription(moduleBehaviorEntry, value, textFragment)
+    local isMultiplier = moduleBehaviorEntry.IsMultiplier
 
     if textFragment then
         -- if the value is a table, we handle it as a range of values
@@ -544,7 +556,7 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
                 local formattedValue = string.format("%.2f", value):gsub("%.?0+$", "")
 
                 -- Handle sign
-                if not statDataEntry.HideSign then
+                if not moduleBehaviorEntry.HideSign then
                     local sign = isMultiplier and "x" or value > 0 and "+" or ""
                     formattedValue = sign .. formattedValue
                 end
@@ -559,8 +571,8 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
 
     -- arrow up/down and icon decoration
     local decoration = ""
-    if statDataEntry.Arrow then
-        if statDataEntry.InvertArrow then
+    if moduleBehaviorEntry.Arrow then
+        if moduleBehaviorEntry.InvertArrow then
             if isMultiplier then
                 decoration = value >= 1 and "↓ " or "↑ "
             else
@@ -575,8 +587,8 @@ function EID:GenerateStatDescriptionText(statDataEntry, value, textFragment)
             end
         end
     end
-    if statDataEntry.Icon and type(statDataEntry.Icon) ~= "table" then
-        decoration = decoration .. statDataEntry.Icon
+    if moduleBehaviorEntry.Icon and type(moduleBehaviorEntry.Icon) ~= "table" then
+        decoration = decoration .. moduleBehaviorEntry.Icon
     end
 
     local text = (decoration or "") .. " " .. (textFragment or "") .. "#"
@@ -755,7 +767,7 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local original = EID:getDescriptionObj(type, variant, subtype, null, false)
     local originalEntry = EID:getDescriptionEntry(EID:getTableName(type, variant, subtype), subtype % PillColor.PILL_GIANT_FLAG)
     local origText = originalEntry[3]
-    
+
     local generated, additional = EID:GenerateDescription(itemTypeString)
 
     -- Evaluate the completeness of the generated description compared to the original description
