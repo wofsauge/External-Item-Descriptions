@@ -10,6 +10,8 @@
 
 local languageCode = "ja_jp"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "（{{SuperSecretRoom}} スーパー / {{UltraSecretRoom}} ウルトラシークレットルームを除く）"
+
 ---------- Collectibles ----------
 
 local repCollectibles={

@@ -13,6 +13,8 @@
 
 local languageCode = "tr_tr"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "({{SuperSecretRoom}} Süper / {{UltraSecretRoom}} Ultra Gizli Oda hariç)"
+
 local repCollectibles={
 	[5] = {"5", "Yansımam", "Bumerang efekti verır#↑ +1.5 Menzil#↑ +60% ekstra Menzil#↑ +0.6 Gözyaşı hızı#↑ +1 Gözyaşı yüksekliği"}, -- My Reflection
 	[6] = {"6", "Bir Numara", "↑ +1.5 Gözyaşı#↓ -1.5 Menzil eksilir#↓ -20% ekstra Menzil eksilir#↑ +0.76 Gözyaşı yüksekliği"}, -- Number One

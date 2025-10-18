@@ -17,7 +17,7 @@ EID.ItemData = {
     [C_ID .. 6] = { Tears = 1.5, TearHeight = 0.76, Range = -17.62 }, -- Number One
     [C_ID .. 7] = { Damage = 1 }, -- Blood of the Martyr
 	[C_ID .. 8] = { DamagePerTear = 3.5 }, -- Brother Bobby
-    [C_ID .. 10] = { Flies = 2, BlockProjectiles = true }, -- Halo of Flies
+    [C_ID .. 10] = { FlyOrbital = 2, BlockProjectiles = true }, -- Halo of Flies
     [C_ID .. 11] = { Life = 1 }, -- 1up!
     [C_ID .. 12] = { RedHeart = 1, Speed = 0.3, Damage = 0.3, DamageMultiplier = 1.5, Range = 5.25, TearHeight = 0.5, SizeUp = 1, FullHealth = 1 }, -- Magic Mushroom
     [C_ID .. 13] = { Speed = -0.1 }, -- The Virus
@@ -383,7 +383,7 @@ EID.ItemData = {
     [Pill_ID .. 8] = { EmptyHeart = 1 }, -- Health Up
     [Pill_ID .. 9] = { NoEffect = true }, -- I Found Pills
     [Pill_ID .. 10] = { NoEffect = true, EffectList = { RedHeart = 1 } }, -- Puberty
-    [Pill_ID .. 11] = { Flies = 1 }, -- Pretty Fly
+    [Pill_ID .. 11] = { FlyOrbital = 1 }, -- Pretty Fly
     [Pill_ID .. 12] = { Range = -2 }, -- Range Down
     [Pill_ID .. 13] = { Range = 2.5 }, -- Range Up
     [Pill_ID .. 14] = { Speed = -0.12 }, -- Speed Down

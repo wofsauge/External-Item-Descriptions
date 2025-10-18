@@ -22,6 +22,124 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"french"}
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 145}, {name="inverted", textboxWidth = 145}, {name="borderless", textboxWidth = 145}}
 
+
+
+---------- Modular Descriptions ----------
+-- Table containing basic sentences and templates used to generate basic descriptions
+
+-----------------------------------------------------------------
+--- Translator TODO: Please verify correctness of translations and potential pluralizations
+-----------------------------------------------------------------
+EID.descriptions[languageCode].ModularDescriptions = {
+    -- Player Stats
+    TearsMultiplier = "Débit {value}",
+    Tears = "Débit {value}",
+    TearHeight = "Hauteur des larmes {value}",
+    TearSizeMultiplier = "Taille des larmes {value}",
+    TearSize = "Taille des larmes {value}",
+    TearDelayMultiplier = "Délai des larmes {value}",
+    TearDelay = "Délai des larmes {value}",
+    FireRateMultiplier = "Cadence {value}",
+    FireRate = "Cadence {value}",
+    DamageMultiplier = "Dégâts {value}",
+    Damage = "Dégâts {value}",
+    BombDamage = "Dégâts de bombe {value}",
+    Speed = "Vitesse {value}",
+    RangeMultiplier = "Portée {value}",
+    Range = "Portée {value}",
+    Luck = "Chance {value}",
+    ShotSpeedMultiplier = "Vitesse des tirs {value}",
+    ShotSpeed = "Vitesse des tirs {value}",
+    Life = "{value} Vie",
+    SizeUp = "Taille augmentée",
+    SizeDown = "Taille diminuée",
+    Flight = "Permet à Isaac de voler",
+    Invincibility = "Rend Isaac invulnérable",
+    RandomStatUp = "↑ Augmente aléatoirement {value} stat",
+    RandomStatDown = "↓ Diminue aléatoirement {value} stat",
+
+    -- Health related
+    RedHeart = "{value} réceptacle de cœur",
+    SoulHeart = "{value} cœur{pluralize} d'âme",
+    BlackHeart = "{value} cœur{pluralize} noir",
+    BoneHeart = "{value} cœur{pluralize} d'os",
+    EternalHeart = "{value} cœur{pluralize} éternel",
+    GoldenHeart = "{value} cœur{pluralize} doré",
+    RottenHeart = "{value} cœur{pluralize} moisi",
+    BrokenHeart = "{value} cœur{pluralize} brisé",
+    EmptyHeart = "{value} réceptacle de cœur vide",
+    FullHealth = "Soin complet",
+    HealingRed = "Soigne {value} cœur rouge",
+
+    -- Room chances
+    AngelDevilChance = "{value}% de chance de Salle du Diable/Ange",
+    DevilChance = "{value}% de chance de Salle du Diable",
+    AngelChance = "{value}% de chance de Salle de l'Ange",
+    PlanetariumChance = "{value}% de chance de Planétarium",
+
+    -- Pickups / Spawns
+    Coin = "{value} Pièce{pluralize}",
+    Bomb = "{value} Bombe{pluralize}",
+    Key = "{value} Clé{pluralize}",
+    CoinBombKey = "{value} {{Coin}} pièce{pluralize}, {{Bomb}} bombe{pluralize} et {{Key}} clé{pluralize}",
+    -- Dynamic Spawns
+    Spawns = {
+        RandomPickup = "Fait apparaître {value} pickup aléatoire{pluralize}",
+        RandomTrinket = "Fait apparaître {value} babiole aléatoire{pluralize}",
+        RandomHeart = "Fait apparaître {value} cœur aléatoire{pluralize}",
+        RedHeart = "Fait apparaître {value} Cœur rouge{pluralize}",
+        SoulHeart = "Fait apparaître {value} Cœur d'âme{pluralize}",
+        BlackHeart = "Fait apparaître {value} Cœur noir{pluralize}",
+        BoneHeart = "Fait apparaître {value} Cœur osseux{pluralize}",
+        Bomb = "Fait apparaître {value} bombe{pluralize}",
+        Key = "Fait apparaître {value} clé{pluralize}",
+        Coin = "Fait apparaître {value} pièce{pluralize}",
+        RandomCoin = "Fait apparaître {value} pièce aléatoire{pluralize}",
+        Card = "Fait apparaître {value} carte{pluralize}",
+        Pill = "Fait apparaître {value} pilule{pluralize}",
+        Rune = "Fait apparaître {value} rune{pluralize}",
+        Battery = "Fait apparaître {value} pile{pluralize_y}",
+        BlueFly = "Invoque {value} mouche bleue{pluralize_y}",
+        BlueSpider = "Invoque {value} araignée bleue{pluralize}",
+    },
+    -- Permanent Tear Effects
+    TearEffect = {
+        Homing = "Larmes autoguidées",
+        Spectral = "Larmes spectrales",
+        Piercing = "Larmes transperçantes",
+        Poison = "{{Poison}} Larmes empoisonnées",
+    },
+    -- Familiars
+    FlyOrbital = "{value} mouches orbitales",
+    Orbital = "Orbite autour d'Isaac",
+    BlockProjectiles = "Bloque les projectiles ennemis",
+    DamagePerTear = "{value} dégâts par larme",
+    DamagePerShot = "{value} dégâts par tir",
+    DamagePerSecond = "{value} dégâts par seconde",
+    ContactDamagePerSecond = "Inflige {value} dégâts de contact par seconde",
+    MimicMovement = "Suit Isaac avec un délai de {value} secondes",
+    -- Player
+    CantShoot = "Isaac ne peut pas tirer",
+    PlayerContactDamage = "Isaac inflige {value} dégâts de contact par seconde",
+    DamageToAllEnemies = "Inflige {value} dégâts à tous les ennemis",
+    -- Misc
+    LeftEye = "Donne pour l'œil gauche:",
+    RightEye = "Donne pour l'œil droit:",
+    RoomEffect = "{{Timer}} Donne pour la salle:",
+    TimedEffect = "{{Timer}} Donne pendant {value} secondes:",
+    OnUseEffect = "À l'utilisation:",
+    HeldEffect = "En étant tenu:",
+    MaxLuck = "{{Luck}} Max.({max}%) à {value} de chance",
+    --MaxLuck = "{{Luck}} {max}% chance at {value} luck",
+    SingleUseInfo = "{{Warning}} USAGE UNIQUE {{Warning}}",
+    NoEffect = "Aucun effet",
+    FullMapping = {
+        BaseDesc = "{{Timer}} Révèle l'étage sur la carte {exception}",
+        Exception = "(excepté {{SuperSecretRoom}} Salle Super Secrète)"
+    }
+}
+
+
 EID.descriptions[languageCode].collectibles={
 	{"1", "Oignon Triste", "↑ Débit {{ColorLime}}+0.7"},
 	{"2", "Troisième Œil", "Triple tir#↓ Débit diminué"},
@@ -986,13 +1104,9 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ Dégâts {{ColorLime}}
 EID.descriptions[languageCode].CrookedPennyHeads = "Face"
 EID.descriptions[languageCode].CrookedPennyTails = "Pile"
 
-EID.descriptions[languageCode].LuckModifier = "{1}% à {2} Chance"
-
 EID.descriptions[languageCode].CollectionPageInfo = "Cet objet n'a encore jamais été ramassé !"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorSilver}}({1} objets : Dégâts {{ColorLime}}+{2}{{ColorSilver}})"
-
-EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USAGE UNIQUE {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {pluralize} = plural character

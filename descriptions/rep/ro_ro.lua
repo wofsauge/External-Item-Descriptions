@@ -10,6 +10,8 @@
 
 local languageCode = "ro_ro"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(cu excepția camerei {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret)"
+
 ---------- Collectibles ----------
 
 local repCollectibles={

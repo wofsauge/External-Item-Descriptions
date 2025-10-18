@@ -9,6 +9,8 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 local languageCode = "pl"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(oprócz {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)"
+
 local repCollectibles={
 	[5] = {"5", "Moje Odbicie", "Daje łzom efekt bumerangu#↑ +1.5 Zasięgu#↑ +60% dodatkowego Zasięgu#↑ +0.6 Prędkości strzałów#↑ +1 Wysokości lotu łez"}, -- My Reflection
 	[6] = {"6", "Numer Jeden", "↑ +1.5 Szybkostrzelności#↓ -1.5 Zasięgu#↓ -20% mnożnika Zasięgu#↑ +0.76 Wysokości lotu łez"}, -- Number One

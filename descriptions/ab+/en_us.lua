@@ -23,7 +23,7 @@ EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {na
 
 ---------- Modular Descriptions ----------
 -- Table containing basic sentences and templates used to generate basic descriptions
-EID.descriptions["en_us"].ModularDescriptions = {
+EID.descriptions[languageCode].ModularDescriptions = {
     -- Player Stats
     TearsMultiplier = "{value} Tears multiplier",
     Tears = "{value} Tears",
@@ -32,8 +32,8 @@ EID.descriptions["en_us"].ModularDescriptions = {
     TearSize = "{value} Tear size",
     TearDelayMultiplier = "{value} Tear Delay multiplier",
     TearDelay = "{value} Tear Delay",
-    FireRateMultiplier = "{value} Fire rate multiplier", -- Repentance exclusive?
-    FireRate = "{value} Fire rate", -- Repentance exclusive?
+    FireRateMultiplier = "{value} Fire rate multiplier",
+    FireRate = "{value} Fire rate",
     DamageMultiplier = "{value} Damage multiplier",
     Damage = "{value} Damage",
     BombDamage = "{value} Bomb Damage",
@@ -82,6 +82,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
         RandomHeart = "Spawns {value} random heart{pluralize}",
     	RedHeart = "Spawns {value} Red Heart{pluralize}",
     	SoulHeart = "Spawns {value} Soul Heart{pluralize}",
+    	BlackHeart = "Spawns {value} Black Heart{pluralize}",
     	BoneHeart = "Spawns {value} Bone Heart{pluralize}",
     	Bomb = "Spawns {value} bomb{pluralize}",
     	Key = "Spawns {value} key{pluralize}",
@@ -102,7 +103,7 @@ EID.descriptions["en_us"].ModularDescriptions = {
 		Poison = "{{Poison}} Poison tears",
 	},
     -- Familiars
-    Flies = "{value} Fly orbital{pluralize}",
+    FlyOrbital = "{value} Fly orbital{pluralize}",
     Orbital = "Orbital",
     BlockProjectiles = "Blocks enemy projectiles",
     DamagePerTear = "Deals {value} damage per tear",
@@ -121,7 +122,8 @@ EID.descriptions["en_us"].ModularDescriptions = {
 	TimedEffect = "{{Timer}} Receive for {value} seconds:",
 	OnUseEffect = "Upon use:",
 	HeldEffect = "While held:",
-	MaxLuck = "{{Luck}} {max}% chance at {value} luck",
+	MaxLuck = "{{Luck}} Max.({max}%) at {value} luck",
+	--MaxLuck = "{{Luck}} {max}% chance at {value} luck",  -- old formatting
 	SingleUseInfo = "{{Warning}} SINGLE USE {{Warning}}",
 	NoEffect = "No effect",
 	FullMapping = {

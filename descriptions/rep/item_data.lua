@@ -208,7 +208,7 @@ local itemData = {
 	[C_ID .. 673] = { EffectList = {Damage = 1, SoulHeart = 1 } }, -- Redemption
     [C_ID .. 686] = { Spawns = { SoulHeart = 1 } }, -- Soul Locket
 	[C_ID .. 688] = { Life = 1 }, -- Inner Child
-	[C_ID .. 693] = { Flies = 8 }, -- The Swarm
+	[C_ID .. 693] = { FlyOrbital = 8 }, -- The Swarm
 	[C_ID .. 694] = { BrokenHeart = 3 }, -- Heartbreak
 
     [C_ID .. 704] = { TimedEffect = { Duration = 5, Speed = 0.4, FireRateMultiplier = 0.5, FireRate = 2, Damage = 3 } }, -- Berserk!

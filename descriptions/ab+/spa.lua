@@ -19,6 +19,123 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"spanish",  "es"}
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+
+---------- Modular Descriptions ----------
+-- Table containing basic sentences and templates used to generate basic descriptions
+
+-----------------------------------------------------------------
+--- Translator TODO: Please verify correctness of translations and potential pluralizations
+-----------------------------------------------------------------
+EID.descriptions[languageCode].ModularDescriptions = {
+    -- Player Stats
+    TearsMultiplier = "Lágrimas {value}",
+    Tears = "Lágrimas {value}",
+    TearHeight = "Altura de lágrima {value}",
+    TearSizeMultiplier = "Tamaño de lágrimas {value}",
+    TearSize = "Tamaño de lágrimas {value}",
+    TearDelayMultiplier = "Vel. de lágrimas {value}",
+    TearDelay = "Vel. de lágrimas {value}",
+    FireRateMultiplier = "Lágrimas {value}",
+    FireRate = "Lágrimas {value}",
+    DamageMultiplier = "Daño {value}",
+    Damage = "Daño {value}",
+    BombDamage = "Daño de bomba {value}",
+    Speed = "Velocidad {value}",
+    RangeMultiplier = "Alcance {value}",
+    Range = "Alcance {value}",
+    Luck = "Suerte {value}",
+    ShotSpeedMultiplier = "Vel. de Lágrimas {value}",
+    ShotSpeed = "Vel. de Lágrimas {value}",
+    Life = "{value} Vida extra",
+    SizeUp = "Aumenta tu tamaño",
+    SizeDown = "Reduce tu tamaño",
+    Flight = "Permite volar",
+    Invincibility = "Invencibilidad",
+    RandomStatUp = "↑ Aumenta aleatoriamente {value} estadística",
+    RandomStatDown = "↓ Reduce aleatoriamente {value} estadística",
+
+    -- Health related
+    RedHeart = "{value} Corazón",
+    SoulHeart = "{value} Corazón de alma",
+    BlackHeart = "{value} Corazón negro",
+    BoneHeart = "{value} Corazón de hueso",
+    EternalHeart = "{value} Corazón eterno",
+    GoldenHeart = "{value} Corazón dorado",
+    RottenHeart = "{value} Corazón podrido",
+    BrokenHeart = "{value} Corazón roto",
+    EmptyHeart = "{value} Contenedor de corazón vacío",
+    FullHealth = "Salud al máximo",
+    HealingRed = "Cura {value} corazón",
+
+    -- Room chances
+    AngelDevilChance = "{value}% de probabilidad de Sala del Diablo/Ángel",
+    DevilChance = "{value}% de probabilidad de Sala del Diablo",
+    AngelChance = "{value}% de probabilidad de Sala del Ángel",
+    PlanetariumChance = "{value}% de probabilidad de Planetario",
+
+    -- Pickups / Spawns
+    Coin = "{value} Moneda",
+    Bomb = "{value} Bomba",
+    Key = "{value} Llave",
+    CoinBombKey = "{value} {{Coin}} moneda, {{Bomb}} bomba y {{Key}} llave",
+    -- Dynamic Spawns
+    Spawns = {
+        RandomPickup = "Genera {value} recolectable aleatorio",
+        RandomTrinket = "Genera {value} trinket aleatorio",
+        RandomHeart = "Genera {value} corazón aleatorio",
+        RedHeart = "Genera {value} corazón rojo",
+        SoulHeart = "Genera {value} corazón de alma",
+        BlackHeart = "Genera {value} corazón negro",
+        BoneHeart = "Genera {value} corazón de hueso",
+        Bomb = "Genera {value} bomba",
+        Key = "Genera {value} llave",
+        Coin = "Genera {value} moneda",
+        RandomCoin = "Genera {value} moneda aleatoria",
+        Card = "Genera {value} carta",
+        Pill = "Genera {value} píldora",
+        Rune = "Genera {value} runa",
+        Battery = "Genera {value} batería",
+        BlueFly = "Genera {value} mosca azul",
+        BlueSpider = "Genera {value} araña azul",
+    },
+    -- Permanent Tear Effects
+    TearEffect = {
+        Homing = "Lágrimas teledirigidas",
+        Spectral = "Lágrimas espectrales",
+        Piercing = "Lágrimas perforantes",
+        Poison = "{{Poison}} Lágrimas venenosas",
+    },
+    -- Familiars
+    FlyOrbital = "{value} mosca orbital",
+    Orbital = "Orbital",
+    BlockProjectiles = "Bloquea proyectiles enemigos",
+    DamagePerTear = "Inflige {value} de daño por lágrima",
+    DamagePerShot = "Inflige {value} de daño por disparo",
+    DamagePerSecond = "Inflige {value} de daño por segundo",
+    ContactDamagePerSecond = "Inflige {value} de daño por contacto por segundo",
+    MimicMovement = "Sigue tus movimientos con {value} segundo de retraso",
+    -- Player
+    CantShoot = "Isaac no puede disparar",
+    PlayerContactDamage = "Isaac inflige {value} de daño por contacto por segundo",
+    DamageToAllEnemies = "Inflige {value} de daño a todos los enemigos",
+    -- Misc
+    LeftEye = "Otorga para el ojo izquierdo:",
+    RightEye = "Otorga para el ojo derecho:",
+    RoomEffect = "{{Timer}} Otorga durante la habitación:",
+    TimedEffect = "{{Timer}} Otorga durante {value} segundos:",
+    OnUseEffect = "Al usar:",
+    HeldEffect = "Mientras se sostiene:",
+    MaxLuck = "{{Luck}} Máx.({max}%) con {value} de suerte",
+    --MaxLuck = "{max}% de probabilidad con {value} de suerte",  -- old formatting
+    SingleUseInfo = "{{Warning}} UN SOLO USO {{Warning}}",
+    NoEffect = "Sin efecto",
+    FullMapping = {
+        BaseDesc = "{{Timer}} Revela el mapa completo del piso {exception}",
+        Exception = "(excepto la {{SuperSecretRoom}} Habitación Super Secreta)"
+    }
+}
+
+
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
@@ -1113,13 +1230,9 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", 
 EID.descriptions[languageCode].CrookedPennyHeads = "Cara"
 EID.descriptions[languageCode].CrookedPennyTails = "Cruz"
 
-EID.descriptions[languageCode].LuckModifier = "{1}% de probabilidad con {2} de suerte"
-
 EID.descriptions[languageCode].CollectionPageInfo = "¡Debes tomar este objeto para completar la pagina de colección!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}} objetos que incrementan (+{2} de Daño)"
-
-EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} UN SOLO USO {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {pluralize} = plural character

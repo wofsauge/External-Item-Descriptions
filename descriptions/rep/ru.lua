@@ -11,6 +11,8 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 local languageCode = "ru"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(кроме {{SuperSecretRoom}} Супер / {{UltraSecretRoom}} Ультра Секретной Комнаты)"
+
 local repCollectibles={
 	[2] = {"2", "Внутренний глаз", "Тройной выстрел#↓ {{Tears}} -49% скорострельности"},
 	[5] = {"5", "Моё отражение", "Дает слезам эффект бумеранга#↑ {{Damage}} +1.5 урона#↑ {{Range}} +1.5 дальности#↑ {{Range}} +100% дополнительной дальности#↑ {{Shotspeed}} +60% скорости слезы#↓ {{Luck}} -1 удачи"}, -- My Reflection

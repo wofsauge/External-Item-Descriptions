@@ -11,6 +11,8 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 local languageCode = "cs_cz"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(kromě {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra tajné místnosti)"
+
 local repCollectibles={
 	[2] = {"2", "Vnitřní Oko", "Trojitý výstřel#↓ {{Tears}} -49% Méně Slz"},
 	[5] = {"5", "Můj Odraz", "Dává slzám bumerangový efekt#↑ {{Range}} +1.5 Větší Dostřel#↑ {{Range}} +60% Větší Dosah#↑ {{Shotspeed}} +0.6 Vyšší Rychlost Střel#↑"}, -- My Reflection

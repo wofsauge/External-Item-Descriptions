@@ -15,6 +15,8 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  ! = Warning
 local languageCode = "pt_br"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(excepto {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)"
+
 local repCollectibles={
 	[2] = {"2", "", "Disparo triplo#↓ {{Tears}} -49% Taxa de Disparo"},
 	[5] = {"5", "", "Dá às lágrimas efeito de boomerang#↑ {{Range}} +1.5 Alcance#↑ {{Range}} +60% Alcance adicional#↑ {{Shotspeed}} +60% Velocidade de Disparo"}, -- My Reflection

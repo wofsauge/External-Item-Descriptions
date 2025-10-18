@@ -1,5 +1,7 @@
 local languageCode = "ko_kr"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "({{SuperSecretRoom}} 슈퍼/{{UltraSecretRoom}} 울트라 시크릿 룸 제외)"
+
 -- Last Sync with English or update: 2024-11-18
 
 local repCollectibles={

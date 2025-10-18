@@ -19,6 +19,118 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"german"}
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+---------- Modular Descriptions ----------
+-- Table containing basic sentences and templates used to generate basic descriptions
+EID.descriptions[languageCode].ModularDescriptions = {
+    -- Player Stats
+    TearsMultiplier = "{value} Tränen",
+    Tears = "{value} Tränen",
+    TearHeight = "{value} Tränenhöhe",
+    TearSizeMultiplier = "{value} Tränen Größe",
+    TearSize = "{value} Tränen Größe",
+    TearDelayMultiplier = "{value} Tränenverzögerung",
+    TearDelay = "{value} Tränenverzögerung",
+    FireRateMultiplier = "{value} Feuerrate",
+    FireRate = "{value} Feuerrate",
+    DamageMultiplier = "{value} Schaden",
+    Damage = "{value} Schaden",
+    BombDamage = "{value} Bomben-Schaden",
+    Speed = "{value} Geschwindigkeit",
+    RangeMultiplier = "{value} Reichweite",
+    Range = "{value} Reichweite",
+    Luck = "{value} Glück",
+    ShotSpeedMultiplier = "{value} Shot speed multiplier",
+    ShotSpeed = "{value} Shot speed",
+    Life = "{value} Leben",
+    SizeUp = "Werde größer",
+    SizeDown = "Werde kleiner",
+    Flight = "Flug",
+	Invincibility = "Unverwundbarkeit",
+	RandomStatUp = "↑ Erhöht {value} zufällig{plural_e_sing_en} Wert{plural_e}",
+	RandomStatDown = "↓ Decreases {value} zufällig{plural_e_sing_en} Werte{plural_e}",
+
+    -- Health related
+    RedHeart = "{value} Herz{plural_en}",
+    SoulHeart = "{value} Seelenherz{plural_en}",
+    BlackHeart = "{value} schwarz{plural_e_sing_es} Herz{plural_en}",
+    BoneHeart = "{value} Knochenherz{plural_en}",
+    EternalHeart = "{value} ewig{plural_e_sing_es} Herz{plural_en}",
+    GoldenHeart = "{value} golden{plural_e_sing_es} Herz{plural_en}",
+	RottenHeart = "{value} faul{plural_e_sing_es} Herz{plural_en}",
+	BrokenHeart = "{value} kaputt{plural_e_sing_es} Herz{plural_en}",
+    EmptyHeart = "{value} leer{plural_e_sing_es} Herz{plural_en}",
+    FullHealth = "Volle Gesundheit",
+    HealingRed = "Heilt {value} Herz{plural_en}",
+
+    -- Room chances
+    AngelDevilChance = "{value}% Teufels-/Engelsraum Chance",
+    DevilChance = "{value}% Teufelsraum Chance",
+    AngelChance = "{value}% Engelsraum Chance",
+    PlanetariumChance = "{value}% Planetarium Chance",
+
+    -- Pickups / Spawns
+    Coin = "{value} Münz{plural_e_sing_en}",
+    Bomb = "{value} Bomb{plural_e_sing_en}",
+    Key = "{value} Schlüssel",
+    CoinBombKey = "{value} {{Coin}} Münz{plural_e_sing_en}, {{Bomb}} Bomb{plural_e_sing_en} and {{Key}} Schlüssel",
+    -- Dynamic Spawns
+    Spawns = {
+        RandomPickup = "Spawnt {value} zufällig{plural_e_sing_es} Pickup",
+        RandomTrinket = "Spawnt {value} zufällig{plural_e_sing_es} trinket",
+        RandomHeart = "Spawnt {value} zufällig{plural_e_sing_es} Herz{plural_en}",
+    	RedHeart = "Spawnt {value} Red Herz{plural_en}",
+    	SoulHeart = "Spawnt {value} Seelenherz{plural_en}",
+    	BlackHeart = "Spawnt {value} schwarz{plural_e_sing_es} Herz{plural_en}",
+    	BoneHeart = "Spawnt {value} Knochenherz{plural_en}",
+    	Bomb = "Spawnt {value} Bomb{plural_e_sing_en}",
+    	Key = "Spawnt {value} Schlüssel",
+        Coin = "Spawnt {value} Münz{plural_e_sing_en}",
+        RandomCoin = "Spawnt {value} zufällige Münz{plural_e_sing_en}",
+        Card = "Spawnt {value} Kart{plural_e_sing_en}",
+        Pill = "Spawnt {value} Pill{plural_e_sing_en}",
+        Rune = "Spawnt {value} Run{plural_e_sing_en}",
+        Battery = "Spawnt {value} Batteri{plural_en}",
+        BlueFly = "Spawnt {value} blaue Fliege{plural_n}",
+        BlueSpider = "Spawnt {value} blaue Spinne{plural_n}",
+    },
+	-- Permanent Tear Effects
+    TearEffect = {
+		Homing = "Homing tears",
+		Spectral = "Spectral tears",
+		Piercing = "Piercing tears",
+		Poison = "{{Poison}} Poison tears",
+	},
+    -- Familiars
+    FlyOrbital = "{value} Orbital Fliege{plural_n}",
+    Orbital = "Orbital",
+    BlockProjectiles = "Blockiert feindliche Projektile",
+    DamagePerTear = "Verursacht {value} Schaden pro Träne",
+    DamagePerShot = "Verursacht {value} Schaden pro Schuss",
+    DamagePerSecond = "Verursacht {value} Schaden pro Sekunde",
+    ContactDamagePerSecond = "Verursacht {value} Kontaktschaden pro Sekunde",
+	MimicMovement = "Immitiert Isaac's Bewegungen mit {value} Sekunden Verzögerung",
+	-- Player
+	CantShoot = "Isaac kann nicht schießen",
+	PlayerContactDamage = "Isaac verursacht {value} Kontaktschaden pro Sekunde",
+    DamageToAllEnemies = "Verursacht {value} Schaden für alle Gegner",
+	-- Misc
+	LeftEye = "Erhalte für das linke Auge:",
+	RightEye = "Erhalte für das rechte Auge:",
+	RoomEffect = "{{Timer}} Erhalte für den Raum:",
+	TimedEffect = "{{Timer}} Erhalte für {value} Sekunden:",
+	OnUseEffect = "Bei Benutzung:",
+	HeldEffect = "Während gehalten:",
+	MaxLuck = "{{Luck}} Max.({max}%) bei {value} Glück",
+	--MaxLuck = "{{Luck}} {max}% chance at {value} luck",  -- old formatting
+	SingleUseInfo = "{{Warning}} Einmalgebrauch {{Warning}}",
+	NoEffect = "Kein Effekt",
+	FullMapping = {
+		BaseDesc = "{{Timer}} Volle Kartenaufdeckung für das Stockwerk {exception}",
+		Exception = "(außer {{SuperSecretRoom}} Supergeheimraum)"
+	}
+}
+
+
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
@@ -725,8 +837,11 @@ EID.descriptions[languageCode].transformations={
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
 	text = EID:ReplaceVariableStr(text, "singular_r", amount > 1 and "" or "r") -- add "r" to word if singular
-	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "e" or "") -- add "n" to word
+	text = EID:ReplaceVariableStr(text, "plural_e", amount > 1 and "e" or "") -- add "e" to word
 	text = EID:ReplaceVariableStr(text, "plural_en", amount > 1 and "en" or "") -- add "en" to word
+	text = EID:ReplaceVariableStr(text, "plural_n", amount > 1 and "n" or "") -- add "n" to word
+	text = EID:ReplaceVariableStr(text, "plural_e_sing_en", amount > 1 and "e" or "en") -- add "en" or "e" to word
+	text = EID:ReplaceVariableStr(text, "plural_e_sing_es", amount > 1 and "e" or "es") -- add "es" or "e" to word
 	text = EID:ReplaceVariableStr(text, "plural_s", amount > 1 and "s" or "") -- add "s" to word
 	return text
 end
@@ -740,13 +855,9 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Schaden"
 EID.descriptions[languageCode].CrookedPennyHeads = "Kopf"
 EID.descriptions[languageCode].CrookedPennyTails = "Zahl"
 
-EID.descriptions[languageCode].LuckModifier = "{1}% Wahrscheinlichkeit mit {2} Glück"
-
 EID.descriptions[languageCode].CollectionPageInfo = "Dieses Item muss für die Sammelseite eingesammelt werden!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "Aktuell {{ColorLime}}{1}{{CR}} Items (+{2} Schaden)"
-
-EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} Einmalgebrauch {{Warning}}"
 
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Demo Objektname",

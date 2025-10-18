@@ -12,6 +12,8 @@
 
 local languageCode = "fr"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(sauf Chambre {{SuperSecretRoom}} Super / {{UltraSecretRoom}} ultra secrète)"
+
 local repCollectibles={
 	[2] = {"2", "Troisième Œil", "↓ Débit {{ColorError}}-49%#Triple tir"},
 	[5] = {"5", "Mon Reflet", "↑ Dégâts {{ColorLime}}+1.5#↑ Portée {{ColorLime}}x1.6 +1.5#↑ Vitesse des tirs {{ColorLime}}+0.6#↓ Chance {{ColorError}}-1#Les larmes d'Isaac reviennent vers lui comme un boomerang"}, -- My Reflection

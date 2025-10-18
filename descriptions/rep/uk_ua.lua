@@ -11,6 +11,8 @@
 -- ↑ = Up Arrow  |  ↓ = Down Arrow  |  !!! = Warning
 local languageCode = "uk_ua"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(окрім {{SuperSecretRoom}} Супер / {{UltraSecretRoom}} Ультрасекретної кімнати)"
+
 local repCollectibles={
 	[2] = {"2", "Внутрiшнє Око", "Потрiйний пострiл#↓ {{Tears}} -49% Скорострільність знижено"},
 	[5] = {"5", "Моє Вiдображення", "Дає сльозам ефект бумеранга#↑ {{Damage}} +1.5 Шкоду збільшено#↑ {{Range}} +1.5 Дальнiсть збiльшено#↑ {{Range}} +100% додатково Дальнiсть збiльшено#↑ {{Shotspeed}} +60% Швидкість Стрільби збільшено#↓ {{Luck}} -1 Удачу зменшено"}, -- My Reflection

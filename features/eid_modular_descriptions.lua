@@ -70,7 +70,7 @@ EID.ModuleBehaviors = {
     ["PlanetariumChance"] = { Priority = 6960, Icon = "{{PlanetariumChance}}" },
 
     -- Familiars
-    ["Flies"] = { Priority = 5990, },
+    ["FlyOrbital"] = { Priority = 5990 },
     ["Orbital"] = { Priority = 5980 },
     ["MimicMovement"] = { Priority = 5970, HideSign = true },
     ["BlockProjectiles"] = { Priority = -5950, HideSign = true },

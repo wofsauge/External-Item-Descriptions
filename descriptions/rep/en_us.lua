@@ -10,7 +10,7 @@
 
 local languageCode = "en_us"
 
-EID.descriptions["en_us"].ModularDescriptions.FullMapping.Exception = "(except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)"
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(except {{SuperSecretRoom}} Super / {{UltraSecretRoom}} Ultra Secret Room)"
 
 ---------- Collectibles ----------
 local C_ID = "5.100."

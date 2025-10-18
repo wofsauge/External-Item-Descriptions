@@ -10,6 +10,8 @@
 
 local languageCode = "vi"
 
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(trừ {{SuperSecretRoom}}{{UltraSecretRoom}} Phòng Bí mật Siêu cấp/Phòng Bí mật Cực cấp)"
+
 ---------- Collectibles ----------
 
 local repCollectibles={
