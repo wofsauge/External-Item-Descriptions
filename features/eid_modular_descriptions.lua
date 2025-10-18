@@ -445,6 +445,9 @@ function EID:ApplyModularNestedDescription(itemDataTableEntry, description, modu
     if applyValueWithName then
         local value = EID:PrettyPrintValue(itemDataTableEntry[applyValueWithName] or "UNDEFINED")
         textFragment = textFragment:gsub("{value}", value)
+        if tonumber(value) then
+            textFragment = EID:TryPluralizeString(textFragment, tonumber(value))
+        end
     end
     -- add subdata entries
     local sortedmodules = EID:GetSortedModularDescriptionEntries(itemDataTableEntry, true)
