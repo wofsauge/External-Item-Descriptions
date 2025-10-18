@@ -634,8 +634,13 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
+	local success, modularDescription = pcall(EID.GenerateDescription, nil, description.fullItemString)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
-	description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
+	if success and modularDescription and modularDescription ~= "" then
+		description.Description = modularDescription
+	else
+		description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
+	end
 
 	description.Transformation = EID:getTransformation(Type, Variant, SubType)
 
