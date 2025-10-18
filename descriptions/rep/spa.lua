@@ -10,7 +10,7 @@
 
 local languageCode = "spa"
 
-EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(excepto {{SuperSecretRoom}}{{UltraSecretRoom}} las Habitaciones Súper/Ultra Secretas)"
+EID.descriptions[languageCode].ModularDescriptions.FullMapping.Exception = "(excepto las Habitaciones {{SuperSecretRoom}} Súper / {{UltraSecretRoom}} Ultra Secretas)"
 
 ---------- Collectibles ----------
 
