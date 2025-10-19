@@ -135,6 +135,7 @@ function EID:addCollectible(id, description, itemName, language)
 	if id > 4294960000 then modName = nil end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.100." .. id] = {id, itemName, description, modName}
+	EID.ItemNames[language]["5.100." .. id] = itemName
 end
 
 ---Adds a description for a trinket.
@@ -151,6 +152,7 @@ function EID:addTrinket(id, description, itemName, language)
 	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.350." .. id] = {id, itemName, description, EID._currentMod}
+	EID.ItemNames[language]["5.350." .. id] = itemName
 end
 
 ---Adds character specific information, which can be viewed in the Item Reminder
@@ -245,6 +247,7 @@ function EID:addCard(id, description, itemName, language)
 	end
 	EID:CreateDescriptionTableIfMissing("custom", language)
 	EID.descriptions[language].custom["5.300." .. id] = {id, itemName, description, EID._currentMod}
+	EID.ItemNames[language]["5.300." .. id] = itemName
 end
 
 -- DEPRECATED! Does nothing! Don't use!
@@ -272,6 +275,7 @@ function EID:addPill(id, description, itemName, language)
 	if EID.isRepentance and EID.descriptions[language].horsepills[id+1] == nil then
 		EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
 	end
+	EID.ItemNames[language]["5.70." .. id] = itemName
 end
 
 ---Adds a horsepill-specific description for a PillEffect
@@ -289,6 +293,7 @@ function EID:addHorsePill(id, description, itemName, language)
 	end
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id+1] = {id, itemName, description, EID._currentMod}
+	EID.ItemNames[language]["5.70." .. id] = itemName
 end
 
 ---Adds a metadata for a pilleffect. Used for Placebo/False PHD
@@ -900,6 +905,12 @@ end
 ---@param SubType integer
 ---@return string
 function EID:getObjectName(Type, Variant, SubType)
+	local fallbackName = Type.."."..Variant.."."..SubType
+	-- try to get name from EID.ItemNames table
+	local translatedName = EID.ItemNames[EID:getLanguage()][fallbackName]
+	local itemNameTableEntry = translatedName ~= "" and translatedName or EID.ItemNames[EID.DefaultLanguageCode][fallbackName]
+	if itemNameTableEntry then return itemNameTableEntry end
+
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local name = nil
@@ -908,7 +919,6 @@ function EID:getObjectName(Type, Variant, SubType)
 			name = tableEntry[2]
 		end
 	end
-	local fallbackName = Type.."."..Variant.."."..SubType
 	if tableName == "collectibles" then
 		if EID.itemConfig:GetCollectible(SubType) == nil then return fallbackName end
 		local vanillaName = EID.itemConfig:GetCollectible(SubType).Name

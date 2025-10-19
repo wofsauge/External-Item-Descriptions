@@ -3,6 +3,7 @@ EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
 EID.descriptions = {} -- Table that holds all translation strings
+EID.ItemNames = {} -- Table that holds all item names for each language
 EID.enableDebug = false
 local game = Game()
 EID.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled. V1.9.7.7 added REPENTANCE_PLUS variable

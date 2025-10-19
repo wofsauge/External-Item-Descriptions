@@ -93,11 +93,28 @@ for _, lang in ipairs(languageFilesToCheck) do
 end
 
 
+function EID:DEBUGGenerateItemNameTables(tableName, shortcut, max)
+	local englishNames = {}
+	for i = 1, max do englishNames[i] = "" end
+	for k,val in pairs(EID.descriptions["en_us"][tableName]) do
+		englishNames[k] = val[2]
+	end
 
+	for _, lang in ipairs(EID.Languages) do
+		local names = {}
+		for i = 1, max do names[i] = "" end
 
-
-
-
+		for k,data in pairs(EID.descriptions[lang][tableName]) do
+			names[k] = data[2]
+		end
+		Isaac.DebugString("---------"..tableName .. "---------")
+		Isaac.DebugString("EID.ItemNames[\""..lang.."\"] = {")
+		for k,v in ipairs(names) do
+			Isaac.DebugString("["..shortcut.." .. "..k.."] = \""..v.."\", -- ".. englishNames[k])
+		end
+		Isaac.DebugString("}")
+	end
+end
 
 
 local charsToDebug = {
