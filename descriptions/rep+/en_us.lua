@@ -21,6 +21,8 @@ local collectibles = {
 	[141] = { "141", "Pageant Boy", "{{Coin}} Spawns 7 random coins#Spawns a random penny trinket" }, -- Pageant Boy
 	-- Change: added Fire rate information
 	[186] = { "186", "Blood Rights", "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first" }, -- Blood Rights
+	-- Change: added random tear effects information	
+	[244] = { "244", "Tech.5", "Occasionally shoot lasers in addition to Isaac's tears#Small chance for lasers to have random effects"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
 	[281] = { "281", "Punching Bag", "Decoy familiar#Enemies target him instead of Isaac#Blocks enemy tears" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
@@ -86,7 +88,7 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "Louse", "Spawns a blue spider every 30 seconds in hostile rooms#Spawns a blue spider on room clear"}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly#Increases payout odds of slots and other machines#If chest contains an item, its forced to be quality 3 or higher#Chest content can occasionally be items outside the golden chest item pool"}, -- Poker Chip
+	[76] = {"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly#Increases payout odds of slots and other machines#Swaps 0-2 quality items from chests with higher quality ones#Chest content can occasionally be items outside the golden chest item pool"}, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = {"85", "Karma", "{{DonationMachine}} Using any type of Donation Machine has a 33% chance to:#{{HealingRed}} Heal 1 heart (40%)#{{Coin}} Give 1 coin (40%)#{{Luck}} Grant +1 luck (15%)#{{Beggar}} Spawn a Beggar (5%)#{{DonationMachine}} Donation machines are less likely to jam#Also affects Beggar donations and Restock machines"}, -- Karma
 	-- Change: Added damage up information
@@ -337,7 +339,7 @@ local goldenTrinketEffects = {
 	-- Beth’s Essence (append):
 	[182] = {"50% chance for Angel room wisps to be special#{{ColorGold}}Beggars will spawn special wisps", "100% chance for Angel room wisps to be special#{{ColorGold}}Beggars will spawn special wisps"},
 	-- Adoption Papers (append):
-	[184] = {"Familiars will always be on sale", "Familiars will always be on sale#{{Card92}} {{ColorGold}}Shops will be able to sell \"Soul of Lilith\""},
+	[184] = {"Familiars will always be on sale", "Familiars will always be on sale#{{Card92}} {{ColorGold}}Shops will now sell \"Soul of Lilith\""},
 	-- Sigil of Baphomet (find replace):
 	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds"},
 }
