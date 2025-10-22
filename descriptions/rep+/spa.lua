@@ -88,7 +88,7 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = { "70", "Piojo", "Genera una araña azul al completar habitaciones" }, -- Louse
 	-- Change: Added more loot information
-	[76] = { "76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja#Aumenta la probabilidad de obtener recompensas de las máquinas#Si el Cofre contiene un objeto, este será de calidad 3 o superior#Los Cofres ocasionalmente pueden tener objetos fuera del \"Grupo de objetos\" del Cofre Dorado" }, -- Poker Chip
+	[76] = { "76", "Ficha de póker", "Al abrir un cofre:#↑ 50% de probabilidad de conseguir más recolectables#↓ 50% de probabilidad de generar una mosca roja#Aumenta la probabilidad de obtener recompensas de las máquinas#Cambia los objetos en Cofres de calidad 0-2 por objetos de calidad superior#Los Cofres ocasionalmente pueden tener objetos fuera del \"Grupo de objetos\" del Cofre Dorado" }, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = { "85", "Karma", "{{DonationMachine}} Al usar una Máquina de Donación, 33% de probabilidad de:#{{HealingRed}} Curar 1 corazón rojo {{ColorSilver}}(40%)#{{Coin}} Generar una moneda {{ColorSilver}}(40%)#{{Luck}} Suerte +1 {{ColorSilver}}(15%)#{{Beggar}} Generar un mendigo {{ColorSilver}}(5%)#Tambien afecta a las donaciones de Mendigos y Máquinas de Reabastecimiento" }, -- Karma
 	-- Change: Added damage up information
