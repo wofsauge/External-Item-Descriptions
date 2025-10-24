@@ -19,6 +19,132 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"japanese", "jp", "ja
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default", lineHeight= 12}, {name="inverted", lineHeight = 12}, {name="borderless", lineHeight= 12}}
 
+
+-- Flag to disable modular description behavior for the whole language
+-- Added to not mess to much with preexisting translations, before a translator looked
+-- over the modular description strings. Remove variable to enable it again.
+EID.descriptions[languageCode].DisableModularDescriptions = true
+
+---------- Modular Descriptions ----------
+-- Table containing basic sentences and templates used to generate basic descriptions
+
+-----------------------------------------------------------------
+--- Translator TODO: Please verify correctness of translations and add potential pluralizations
+-----------------------------------------------------------------
+EID.descriptions[languageCode].ModularDescriptions = {
+    -- Player Stats
+    TearsMultiplier = "連射速度　 {value}",
+    Tears = "連射速度　 {value}",
+    TearHeight = "涙の高さ　 {value}",
+    TearSizeMultiplier = "涙のサイズ　 {value}",
+    TearSize = "涙のサイズ　 {value}",
+    TearDelayMultiplier = "連射間隔　 {value}",
+    TearDelay = "連射間隔　 {value}",
+    FireRateMultiplier = "攻撃速度の倍率　 {value}",
+    FireRate = "攻撃速度　 {value}",
+    DamageMultiplier = "攻撃力　 {value}",
+    Damage = "攻撃力　 {value}",
+    BombDamage = "爆弾ダメージ　 {value}",
+    Speed = "移動速度　 {value}",
+    RangeMultiplier = "射程　 {value}",
+    Range = "射程　 {value}",
+    Luck = "運　 {value}",
+    ShotSpeedMultiplier = "弾速　 {value}",
+    ShotSpeed = "弾速 {value}",
+    Life = "体力 {value}",
+    SizeUp = "サイズ増加",
+    SizeDown = "サイズ減少",
+    Flight = "飛行",
+    Invincibility = "無敵",
+    RandomStatUp = "↑ ランダムに {value} ステータス上昇",
+    RandomStatDown = "↓ ランダムに {value} ステータス低下",
+
+    -- Health related
+    RedHeart = "最大体力 {value}",
+    SoulHeart = "青ハート {value}",
+    BlackHeart = "黒ハート {value}",
+    BoneHeart = "骨ハート {value}",
+    EternalHeart = "白ハート {value}",
+    GoldenHeart = "金ハート {value}",
+    RottenHeart = "腐ったハート {value}",
+    BrokenHeart = "壊れたハート {value}",
+    EmptyHeart = "空のハート容器 {value}",
+    FullHealth = "体力満タン",
+    HealingRed = "{value} ハートを回復",
+	CoinHeart = "コインの健康状態 {value}",
+	EmptyCoinHeart = "{value} 枚の空のコインの体力",
+	HealingCoin = "{value} コイン分の体力を回復",
+
+    -- Room chances
+    AngelDevilChance = "悪魔部屋／天使部屋の 出現率 {value}%",
+    DevilChance = "悪魔部屋の出現率 {value}%",
+    AngelChance = "天使部屋の 出現率 {value}%",
+    PlanetariumChance = "の確率でプラネタリウム {value}% ",
+
+    -- Pickups / Spawns
+    Coin = "{value} コイン",
+    Bomb = "{value} 爆弾",
+    Key = "{value} 鍵",
+    CoinBombKey = "{value} {{Coin}} コイン, {{Bomb}} 爆弾 と {{Key}} 鍵",
+    -- Dynamic Spawns
+    Spawns = {
+        RandomPickup = "{value} 個のランダムなピックアップをスポーン",
+        RandomTrinket = "{value} 個のランダムなトリンケットをスポーン",
+        RandomHeart = "{value} 個のランダムなハートをスポーン",
+        RedHeart = "{value} 個の赤ハートをスポーン",
+        SoulHeart = "{value} 個の青ハートをスポーン",
+        BoneHeart = "{value} 個の骨ハートをスポーン",
+        Bomb = "{value} 個の爆弾をスポーン",
+        Key = "{value} 個の鍵をスポーン",
+        Coin = "{value} 枚のコインをスポーン",
+        RandomCoin = "{value} 枚のランダムなコインをスポーン",
+        Card = "{value} 枚のカードをスポーン",
+        Pill = "{value} 個のピルをスポーン",
+        Rune = "{value} 個のルーンをスポーン",
+        Battery = "{value} 個の電池をスポーン",
+        BlueFly = "{value} 匹の青いハエをスポーン",
+        BlueSpider = "{value} 匹の青クモをスポーン",
+    },
+
+    -- Permanent Tear Effects
+    TearEffect = {
+        Homing = "涙にホーミング効果を付与",
+        Spectral = "スペクトラルの涙",
+        Piercing = "貫通する涙",
+        Poison = "{{Poison}} 毒の涙",
+    },
+
+    -- Familiars
+    FlyOrbital = "{value} 匹のオービタルハエ",
+    Orbital = "オービタル",
+    BlockProjectiles = "敵の弾をブロックする",
+    DamagePerTear = "涙1発につき {value} ダメージを与える",
+    DamagePerShot = "1 発の射撃につき {value} ダメージを与える",
+    DamagePerSecond = "秒間 {value} ダメージを与える",
+    ContactDamagePerSecond = "秒間 {value} の接触ダメージを与える",
+    MimicMovement = "アイザックの動きを {value} 秒遅れで模倣する",
+
+    -- Player
+    CantShoot = "アイザックは攻撃できない",
+    PlayerContactDamage = "アイザックが接触すると秒間 {value} ダメージを与える",
+    DamageToAllEnemies = "全ての敵に {value} ダメージを与える",
+
+    -- Misc
+    LeftEye = "左目に付与：",
+    RightEye = "右目に付与：",
+    RoomEffect = "{{Timer}} 部屋に付与：",
+    TimedEffect = "{{Timer}} {value} 秒間付与：",
+    OnUseEffect = "使用時：",
+    HeldEffect = "所持中：",
+    MaxLuck = "{{Luck}} 確率：運{value}で{max}%",
+    SingleUseInfo = "{{Warning}} 使い切りアイテム {{Warning}}",
+    NoEffect = "効果なし",
+    FullMapping = {
+        BaseDesc = "{{Timer}} フロアを完全にマップ表示 {exception}",
+        Exception = "(ただし {{SuperSecretRoom}} スーパーミステリールームを除く)"
+    }
+}
+
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
@@ -1098,7 +1224,7 @@ EID.descriptions[languageCode].transformations={
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
 	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
-	-- replace {pluralize} placeholders inside the text with an "s"
+	-- replace  placeholders inside the text with an "s"
 	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
 end
 
@@ -1111,11 +1237,7 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ 攻撃力 +4", "↑ �
 EID.descriptions[languageCode].CrookedPennyHeads = "表"
 EID.descriptions[languageCode].CrookedPennyTails = "裏"
 
-EID.descriptions[languageCode].LuckModifier = "確率：運{2}で{1}%"
-
 EID.descriptions[languageCode].CollectionPageInfo = "コレクションページに 登録されていない、 今まで未取得のアイテム"
-
-EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 使い切りアイテム {{Warning}}"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "現在{{ColorLime}}{1}{{CR}}個の対象アイテムを 所持（攻撃力 +{2}）"
 
@@ -1126,22 +1248,22 @@ EID.descriptions[languageCode].BlackFeatherInformation = "現在{{ColorLime}}{1}
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
 	["Red to Soul"] = {"↑ 最大体力 +{1}", "青ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{SoulHeart}} +{1} Soul Heart{pluralize}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{pluralize}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container", "{{SoulHeart}} +{1} Soul Heart",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart"},
 	
 	["Red to Black"] = {"↑ 最大体力 +{1}", "黒ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
+	"↑ {{EmptyHeart}} +{1} Empty heart container", "{{BlackHeart}} +{1} Black Heart",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart"},
 	
 	["Red to Bone"] = {"↑ 最大体力 +{1}", "骨ハート +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{pluralize}"}, -- Red HP to Bone Hearts
+	"↑ {{EmptyHeart}} +{1} Empty heart container", "{{EmptyBoneHeart}} +{1} Empty Bone Heart", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart"}, -- Red HP to Bone Hearts
 	
 	["Red to Coin"] = {"↑ 最大体力 +{1}", "↑ 最大体力 +{1}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{pluralize}",
-	"{{HealingRed}} Heals {1} heart{pluralize}", "{{HealingCoin}} Heals {1} coin{pluralize}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{pluralize}"}, -- Red HP to Coin Hearts
+	"↑ {{EmptyHeart}} +{1} Empty heart container", "{{EmptyCoinHeart}} +{1} Empty Coin Heart",
+	"{{HealingRed}} Heals {1} heart", "{{HealingCoin}} Heals {1} coin", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart"}, -- Red HP to Coin Hearts
 	
-	["Red to None"] = {"↑ 最大体力 +{1}", "", "↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ 最大体力 +{1}", "", "↑ {{EmptyHeart}} +{1} Empty heart container", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {

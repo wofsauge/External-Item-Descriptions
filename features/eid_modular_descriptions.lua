@@ -498,6 +498,7 @@ end
 -- Returns an empty string if no modules are defined for the item
 function EID:GenerateDescription(itemID)
     if not itemID then return nil end
+    if EID.descriptions[EID:getLanguage()].DisableModularDescriptions then return nil end
 
     local itemDataTable = EID.ItemData[itemID]
     local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", itemID)

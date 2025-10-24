@@ -24,11 +24,16 @@ EID.descriptions[languageCode].fonts = {{name="default", textboxWidth = 145}, {n
 
 
 
+-- Flag to disable modular description behavior for the whole language
+-- Added to not mess to much with preexisting translations, before a translator looked
+-- over the modular description strings. Remove variable to enable it again.
+EID.descriptions[languageCode].DisableModularDescriptions = true
+
 ---------- Modular Descriptions ----------
 -- Table containing basic sentences and templates used to generate basic descriptions
 
 -----------------------------------------------------------------
---- Translator TODO: Please verify correctness of translations and potential pluralizations
+--- Translator TODO: Please verify correctness of translations and add potential pluralizations
 -----------------------------------------------------------------
 EID.descriptions[languageCode].ModularDescriptions = {
     -- Player Stats
@@ -59,17 +64,20 @@ EID.descriptions[languageCode].ModularDescriptions = {
     RandomStatDown = "↓ Diminue aléatoirement {value} stat",
 
     -- Health related
-    RedHeart = "{value} réceptacle de cœur",
-    SoulHeart = "{value} cœur{pluralize} d'âme",
-    BlackHeart = "{value} cœur{pluralize} noir",
-    BoneHeart = "{value} cœur{pluralize} d'os",
-    EternalHeart = "{value} cœur{pluralize} éternel",
-    GoldenHeart = "{value} cœur{pluralize} doré",
-    RottenHeart = "{value} cœur{pluralize} moisi",
-    BrokenHeart = "{value} cœur{pluralize} brisé",
-    EmptyHeart = "{value} réceptacle de cœur vide",
+    RedHeart = "{value} réceptacle{pluralize} de cœur",
+    SoulHeart = "{value} cœur d'âme",
+    BlackHeart = "{value} cœur noir",
+    BoneHeart = "{value} cœur d'os",
+    EternalHeart = "{value} cœur éternel",
+    GoldenHeart = "{value} cœur doré",
+    RottenHeart = "{value} cœur moisi",
+    BrokenHeart = "{value} cœur brisé",
+    EmptyHeart = "{value} réceptacle{pluralize} de cœur vide",
     FullHealth = "Soin complet",
     HealingRed = "Soigne {value} cœur rouge",
+	CoinHeart = "{value} réceptacle{pluralize} de pièce{pluralize}",
+	EmptyCoinHeart = "{value} réceptacle{pluralize} de pièce{pluralize} vides",
+	HealingCoin = "Soigne {value} réceptacle{pluralize} de pièce{pluralize}",
 
     -- Room chances
     AngelDevilChance = "{value}% de chance de Salle du Diable/Ange",

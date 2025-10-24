@@ -39,8 +39,8 @@ EID.descriptions[languageCode].ModularDescriptions = {
     RangeMultiplier = "{value} Reichweite",
     Range = "{value} Reichweite",
     Luck = "{value} Glück",
-    ShotSpeedMultiplier = "{value} Shot speed multiplier",
-    ShotSpeed = "{value} Shot speed",
+    ShotSpeedMultiplier = "{value} Schussgeschwindigkeit",
+    ShotSpeed = "{value} Schussgeschwindigkeit",
     Life = "{value} Leben",
     SizeUp = "Werde größer",
     SizeDown = "Werde kleiner",
@@ -61,6 +61,9 @@ EID.descriptions[languageCode].ModularDescriptions = {
     EmptyHeart = "{value} leer{plural_e_sing_es} Herz{plural_en}",
     FullHealth = "Volle Gesundheit",
     HealingRed = "Heilt {value} Herz{plural_en}",
+	CoinHeart = "{value} Münz-Herz{plural_en}",
+	EmptyCoinHeart = "{value} leer{plural_e_sing_es} Münz-Herz{plural_en}",
+	HealingCoin = "Heilt {value} Münz-Herz{plural_en}",
 
     -- Room chances
     AngelDevilChance = "{value}% Teufels-/Engelsraum Chance",
@@ -95,10 +98,10 @@ EID.descriptions[languageCode].ModularDescriptions = {
     },
 	-- Permanent Tear Effects
     TearEffect = {
-		Homing = "Homing tears",
-		Spectral = "Spectral tears",
-		Piercing = "Piercing tears",
-		Poison = "{{Poison}} Poison tears",
+		Homing = "Zielsuchende Tränen",
+		Spectral = "Spektrale Tränen",
+		Piercing = "Durchdringende Tränen",
+		Poison = "{{Poison}} Giftige Tränen",
 	},
     -- Familiars
     FlyOrbital = "{value} Orbital Fliege{plural_n}",

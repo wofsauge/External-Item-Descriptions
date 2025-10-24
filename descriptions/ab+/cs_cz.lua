@@ -20,11 +20,16 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs"}
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
 
+-- Flag to disable modular description behavior for the whole language
+-- Added to not mess to much with preexisting translations, before a translator looked
+-- over the modular description strings. Remove variable to enable it again.
+EID.descriptions[languageCode].DisableModularDescriptions = true
+
 ---------- Modular Descriptions ----------
 -- Table containing basic sentences and templates used to generate basic descriptions
 
 -----------------------------------------------------------------
---- Translator TODO: Please verify correctness of translations and potential pluralizations
+--- Translator TODO: Please verify correctness of translations and add potential pluralizations
 -----------------------------------------------------------------
 EID.descriptions[languageCode].ModularDescriptions = {
     -- Player Stats
@@ -66,6 +71,9 @@ EID.descriptions[languageCode].ModularDescriptions = {
     EmptyHeart = "{value} Prázdné místo pro srdc{plural_e}",
     FullHealth = "Plné zdraví",
     HealingRed = "Vyléčí {value} srdc{plural_e}",
+	CoinHeart = "{value} mince srdc{plural_e}",
+	EmptyCoinHeart = "{value} prázdné mince srdc{plural_e}",
+	HealingCoin = "Vyléčí {value} minc{plural_e}",
 
     -- Room chances
     AngelDevilChance = "{value}% šance na Ďábelskou/Andělskou místnost",
