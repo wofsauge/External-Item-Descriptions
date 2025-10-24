@@ -1006,6 +1006,8 @@ EID.descriptions[languageCode].VoidNames = {"{1} скорост", "{1} чест�
 
 EID.descriptions[languageCode].CollectionPageInfo = "Тази вещ трябва да се вземе за списъка с вещи в менюто!"
 
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} Само едно използване {{Warning}}"
+
 EID.descriptions[languageCode].MCM = {
 	DemoObjectName = "Примерно име на вещ",
 	DemoObjectTransformation = "Примерна трансформация",

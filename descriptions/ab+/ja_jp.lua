@@ -1237,7 +1237,11 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ 攻撃力 +4", "↑ �
 EID.descriptions[languageCode].CrookedPennyHeads = "表"
 EID.descriptions[languageCode].CrookedPennyTails = "裏"
 
+EID.descriptions[languageCode].LuckModifier = "確率：運{2}で{1}%"
+
 EID.descriptions[languageCode].CollectionPageInfo = "コレクションページに 登録されていない、 今まで未取得のアイテム"
+
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} 使い切りアイテム {{Warning}}"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "現在{{ColorLime}}{1}{{CR}}個の対象アイテムを 所持（攻撃力 +{2}）"
 

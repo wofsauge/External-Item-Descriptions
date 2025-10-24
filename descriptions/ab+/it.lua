@@ -1239,9 +1239,13 @@ EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Danni", 
 EID.descriptions[languageCode].CrookedPennyHeads = "Testa"
 EID.descriptions[languageCode].CrookedPennyTails = "Croca"
 
+EID.descriptions[languageCode].LuckModifier = "{1}% di chance con {2} in Fortuna"
+
 EID.descriptions[languageCode].CollectionPageInfo = "Questo oggetto deve essere raccolto per la collezione!"
 
 EID.descriptions[languageCode].BlackFeatherInformation = "Oggetti tenuti al momento: {{ColorLime}}{1}{{CR}} (+{2} Danni)"
+
+EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} USO SINGOLO {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
 -- {1} = number of hearts, {pluralize} = plural character
