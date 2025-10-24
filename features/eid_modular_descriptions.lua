@@ -46,8 +46,10 @@ EID.ModuleBehaviors = {
 
     -- Health related
     ["RedHeart"] = { Priority = 8990, Arrow = true, Icon = "{{Heart}}" },
+    ["CoinHeart"] = { Priority = 8990, Arrow = true, Icon = "{{CoinHeart}}" },
     ["FullHealth"] = { Priority = 8980, Icon = "{{HealingRed}}", HideSign = true },
     ["HealingRed"] = { Priority = 8970, Icon = "{{HealingRed}}", HideSign = true },
+    ["HealingCoin"] = { Priority = 8970, Icon = "{{HealingCoin}}", HideSign = true },
     ["SoulHeart"] = { Priority = 8960, Icon = "{{SoulHeart}}" },
     ["BlackHeart"] = { Priority = 8950, Icon = "{{BlackHeart}}" },
     ["BoneHeart"] = { Priority = 8940, Icon = "{{EmptyBoneHeart}}" },
@@ -56,6 +58,7 @@ EID.ModuleBehaviors = {
     ["RottenHeart"] = { Priority = 8910, Icon = "{{RottenHeart}}" },
     ["BrokenHeart"] = { Priority = 8910, Icon = "{{BrokenHeart}}" },
     ["EmptyHeart"] = { Priority = 8900, Icon = "{{EmptyHeart}}" },
+    ["EmptyCoinHeart"] = { Priority = 8900, Icon = "{{EmptyCoinHeart}}" },
 
     -- Pickups / Spawns
     ["Coin"] = { Priority = 7990, Icon = "{{Coin}}" },
@@ -235,7 +238,7 @@ EID.ModuleBehaviors = {
                 itemDataTableEntry = {itemDataTableEntry}
             end
             for _, itemID in ipairs(itemDataTableEntry) do
-                local itemDesc =  EID:GenerateDescription(itemID)
+                local itemDesc =  EID:GenerateDescription({fullItemString = itemID})
                 if itemDesc and itemDesc ~= "" then
                     local numReplaced = 0
                     description, numReplaced = description:gsub("{VAR:ITEMDESCRIPTION}", itemDesc)
@@ -282,6 +285,8 @@ setmetatable(EID.ModuleBehaviors, { __newindex = function(_, key, value)
     if type(value) == "table" then rawset(value, "Name", key) end
     rawset(self, key, value) end
 })
+
+EID.ModularDataModifiers = {}
 
 -- Formats a number to a string, removing trailing zeros after the decimal point
 function EID:PrettyPrintValue(value)
@@ -494,18 +499,44 @@ function EID:GetSortedModularDescriptionEntries(itemDataTable, combineTables, va
     return sortedModulesPositivePrio, sortedModulesNegativePrio
 end
 
+---Apply Description Modifier to a given description object
+---@param itemDataTable table
+---@param descObj EID_DescObj
+---@return table
+function EID:applyModularDataModifier(itemDataTable, descObj)
+    local dataCopy = EID:CopyTable(itemDataTable)
+	for _,modifier in ipairs(EID.ModularDataModifiers) do
+		local result = modifier.condition(dataCopy, descObj)
+		if type(result) == "table" then
+			for _,callback in ipairs(result) do
+				dataCopy = callback(dataCopy, descObj)
+			end
+		elseif result then
+			dataCopy = modifier.callback(dataCopy, descObj)
+		end
+	end
+	return dataCopy
+end
+
 -- Tries to generate a description for an item based on its modules defined in EID.ItemData
 -- Returns an empty string if no modules are defined for the item
-function EID:GenerateDescription(itemID)
+function EID:GenerateDescription(descriptionObj)
+    local itemID = descriptionObj.fullItemString
     if not itemID then return nil end
     if EID.descriptions[EID:getLanguage()].DisableModularDescriptions then return nil end
 
     local itemDataTable = EID.ItemData[itemID]
     local additionalInfo = EID:getDescriptionEntry("AdditionalInformations", itemID)
+
+    if not EID.descriptions[EID:getLanguage()].AdditionalInformations and additionalInfo then
+        return "", ""
+    end
     -- return empty string or additionalInfo, if no ItemData are defined
     if not itemDataTable then
         return additionalInfo or "", ""
     end
+
+    itemDataTable = EID:applyModularDataModifier(itemDataTable, descriptionObj)
 
     local sortedModulesPositivePrio, sortedModulesNegativePrio = EID:GetSortedModularDescriptionEntries(itemDataTable, false, true, itemID)
 
@@ -790,7 +821,7 @@ function EID:CompareGeneralizedDescriptions(type, variant, subtype)
     local originalEntry = EID:getDescriptionEntry(EID:getTableName(type, variant, subtype), subtype % PillColor.PILL_GIANT_FLAG)
     local origText = originalEntry[3]
 
-    local generated, additional = EID:GenerateDescription(itemTypeString)
+    local generated, additional = EID:GenerateDescription({fullItemString = itemTypeString})
 
     -- Evaluate the completeness of the generated description compared to the original description
     if origText == generated then

@@ -63,6 +63,9 @@ EID.descriptions[languageCode].ModularDescriptions = {
     EmptyHeart = "{value} Empty Heart container{pluralize}",
     FullHealth = "Full health",
     HealingRed = "Heals {value} heart{pluralize}",
+	CoinHeart = "{value} Coin Heart{pluralize}",
+	EmptyCoinHeart = "{value} Empty Coin Heart{pluralize}",
+	HealingCoin = "Heals {value} coin{pluralize}",
 
     -- Room chances
     AngelDevilChance = "{value}% Devil/Angel Room chance",

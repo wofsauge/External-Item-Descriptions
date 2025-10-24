@@ -639,7 +639,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
-	local success, modularDescription = pcall(EID.GenerateDescription, nil, description.fullItemString)
+	local success, modularDescription = pcall(EID.GenerateDescription, nil, description)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	if success and modularDescription and modularDescription ~= "" then
 		description.Description = modularDescription
@@ -1625,6 +1625,39 @@ function EID:removeDescriptionModifier(modifierName)
 	for i,v in ipairs(EID.DescModifiers) do
 		if v["name"] == modifierName then
 			table.remove(EID.DescModifiers,i)
+			return
+		end
+	end
+end
+
+---Adds Modular data modifier
+---@param modifierName string
+---@param condition fun(descObj: EID_DescObj): boolean
+---@param callback fun(descObj: EID_DescObj): EID_DescObj
+---@param position? integer
+function EID:addModularDataModifier(modifierName, condition, callback, position)
+	position = position or #EID.ModularDataModifiers + 1
+	for _, v in ipairs(EID.ModularDataModifiers) do
+		if v["name"] == modifierName then
+			v["condition"] = condition
+			v["callback"] = callback
+			return
+		end
+	end
+	table.insert(EID.ModularDataModifiers, position, {
+		name = modifierName,
+		condition = condition,
+		callback = callback
+	})
+end
+
+---Removes a Modular data modifier
+---@see EID.addModularDataModifier
+---@param modifierName string
+function EID:removeModularDataModifier(modifierName)
+	for i, v in ipairs(EID.ModularDataModifiers) do
+		if v["name"] == modifierName then
+			table.remove(EID.ModularDataModifiers, i)
 			return
 		end
 	end
