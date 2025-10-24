@@ -21,6 +21,8 @@ local collectibles = {
 	[141] = { "141", "Reginello", "{{Coin}} Genera 7 monete casuali#Genera 1 ninnolo penny casuale" }, -- Pageant Boy
 	-- Change: added Fire rate information
 	[186] = { "186", "Eredità di Sangue", "Infligge 40 danni a tutti i nemici#{{Tears}} +0.48 Rateo di Fuoco fino all'uscita dalla stanza#{{Warning}} Infligge 1 cuore di danno ad Isaac#Dopo il 1° uso in una stanza, infligge invece mezzo cuore di danno#{{Heart}} Rimuove per primi i Cuori Rossi" }, -- Blood Rights
+	-- Change: added random tear effects information	
+	[244] = { "244", "Tech.5", "Oltre alle lacrime Isaac spara certe volte dei laser#Leggera chance che i laser abbiano effetti casuali"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
 	[281] = { "281", "Sacco da Boxe", "Famiglio diversivo#I nemici bersagliano lui al posto di Isaac#Blocca i proiettili nemici" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
@@ -86,7 +88,7 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "Pidocchio", "Durante una lotta genera 1 ragno blu ogni 30 secondi#A completamento stanza genera 1 ragno blu"}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "Fiche da Poker", "↑ 50% di chance che i bauli generino consumabili extra#↓ 50% di chance che i bauli contengano solo 1 mosca#Aumenta le chance di ricompense da Slot Machine e altre macchine#Se un baule contiene 1 oggetto, lo forza a Qualità 3 o maggiore#Certe volte i bauli possono contenere oggetti al di fuori della categoria dei bauli dorati"}, -- Poker Chip
+	[76] = {"76", "Fiche da Poker", "↑ 50% di chance che i bauli generino consumabili extra#↓ 50% di chance che i bauli contengano solo 1 mosca#Aumenta le chance di ricompense da Slot Machine e altre macchine#Scambia oggetti di Qualità 0-2 nei bauli in altri di Qualità maggiore#Certe volte i bauli possono contenere oggetti al di fuori della categoria dei bauli dorati"}, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = {"85", "Karma", "{{DonationMachine}} Usare qualsiasi Macchina di Donazione ha il 33% di chance di:#{{HealingRed}} Curare di 1 cuore (40%)#{{Coin}} Conferire 1 moneta (40%)#{{Luck}} Conferire +1 Fortuna (15%)#{{Beggar}} Generare 1 Mendicante (5%)#{{DonationMachine}} Le Macchine di Donazione inceppano più raramente#Influenza anche le donazioni ai Mendicanti e alle Macchine di Rifornimento"}, -- Karma
 	-- Change: Added damage up information
@@ -337,7 +339,7 @@ local goldenTrinketEffects = {
 	-- Beth’s Essence (append):
 	[182] = {"50% di chance che le fiammelle della Stanza dell'Angelo siano speciali#{{ColorGold}}I Mendicanti genereranno fiammelle speciali", "100% di chance che le fiammelle della Stanza dell'Angelo siano speciali#{{ColorGold}}I Mendicanti genereranno fiammelle speciali"},
 	-- Adoption Papers (append):
-	[184] = {"I famigli saranno sempre in saldo", "I famigli saranno sempre in saldo#{{Card92}} {{ColorGold}}I Negozi potranno vendere \"Anima di Lilith\""},
+	[184] = {"I famigli saranno sempre in saldo", "I famigli saranno sempre in saldo#{{Card92}} {{ColorGold}}I Negozi venderanno \"Anima di Lilith\""},
 	-- Sigil of Baphomet (find replace):
 	[189] = {"1 secondo", "1.5 {{CR}}secondi", "2 {{CR}}secondi"},
 }
