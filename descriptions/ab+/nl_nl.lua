@@ -138,209 +138,119 @@ EID.descriptions[languageCode].ModularDescriptions = {
 }
 
 ---------- Collectibles ----------
-EID.descriptions[languageCode].collectibles={
-	{"1", "De Droevige Ui", "↑ {{Tears}} +0.7 Tranen omhoog"},
-	{"2", "Het Innerlijke Oog", "Driedubbel schot#↓ {{Tears}} Tranen omlaag"},
-    {"3", "Lepel buiger", "Richtende tranen"},
-    {"4", "Krekels Hoofd", "↑ {{Damage}} +0.5 Schade omhoog#↑ {{Damage}} +50% Schade vermenigvuldiger"},
-    {"5", "Mijn Reflectie", "Isaac's tranen krijgen een boomerang effect#↑ {{Range}} +1.5 Bereik omhoog#↑ {{Shotspeed}} +0.6 Traan Snelheid omhoog#↑ +1 Traan Hoogte"},
-    {"6", "Nummer één", "↑ {{Tears}} +1.5 Tranen omhoog#↓ {{Range}} -17.62 Bereik omlaag#↑ +0.76 Traan Hoogte"},
-    {"7", "Bloed van de Martelaar", "↑ {{Damage}} +1 Schade omhoog#{{Collectible34}} +50% Schade omhoog als Isaac het Boek van Belial of het Duivels Kaart effect activeert"},
-    {"8", "Broeder Bobby", "Vuurt normale tranen af#Doet 3.5 schade per traan"},
-	{"9", "Scatool", "Alle vliegvijanden zijn vriendelijk"},
-	{"10", "Halo van Vliegen", "+2 vliegorbitalen#Blokkeert vijandige projectielen"},
-	{"11", "1up!", "↑ +1 Leven#Isaac komt weer tot leven met volle gezondheid"},
-	{"12", "Magische Paddenstoel", "↑ +1 Gezondheid omhoog#{{Heart}} Volle gezondheid#↑ {{Damage}} +0.3 Schade omhoog#↑ {{Damage}} +50% Schade vermenigvuldiger#↑ {{Range}} +5.25 Bereik omhoog#↑ {{Speed}} +0.3 Snelheid omhoog#↑ +0.5 Traan Hoogte#Grote omhoog"},
-    {"13", "Het Virus", "{{Poison}} Het aanraken van vijanden vergiftigd ze#↓ {{Speed}} -0.1 Snelheid omlaag#{{BlackHeart}} Vergiftigde vijanden kunnen Zwarte Harten laten vallen"},
-    {"14", "Anabole Woede", "↑ {{Speed}} +0.6 Snelheid omhoog#↑ {{Range}} +5.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"15", "<3", "↑ {{Heart}} +1 Gezondheid omhoog#{{Heart}} Volle gezondheid"},
-	{"16", "Rauwe Lever", "↑ {{Heart}} +2 Gezondheid omhoog#{{Heart}} Volle gezondheid"},
-	{"17", "loper", "{{Key}} +99 Sleutels"},
-	{"18", "Een Dollar", "{{Coin}} +99 munten"},
-	{"19", "Boom!", "{{Bomb}} +10 Bommen"},
-	{"20", "Transcendentie", "Geeft vlucht"},
-	{"21", "Het Kompas", "Reveals icons on the map: Onthult plaatjes op de kaart#Geeft de indeling van de kaart niet weer"},
-	{"22", "Lunch", "↑ {{Heart}} +1 Gezondheid omhoog"},
-	{"23", "Diner", "↑ {{Heart}} +1 Gezondheid omhoog"},
-	{"24", "Nagerecht", "↑ {{Heart}} +1 Gezondheid omhoog"},
-	{"25", "Ontbijt", "↑ {{Heart}} +1 Gezondheid omhoog"},
-	{"26", "Rot vlees", "↑ {{Heart}} +1 Gezondheid omhoog"},
-	{"27", "Houten lepel", "↑ {{Speed}} +0.3 Snelheid omhoog"},
-	{"28", "De riem", "↑ {{Speed}} +0.3 Snelheid omhoog"},
-	{"29", "Mama's ondergoed", "↑ {{Range}} +5.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"30", "Mama's hakken", "↑ {{Range}} +5.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"31", "Mama's lippenstift", "↑ {{Range}} +5.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"32", "Draadhanger", "↑ {{Tears}} +0.7 Tranen omhoog"},
-	{"33", "De Bijbel", "Geeft vlucht voor de huidige kamer#{{MomsHeart}} Doodt mama's voet en mama's hart onmiddellijk#{{Warning}} Doodt Isaac wanneer gebruikt op Satan"},
-	{"34", "Het Boek van Belial", "↑ {{Damage}} +2 Schade omhoog#{{Collectible7}} +50% Schade als Isaac Bloed van de Martelaar heeft#{{AngelDevilChance}} +12.5% Duivel/Engel Kamer kans wanneer deze vastgehouden wordt"},
-	{"35", "De Necronomicon", "Brengt 40 schade toe aan alle vijanden in de kamer"},
-	{"36", "De Poep", "Plaatst één poep en slaat vijanden terug#Kan naast een kuil worden geplaatst en worden vernietigd met een bom om een brug te maken"},
-	{"37", "Mr. Boem", "Laat een grote bom vallen onder Isaac die 110 schade aanricht"},
-	{"38", "Tammy's Hoofd", "Vuurt 10 tranen af in een cirkel rond Isaac#De tranen hebben dezelfde traaneffecten als Isaac, plus 25 schade"},
-	{"39", "Mama's BH", "Bevriest alle vijanden in de huidige kamer gedurende 4 seconden"},
-	{"40", "Kamikaze!", "Veroorzaakt een explosie waar Isaac is#Doet 40 schade toe"},
-	{"41", "Mama's Maandverband", "{{Fear}} Maakt alle vijanden bang in de huidige kamer gedurende 5 seconden"},
-	{"42", "Bob's Rotte Kop", "Door de item the gebruiken en in een bepaalde richting te schieten, wordt het hoofd gegooid#{{Poison}} Het hoofd explodeert waar het landt en vergiftigt vijanden die in de ontploffing terecht komen"},
-	{"43", "", "<item does not exist>"},
-	{"44", "Teleporteren!", "Teleporteert Isaac naar een willekeurige kamer behalve de I AM ERROR-kamer"},
-	{"45", "Yummy Hart", "Geneest 1 Rood Hart"},
-	{"46", "Geluksvoet", "↑ {{Luck}} +1 Geluk omhoog#+8% kans op een beloning na een kamer#Betere kans om te winnen bij gokken"},
-	{"47", "Doctors Afstandsbediening", "{{Collectible168}} Bij gebruikt, begint met het richten van een vizier#Een raket landt na 1.5 seconde op het vizier#Doet 20x schade"},
-	{"48", "Cupido's pijl", "Doordringende Tranen"},
-	{"49", "Shoop da Whoop!", "Als je de item gebruikt en in een bepaalde richting schiet, wordt er een Brimstone Laser met hoge schade afgevuurd"},
-	{"50", "Steven", "↑ {{Damage}} +1 Schade omhoog"},
-	{"51", "Pentagram", "↑ {{Damage}} +1 Schade omhoog#{{AngelDevilChance}} +10% Duivel/Engel Kamer kans"},
-	{"52", "Dr. Foetus", "{{Bomb}} Isaac schiet bommen in plaats van tranen#Elke bom richt 5x schade + 30 aan#↓ {{Tears}} Traan vertraging x 2.5"},
-	{"53", "Magneto", "Isaac trekt items aan die op de grond liggen"},
-	{"54", "Schatkaart", "Onthult de vloerindeling#Laat geen plaatjes zien"},
-	{"55", "Mama's Oog", "50% kans om een traan achteruit te schieten#{{Luck}} 100% kans op 2 Geluk"},
-	{"56", "Citroen Ongeluk", "Morst een plas van limonade#De limonade doet 24 contact schade per seconden"},
-	{"57", "Verre Bewondering", "Vlieg orbitaal op lange afstand#Doet 75 contact schade per seconden"},
-	{"58", "Boek van Schaduwen", "Maakt Isaac voor 10 seconden immuun tegen vijanden"},
-	{"59", "", "<item does not exist>"},
-	{"60", "De Ladder", "Laat Isaac opening van 1 tegel overbruggen"},
-	{"61", "", "<item does not exist>"},
-	{"62", "Charme van de Vampier", "{{HalfHeart}} Het doden van 13 vijanden geneest een half hart"},
-	{"63", "De batterij", "Actieve items kunnen twee keer worden opgeladen en twee keer achter elkaar worden gebruikt"},
-	{"64", "Steam Uitverkoop", "{{Shop}} Winkel Items kosten 50% minder#Als je twee Steam Uitverkoop items bezit, zijn alle betaalde artikelen gratis"},
-	{"65", "Anarchistisch kookboek", "Plaatst 6 troll-bommen in het midden van de kamer"},
-	{"66", "De Zandloper", "{{Slow}} Vertraagt vijanden gedurende 8 seconden"},
-	{"67", "Zuster Maggie", "Schiet normale tranen#Doet 3.5 schade per traan"},
-	{"68", "Technologie", "Isaac vuurt lasers af in plaats van tranen"},
-	{"69", "Chocolademelk", "{{Chargeable}} Oplaadbare tranen#↑ {{Damage}} Volledig opgeladen tranen richten 400% schade aan#↓ {{Tears}} Tranen omlaag"},
-	{"70", "Groeihormonen", "↑ {{Damage}} +1 Schade omhoog#↑ {{Speed}} +0.4 Snelheid omhoog"},
-	{"71", "Mini Mush", "↑ {{Speed}} +0.3 Snelheid omhoog#↓ {{Range}} -4.25 Bereik omlaag*#↑ +1.5 Traan Hoogte*#(*beide geven een kleine bereik omhoog)#↑ Groote omlaag"},
-	{"72", "Rozenkrans", "{{SoulHeart}} +3 Ziel Hartjes#{{Collectible33}} De Bijbel wordt toegevoegd aan alle itempools"},
-	{"73", "Kubus van vlees", "LVL1: Orbitaal#LVL2: Schietend Orbitaal#LVL3: Vlees Jongen LVL1#LVL4: Vlees Jongen LVL2"},
-	{"74", "Een Kwart", "{{Coin}} +25 munten"},
-	{"75", "PHD", "{{Pill}} Verandert slechte pillen in goede pillen#Geeft 1 pill bij het oppakken#{{Heart}} Geneest 2 Roode Hartjes#{{BloodDonationMachine}} Bloeddonatiemachines en {{Collectible135}} IV zak geven meer munten"},
-	{"76", "Röntgenzicht", "{{SecretRoom}} Opent alle ingangen van geheime kamers"},
-	{"77", "Mijn kleine eenhoorn", "Maakt Isaac immuun and geeft +0.28 Snelheid omhoog#Isaac doet 40 contact schade per seconden terwijl hij immuun is#{{Timer}} Effects duurt 6 seconden"},
-	{"78", "Boek van Openbaringen", "{{SoulHeart}} +1 Ziel Hart#Hogere Horseman boss kans wanneer gebruikt#{{AngelDevilChance}} +17.5% Duivel/Engel Kamer kans wanner vastgehouden"},
-	{"79", "Het teken", "↑ {{Damage}} +1 Schade omhoog#↑ {{Speed}} +0.2 Snelheid omhoog#{{SoulHeart}} +1 Ziel Hart"},
-	{"80", "Het Verbond", "↑ {{Damage}} +0.5 Schade omhoog#↑ {{Tears}} +0.7 Tranen omhoog#{{SoulHeart}} +2 Ziel Hartjes"},
-	{"81", "Dode Kat", "↑ +9 levens#Kom weer tot leven met 1 Rood Hartje#↓ Haalt alle Hart containers weg behalve 1#{{Warning}} Characters die geen Rode Hartjes kunnen hebben krijgen 1 Ziel/Zwart Hartje"},
-    {"82", "Heer van het Gat", "Vlucht#↑ {{Speed}} +0.3 Snelheid omhoog"},
-	{"83", "The spijker", "{{SoulHeart}} +1 Ziel Hartje#↑ {{Damage}} +0.7 Schade omhoog#↓ {{Speed}} -0.18 Snelheid omlaag#Isaac doet 40 contact schade per seconde#Isaac kan rotsen vernietigen door er tegenaan te lopen"},
-	{"84", "We Moeten Dieper Gaan!", "Opent een luik naar de volgende vloer#{{LadderRoom}} 10% kans om een kruipruimte luik te openen"},
-	{"85", "Pak kaarten", "{{Card}} Geeft 1 kaart"},
-	{"86", "Monstro's Tand", "Monstro valt op een vijand en brengt 120 schade aan#{{Warning}} Monstro valt op Isaac als de kamer geen vijanden heeft"},
-	{"87", "Loki's Hoorns", "25% kans om in 4 richtingen te schieten#{{Luck}} 100% kans op 7 Geluk"},
-	{"88", "Beetje Mollig", "Schiet vooruit in de richting die Isaac schiet#Deals 52.5 contact schade per seconde"},
-	{"89", "Spinnenbeet", "{{Slow}} 25% kans om verslomende tranen te schieten#{{Luck}} 100% kans op 15 Geluk"},
-	{"90", "De kleine rots", "↑ {{Damage}} +1 Schade omhoog#↑ {{Tears}} +0.2 Tranen omhoog#↓ {{Speed}} -0.2 Snelheid omlaag"},
-	{"91", "Spelunker Hoed", "Onthult de kamertype van aangrenzend kamers#{{SecretRoom}} Kan geheime en supergeheim kamers onthullen"},
-	{"92", "Super Verband", "↑ {{Heart}} +1 Gezondheid omhoog#{{SoulHeart}} +2 Ziel Hartjes#{{Heart}} Geneest 1 Rood Hart"},
-	{"93", "De gamekid", "Geeft immuniteit#{{Fear}} Maakt alle vijanden in de kamer bang#Isaac doet 40 contact schade per seconde#{{HalfHeart}} Het doden van 2 vijanden vult half een hartje aan#{{Timer}} Effect duurt 6.5 seconden"},
-	{"94", "Zak van Centen", "{{Coin}} Laat elke 2 kamers een willekeurige munt vallen"},
-	{"95", "Robo-Baby", "Schiet lasers#Doet 3.5 schade per schot"},
-	{"96", "Kleine C.H.A.D.", "{{HalfHeart}} Laat elke 3 kamers half een hartje vallen"},
-	{"97", "Het Boek van Zonde", "Geeft een willekeurige pickup"},
-	{"98", "Het Relikwie", "{{SoulHeart}} Geeft 1 Ziel Hartje elke 5-6 kamers"},
-	{"99", "Kleine Gish", "{{Slow}} Verslomende tranen#Doet 3.5 schade per schot"},
-	{"100", "Kleine Steven", "Schiet gerichte tranen#Deals 3.5 schade per schot"},
-	{"101", "De Halo", "↑ {{Heart}} +1 Gezondheid omhoog#↑ {{Damage}} +0.3 Schade omhoog#↑ {{Tears}} +0.2 Tranen omhoog#↑ {{Range}} +0.25 Bereik omhoog#↑ {{Speed}} +0.3 Snelheid omhoog#↑ +0.5 Traan Hoogte"},
-	{"102", "Mama's fles pillen", "{{Pill}} Geeft 1 pil"},
-	{"103", "De verkoudheid", "{{Poison}} 25% kans om gif tranen te schieten#{{Luck}} 100% kans op 12 Geluk"},
-	{"104", "De parasiet", "Tranen worden in twee gesplit bij contact#Gesplitste tranen doen halve schade aan"},
-	{"105", "De D6", "Her rolt voetstukitems in de huidige kamer"},
-	{"106", "Mr. Mega", "↑ Bom schade x2.25#{{Bomb}} +5 Bommen"},
-	{"107", "De roze schaar", "Vlucht#Isaac's lichaam scheidt van zijn hoofd en valt vijanden aan met 82,5 contactschade per seconde"},
-	{"108", "De Wafer", "Vermindert alle schade tot een half hartje"},
-	{"109", "Geld = Macht", "↑ {{Damage}} +0.04 Schade omhoog voor iedere {{Coin}}munt die Isaac heeft"},
-	{"110", "Mama's Lenzen", "20% kans om verstenende tranen te schieten#↑ +0.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"111", "De Boon", "{{Poison}} Schat een gifwolk#Het gif doet 6 keer de schade van Isaac"},
-	{"112", "Beschermengel", "Orbitaal#Versnelt alle andere orbitalen#Blokkeert projectielen#Doet 105 contact schade per seconde"},
-	{"113", "Demon Baby", "Schiet vijanden neer die dicht bij Isaac komen#Doet 3 schade per schot"},
-	{"114", "Mama's Mes", "Isaac's tranen worden vervangen door een mes#Het mes doet 2x de schade van Isaac tijdens het vastgehouden en 6x schade op de verste mogelijke afstand"},
-	{"115", "Ouija Bord", "Geestachtige tranen"},
-	{"116", "9 Volt", "Laadt automatisch de eerste balk van actieve items#{{Battery}} Laadt het huidige actieve item volledig op"},
-	{"117", "Dode vogel", "Als Isaac geraakt wordt komt er een vogel #De vogel doet 4 contact schade per seconde aan"},
-	{"118", "Brimstone", "{{Chargeable}} De tranen van Isaac worden vervangen door een bloedlaser"},
-	{"119", "Bloedzak", "↑ {{Heart}} +1 Gezondheid omhoog#↑ {{Speed}} +0.3 Snelheid omhoog#{{Heart}} Geneest 4 Hartjes"},
-	{"120", "Vreemde paddenstoel (Thin)", "↑ {{Tears}} +1.7 Tranen omhoog#↑ {{Speed}} +0.3 Snelheid omhoog#↓ {{Damage}} -38% Schade vermenigvuldiger#De schade vermenigvuldiger wordt beter met ander Schade omhoog items"},
-	{"121", "Vreemde paddenstoel (Large)", "↑ {{EmptyHeart}} +1 Lege Hart container#↑ {{Damage}} +0.3 Schade omhoog#↑ {{Range}} +0.25 Bereik omhoog#↓ {{Speed}} -0.1 Snelheid omlaag#↑ +0.5 Traan Hoogte"},
-	{"122", "Hoer van Babylon", "Wanneer op een half rood hart of minder:#↑ {{Damage}} +1.5 Schade omhoog#↑ {{Speed}} +0.3 Snelheid omhoog"},
-	{"123", "Monsterhandleiding", "Creëert een willekeurige monster die Isaac helpt"},
-	{"124", "Dode Zeerollen", "Activeert een willekeurig actief item effect"},
-	{"125", "Bobby-Bom", "Gerichte Bommen#{{Bomb}} +5 Bommen"},
-	{"126", "Scheermesje", "↑ {{Damage}} +1.2 Schade omhoog voor de huidige kamer#{{Warning}} Doet 1 hart van schade aan Isaac#Verwijdert eerst Rode Hartjes"},
-	{"127", "Vergeet Me Nu", "Herolt en herstart de hele vloer"},
-	{"128", "Voor Eeuwig Alleen", "Lange afstand vlieg orbitaal#Doet 30 contact schade per seconde"},
-	{"129", "Emmer Reuzel", "↑ +2 Lege hart container#↓ -0.2 Snelheid omlaag#Geneest een half hartje"},
-	{"130", "Een Pony", "Verleent vlucht terwijl het vastgehouden is#{{Speed}} Stelt Isaac's snelheid op tenminste 1.5#Gebruik van de item stuurt Isaac in de richting die Isaac beweegt met hoge snelheid"},
-	{"131", "Bommen Tas", "{{Bomb}} Geeft een bom elke 2-3 kamers"},
-	{"132", "Een Brok Steenkool", "{{Damage}} Tranen doen meer schade hoe verder ze gaan"},
-	{"133", "Guppy's Poot", "Maakt van 1 Rood Hart container 3 Ziel Hartjes"},
-	{"134", "Guppy's Staart", "{{Chest}} 33% kans om de kamer beloning the vervangen met een kist#33% kans om geen kamer beloning te geven"},
-	{"135", "IV Zak", "Doet half een hartje schade en geeft 1-3 munten#{{Player14}} Geeft 0-1 munten als de Keeper"},
-	{"136", "Beste Vriend", "Plaatst een dummy Isaac die vijanden aan trekt en explodeert na 5 seconden"},
-	{"137", "Externe Ontsteker", "{{Bomb}} +5 Bommen#Isaac's bommen exploderen niet meer automatisch#Bij gebruik van de item exploderen alle bommen tegelijk"},
-	{"138", "Stigmata", "↑ +1 Gezondheid omhoog#↑ {{Damage}} +0.3 Schade omhoog"},
-	{"139", "Mama's Tas", "{{Trinket}} Isaac kan 2 sieraden vasthouden"},
-	{"140", "Bob's Vloek", "{{Poison}} Isaac's bommen vergiftigen vijand die geraakt worden#{{Bomb}} +5 bommen"},
-	{"141", "Miss-Knaap", "{{Coin}} Geef 7 willekeurige munten"},
-	{"142", "Scapulier", "{{SoulHeart}} Isaac krijgt 1 Ziel Hart wanneer hij nog maar een halve Rode Hart heeft#Kan maar één keer per kamer gebeuren#Uit en in de kamer gaan kan het effect nog een keer veroorzaken"},
-	{"143", "Snelle Bal", "↑ {{Speed}} +0.3 Snelheid omhoog#↑ {{Shotspeed}} +0.2 Traan Snelheid omhoog"},
-	{"144", "Bedelaars Vriend", "{{Coin}} Raapt munten op een geeft willekeurige items terug"},
-	{"145", "Guppy's Hoofd", "Geeft Isaac 2-4 blauwe vliegen"},
-	{"146", "Gebedskaart", "{{EternalHeart}} +1 Eeuwig Hart"},
-	{"147", "Ingekeepte Bijl", "Isaac kan stenen en ingangen van geheime kamers breken door er tegen aan te lopen"},
-	{"148", "Besmetting", "Bij het nemen van schade worden are blauwe vliegen gegeven"},
-	{"149", "Ipecac", "Isaac's tranen worden afgevuurd in een boog#{{Poison}} De tranen exploderen en vergiftigen vijanden waar ze landen#↑ {{Damage}} +40 Schade omhoog#↓ {{Tears}} Tranen omlaag"},
-	{"150", "Harde Liefde", "10% kans om tanden te schieten#{{Damage}} Tanden doen 3.2x Isaac's schade#{{Luck}} 100% kans op 9 Geluk"},
-	{"151", "Het Prutje", "Het raken van een vijand met een traan heeft 1/6 kans om een vlieg te geven"},
-	{"152", "Technologie 2", "Vervangt de tranen van Isaac's rechter oog met een laser#Laser doet 20% van Isaac's schade#↓ {{Damage}} -35% Schade omlaag#↓ {{Tears}} Traanvertraging x 2"},
-	{"153", "Gemuteerde Spin", "Isaac schiet 4 tranen tegelijk af#↓ {{Tears}} Tranen omlaag"},
-	{"154", "Chemische Schil", "↑ {{Damage}} +2 Schade omhoog voor het linker oog"},
-	{"155", "De Gluurder", "Vliegt rond de kamer#Doet 17.1 contact schade per seconde"},
-	{"156", "Gewoonte", "{{Battery}} Het nemen van schade geeft 1 lading voor het actieve Item"},
-	{"157", "Bloederige Lust", "↑ {{Damage}} Het krijgen van schaden geeft Schade omhoog#Kan voor 6 keer per vloer#Duurt voor de hele vloer"},
-	{"158", "kristallen Bol", "Laat de kaart volledig zien#Geeft een Kaart of een Ziel Hart"},
-	{"159", "Geest van de Nacht", "Vlucht#Spookachtige Tranen"},
-	{"160", "Breek de Lucht", "Creëert 5 stralen van licht vlak bij vijanden#Doet Isaac's schade + 20"},
-	{"161", "Ankh", "{{Player4}} Kom tot leven als ??? (Blauwe Baby) wanner Isaac sterft"},
-	{"162", "Keltisch Kruis", "Het nemen van schaden maakt Isaac kort immuun tegen vijanden"},
-	{"163", "Geest Baby", "Volgeling met spookachtige tranen#Doet 3.5 schade per traan"},
-	{"164", "De kaars", "Gooit een blauwe vlam#De vlam doet contact schade, blokkeert vijandelijke tranen, en gaat weg na 2 seconden"},
-	{"165", "Kat-met-negen-staarten", "↑ {{Damage}} +1 Schade omhoog#↑ {{Shotspeed}} +0.23 Traan Snelheid omhoog"},
-	{"166", "D20", "Herolt alle oppakbare items in de kamer"},
-	{"167", "Harlequin Baby", "Schiet twee tranen in een v-patroon#Doet 4 schade per traan"},
-	{"168", "Epic Foetus", "In plaats van tranen, schiet Isaac een vizier#Een raket landt op het vizier na 1.5 seconden#Raketten doen 20 keer Isaac's schade"},
-	{"169", "Polyphemus", "↑ {{Damage}} +100% Schade omhoog#↑ {{Damage}} +4 toegevoegde Schade omhoog#↓ {{Tears}} Tranen omlaag#Tranen gaan verder na het doden van een vijand"},
-	{"170", "Papa Langebeen", "Stampt op willekeurige vijanden#Doet 40 schade per seconde"},
-	{"171", "Spinnen Kont", "Versloomt vijanden voor 4 seconden#Doet 10 schade tegen alle vijanden"},
-	{"172", "Opofferings Dolk", "Orbitaal#Blokkeert vijandelijke tranen#Doet 225 schade per seconde"},
-	{"173", "Mijter", "{{SoulHeart}} Hogere kans om Ziel Harten te vinden"},
-	{"174", "Regenboog Baby", "Schiet willekeurige tranen#Doet 3-5 schade per traan"},
-	{"175", "Papa's Sleutel", "Opent alle deuren in de kamer, ook {{SecretRoom}}{{SuperSecretRoom}}Geheime Kamers, {{ChallengeRoom}}{{BossRushRoom}}Uitdaging Kamers, en de Mega Satan Deur"},
-	{"176", "Stam Cellen", "↑ {{Heart}} +1 Gezondheid omhoog#↑ {{Shotspeed}} +0.16 Traan Snelheid omhoog"},
-	{"177", "Draagbare Gokautomaat", "Een draagbaar gokautomaat#Gebruik 1 munt om kans te krijgen op een willekeurig oppakbare item"},
-	{"178", "Heilig Water", "Bij het nemen van schade komt er een plas van heilig water#Het heilige water doet 24 schade per seconde"},
-	{"179", "Lot", "Vlucht#{{EternalHeart}} +1 Eeuwig Hart"},
-	{"180", "De zwarte boon", "Isaac laat een scheet wanneer hij wordt aangeraakt"},
-	{"181", "Witte Pony", "Geeft vlucht wanneer vastgehouden#{{Speed}} Zet Isaacs snelheid op tenminste 1.5#Het gebruiken van de Item schiet Isaac de richting op die hij bewoog en laat een straal van licht achter"},
-	{"182", "Heilig Heart", "↑ +1 Gezondheid omhoog#{{Heart}} Volle gezondheid#↑ 230% + 1 Schade omhoog#↓ -0.4 Tranen omlaag#↓ -0.25 Traan Snelheid omlaag#↑ +0.38 Bereik omhoog#↑ +0.75 Traan Hoogte#Gerichte Tranen"},
-	{"183", "Tandenstokers", "↑ {{Tears}} +0.7 Tranen omhoog#↑ {{Shotspeed}} +0.16 Traan Snelheid omhoog"},
-	{"184", "Heilige Graal", "Vlucht#↑ +1 Gezondheid omhoog"},
-	{"185", "Dode Duif", "Vlucht#Spookachtige tranen"},
-	{"186", "Bloed Rechten", "Doet 40 schade tegen elke vijand#{{Warning}} Doet 1 hart schade tegen Isaac#Haalt eerst Rode Harten weg"},
-	{"187", "Guppy's Haarbal", "Bewegen swingt de haarbal vooruit#De bal wordt groter wanneer het vijanden dood#De bal doet meer schade hoe groter het is"},
-	{"188", "Abel", "Spiegelt Isaac's bewegingen#Schiet richting Isaac#Doet 3.5 schade per traan"},
-	{"189", "SMB Super Fan", "↑ +1 Gezondheid omhoog#{{Heart}} Volle gezondheid#↑ +0.3 Schade omhoog#↑ +0.2 Tranen omhoog#↑ +0.5 Bereik omhoog#↑ +0.2 Snelheid omhoog#↑ +1 Traan Hoogte"},
-	{"190", "Pyro", "{{Bomb}} +99 Bommen"},
-	{"191", "3 Dollar Briefje", "Isaac's tranen krijgen een willekeurig effect elke 2-3 seconden"},
-	{"192", "Telepathie voor Dummies", "Geeft gerichte tranen voor de huidige kamer"},
-	{"193", "VLEES!", "↑ {{Heart}} +1 Gezondheid omhoog#↑ {{Damage}} +0.3 Schade omhoog"},
-	{"194", "Magische 8 Bal", "↑ {{Shotspeed}} +0.16 Traan Snelheid omhoog#{{Card}} +1 Kaart"},
-	{"195", "Mama's portemonnee", "{{Pill}} Geeft 4 Pillen"},
-	{"196", "Squeezy", "{{SoulHeart}} Geeft 2 Ziel Harten#↑ {{Tears}} +0.4 Tranen omhoog"},
-	{"197", "Jezus Sap", "↑ {{Damage}} +0.5 Schade omhoog#↑ {{Range}} +0.25 Bereik omhoog#↑ +0.5 Traan Hoogte"},
-	{"198", "Doos", "Geeft 1 oppakbaar item van elke type"},
-	{"199", "Mama's Sleutel", "{{Key}} +2 sleutels#Kisten geven meer oppakbare items"},
-	{"200", "Mama's Oogschaduw", "{{Charm}} 10% kans om charmerende tranen te schieten"},
-	{"201", "Ijzeren Staaf", "↑ {{Damage}} +0.3 Schade omhoog#{{Confusion}} 10% kans om hersen-schuddende tranen te schieten"},
-	{"202", "Aanraking van Midas", "Het aanraken van vijanden verandert ze in goud#Isaac doet contact schade gebaseerd op hoeveel munten hij heeft#{{Coin}} Het doden van en gouden vijand geeft munten#Poep de geplaatst is door Isaac heeft een kans om gouden poep te zijn"},
+local C_ID = "5.100."
+EID.descriptions[languageCode].AdditionalInformations = {
+[C_ID .. 5] = "Isaac's tranen krijgen een boomerang effect", -- My Reflection
+[C_ID .. 8] = "Vuurt normale tranen af", -- Brother Bobby
+[C_ID .. 9] = "Alle vliegvijanden zijn vriendelijk", -- Skatole
+[C_ID .. 11] = "Isaac komt weer tot leven met volle gezondheid", -- 1up!
+[C_ID .. 13] = "{{Poison}} Het aanraken van vijanden vergiftigd ze#{{BlackHeart}} Vergiftigde vijanden kunnen Zwarte Harten laten vallen", -- The Virus
+[C_ID .. 21] = "Reveals icons on the map: Onthult plaatjes op de kaart#Geeft de indeling van de kaart niet weer", -- The Compass
+[C_ID .. 33] = "Geeft vlucht voor de huidige kamer#{{MomsHeart}} Doodt mama's voet en mama's hart onmiddellijk#{{Warning}} Doodt Isaac wanneer gebruikt op Satan", -- The Bible
+[C_ID .. 36] = "Plaatst één poep en slaat vijanden terug#Kan naast een kuil worden geplaatst en worden vernietigd met een bom om een brug te maken", -- The Poop
+[C_ID .. 38] = "Vuurt 10 tranen af in een cirkel rond Isaac#De tranen hebben dezelfde traaneffecten als Isaac, plus 25 schade", -- Tammy's Head
+[C_ID .. 39] = "Bevriest alle vijanden in de huidige kamer gedurende 4 seconden", -- Mom's Bra
+[C_ID .. 40] = "Veroorzaakt een explosie waar Isaac is#Doet {VAR:1}  schade toe", -- Kamikaze!
+[C_ID .. 41] = "{{Fear}} Maakt alle vijanden bang in de huidige kamer gedurende 5 seconden", -- Mom's Pad
+[C_ID .. 42] = "Door de item the gebruiken en in een bepaalde richting te schieten, wordt het hoofd gegooid#{{Poison}} Het hoofd explodeert waar het landt en vergiftigt vijanden die in de ontploffing terecht komen", -- Bob's Rotten Head
+[C_ID .. 44] = "Teleporteert Isaac naar een willekeurige kamer behalve de I AM ERROR-kamer", -- Teleport!
+[C_ID .. 46] = "+8% kans op een beloning na een kamer#Betere kans om te winnen bij gokken", -- Lucky Foot
+[C_ID .. 47] = "{{Collectible168}} Bij gebruikt, begint met het richten van een vizier#Een raket landt na 1.5 seconde op het vizier#Doet 20x schade", -- Doctor's Remote
+[C_ID .. 49] = "Als je de item gebruikt en in een bepaalde richting schiet, wordt er een Brimstone Laser met hoge schade afgevuurd", -- Shoop da Whoop!
+[C_ID .. 52] = "{{Bomb}} Isaac schiet bommen in plaats van tranen#Elke bom richt 5x schade + 30 aan", -- Dr. Fetus
+[C_ID .. 53] = "Isaac trekt items aan die op de grond liggen", -- Magneto
+[C_ID .. 54] = "Onthult de vloerindeling#Laat geen plaatjes zien", -- Treasure Map
+[C_ID .. 56] = "Morst een plas van limonade#De limonade doet 24 contact schade per seconden", -- Lemon Mishap
+[C_ID .. 57] = "Vlieg orbitaal op lange afstand", -- Distant Admiration
+[C_ID .. 60] = "Laat Isaac opening van 1 tegel overbruggen", -- The Ladder
+[C_ID .. 62] = "{{HalfHeart}} Het doden van 13 vijanden geneest een half hart", -- Charm of the Vampire
+[C_ID .. 63] = "Actieve items kunnen twee keer worden opgeladen en twee keer achter elkaar worden gebruikt", -- The Battery
+[C_ID .. 64] = "{{Shop}} Winkel Items kosten 50% minder#Als je twee Steam Uitverkoop items bezit, zijn alle betaalde artikelen gratis", -- Steam Sale
+[C_ID .. 65] = "Plaatst 6 troll-bommen in het midden van de kamer", -- Anarchist Cookbook
+[C_ID .. 66] = "{{Slow}} Vertraagt vijanden gedurende 8 seconden", -- The Hourglass
+[C_ID .. 67] = "Schiet normale tranen", -- Sister Maggy
+[C_ID .. 68] = "Isaac vuurt lasers af in plaats van tranen", -- Technology
+[C_ID .. 69] = "{{Chargeable}} Oplaadbare tranen#↑ {{Damage}} Volledig opgeladen tranen richten 400% schade aan#↓ {{Tears}} Tranen omlaag", -- Chocolate Milk
+[C_ID .. 73] = "LVL1: Orbitaal#LVL2: Schietend Orbitaal#LVL3: Vlees Jongen LVL1#LVL4: Vlees Jongen LVL2", -- Cube of Meat
+[C_ID .. 75] = "{{Pill}} Verandert slechte pillen in goede pillen#{{BloodDonationMachine}} Bloeddonatiemachines en {{Collectible135}} IV zak geven meer munten", -- PHD
+[C_ID .. 76] = "{{SecretRoom}} Opent alle ingangen van geheime kamers", -- X-Ray Vision
+[C_ID .. 78] = "Hogere Horseman boss kans wanneer gebruikt", -- Book of Revelations
+[C_ID .. 81] = "Kom weer tot leven met 1 Rood Hartje#{{Warning}} Haalt alle Hart containers weg behalve 1", -- Dead Cat
+[C_ID .. 83] = "{VAR:ONUSEEFFECT}#{VAR:ROOMEFFECT}{{IND}}Isaac kan rotsen vernietigen door er tegenaan te lopen", -- The Nail
+[C_ID .. 84] = "Opent een luik naar de volgende vloer#{{LadderRoom}} 10% kans om een kruipruimte luik te openen", -- We Need To Go Deeper!
+[C_ID .. 86] = "Monstro valt op een vijand en brengt 120 schade aan#{{Warning}} Monstro valt op Isaac als de kamer geen vijanden heeft", -- Monstro's Tooth
+[C_ID .. 88] = "Schiet vooruit in de richting die Isaac schiet", -- Little Chubby
+[C_ID .. 91] = "Onthult de kamertype van aangrenzend kamers#{{SecretRoom}} Kan geheime en supergeheim kamers onthullen", -- Spelunker Hat
+[C_ID .. 93] = "{VAR:TIMEDEFFECT}#{{IND}}{{HalfHeart}} Het doden van 2 vijanden vult half een hartje aan#{{IND}}{{Fear}} Maakt alle vijanden in de kamer bang", -- The Gamekid
+[C_ID .. 94] = "{{Coin}} Laat elke 2 kamers een willekeurige munt vallen", -- Sack of Pennies
+[C_ID .. 95] = "Schiet lasers", -- Robo-Baby
+[C_ID .. 96] = "{{HalfHeart}} Laat elke 3 kamers half een hartje vallen", -- Little C.H.A.D.
+[C_ID .. 99] = "{{Slow}} Verslomende tranen", -- Little Gish
+[C_ID .. 100] = "Schiet gerichte tranen", -- Little Steven
+[C_ID .. 104] = "Tranen worden in twee gesplit bij contact#Gesplitste tranen doen halve schade aan", -- The Parasite
+[C_ID .. 105] = "Her rolt voetstukitems in de huidige kamer", -- The D6
+[C_ID .. 107] = "{VAR:ROOMEFFECT}#{{IND}}Isaac's lichaam scheidt van zijn hoofd en valt vijanden aan met {VAR:1} contactschade per seconde", -- The Pinking Shears
+[C_ID .. 108] = "Vermindert alle schade tot een half hartje", -- The Wafer
+[C_ID .. 109] = "↑ {{Damage}} +0.04 Schade omhoog voor iedere {{Coin}}munt die Isaac heeft", -- Money = Power
+[C_ID .. 111] = "{{Poison}} Schat een gifwolk#Het gif doet 6 keer de schade van Isaac", -- The Bean
+[C_ID .. 112] = "Versnelt alle andere orbitalen", -- Guardian Angel
+[C_ID .. 113] = "Schiet vijanden neer die dicht bij Isaac komen", -- Demon Baby
+[C_ID .. 114] = "Isaac's tranen worden vervangen door een mes#Het mes doet 2x de schade van Isaac tijdens het vastgehouden en 6x schade op de verste mogelijke afstand", -- Mom's Knife
+[C_ID .. 116] = "Laadt automatisch de eerste balk van actieve items#{{Battery}} Laadt het huidige actieve item volledig op", -- 9 Volt
+[C_ID .. 117] = "Als Isaac geraakt wordt komt er een vogel ", -- Dead Bird
+[C_ID .. 122] = "Wanneer op een half rood hart of minder:#{VAR:EFFECTLIST}", -- Whore of Babylon
+[C_ID .. 123] = "Creëert een willekeurige monster die Isaac helpt", -- Monster Manual
+[C_ID .. 124] = "Activeert een willekeurig actief item effect", -- Dead Sea Scrolls
+[C_ID .. 125] = "Gerichte Bommen", -- Bobby-Bomb
+[C_ID .. 126] = "↑ {{Damage}} +1.2 Schade omhoog voor de huidige kamer#{{Warning}} Doet 1 hart van schade aan Isaac#Verwijdert eerst Rode Hartjes", -- Razor Blade
+[C_ID .. 127] = "Herolt en herstart de hele vloer", -- Forget Me Now
+[C_ID .. 128] = "Lange afstand vlieg orbitaal", -- Forever Alone
+[C_ID .. 130] = "Verleent vlucht terwijl het vastgehouden is#{{Speed}} Stelt Isaac's snelheid op tenminste 1.5#Gebruik van de item stuurt Isaac in de richting die Isaac beweegt met hoge snelheid", -- A Pony
+[C_ID .. 131] = "{{Bomb}} Geeft een bom elke 2-3 kamers", -- Bomb Bag
+[C_ID .. 132] = "{{Damage}} Tranen doen meer schade hoe verder ze gaan", -- A Lump of Coal
+[C_ID .. 133] = "Maakt van 1 Rood Hart container 3 Ziel Hartjes", -- Guppy's Paw
+[C_ID .. 134] = "{{Chest}} 33% kans om de kamer beloning the vervangen met een kist#33% kans om geen kamer beloning te geven", -- Guppy's Tail
+[C_ID .. 135] = "Doet half een hartje schade en geeft 1-3 munten#{{Player14}} Geeft 0-1 munten als de Keeper", -- IV Bag
+[C_ID .. 136] = "Plaatst een dummy Isaac die vijanden aan trekt en explodeert na 5 seconden", -- Best Friend
+[C_ID .. 137] = "Isaac's bommen exploderen niet meer automatisch#Bij gebruik van de item exploderen alle bommen tegelijk", -- Remote Detonator
+[C_ID .. 139] = "{{Trinket}} Isaac kan 2 sieraden vasthouden", -- Mom's Purse
+[C_ID .. 140] = "{{Poison}} Isaac's bommen vergiftigen vijand die geraakt worden", -- Bob's Curse
+[C_ID .. 142] = "{{SoulHeart}} Isaac krijgt 1 Ziel Hart wanneer hij nog maar een halve Rode Hart heeft#Kan maar één keer per kamer gebeuren#Uit en in de kamer gaan kan het effect nog een keer veroorzaken", -- Scapular
+[C_ID .. 144] = "{{Coin}} Raapt munten op een geeft willekeurige items terug", -- Bum Friend
+[C_ID .. 147] = "Isaac kan stenen en ingangen van geheime kamers breken door er tegen aan te lopen", -- Notched Axe
+[C_ID .. 149] = "Isaac's tranen worden afgevuurd in een boog#{{Poison}} De tranen exploderen en vergiftigen vijanden waar ze landen", -- Ipecac
+[C_ID .. 151] = "Het raken van een vijand met een traan heeft 1/6 kans om een vlieg te geven", -- The Mulligan
+[C_ID .. 152] = "Vervangt de tranen van Isaac's rechter oog met een laser#Laser doet 3x Isaac's schade", -- Technology 2
+[C_ID .. 155] = "Vliegt rond de kamer", -- The Peeper
+[C_ID .. 156] = "{{Battery}} Het nemen van schade geeft 1 lading voor het actieve Item", -- Habit
+[C_ID .. 157] = "↑ {{Damage}} Het krijgen van schaden geeft Schade omhoog#Kan voor 6 keer per vloer#Duurt voor de hele vloer", -- Bloody Lust
+[C_ID .. 158] = "Spawnt een {{SoulHeart}} Soul Heart, {{Rune}} rune of {{Card}} kaart#{VAR:EFFECTLIST}", -- Crystal Ball
+[C_ID .. 160] = "Creëert 5 stralen van licht vlak bij vijanden#Doet Isaac's schade + 20", -- Crack the Sky
+[C_ID .. 161] = "{{Player4}} Kom tot leven als ??? (Blauwe Baby) wanner Isaac sterft", -- Ankh
+[C_ID .. 163] = "Volgeling met spookachtige tranen", -- Ghost Baby
+[C_ID .. 164] = "Gooit een blauwe vlam#De vlam doet contact schade, blokkeert vijandelijke tranen, en gaat weg na 2 seconden", -- The Candle
+[C_ID .. 166] = "Herolt alle oppakbare items in de kamer", -- D20
+[C_ID .. 167] = "Schiet twee tranen in een v-patroon", -- Harlequin Baby
+[C_ID .. 168] = "In plaats van tranen, schiet Isaac een vizier#Een raket landt op het vizier na 1.5 seconden#Raketten doen 20 keer Isaac's schade", -- Epic Fetus
+[C_ID .. 170] = "Stampt op willekeurige vijanden", -- Daddy Longlegs
+[C_ID .. 171] = "{{Slow}} Versloomt vijanden voor 4 seconden", -- Spider Butt
+[C_ID .. 174] = "Schiet willekeurige tranen", -- Rainbow Baby
+[C_ID .. 175] = "Opent alle deuren in de kamer, ook {{SecretRoom}}{{SuperSecretRoom}}Geheime Kamers, {{ChallengeRoom}}{{BossRushRoom}}Uitdaging Kamers, en de Mega Satan Deur", -- Dad's Key
+[C_ID .. 177] = "Een draagbaar gokautomaat#Gebruik 1 munt om kans te krijgen op een willekeurig oppakbare item", -- Portable Slot
+[C_ID .. 178] = "Bij het nemen van schade komt er een plas van heilig water#Het heilige water doet 24 schade per seconde", -- Holy Water
+[C_ID .. 180] = "Isaac laat een scheet wanneer hij wordt aangeraakt", -- The Black Bean
+[C_ID .. 181] = "Geeft vlucht wanneer vastgehouden#{{Speed}} Zet Isaacs snelheid op tenminste 1.5#Het gebruiken van de Item schiet Isaac de richting op die hij bewoog en laat een straal van licht achter", -- White Pony
+[C_ID .. 186] = "{{Warning}} Doet 1 hart schade tegen Isaac#Haalt eerst Rode Harten weg", -- Blood Rights
+[C_ID .. 187] = "Bewegen swingt de haarbal vooruit#De bal wordt groter wanneer het vijanden dood#De bal doet meer schade hoe groter het is", -- Guppy's Hairball
+[C_ID .. 188] = "Spiegelt Isaac's bewegingen#Schiet richting Isaac", -- Abel
+[C_ID .. 191] = "Isaac's tranen krijgen een willekeurig effect elke 2-3 seconden", -- 3 Dollar Bill
+[C_ID .. 198] = "Geeft 1 oppakbaar item van elke type", -- Box
+[C_ID .. 199] = "Kisten geven meer oppakbare items", -- Mom's Key
+[C_ID .. 202] = "Het aanraken van vijanden verandert ze in goud#Isaac doet contact schade gebaseerd op hoeveel munten hij heeft#{{Coin}} Het doden van en gouden vijand geeft munten#Poep de geplaatst is door Isaac heeft een kans om gouden poep te zijn", -- Midas' Touch
+
+--------------
+-- TODO: Continue translating after entry 202. Also validate current translations
+--------------
 }
 
 -- the ItemReminder description will predict the abilities of items with a header like "Item Name Result"
