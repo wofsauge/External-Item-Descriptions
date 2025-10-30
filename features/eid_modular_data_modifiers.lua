@@ -1,5 +1,7 @@
 -- Special behavior functions that alter the data of modular descriptions 
 local function HealthUpCondition(_, descObj)
+	if not EID.Config["DynamicHealthUps"] then return descObj end
+    
 	local closestPlayer = EID:ClosestPlayerTo(descObj.Entity)
 	local playerType = closestPlayer:GetPlayerType()
 	local heartType = EID.CharacterToHeartType[playerType] or "Red"
@@ -45,7 +47,32 @@ local function HealthUpCallback(itemDataTable, descObj)
         end
     end
 
+    -- TODO: Highlight changes in text with player icon
     return itemDataTable
 end
 
 EID:addModularDataModifier("HealthToX", HealthUpCondition, HealthUpCallback)
+
+
+------ Binge eater buffs
+
+local function BingeEaterCondition(_, descObj)
+    return EID.ItemData.BingeEaterBuffs[descObj.fullItemString] ~= nil
+end
+local function BingeEaterCallback(itemDataTable, descObj)
+    local additionalData = EID.ItemData.BingeEaterBuffs[descObj.fullItemString]
+    for newDataName, newDataValue in pairs(additionalData) do
+        itemDataTable[newDataName] = newDataValue
+    end
+
+    if itemDataTable.HealingRed then itemDataTable.HealingRed = itemDataTable.HealingRed * 2 end
+    if itemDataTable.HealingCoin then itemDataTable.HealingCoin = itemDataTable.HealingCoin * 2 end
+    -- TODO: Highlight changes in text with binge eater icon
+
+    return itemDataTable
+end
+
+
+if EID.isRepentance then
+    EID:addModularDataModifier("BingeEaterBuffs", BingeEaterCondition, BingeEaterCallback)
+end

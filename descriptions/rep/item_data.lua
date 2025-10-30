@@ -300,3 +300,15 @@ local itemData = {
 }
 
 EID:updateDescriptionsViaTable(itemData, EID.ItemData)
+
+-- TODO: Add modular
+EID.ItemData.BingeEaterBuffs = {
+    [C_ID .. 22] = { Tears = 0.5, Range = 2.5, Speed = -0.03, DamageTemp = 3.6 }, -- Lunch
+    [C_ID .. 23] = { Tears = 0.5, Shotspeed = 0.2, Speed = -0.03, DamageTemp = 3.6 }, -- Dinner
+    [C_ID .. 24] = { Damage = 1, Shotspeed = 0.2, Speed = -0.03, DamageTemp = 3.6 }, -- Dessert
+    [C_ID .. 25] = { Range = 2.5, Shotspeed = 0.2, Speed = -0.03, DamageTemp = 3.6 }, -- Breakfast
+    [C_ID .. 26] = { Damage = 1, Range = 2.5, Speed = -0.03, DamageTemp = 3.6 }, -- Rotten Meat
+    [C_ID .. 346] = { Shotspeed = 0.2, Luck = 1, Speed = -0.03, DamageTemp = 3.6 }, -- A Snack
+    [C_ID .. 456] = { Damage = 1, Luck = 1, Speed = -0.03, DamageTemp = 3.6 }, -- Midnight Snack
+    [C_ID .. 707] = { Tears = 0.5, Luck = 1, Speed = -0.03, DamageTemp = 3.6 }, -- Supper
+}
