@@ -803,6 +803,97 @@ function EID:DEBUGCountWordsNew(DLC, tablesTODO)
     end
 end
 
+function EID:CreateAdditionalInformations(itemID, oldTable, enTable, tableName, idName, horsePillID)
+    horsePillID = horsePillID or 0
+    local failCount = 0
+    local successCount = 0
+
+    EID:WriteDebugMsg("local "..idName.." = \""..itemID.."\"")
+    EID:WriteDebugMsg("local "..tableName.." = {")
+    for id = 1, 9999 do
+        local oldDesc = oldTable[id] and oldTable[id][3] or "<MISSING>"
+        local additionalInfo = EID.descriptions["en_us"].AddInfoRep[itemID..(id+horsePillID)]
+        -- only do entries with an english counterpart in the new table
+        --print(itemID..id, additionalInfo, "----",oldDesc)
+        if additionalInfo and enTable[id] then
+            local wasSimpleMatch = false
+            local newDesc = ""
+            if enTable[id][3] == additionalInfo then
+                -- description was not changed in new system
+                newDesc = oldDesc
+                wasSimpleMatch = true
+                successCount = successCount +1
+            else
+                local oldDescLines = {}
+                for line in string.gmatch(oldDesc, "[^#]+") do
+                    table.insert(oldDescLines, line)
+                end
+                local oldEnglishDescLines = {}
+                for line in string.gmatch(enTable[id][3], "[^#]+") do
+                    table.insert(oldEnglishDescLines, line)
+                end
+
+                -- check individual lines
+                local cleanAddInfo = additionalInfo:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("%s+", "")
+                for addLine in string.gmatch(cleanAddInfo, "[^#]+") do
+                     -- line is only a variable
+                    if addLine:gsub("{VAR:%w*}", "") == "" then
+                        newDesc = newDesc .. addLine.. "#"
+                    end
+
+                    local varNames = {}
+                    for var in string.gmatch(cleanAddInfo, "{VAR:(%w*)}") do
+                        table.insert(varNames, var)
+                    end
+
+                    for k, line in ipairs(oldEnglishDescLines) do
+                        local cleanLine = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("%s+", "")
+                        
+                        local lineToadd = oldDescLines[k]
+                        -- replace variables in 
+                        --for k, line in ipairs(oldEnglishDescLines) do
+                        --    cleanLine = cleanLine:gsub("([%+%-x]?[%d%.]+)", "{VAR:"..var.."}")
+                        --    lineToadd = lineToadd:gsub("([%+%-x]?[%d%.]+)", "{VAR:"..var.."}")
+                       -- end
+                        if cleanLine == addLine and lineToadd then
+                            newDesc = newDesc .. lineToadd.. "#" -- if raw line exists in orig en_us desc, use it
+                            table.remove(oldEnglishDescLines, k)
+                            table.remove(oldDescLines, k)
+                            break
+                        end
+                    end
+                end
+                newDesc = newDesc:gsub("#$","")
+
+                if newDesc == additionalInfo then
+                    --wasSimpleMatch = true
+                    successCount = successCount +1
+                else
+                    failCount = failCount + 1
+                end
+            end
+
+            if newDesc ~= "" then
+                -- print results
+                --if not wasSimpleMatch then
+                local horsepill = horsePillID > 0 and "(HorseID + " or ""
+                local horsepillEnd = horsePillID > 0 and ")" or ""
+                EID:WriteDebugMsg("\t["..idName.." .. "..horsepill..id..horsepillEnd.."] = \""..newDesc:gsub("\"","\\\"").."\", -- "..EID.ItemNames["en_us"][itemID..id]) -- new entry
+                if not wasSimpleMatch or newDesc == "<MISSING>" then
+                    EID:WriteDebugMsg("\t-- Full old Desc: \""..oldDesc.."\"") -- old entry
+                end
+                EID:WriteDebugMsg("\t-- English: \""..additionalInfo.."\"") -- expected
+                EID:WriteDebugMsg("")
+            end
+        end
+    end
+    EID:WriteDebugMsg("}")
+    EID:WriteDebugMsg("EID:updateDescriptionsViaTable("..tableName..", EID.descriptions[languageCode].AdditionalInformations)")
+    EID:WriteDebugMsg("")
+    print("Errors", failCount, "Success", successCount)
+
+end
+
 local function splitLines(s)
     local t = {}
     for line in string.gmatch(s or "", "[^#]+") do
