@@ -1464,6 +1464,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "Dịch chuyển Isaac đến một phòng ngẫu nhiên nếu không có Cửa hàng", -- IX - The Hermit (Womb and below)	
 	
 }
-
-
-

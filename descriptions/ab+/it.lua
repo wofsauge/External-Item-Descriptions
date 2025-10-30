@@ -1473,6 +1473,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "Se non c'è un Negozio teletrasporta Isaac in una stanza casuale", -- IX - The Hermit (Womb and below)
 
 }
-
-
-

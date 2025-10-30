@@ -1464,6 +1464,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
 	
 }
-
-
-

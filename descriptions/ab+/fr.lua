@@ -1447,4 +1447,3 @@ EID.descriptions[languageCode].CharacterInfo = {
 	[16] = {"Le Délaissé", "Attaque au corps-à-corps#Charger l'attaque lance l'os#Ne peut avoir que 6 cœurs d'os# {{ButtonRT}} passe à l'Âme"},
 	[17] = {"L'Âme", "Peut voler#Tire des larmes spectrales#Ne peut avoir que 6 cœurs d'âme/noirs#Le Corps bloque les projectiles ennemis et empêche l'Âme de trop s'éloigner# {{ButtonRT}} passe au Corps"},
 }
-
