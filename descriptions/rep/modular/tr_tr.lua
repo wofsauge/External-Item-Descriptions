@@ -1,3 +1,4 @@
+local languageCode = "tr_tr"
 ---------- Collectibles ----------
 
 local C_ID = "5.100."

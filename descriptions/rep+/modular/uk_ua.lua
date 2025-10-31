@@ -1,3 +1,4 @@
+local languageCode = "uk_ua"
 ---------- Collectibles ----------
 
 local C_ID = "5.100."

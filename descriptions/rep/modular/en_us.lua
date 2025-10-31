@@ -1,3 +1,5 @@
+
+local languageCode = "en_us"
 ---------- Collectibles ----------
 local C_ID = "5.100."
 local additionalCollectibleInformations = {

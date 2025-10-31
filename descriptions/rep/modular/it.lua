@@ -1,3 +1,5 @@
+
+local languageCode = "it"
 ---------- Collectibles ----------
 
 local C_ID = "5.100."
@@ -1334,7 +1336,7 @@ EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[lang
 
 ---------- Horse Pills ----------
 
-local Pill_ID = "5.70."
+local HorseID = PillColor.PILL_GIANT_FLAG
 local additionalHorsePillInformations = {
 	[Pill_ID .. (HorseID + 1)] = "{{Poison}} Avvelena tutta la stanza", -- Bad Gas
 	-- English: "{{Poison}} Poisons the entire room"

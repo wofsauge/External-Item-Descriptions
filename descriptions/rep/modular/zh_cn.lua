@@ -1,3 +1,4 @@
+local languageCode = "zh_cn"
 ---------- Collectibles ----------
 
 local C_ID = "5.100."

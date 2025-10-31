@@ -110,6 +110,12 @@ function EID:LoadLanguagePacks(gameVersion)
             EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (Names) failed: " ..
                 tostring(err))
         end
+        -- load modular descriptions
+        wasSuccessful, err = pcall(require, "descriptions." .. gameVersion .. ".modular." .. languageCode)
+        if not wasSuccessful and not string.find(err, "not found") then
+            EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (modular) failed: " ..
+                tostring(err))
+        end
     end
 end
 
