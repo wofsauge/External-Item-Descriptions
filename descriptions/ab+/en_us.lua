@@ -2123,9 +2123,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
 }
-
-EID:DEBUGCountWordsOld("AB+", {EID.descriptions[languageCode].collectibles, EID.descriptions[languageCode].trinkets, EID.descriptions[languageCode].cards, EID.descriptions[languageCode].pills})
-EID:DEBUGCountWordsNew("AB+", {EID.descriptions[languageCode].AdditionalInformations, EID.descriptions[languageCode].ModularDescriptions})
-
-
-

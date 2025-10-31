@@ -1,3 +1,5 @@
+-- This file contains translateable names for all collectibles, trinkets, cards and pills in the game.
+
 local languageCode = "en_us"
 local C_ID = "5.100."
 local T_ID = "5.350."

@@ -60,7 +60,8 @@ def addUpdatedTables(languageCode, dlc):
     if dlc != "ab+":
         # Add language table
         lua.execute('EID.descriptions["'+languageCode+'"] = {}')
-
+        lua.execute('EID.descriptions["'+languageCode+'"].ModularDescriptions = {FullMapping = {}}') # DEBUG function for modular descriptions
+    
         # Add metatable to create missing tables on the fly
         lua.execute('setmetatable(EID.descriptions["'+languageCode+'"], {\
             __index = function(tbl, key)\
@@ -118,7 +119,6 @@ languageProgress = {}
 english_entries = {}
 for dlc in dlcs:
     lua.execute('REPENTOGON = true; EID = {}; EID.descriptions = {}; function EID:updateDescriptionsViaTable(changeTable, tableToUpdate) for k,v in pairs(changeTable) do if v == "" then tableToUpdate[k] = nil else tableToUpdate[k] = v end	end end')
-    lua.execute('function EID:CompareWithPreviousDLC(_,_) end') # DEBUG function for modular descriptions
     g = lua.globals()
     addUpdatedTables("en_us", dlc)
 
@@ -143,7 +143,7 @@ for dlc in dlcs:
         langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
     # Read other language files
     for file in langFiles:
-        if "en_us" not in file and "transformations" not in file and "item_stats" not in file:
+        if "en_us" not in file and "transformations" not in file and "item_data" not in file:
             languageCode = os.path.basename(file).replace(".lua","")
             print("reading:",file)
             addUpdatedTables(languageCode, dlc)

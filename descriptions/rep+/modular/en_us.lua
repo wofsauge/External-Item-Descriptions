@@ -42,7 +42,6 @@ local additionalCollectibleInformations = {
 
 	
 }
-EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 
@@ -79,7 +78,6 @@ local additionalTrinketInformations = {
 -- Change: Added coin type based information
 	[T_ID .. 172] = "Picking up a coin teleports Isaac to a random room#Can teleport to secret rooms#The type of coin affects the selected room type", -- Cursed Penny
 }
-EID:CompareWithPreviousDLC(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Cards ----------
@@ -93,7 +91,6 @@ local additionalCardInformations = {
 -- Change: Complete rewrite
 [Card_ID .. 38] = "{{Collectible706}} Summons 3 Abyss locusts for the room", -- Berkano
 }
-EID:CompareWithPreviousDLC(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Pills ----------
@@ -115,5 +112,4 @@ local additionalPillInformations = {
 	-- Change: Forces the effect to be a golden trinket
 	[Pill_ID .. (HorseID + 44)] = "Consumes Isaac's trinket and grants its {{ColorGold}}golden{{CR}} effect permanently", -- Gulp!
 }
-EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP+")
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)

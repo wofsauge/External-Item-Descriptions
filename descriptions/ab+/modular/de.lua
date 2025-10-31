@@ -1,3 +1,13 @@
+-- This file contains text elements that are used for the modular description system.
+-- Each entry corresponds to a specific item and will be appended to the modular item's description in combination 
+-- with the generated description parts based on the item stats and effects defined in the "item_data.lua" file.
+
+-- The following entries are automatically extracted from the original description files.
+-- As a referenence, you can find comments with the expected english text below them.
+-- The automatic fill is done by taking the "old" translated text from your translation file, and trying to match it to the
+-- english text and its structure. If the match was not successful, it will also adds the full original translated description ("Full old Desc: ...")
+-- To check for any mistakes, you can compare the english expected text and the original translation with the text inside the entry and adjust it if nessesary.
+
 ---------- Collectibles ----------
 
 local C_ID = "5.100."

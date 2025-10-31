@@ -357,69 +357,6 @@ EID.LuckFormulaPresets = {
     }
 }
 
--- DEBUG: Validate Module table entry existance
-function EID:ValidateModuleEntry(ModuleID, additionalInfo)
-    if not EID.ModuleBehaviors[ModuleID] then
-        print("[ERROR] Unknown item Modul '"..ModuleID.."'", additionalInfo)
-        return false
-    end
-    return true
-end
-
--- DEBUG: Lists all similar description lines in AdditionalInformations to find potential duplicates
-function EID:ListSimilarDescriptions(limit)
-    local uniqueDescriptions = {}
-    for _, description in pairs(EID.descriptions["en_us"].AdditionalInformations) do
-        for line in string.gmatch(description, "[^#]+") do
-            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("{{.*}}", ""):gsub("{.*}", ""):gsub("↓", ""):gsub("^%s+", ""):gsub("%s+$", "")
-            if line ~= "" then
-                if uniqueDescriptions[line] then
-                    uniqueDescriptions[line] = uniqueDescriptions[line] + 1
-                else
-                    uniqueDescriptions[line] = 1
-                end
-            end
-        end
-    end
-    
-    for k, v in pairs(uniqueDescriptions) do
-        if v >= limit then
-            print(v,k)
-            Isaac.DebugString(v..";"..k)
-        end
-    end
-end
-
--- DEBUG: Compares an update table of a newer DLC with the previous DLC entries, to find duplicates or redundancies
-function EID:CompareWithPreviousDLC(newDLCTable, oldDLCTable, dlcName)
-    for id, description in pairs(newDLCTable) do
-        local equalLines = 0
-        local lineCountNew = 0
-        local lineCountOld = 0
-        local uniqueLinesNew = {}
-        for line in string.gmatch(description, "[^#]+") do
-            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
-            uniqueLinesNew[line] = true
-            lineCountNew = lineCountNew + 1
-        end
-
-        if oldDLCTable[id] then
-            for line in string.gmatch(oldDLCTable[id], "[^#]+") do
-                lineCountOld = lineCountOld + 1
-                line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
-                if uniqueLinesNew[line] then
-                    equalLines = equalLines + 1
-                end
-            end
-            if lineCountOld == lineCountNew and lineCountOld == equalLines then
-                print(dlcName, "Identical entry for " .. id .. " is a duplicate of the old one!")
-            elseif equalLines > 0 then
-                --print("Partial match for " .. id .. ": " .. oldDLCTable[id] .. " |||| " .. description)
-            end
-        end
-    end
-end
-
 -- Handles a modular description entry by calling its BehaviorFunc or the default generator
 function EID:HandleModuleEntry(moduleBehaviorEntry, itemDataTableEntry, description, indent)
     if not moduleBehaviorEntry or not itemDataTableEntry then
@@ -765,44 +702,6 @@ local ignoreList = {
     ["5.70.2094"] = true,
 }
 
-
-local oldWordCount = {}
-function EID:DEBUGCountWordsOld(DLC, tablesTODO)
-    oldWordCount[DLC] = 0
-    for _, v in ipairs(tablesTODO) do
-        for _, desc in pairs(v) do
-            -- gather word count statistics
-            local cleaned = desc[3]:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
-            local _, wordCount = cleaned:gsub("%S+", "")
-            oldWordCount[DLC] = oldWordCount[DLC] + wordCount
-        end
-    end
-end
-
-local newWordCount = {}
-function EID:DEBUGCountWordsNew(DLC, tablesTODO)
-    newWordCount[DLC] = 0
-    for _, v in ipairs(tablesTODO) do
-        for _, desc in pairs(v) do
-            if type(desc) == "string" then
-            -- gather word count statistics
-            local cleaned = desc:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
-            local _, wordCount = cleaned:gsub("%S+", "")
-            newWordCount[DLC] = newWordCount[DLC] + wordCount
-            else
-                for _, desc2 in pairs(desc) do
-                    if type(desc2) == "string" then
-                        -- gather word count statistics
-                        local cleaned = desc2:gsub("#", " "):gsub("{{.-}}", ""):gsub("{.-}", ""):gsub("^%s+", ""):gsub("%s+$", "")
-                        local _, wordCount = cleaned:gsub("%S+", "")
-                        newWordCount[DLC] = newWordCount[DLC] + wordCount
-                    end
-                end
-            end
-        end
-    end
-end
-
 function EID:CreateAdditionalInformations(itemID, oldTable, enTable, tableName, idName, horsePillID)
     horsePillID = horsePillID or 0
     local failCount = 0
@@ -814,7 +713,6 @@ function EID:CreateAdditionalInformations(itemID, oldTable, enTable, tableName, 
         local oldDesc = oldTable[id] and oldTable[id][3] or "<MISSING>"
         local additionalInfo = EID.descriptions["en_us"].AddInfoRep[itemID..(id+horsePillID)]
         -- only do entries with an english counterpart in the new table
-        --print(itemID..id, additionalInfo, "----",oldDesc)
         if additionalInfo and enTable[id] then
             local wasSimpleMatch = false
             local newDesc = ""
@@ -850,11 +748,6 @@ function EID:CreateAdditionalInformations(itemID, oldTable, enTable, tableName, 
                         local cleanLine = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("%s+", "")
                         
                         local lineToadd = oldDescLines[k]
-                        -- replace variables in 
-                        --for k, line in ipairs(oldEnglishDescLines) do
-                        --    cleanLine = cleanLine:gsub("([%+%-x]?[%d%.]+)", "{VAR:"..var.."}")
-                        --    lineToadd = lineToadd:gsub("([%+%-x]?[%d%.]+)", "{VAR:"..var.."}")
-                       -- end
                         if cleanLine == addLine and lineToadd then
                             newDesc = newDesc .. lineToadd.. "#" -- if raw line exists in orig en_us desc, use it
                             table.remove(oldEnglishDescLines, k)
@@ -1009,4 +902,68 @@ function EID:MODULARTEST()
     end
     print("TOTAL: Words before:", totalOrigWords, "| after:", totalAddWords, "| Diff:", string.format("%.2f%%", (totalAddWords/totalOrigWords-1) * 100))
     
+end
+
+
+-- DEBUG: Validate Module table entry existance
+function EID:ValidateModuleEntry(ModuleID, additionalInfo)
+    if not EID.ModuleBehaviors[ModuleID] then
+        print("[ERROR] Unknown item Modul '"..ModuleID.."'", additionalInfo)
+        return false
+    end
+    return true
+end
+
+-- DEBUG: Lists all similar description lines in AdditionalInformations to find potential duplicates
+function EID:ListSimilarDescriptions(limit)
+    local uniqueDescriptions = {}
+    for _, description in pairs(EID.descriptions["en_us"].AdditionalInformations) do
+        for line in string.gmatch(description, "[^#]+") do
+            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("{{.*}}", ""):gsub("{.*}", ""):gsub("↓", ""):gsub("^%s+", ""):gsub("%s+$", "")
+            if line ~= "" then
+                if uniqueDescriptions[line] then
+                    uniqueDescriptions[line] = uniqueDescriptions[line] + 1
+                else
+                    uniqueDescriptions[line] = 1
+                end
+            end
+        end
+    end
+    
+    for k, v in pairs(uniqueDescriptions) do
+        if v >= limit then
+            print(v,k)
+            Isaac.DebugString(v..";"..k)
+        end
+    end
+end
+
+-- DEBUG: Compares an update table of a newer DLC with the previous DLC entries, to find duplicates or redundancies
+function EID:CompareWithPreviousDLC(newDLCTable, oldDLCTable, dlcName)
+    for id, description in pairs(newDLCTable) do
+        local equalLines = 0
+        local lineCountNew = 0
+        local lineCountOld = 0
+        local uniqueLinesNew = {}
+        for line in string.gmatch(description, "[^#]+") do
+            line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
+            uniqueLinesNew[line] = true
+            lineCountNew = lineCountNew + 1
+        end
+
+        if oldDLCTable[id] then
+            for line in string.gmatch(oldDLCTable[id], "[^#]+") do
+                lineCountOld = lineCountOld + 1
+                line = line:gsub("([%+%-x]?[%d%.]+)", "XXX"):gsub("↑", ""):gsub("↓", ""):gsub("{{.*}}", ""):gsub("^%s+", "")
+                if uniqueLinesNew[line] then
+                    equalLines = equalLines + 1
+                end
+            end
+            if lineCountOld == lineCountNew and lineCountOld == equalLines then
+                print(dlcName, "Identical entry for " .. id .. " is a duplicate of the old one!")
+            elseif equalLines > 0 then
+                --print("Partial match for " .. id .. ": " .. oldDLCTable[id] .. " |||| " .. description)
+            end
+        end
+    end
 end

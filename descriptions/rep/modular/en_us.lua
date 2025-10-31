@@ -292,7 +292,6 @@ local additionalCollectibleInformations = {
 	[C_ID .. 729] = "Throws Isaac's head in a direction#The head deals contact damage and shoots tears from where it lands#Using the item again or stepping on the head reattaches it", -- Decap Attack
 	[C_ID .. 732] = "{{Rune}} Spawns a random rune or soul stone", -- Mom's Ring
 }
-EID:CompareWithPreviousDLC(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalCollectibleInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Trinkets ----------
@@ -374,7 +373,6 @@ local additionalTrinketInformations = {
     [T_ID .. 188] = "{{Petrify}} Entering a room has a {VAR:LUCKCHANCE}% chance to petrify random enemies#{{Freezing}} Killing a petrified enemy freezes it", -- Ice Cube
     [T_ID .. 189] = "Killing an enemy makes Isaac invincible for 1 second#Invincibility stacks with successive enemy kills", -- Sigil of Baphomet
 }
-EID:CompareWithPreviousDLC(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalTrinketInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Cards ----------
@@ -431,7 +429,6 @@ local additionalCardInformations = {
     [Card_ID .. 96] = "{{Collectible584}} Spawns 6 random Book of Virtues wisps", -- Soul of Bethany
     [Card_ID .. 97] = "{{Player20}} Spawns Esau as a secondary character for the room#He spawns with as many passive items as the player", -- Soul of Jacob and Esau
 }
-EID:CompareWithPreviousDLC(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalCardInformations, EID.descriptions[languageCode].AdditionalInformations)
 
 ---------- Pills ----------
@@ -475,5 +472,4 @@ local additionalPillInformations = {
     [Pill_ID .. (HorseID + 50)] = "↑ Increases 1 random stat twice#↓ Decreases 1 random stat twice", -- Experimental Pill
     [Pill_ID .. (HorseID + 9999)] = "Random horse pill effect#Has a chance to destroy itself with each use", -- Golden Pill
 }
-EID:CompareWithPreviousDLC(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations, "REP")
 EID:updateDescriptionsViaTable(additionalPillInformations, EID.descriptions[languageCode].AdditionalInformations)
