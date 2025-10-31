@@ -55,9 +55,10 @@ EID:addModularDataModifier("HealthToX", HealthUpCondition, HealthUpCallback)
 
 
 ------ Binge eater buffs
+local bingeEaterID = CollectibleType.COLLECTIBLE_BINGE_EATER
 
 local function BingeEaterCondition(_, descObj)
-    return EID.ItemData.BingeEaterBuffs[descObj.fullItemString] ~= nil
+    return EID:PlayersHaveCollectible(bingeEaterID) and EID.ItemData.BingeEaterBuffs[descObj.fullItemString] ~= nil
 end
 local function BingeEaterCallback(itemDataTable, descObj)
     local additionalData = EID.ItemData.BingeEaterBuffs[descObj.fullItemString]
