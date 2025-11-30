@@ -26,6 +26,8 @@ local collectibles = {
 	[141] = {"141", "분장 소년", "{{Coin}} 동전 7개를 드랍합니다.#랜덤 페니류 장신구를 하나 드랍합니다."}, -- Pageant Boy
 	-- Change: tears up per use
 	[186] = {"186", "피의 권리", "{{EmptyHeart}} 사용 시 체력을 1칸 깎고;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.48#{{ArrowGrayRight}} 그 방의 적에게 40의 피해를 줍니다.#!!! 그 방에서 연속적으로 사용 시 2번째 사용부터;#{{ArrowGrayRight}} {{TearsSmall}} 연사(+상한) +0.15#{{ArrowGrayRight}} 깎이는 체력이 반칸으로 줄어듭니다.#빨간하트를 우선적으로 깎습니다.#증가된 연사 수치는 스테이지 진입 시 초기화됩니다."}, -- Blood Rights
+	-- Change: added random tear effects information
+	[244] = { "244", "기계 0.5", "공격 시 캐릭터의 이마 쪽에서 보조 레이저가 발사됩니다.#!!! 발사된 보조 레이저는 확률적으로 랜덤 눈물 효과가 적용됩니다."}, -- Tech.5
 	-- Change: added "ability to block shots"
 	[281] = {"281", "샌드백", "방 안을 돌아다니며 6초 간격으로 적을 유인합니다.#적의 탄환을 막아줍니다."}, -- Punching Bag
 	-- Change:
@@ -96,7 +98,7 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "머릿니", "클리어하지 않은 방에서 30초마다 파란 아군 거미를 하나 소환합니다.#방 클리어 시 파란 아군 거미를 하나 소환합니다."}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서 아이템이 나올 때 {{Quality3}}등급 + 랜덤 배열의 아이템이 나옵니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
+	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서의 아이템이 {{Quality0}}~{{Quality2}}일 때 더 높은 등급 + 확률적으로 랜덤 배열의 아이템이 나옵니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = {"85", "업보", "{{DonationJam}} 기부기계 고장 확률 감소#!!! {{DonationMachine}}기부기계/{{BloodDonationMachine}}{{Confessional}}헌혈기/{{Beggar}}거지/{{RestockMachine}}재입고에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{ArrowGrayRight}} {{NoLB}}{{Coin}} 동전 +1 ({{DonationMachine}}/{{Beggar}})#{{Blank}} {{NoLB}}{{Heart}} 빨간하트 1칸 회복 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}})#{{Blank}} {{NoLB}}{{LuckSmall}} 행운 +1 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}}/{{RestockMachine}})#{{Blank}} {{NoLB}}{{Beggar}} 거지 소환 ({{DonationMachine}}/{{BloodDonationMachine}}{{Confessional}})"}, -- Karma
 	-- Change: Added damage up information
