@@ -98,7 +98,7 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "머릿니", "클리어하지 않은 방에서 30초마다 파란 아군 거미를 하나 소환합니다.#방 클리어 시 파란 아군 거미를 하나 소환합니다."}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서의 아이템이 {{Quality0}}~{{Quality2}}일 때 더 높은 등급 + 확률적으로 랜덤 배열의 아이템이 나옵니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
+	[76] = {"76", "포커 칩", "{{Chest}} 상자에서 50% 확률로 픽업이 추가로 드랍되거나 Attack Fly가 나옵니다.#상자에서의 아이템이 확률적으로 랜덤 배열 + {{Quality0}}~{{Quality2}}일 때 더 높은 등급으로 나옵니다.#슬롯머신의 성공 확률 및 보상 빈도가 증가합니다."}, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = {"85", "업보", "{{DonationJam}} 기부기계 고장 확률 감소#!!! {{DonationMachine}}기부기계/{{BloodDonationMachine}}{{Confessional}}헌혈기/{{Beggar}}거지/{{RestockMachine}}재입고에 기부 시 33%의 확률로 아래 효과 중 하나 발동:#{{ArrowGrayRight}} {{NoLB}}{{Coin}} 동전 +1 ({{DonationMachine}}/{{Beggar}})#{{Blank}} {{NoLB}}{{Heart}} 빨간하트 1칸 회복 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}})#{{Blank}} {{NoLB}}{{LuckSmall}} 행운 +1 ({{DonationMachine}}/{{Beggar}}/{{BloodDonationMachine}}{{Confessional}}/{{RestockMachine}})#{{Blank}} {{NoLB}}{{Beggar}} 거지 소환 ({{DonationMachine}}/{{BloodDonationMachine}}{{Confessional}})"}, -- Karma
 	-- Change: Added damage up information
