@@ -621,6 +621,7 @@ function EID:printDescription(desc, cachedID)
 			elseif desc.ChargeType == (EID.isRepentance and ItemConfig.CHARGE_SPECIAL or 2) then
 				frameNum = 13 -- Question Mark Icon
 			end
+			EID.InlineIconSprite2:SetFrame(anim, frameNum)
 			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim, frameNum)
 		end
 		offsetX = offsetX + 8
