@@ -11,8 +11,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.10
-EID.ModVersionCommit = "374cded"
+EID.ModVersion = 5.11
+EID.ModVersionCommit = "e057d2a"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -621,6 +621,7 @@ function EID:printDescription(desc, cachedID)
 			elseif desc.ChargeType == (EID.isRepentance and ItemConfig.CHARGE_SPECIAL or 2) then
 				frameNum = 13 -- Question Mark Icon
 			end
+			EID.InlineIconSprite2:SetFrame(anim, frameNum)
 			EID:renderIcon(EID.InlineIconSprite2, renderPos.X + offsetX * EID.Scale, renderPos.Y + offsetY * EID.Scale, nil, anim, frameNum)
 		end
 		offsetX = offsetX + 8

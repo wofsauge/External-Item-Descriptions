@@ -169,6 +169,9 @@ function EID:InitializeLanguagePacks()
         -- Load Repentance+ descriptions
         if EID.isRepentancePlus then
             EID.GameVersion = "rep+"
+            if REPENTOGON then
+                EID.GameVersion = "rgon"
+            end
             EID:LoadLanguagePacks(EID.GameVersion)
         end
     end
