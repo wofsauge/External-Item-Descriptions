@@ -190,8 +190,9 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         {"Display Transformation Name","显示套装名称"},
         {"Display Transformation Icon","显示套装图标"},
         {"Display Transformation Progress","显示套装进度"},
-        {"Display Item Pool Icon","显示道具池图标"},
-        {"Display Item Pool Name","显示道具池名称"},
+        {"Current Item Pool Icon","当前道具池图标"},
+        {"Current Item Pool Name","当前道具池名称"},
+        {"Item Pool Info","道具池信息"},
         {"Display ID","显示ID"},
         {"Display Mod Indicator","显示模组指示器"},
         {"Indicator","指示器"},
@@ -234,6 +235,7 @@ if MCMLoaded and MCM and MCM.i18n == "Chinese" then
         ["Hold this key to smoothly change the text size."] = "按住此键以平滑更改文字尺寸",
         ["Displays the icon of the expected item pool for full rerolls."] = "显示重置道具时所属的预期道具池的图标",
         ["Displays the name of the expected item pool for full rerolls."] = "显示重置道具时所属的预期道具池的名称",
+        ["Displays the icons of item pools for collectible would appear. REPENTOGON is needed for modded items"] = "显示道具会出现的道具池的图标, 模组道具需要忏悔龙", 
     })
 
     MCM.SetSubcategoryNameTranslate("EID","Reminder","备忘")
