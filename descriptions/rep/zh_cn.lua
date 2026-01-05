@@ -955,7 +955,7 @@ local repTrinkets={
 	[186] = {"186", "亚玻伦的挚友", "{{Collectible706}} 生成1只无底坑蝗虫"}, --  Apollyon's Best Friend
 	[187] = {"187", "碎掉的眼镜", "{{TreasureRoom}} 50%概率在宝箱房添加1个额外的问号道具#{{TreasureRoom}} 50%概率揭示替代章节的问号道具"}, --  Broken Glasses
 	[188] = {"188", "冰块", "{{Petrify}} 进入房间时, 20%概率石化1个敌人#{{Freezing}} 击杀石化的敌人可将其冻结"}, --  Ice Cube
-	[189] = {"189", "巴风特之印", "击杀敌人时, 使角色无敌1秒#期间击杀敌人额外增加1秒无敌"}, --  Sigil of Baphomet
+	[189] = {"189", "巴风特之印", "击杀敌人时, 使角色获得1秒护盾#期间击杀敌人可以累加, 最多5秒"}, --  Sigil of Baphomet
 }
 EID:updateDescriptionsViaTable(repTrinkets, EID.descriptions[languageCode].trinkets)
 
