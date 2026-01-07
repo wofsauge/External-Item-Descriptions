@@ -86,7 +86,7 @@ local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = {"53", "血虱", "{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗1红心#头目血量-15%#{{Warning}} 捡起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍, {{Trinket135}}打火机移除或吞下"}, -- Tick
 	-- Change: added +0.5 damage
-	[66] = {"66", "懒散虫", "↑ {{Damage}} 伤害+0.5#↓ {{Shotspeed}} 弹速-0.5"}, -- Lazy Worm
+	[66] = {"66", "懒懒虫", "↑ {{Damage}} 伤害+0.5#↓ {{Shotspeed}} 弹速-0.5"}, -- Lazy Worm
 	-- Change: Complete rewrite
 	[70] = {"70", "虱子", "在有敌人的房间里每30秒生成1只蓝蜘蛛#清理房间后生成1只蓝蜘蛛"}, -- Louse
 	-- Change: Added more loot information
