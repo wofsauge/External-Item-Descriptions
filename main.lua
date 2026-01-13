@@ -402,6 +402,14 @@ function EID:CheckVoidAbsorbs(_, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 
+function EID:HandleRenderingKeys()
+	-- scale key must be handled before resetting to non-local mode
+	EID:HandleScaleKey()
+	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or (EID.player and Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex)) then
+		EID.isHidden = not EID.isHidden
+	end
+end
+
 ---------------------------------------------------------------------------
 --------------------------Handle Scale Shortcut----------------------------
 
@@ -411,7 +419,7 @@ local scaleSpeed = 0.01 -- scale size per frame
 local scaleToBigger = true
 EID.CurrentScaleType = "Size" -- Size or LocalModeSize; checked by EID:getTextPosition() to not apply modifiers in local mode
 local scaleHoldFrame = 0
-local function handleScaleKey()
+function EID:HandleScaleKey()
 	local scaleKey = EID.Config["SizeHotkey"]
 
 	-- press and hold ScaleKey
@@ -1323,11 +1331,7 @@ function EID:OnRender()
 
 	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
 	if EID.MCMCompat_isDisplayingEIDTab ~= "General" then
-		-- scale key must be handled before resetting to non-local mode
-		handleScaleKey()
-		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
-			EID.isHidden = not EID.isHidden
-		end
+		EID:HandleRenderingKeys()
 	end
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
