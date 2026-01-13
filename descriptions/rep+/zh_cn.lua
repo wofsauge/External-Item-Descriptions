@@ -20,7 +20,7 @@ local collectibles = {
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "盛装男孩", "{{Coin}} 生成7随机硬币#生成1随机硬币饰品" }, -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = { "186", "血之权利", "对所有敌人造成40点伤害#{{Tears}} 当前房间中射速修正+0.48#{{Warning}} 对角色造成1心伤害#在房间中首次使用后, 改为造成半心伤害#{{Heart}} 优先消耗红心" }, -- Blood Rights
+	[186] = { "186", "血之权利", "对所有敌人造成40点伤害#{{Tears}} 当前房间中射速+0.48#{{Warning}} 对角色造成1心伤害#在房间中首次使用后, 改为造成半心伤害#{{Heart}} 优先消耗红心" }, -- Blood Rights
 	-- Change: added random tear effects information	
 	[244] = { "244", "科技0.5", "时不时发射激光#激光小概率带有随机效果"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
@@ -48,9 +48,9 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[510] = {"510", "精神错乱", "生成1个友好的精神错乱版的头目#切换房间持续存在#{{Warning}} 一次只能激活1个头目#生成的头目血量会随时间流失"}, -- Delirious
 	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "恐怖如斯", "↑ {{Tears}} 射速修正+0.5#↑ {{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧"}, -- 2Spooky
+	[554] = { "554", "恐怖如斯", "↑ {{Tears}} 射速+0.5#↑ {{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧"}, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速修正+1.2#↑ {{Tears}} 后续受伤射速修正+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
+	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速+1.2#↑ {{Tears}} 后续受伤射速+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
 	-- Change: Added ring of fire on impact description
 	[593] = {"593", "火星", "双击移动键使角色冲锋#{{Damage}} 冲锋时角色无敌, 造成4x角色伤害+8的伤害#{{Timer}} 3秒冷却#{{Burning}} 撞击时在角色周围生成火圈" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
@@ -64,7 +64,7 @@ local collectibles = {
 	-- Change: Added Shop as a new destination
 	[660] = {"660", "牌意解读", "在每层的初始房间中生成2个传送门#离开房间时传送门消失#{{Blank}} {{ColorRed}}红色:{{CR}}{{BossRoom}}头目房#{{Blank}} {{ColorYellow}}黄色:{{CR}}{{TreasureRoom}}宝箱房#{{Blank}} {{ColorBlue}}蓝色:{{CR}}{{SecretRoom}}隐藏房#{{Blank}} {{ColorGreen}}绿色:{{CR}}{{Shop}} 商店"}, -- Card Reading
 	-- Change: Complete rewrite
-	[681] = {"681", "黑洞宝宝", "双击发射键可发射传送门#发射后造成接触伤害#消耗经过的掉落物#消耗掉落物会提升其尺寸, 伤害并生成1只蓝苍蝇#消耗2-3掉落物生成至特殊房间的传送门, 跟班在本层后续中消失#房间中的内容本局持续存在"}, -- Lil Portal
+	[681] = {"681", "黑洞宝宝", "双击发射键可发射传送门#发射后造成接触伤害#消耗经过的掉落物#消耗掉落物会提升其尺寸, 伤害并生成1只蓝苍蝇#消耗(当前楼层数+1)个掉落物生成通往特殊房间的传送门, 跟班在本层后续中消失#房间中的内容本局持续存在"}, -- Lil Portal
 	-- Change: Added into for first usage
 	[685] = {"685", "魂火罐", "生成2随机魂火#每次使用多生成1魂火, 最多12个"}, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
@@ -86,7 +86,7 @@ local trinkets = {
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = {"53", "血虱", "{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗1红心#头目血量-15%#{{Warning}} 捡起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍, {{Trinket135}}打火机移除或吞下"}, -- Tick
 	-- Change: added +0.5 damage
-	[66] = {"66", "懒散虫", "↑ {{Damage}} 伤害+0.5#↓ {{Shotspeed}} 弹速-0.5"}, -- Lazy Worm
+	[66] = {"66", "懒懒虫", "↑ {{Damage}} 伤害+0.5#↓ {{Shotspeed}} 弹速-0.5"}, -- Lazy Worm
 	-- Change: Complete rewrite
 	[70] = {"70", "虱子", "在有敌人的房间里每30秒生成1只蓝蜘蛛#清理房间后生成1只蓝蜘蛛"}, -- Louse
 	-- Change: Added more loot information
@@ -100,7 +100,7 @@ local trinkets = {
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多2个跟班, 之后该饰品消失"}, -- Tonsil
 	-- Change: Added +2 Tears
-	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速修正+2"}, -- Equality!
+	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速+2"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = {"104", "许愿骨", "受伤时, 5%概率被摧毁并生成1底座道具"}, -- Wish Bone
 	-- Change: "2%" to "5%"
@@ -332,8 +332,8 @@ local goldenTrinketEffects = {
 	[179] = {"跟班每14帧造成2点接触伤害", "跟班每14帧造成5点接触伤害"},
 	-- Expansion Pack (full replace):
 	[181] = {
-		"使用主动道具会触发{{ColorGold}}2{{CR}}个额外的1-2主动道具的使用效果",
-		"使用主动道具会触发{{ColorGold}}2{{CR}}个额外的1-2主动道具的使用效果#{{ColorGold}}同时触发一个3充能主动道具的使用效果",
+		"使用主动道具会触发{{ColorGold}}2{{CR}}个额外的1-2充能主动道具的使用效果",
+		"使用主动道具会触发{{ColorGold}}2{{CR}}个额外的1-2充能主动道具的使用效果#{{ColorGold}}同时触发一个3充能主动道具的使用效果",
 	},
 	-- Beth’s Essence (append):
 	[182] = {"50%概率进入天使房获得的魂火变为特殊魂火#{{ColorGold}}乞丐会生成特殊魂火", "100%概率进入天使房获得的魂火变为特殊魂火#{{ColorGold}}乞丐会生成特殊魂火"},
