@@ -19,6 +19,7 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"italian"}
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
 
+
 ---------- Collectibles ----------
 
 EID.descriptions[languageCode].collectibles={
@@ -1097,8 +1098,9 @@ EID.descriptions[languageCode].transformations={
 -- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
-	-- TODO: Not Implemented right now...
-	
+	text = EID:ReplaceVariableStr(text, "plural_a_e", amount > 1 and "e" or "a")
+	text = EID:ReplaceVariableStr(text, "plural_o_i", amount > 1 and "i" or "o")
+	text = EID:ReplaceVariableStr(text, "plural_e_i", amount > 1 and "i" or "e")
 	return text
 end
 
@@ -1345,6 +1347,3 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.10"] = "Se non c'è un Negozio teletrasporta Isaac in una stanza casuale", -- IX - The Hermit (Womb and below)
 
 }
-
-
-
