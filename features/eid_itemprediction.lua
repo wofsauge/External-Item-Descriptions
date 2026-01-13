@@ -413,9 +413,8 @@ function EID:GlyphOfBalancePrediction(player)
 end
 
 --- Crooked Penny ---
-function EID:CrookedPennyPrediction(rng, carBattery)
-	local rng = EID:RNGNext(rng)
-	local seed = rng
+function EID:CrookedPennyPrediction(seed, carBattery)
+	seed = EID:RNGNext(seed)
 	-- Repentance makes a new seed by XORing the room's decoration seed
 	if EID.isRepentance then
 		local roomSeed = game:GetLevel():GetCurrentRoom():GetDecorationSeed()
@@ -430,11 +429,104 @@ function EID:CrookedPennyPrediction(rng, carBattery)
 	else
 		result = EID:getDescriptionEntry("CrookedPennyTails")
 		-- failures advance crooked penny's RNG an additional time to give the pity penny a seed value
-		rng = EID:RNGNext(rng)
+		seed = EID:RNGNext(seed)
 	end
 	
-	if carBattery then return result .. "#{{Collectible356}} " .. EID:CrookedPennyPrediction(rng)
+	if carBattery then return result .. "#{{Collectible356}} " .. EID:CrookedPennyPrediction(seed)
 	else return result end
+end
+
+-- Experimental Treatment Stat Changes (by Pattieburger)
+-- Uses only s2,s3,s4 from the ET collectible RNG stream.
+-- Outcome pattern: 4 stats UP, 2 stats DOWN, 1 stat unchanged.
+
+-- Possible Stat change lookup table, for use with modular descriptions (7 stats total).
+-- Used by Experimental Treatment and also Dataminer, without the first entry.
+local statChangeLookup = {
+	[1] = {"RedHeart", 1.0 }, -- Health container
+	[2] = {"Speed", 0.2 },
+	[3] = REPENTANCE and {"FireRate", 0.5 } or {"Tears", 0.5 },
+	[4] = {"Damage", 1.0 },
+	[5] = {"Range", REPENTANCE and 2.5 or 0.5 },
+	[6] = {"ShotSpeed", 0.2 },
+	[7] = {"Luck", 1.0 },
+}
+
+function EID:ExperimentalTreatmentRNGCheck(player)
+	-- s1: current collectible RNG seed (pre-pickup)
+	local s1 = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_EXPERIMENTAL_TREATMENT):GetSeed()
+
+	-- simulate advances
+	local s2 = EID:RNGNext(s1, 5, 9, 7) -- used (NoChange)
+	local s3 = EID:RNGNext(s2, 5, 9, 7) -- used (Neg1)
+	local s4 = EID:RNGNext(s3, 5, 9, 7) -- used (Neg2)
+
+	-- NoChange: (s2 % 7) + 1
+	local noChange = (s2 % 7) + 1
+	-- Neg1: (s3 % 6) + 1, but if it collides with NoChange -> becomes Luck (7)
+	local neg1 = (s3 % 6) + 1
+	if neg1 == noChange then
+		neg1 = 7
+	end
+
+	-- Neg2: (s4 % 5) + 1, with collision rules:
+	-- - if collides with neg1 -> becomes Shot speed (6)
+	-- - if collides with noChange -> becomes Luck (7)
+	local neg2 = (s4 % 5) + 1
+	if neg2 == neg1 then
+		neg2 = 6
+	end
+	if neg2 == noChange then
+		neg2 = 7
+	end
+
+	local statChanges = {}
+	statChanges[statChangeLookup[neg1][1]] = -statChangeLookup[neg1][2]
+	statChanges[statChangeLookup[neg2][1]] = -statChangeLookup[neg2][2] + (statChanges[statChangeLookup[neg2][1]] or 0) -- optionally add existing value
+
+	-- Positives are the remaining 4 stats
+	for stat = 1, 7 do
+		if stat ~= noChange and stat ~= neg1 and stat ~= neg2 then
+			statChanges[statChangeLookup[stat][1]] = statChangeLookup[stat][2] + (statChanges[statChangeLookup[stat][1]] or 0) -- optionally add existing value
+		end
+	end
+
+	-- Return stat change table
+	return statChanges
+end
+
+-- Dataminer Stat Changes (by Pattieburger)
+-- We "shuffle" the stat table using s1..s5 (mod6, mod5, mod4, mod3, mod2).
+-- Result: position 1 = stat UP, position 2 = stat DOWN.
+function EID:DataminerRNGCheck(player)
+	-- s0: current collectible RNG seed (pre-use)
+	local s0 = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_DATAMINER):GetSeed()
+
+	-- simulate s1..s5 (do NOT alter game RNG; just compute next seeds)
+	local s1 = EID:RNGNext(s0, 5, 9, 7)
+	local s2 = EID:RNGNext(s1, 5, 9, 7)
+	local s3 = EID:RNGNext(s2, 5, 9, 7)
+	local s4 = EID:RNGNext(s3, 5, 9, 7)
+	local s5 = EID:RNGNext(s4, 5, 9, 7)
+
+	-- stat indices:
+	-- 1=Speed, 2=Fire rate, 3=Damage, 4=Range, 5=Shotspeed, 6=Luck
+	local statTable = {1,2,3,4,5,6}
+	local seeds = { s1, s2, s3, s4, s5 }
+
+	for i = 6, 2, -1 do
+		local seed = seeds[7 - i] -- 6→1, 5→2, 4→3, 3→4, 2→5
+		local j = (seed % i) + 1
+		statTable[i], statTable[j] = statTable[j], statTable[i]
+	end
+
+	local upStat   = statTable[1] + 1 -- +1 to skip Health container entry
+	local downStat = statTable[2] + 1 -- +1 to skip Health container entry
+
+	return {
+		[statChangeLookup[downStat][1]] = -statChangeLookup[downStat][2],
+		[statChangeLookup[upStat][1]] = statChangeLookup[upStat][2],
+	}
 end
 
 -- Liberty Cap, Broken Syringe, Mom's Lock (extremely similar, simple RNG modulos) --

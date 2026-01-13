@@ -34,3 +34,4 @@ If you enjoy this mod and want to help on it, check it out on GitHub: https://gi
 - [adc](https://steamcommunity.com/id/whytefang/) for creating an awesome new language pack and providing ideas for new functionalities
 - [CreepSore](https://github.com/CreepSore) for creating the bag of crafting search feature
 - [Poyo](https://x.com/Poyomama02) for the great thumbnail art
+- Pattieburger for Experimental Treatment and Dataminer Stat Change Predictors

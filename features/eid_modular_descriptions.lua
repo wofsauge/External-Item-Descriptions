@@ -464,14 +464,24 @@ function EID:GenerateDescription(descriptionObj)
     if EID.descriptions[EID:getLanguage()].DisableModularDescriptions then return nil end
 
     local itemDataTable = EID.ItemData[itemID]
+
+    return EID:GenerateDescriptionFromStatTable(itemDataTable, descriptionObj, itemID)
+end
+
+-- Generates a description for an item based on its modules defined in EID.ItemData
+-- Optional: A description object can be provided to apply modular data modifiers
+-- Returns an empty string if no modules are defined for the item
+function EID:GenerateDescriptionFromStatTable(itemDataTable, descriptionObj, itemID)
     -- return empty string if no ItemData are defined
     if not itemDataTable then
         return ""
     end
 
-    itemDataTable = EID:ApplyModularDataModifier(itemDataTable, descriptionObj)
+    if descriptionObj then
+        itemDataTable = EID:ApplyModularDataModifier(itemDataTable, descriptionObj)
+    end
 
-    local sortedModulesPositivePrio, sortedModulesNegativePrio = EID:GetSortedModularDescriptionEntries(itemDataTable, false, true, itemID)
+    local sortedModulesPositivePrio, sortedModulesNegativePrio = EID:GetSortedModularDescriptionEntries(itemDataTable, false, itemID ~= nil, itemID)
 
     local description = ""
 
