@@ -60,7 +60,7 @@ local oldPosInitFunc = EID.PositionLocalMode
 function EID:PositionLocalMode(entity)
 	oldPosInitFunc(_, entity)
 	-- custom description position when describing collectionpage entries
-	if not Isaac.IsInGame() and MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
+	if not Isaac.IsInGame() then
 		EID.CurrentScaleType = "MainMenu"
 		EID.UsedPosition = Vector(10, 10)
 	end
