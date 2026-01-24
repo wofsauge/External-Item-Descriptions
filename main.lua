@@ -1738,6 +1738,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 local function OnPostPlayerInit()
+	EID:setPlayer() -- re-evaluate player list. Fixes crash when using "rewind" command in a MC_POST_RENDER callback
 	EID.ShouldCheckStartingItems = true -- for The Stars? tracking
 end
 EID:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, OnPostPlayerInit)
