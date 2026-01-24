@@ -2939,7 +2939,7 @@ function EID:UpdateAllPlayerPassiveItems()
 	-- check if id is smaller max id, because numbers bigger a certain value can crash the game when calling HasCollectible()
 	local maxCollID = EID:GetMaxCollectibleID()
 	for i = 1, #EID.coopAllPlayers do
-		local player = EID.coopAllPlayers[i]
+		local player = Isaac.GetPlayer(i-1)
 		if player == nil then
 			return listUpdatedForPlayers -- dont evaluate when bad data is present
 		end
