@@ -635,8 +635,9 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ObjType = Type
 	description.ObjVariant = Variant
 	description.ObjSubType = SubType
-	description.fullItemString = Type.."."..Variant.."."..SubType
-	description.Name = EID:getObjectName(Type, Variant, SubType)
+	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
+	description.fullItemString = Type.."."..Variant.."."..adjustedID
+	description.Name = EID:getObjectName(Type, Variant, adjustedID)
 	description.Entity = entity or nil
 
 	local generatedModularDesc = false
