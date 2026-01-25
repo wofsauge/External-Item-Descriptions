@@ -66,42 +66,42 @@ EID.descriptions[languageCode].ModularDescriptions = {
     CoinBombKey = "{{Coin}}동전, {{Bomb}}폭탄, {{Key}}열쇠 {value}",
     -- Dynamic Spawns
     Spawns = {
-        RandomPickup = "랜덤 픽업을 {value}개 드랍합니다",
-        RandomTrinket = "랜덤 장신구를 {value}개 드랍합니다",
-        RandomHeart = "랜덤 하트를 {value}개 드랍합니다",
-        RedHeart = "빨간하트를 {value}개 드랍합니다",
-        SoulHeart = "소울하트를 {value}개 드랍합니다",
-        BlackHeart = "블랙하트를 {value}개 드랍합니다",
-        BoneHeart = "뼈하트를 {value}개 드랍합니다",
-        Bomb = "폭탄을 {value}개 드랍합니다",
-        Key = "열쇠를 {value}개 드랍합니다",
-        Coin = "동전을 {value}개 드랍합니다",
-        RandomCoin = "랜덤 동전을 {value}개 드랍합니다",
-        Card = "카드를 {value}장 드랍합니다",
-        Pill = "알약을 {value}개 드랍합니다",
-        Rune = "룬을 {value}개 드랍합니다",
-        Battery = "배터리를 {value}개 드랍합니다",
-        BlueFly = "파란 아군 파리를 {value}마리 소환합니다",
-        BlueSpider = "파란 아군 거미를 {value}마리 소환합니다",
+        RandomPickup = "랜덤 픽업을 {value}개 드랍합니다.",
+        RandomTrinket = "랜덤 장신구를 {value}개 드랍합니다.",
+        RandomHeart = "랜덤 하트를 {value}개 드랍합니다.",
+        RedHeart = "빨간하트를 {value}개 드랍합니다.",
+        SoulHeart = "소울하트를 {value}개 드랍합니다.",
+        BlackHeart = "블랙하트를 {value}개 드랍합니다.",
+        BoneHeart = "뼈하트를 {value}개 드랍합니다.",
+        Bomb = "폭탄을 {value}개 드랍합니다.",
+        Key = "열쇠를 {value}개 드랍합니다.",
+        Coin = "동전을 {value}개 드랍합니다.",
+        RandomCoin = "랜덤 동전을 {value}개 드랍합니다.",
+        Card = "카드를 {value}장 드랍합니다.",
+        Pill = "알약을 {value}개 드랍합니다.",
+        Rune = "룬을 {value}개 드랍합니다.",
+        Battery = "배터리를 {value}개 드랍합니다.",
+        BlueFly = "파란 아군 파리를 {value}마리 소환합니다.",
+        BlueSpider = "파란 아군 거미를 {value}마리 소환합니다.",
     },
 
     -- Permanent Tear Effects
     TearEffect = {
-        Homing = "공격에 유도 효과가 생깁니다.", -- should follow Spoon Bender
+        Homing = "공격에 유도 효과가 생깁니다.", -- Should follow Spoon Bender
         Spectral = "공격이 장애물을 관통합니다.", -- Should follow Ouija Board
         Piercing = "공격이 적을 관통합니다.", -- Should follow Cupid's Arrow
         Poison = "{{Poison}} 공격에 독성이 생깁니다.",
     },
 
     -- Familiars
-    FlyOrbital = "{value} 파리 배리어",
+    FlyOrbital = "파리 배리어 {value}",
     Orbital = "캐릭터의 주변을 돕니다.",
     BlockProjectiles = "적 탄환을 막아줍니다.",
-    DamagePerTear = "눈물 한 발당 {value}의 피해를 줍니다.",
-    DamagePerShot = "한 발당 {value}의 피해를 줍니다.",
+    DamagePerTear = "공격력 {value}의 눈물을 발사합니다.", -- Only tear familiars use this now, so should follow Sister's Maggy
+    DamagePerShot = "공격력 {value}의 레이저를 발사합니다.", -- Only laser familiars use this now, so should follow Robo-Baby
     DamagePerSecond = "초당 {value}의 피해를 줍니다.",
     ContactDamagePerSecond = "접촉 시 초당 {value}의 피해를 줍니다.",
-    MimicMovement = "캐릭터가 지나간 길을 {value}초 후 따라옵니다.",
+    MimicMovement = "캐릭터가 지나간 길을 {value}초 후 따라옵니다.", -- Should follow Shade
 
     -- Player
     CantShoot = "공격 불가",
@@ -118,7 +118,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     MaxLuck = "{{Luck}} {value}: 확률 {max}%",
     SingleUseInfo = "{{Warning}} 일회용 {{Warning}}",
     NoEffect = "무효과",
-    FullMapping = {
+    FullMapping = { -- BaseDesc should follow The Mind/Ansuz, Exception should follow The World, Crystal Ball
         BaseDesc = "{{Timer}} 맵에 {{UltraSecretRoom}} 특급비밀방{exception}을 제외한 모든 방의 위치가 표시됩니다.",
         Exception = ", {{SuperSecretRoom}} 일급비밀방",
     }
