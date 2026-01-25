@@ -637,7 +637,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ObjSubType = SubType
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
 	description.fullItemString = Type.."."..Variant.."."..adjustedID
-	description.Name = EID:getObjectName(Type, Variant, adjustedID)
+	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
 	local generatedModularDesc = false
@@ -912,12 +912,14 @@ end
 ---@return string
 function EID:getObjectName(Type, Variant, SubType)
 	local fallbackName = Type.."."..Variant.."."..SubType
+	local tableName = EID:getTableName(Type, Variant, SubType)
+
 	-- try to get name from EID.ItemNames table
 	local translatedName = EID.ItemNames[EID:getLanguage()][fallbackName]
 	local itemNameTableEntry = translatedName ~= "" and translatedName or EID.ItemNames[EID.DefaultLanguageCode][fallbackName]
-	if itemNameTableEntry then return itemNameTableEntry end
+	-- return itemName table entry if found and not pills/horsepills
+	if itemNameTableEntry and tableName ~= "pills" and tableName ~= "horsepills" then return itemNameTableEntry end
 
-	local tableName = EID:getTableName(Type, Variant, SubType)
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	local name = nil
 	if tableEntry ~= nil then
@@ -982,7 +984,8 @@ function EID:getPillName(pillID, isHorsepill)
 	local moddedDesc = EID:getDescriptionEntry("custom", "5.70."..pillID)
 	local legacyModdedDescription = EID:getLegacyModDescription(5, 70, pillID)
 	local tableName = isHorsepill and "horsepills" or "pills"
-	local defaultDesc = EID:getDescriptionEntry(tableName, pillID)
+	local translatedName = EID.ItemNames[EID:getLanguage()]["5.70."..pillID]
+	local defaultDesc = translatedName or EID:getDescriptionEntry(tableName, pillID)
 
 	local name = moddedDesc or legacyModdedDescription or defaultDesc
 
