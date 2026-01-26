@@ -918,7 +918,7 @@ function EID:getObjectName(Type, Variant, SubType)
 	local translatedName = EID.ItemNames[EID:getLanguage()][fallbackName]
 	local itemNameTableEntry = translatedName ~= "" and translatedName or EID.ItemNames[EID.DefaultLanguageCode][fallbackName]
 	-- return itemName table entry if found and not pills/horsepills
-	-- don't return itemName table entry if no names are found since 'EID.ItemNames[EID.DefaultLanguageCode][fallbackName]' can also be empty
+	-- 'EID.ItemNames[EID.DefaultLanguageCode][fallbackName]' can also be empty check if it is empty again, to check ItemConfig stuff propery
 	if itemNameTableEntry and itemNameTableEntry ~= "" and tableName ~= "pills" and tableName ~= "horsepills" then return itemNameTableEntry end
 
 	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
