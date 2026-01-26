@@ -38,7 +38,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     RandomStatDown = "↓ 무작위 능력치 {value}개 감소",
 
     -- Health related
-    RedHeart = "빨간하트 {value}",
+    RedHeart = "최대 체력 {value}",
     SoulHeart = "소울하트 {value}",
     BlackHeart = "블랙하트 {value}",
     BoneHeart = "뼈하트 {value}",
