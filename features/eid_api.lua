@@ -648,8 +648,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 			generatedModularDesc = true
 		end
 	end
+	local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 	if not generatedModularDesc then
-		local tableEntry = EID:getDescriptionData(Type, Variant, SubType)
 		description.Description = tableEntry and tableEntry[3] or EID:getXMLDescription(Type, Variant, SubType)
 	end
 
