@@ -100,7 +100,7 @@ EID.descriptions[languageCode].collectibles={
 	{"76", "X-Ray Vision", "{{SecretRoom}} Opens all secret room entrances"}, -- X-Ray Vision
 	{"77", "My Little Unicorn", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"}, -- My Little Unicorn
 	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Using the item has a high chance to replace the floor's boss with a horseman"}, -- Book of Revelations
-	{"79", "The Mark", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"}, -- The Mark
+	{"79", "The Mark", "↑ {{Damage}} +1 Damage#↑ {{Speed}} +0.2 Speed#{{SoulHeart}} +1 Soul Heart"}, -- The Mark
 	{"80", "The Pact", "↑ {{Tears}} +0.7 Tears#↑ {{Damage}} +0.5 Damage#{{SoulHeart}} +2 Soul Hearts"}, -- The Pact
 	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up"}, -- Dead Cat
 	{"82", "Lord of the Pit", "↑ {{Speed}} +0.3 Speed#Flight"}, -- Lord of the Pit
@@ -118,7 +118,7 @@ EID.descriptions[languageCode].collectibles={
 	{"94", "Sack of Pennies", "{{Coin}} Spawns a random coin every 2 rooms"}, -- Sack of Pennies
 	{"95", "Robo-Baby", "Shoots lasers#Deals 3.5 damage per shot"}, -- Robo-Baby
 	{"96", "Little C.H.A.D.", "{{HalfHeart}} Spawns a half Red Heart every 3 rooms"}, -- Little C.H.A.D.
-	{"97", "The Book of Sin", "Spawns a random pickup"}, -- The Book of Sin
+	{"97", "The Book of Sin", "Spawns 1 random pickup"}, -- The Book of Sin
 	{"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 5-6 rooms"}, -- The Relic
 	{"99", "Little Gish", "{{Slow}} Shoots slowing tears#Deals 3.5 damage per tear"}, -- Little Gish
 	{"100", "Little Steven", "Shoots homing tears#Deals 3.5 damage per tear"}, -- Little Steven
@@ -295,7 +295,7 @@ EID.descriptions[languageCode].collectibles={
 	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
-	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#It deals 75 contact damage per second"}, -- Best Bud
+	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#Deals 75 contact damage per second"}, -- Best Bud
 	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 contact damage per second"}, -- Lil Haunt
@@ -1098,8 +1098,13 @@ EID.descriptions[languageCode].transformations={
 -- Each language can do their own algorithm to modify the given text to their needs
 EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
 	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	if amount > 1 then
+		text = text:gsub("Life", "Lives")
+	end
 	-- replace {pluralize} placeholders inside the text with an "s"
-	return EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "pluralize_y", amount > 1 and "ies" or "y")
+	return text
 end
 
 EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
@@ -1343,8 +1348,4 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.18 (Greed)"] = {"{{TreasureRoom}} Teleports Isaac to a random Treasure Room"}, -- XVII - The Stars (Greed)
 	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
-	
 }
-
-
-

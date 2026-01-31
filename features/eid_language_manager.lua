@@ -93,13 +93,27 @@ end
 
 --- Attempts to load all language packs from a given game version
 function EID:LoadLanguagePacks(gameVersion)
-    --transformation infos
+    --modular item informations
+    local _, _ = pcall(require, "descriptions." .. gameVersion .. ".item_data")
+    --transformation informations
     local _, _ = pcall(require, "descriptions." .. gameVersion .. ".transformations")
     --load languages
     for _, languageCode in ipairs(EID.Languages) do
         local wasSuccessful, err = pcall(require, "descriptions." .. gameVersion .. "." .. languageCode)
         if not wasSuccessful and not string.find(err, "not found") then
             EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (" .. gameVersion .. ") failed: " ..
+                tostring(err))
+        end
+        -- load item name lists
+        wasSuccessful, err = pcall(require, "descriptions.names." .. languageCode)
+        if not wasSuccessful and not string.find(err, "not found") then
+            EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (Names) failed: " ..
+                tostring(err))
+        end
+        -- load modular descriptions
+        wasSuccessful, err = pcall(require, "descriptions.modular." .. languageCode)
+        if not wasSuccessful and not string.find(err, "not found") then
+            EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (modular) failed: " ..
                 tostring(err))
         end
     end

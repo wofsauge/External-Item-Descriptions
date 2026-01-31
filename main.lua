@@ -3,6 +3,7 @@ EID = RegisterMod("External Item Descriptions", 1)
 -- important variables
 EID.GameVersion = "ab+"
 EID.descriptions = {} -- Table that holds all translation strings
+EID.ItemNames = {} -- Table that holds all item names for each language
 EID.enableDebug = false
 local game = Game()
 EID.isRepentancePlus = REPENTANCE_PLUS or FontRenderSettings ~= nil -- Repentance+ adds FontRenderSettings() class. We use this to check if the DLC is enabled. V1.9.7.7 added REPENTANCE_PLUS variable
@@ -11,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.11
-EID.ModVersionCommit = "e057d2a"
+EID.ModVersion = 5.14
+EID.ModVersionCommit = "edc9613"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
@@ -108,6 +109,8 @@ end
 
 
 require("features.eid_api")
+require("features.eid_modular_descriptions")
+require("features.eid_modular_data_modifiers")
 require("features.eid_grid_descriptions")
 
 require("features.eid_language_manager")
@@ -399,6 +402,14 @@ function EID:CheckVoidAbsorbs(_, _, player)
 end
 EID:AddCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.CheckVoidAbsorbs, CollectibleType.COLLECTIBLE_VOID)
 
+function EID:HandleRenderingKeys()
+	-- scale key must be handled before resetting to non-local mode
+	EID:HandleScaleKey()
+	if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or (EID.player and Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex)) then
+		EID.isHidden = not EID.isHidden
+	end
+end
+
 ---------------------------------------------------------------------------
 --------------------------Handle Scale Shortcut----------------------------
 
@@ -408,7 +419,7 @@ local scaleSpeed = 0.01 -- scale size per frame
 local scaleToBigger = true
 EID.CurrentScaleType = "Size" -- Size or LocalModeSize; checked by EID:getTextPosition() to not apply modifiers in local mode
 local scaleHoldFrame = 0
-local function handleScaleKey()
+function EID:HandleScaleKey()
 	local scaleKey = EID.Config["SizeHotkey"]
 
 	-- press and hold ScaleKey
@@ -1320,11 +1331,7 @@ function EID:OnRender()
 
 	-- Do not check our hide or scale hotkeys while a tab that can modify them is open
 	if EID.MCMCompat_isDisplayingEIDTab ~= "General" then
-		-- scale key must be handled before resetting to non-local mode
-		handleScaleKey()
-		if Input.IsButtonTriggered(EID.Config["HideKey"], 0) or Input.IsButtonTriggered(EID.Config["HideButton"], EID.player.ControllerIndex) then
-			EID.isHidden = not EID.isHidden
-		end
+		EID:HandleRenderingKeys()
 	end
 	EID.TabPreviewID = 0
 	EID.TabDescThisFrame = false
@@ -1731,6 +1738,7 @@ end
 EID:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, OnGameStartGeneral)
 
 local function OnPostPlayerInit()
+	EID:setPlayer() -- re-evaluate player list. Fixes crash when using "rewind" command in a MC_POST_RENDER callback
 	EID.ShouldCheckStartingItems = true -- for The Stars? tracking
 end
 EID:AddCallback(ModCallbacks.MC_POST_PLAYER_INIT, OnPostPlayerInit)
