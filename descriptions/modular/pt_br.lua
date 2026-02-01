@@ -2,6 +2,9 @@
 local languageCode = "pt_br"
 EID.descriptions[languageCode].AdditionalInformations = {}
 
+-- List of description IDs to ignore for fully automated descriptions
+EID.descriptions[languageCode].IgnoreFullyAutomatedDescriptions = {}
+
 ---------- Modular Descriptions ----------
 -- Table containing basic sentences and templates used to generate basic descriptions
 

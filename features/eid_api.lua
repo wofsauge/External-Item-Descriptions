@@ -641,7 +641,8 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.Entity = entity or nil
 
 	local generatedModularDesc = false
-	if EID.FullyAutomatedDescriptions[description.fullItemString] then
+	local hasIgnoreModular = EID.descriptions[EID:getLanguage()].IgnoreFullyAutomatedDescriptions and EID.descriptions[EID:getLanguage()].IgnoreFullyAutomatedDescriptions[description.fullItemString]
+	if EID.FullyAutomatedDescriptions[description.fullItemString] and not hasIgnoreModular then
 		local success, modularDescription = pcall(EID.GenerateDescription, nil, description)
 		if success and modularDescription and modularDescription ~= "" then
 			description.Description = modularDescription

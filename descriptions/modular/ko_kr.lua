@@ -2,6 +2,16 @@
 local languageCode = "ko_kr"
 EID.descriptions[languageCode].AdditionalInformations = {}
 
+-- List of description IDs to ignore for fully automated descriptions
+local C_ID = "5.100."
+EID.descriptions[languageCode].IgnoreFullyAutomatedDescriptions = {
+    [C_ID .. 120] = true, -- Odd Mushroom (Thin) this is okay but there is no item_data.lua for rgon (tears for rep -> firerate for rep+ -> tears for rgon) so adding this for now
+    [C_ID .. 215] = true, -- Goat Head
+    [C_ID .. 240] = true, -- Experiment Treatment
+    [C_ID .. 499] = true, -- Eucharist
+    [C_ID .. 600] = true, -- Eye Drops
+}
+
 ---------- Modular Descriptions ----------
 -- Table containing basic sentences and templates used to generate basic descriptions
 
@@ -21,7 +31,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     FireRate = "연사(+상한) {value}", -- Must mention tears cap
     DamageMultiplier = "공격력 배율 {value}",
     Damage = "공격력 {value}",
-		DamageTemp = "증발성 공격력 {value}", -- For Temp Binge Eater buffs
+	DamageTemp = "증발성 공격력 {value}", -- For Temp Binge Eater buffs
     BombDamage = "폭탄 피해량 {value}",
     Speed = "이동속도 {value}",
     RangeMultiplier = "사거리 배율 {value}",
