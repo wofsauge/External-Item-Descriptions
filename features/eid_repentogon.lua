@@ -230,10 +230,20 @@ local function DonationMachineCallback(descObj)
 			break
 		end
 	end
-	
+
+	descObj.Icon = EID.InlineIcons["DonationMachine"]
+
+	if coinsNeeded - totalDonations <= 0 then
+		-- All rewards unlocked, remove description part with required coin amount
+		local linebreakPos = string.find(descObj.Description, "#")
+		if linebreakPos then
+			descObj.Description = string.sub(descObj.Description, linebreakPos + 1)
+		end
+		return descObj
+	end
+	-- Replace variables in description with values
 	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 1, coinsNeeded)
 	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 2, coinsNeeded - totalDonations)
-	descObj.Icon = EID.InlineIcons["DonationMachine"]
 	return descObj
 end
 
