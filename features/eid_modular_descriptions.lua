@@ -130,7 +130,7 @@ EID.ModuleBehaviors = {
     },
     ["TearEffect"] = {
         Priority = 5510,
-        BehaviorFunc = function(moduleBehaviorEntry, itemDataTableEntry, description)
+        BehaviorFunc = function(moduleBehaviorEntry, itemDataTableEntry, description, indent)
             -- support single and multiple tear effects by turning single entries into a table
             if type(itemDataTableEntry) ~= "table" then
                 itemDataTableEntry = {itemDataTableEntry}
