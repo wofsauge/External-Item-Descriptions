@@ -891,7 +891,7 @@ EID.GoldenTrinketData = {
 	[156] = {t={1,1}}, -- Mother's Kiss
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, -- Gilded Key (Golden = no +1 key; probably a bug)
 	[160] = 1, -- Lucky Sack
-	[162] = {t={50}, mults={1.32, 2}}, -- Azazel's Stump (50/67/100)
+	[162] = {t={33}, mults={1.515151, 3.03131}}, -- Azazel's Stump (33/50/100)
 	[163] = {t={1},mult=2}, -- Dingle Berry
 	[164] = 1, -- Ring Cap
 	[166] = {t={50},mult=2}, -- Modeling Clay
@@ -920,6 +920,7 @@ EID.GoldenTrinketData = {
 	[25] = {goldenOnly = true, findReplace = true, mult = 2}, -- Mysterious Candy (golden = golden poop)
 }
 if EID.isRepentancePlus then
+	EID.GoldenTrinketData[17] = {t={10}, mults={2,3.3}} -- Red Patch
 	EID.GoldenTrinketData[23] = {t={33}, mults={1.5,3}} -- Missing Poster
 	EID.GoldenTrinketData[30] = {t={10}, mults={2,3.3}} -- Pinky Eye
 	EID.GoldenTrinketData[31] = {t={10}, mults={2,3.3}} -- Push Pin
