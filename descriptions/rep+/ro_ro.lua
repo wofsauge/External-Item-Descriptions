@@ -20,11 +20,11 @@ local collectibles = {
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "Băiatul Paradei", "{{Coin}} Creează 7 monede aleatorii#Creează un suvenir penny aleatoriu" }, -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = { "186", "Drepturi de Sânge", "Provoacă 40 de daune tuturor inamicilor#{{Tears}} +0.48 rată de tragere pentru camera curentă#{{Warning}} Provoacă 1 inimă de daune lui Isaac#După prima utilizare într-o cameră, provoacă doar o jumătate de inimă#{{Heart}} Elimină inimile roșii mai întâi" }, -- Blood Rights
+	[186] = { "186", "Drepturi de Sânge", "Provoacă 40 de daune tuturor inamicilor#{{Tears}} {{ColorGreen}}+0.48{{CR}} rată de tragere pentru camera curentă#{{Warning}} Provoacă 1 inimă de daune lui Isaac#După prima utilizare într-o cameră, provoacă doar o jumătate de inimă#{{Heart}} Elimină inimile roșii mai întâi" }, -- Blood Rights
 	-- Change: added "Blocks enemy tears"
 	[281] = { "281", "Sac de Box", "Familiar momeală#Inamicii îl vizează pe el în locul lui Isaac#Blochează lacrimile inamice" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
-	[329] = { "329", "Tehnica Ludovico", "↑ {{Shotspeed}} +0.2 viteză lacrimi#Înlocuiește lacrimile lui Isaac cu o singură lacrimă uriașă controlabilă" }, -- The Ludovico Technique
+	[329] = { "329", "Tehnica Ludovico", "↑ {{Shotspeed}} {{ColorGreen}}+0.2{{CR}} viteză lacrimi#Înlocuiește lacrimile lui Isaac cu o singură lacrimă uriașă controlabilă" }, -- The Ludovico Technique
 	-- Change: Complete rewrite
 	[351] = { "351", "Fasolea Mega", "{{Petrify}} Provoacă 100 de daune și pietrifică toți inamicii din cameră#{{Poison}} Provoacă 5 daune și otrăvește inamicii apropiați#Poate deschide camere secrete și sparge pietre" }, -- Mega Bean
 	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
@@ -44,19 +44,19 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[510] = { "510", "Deliric", "Generează o versiune prietenoasă delirium a unui boss#Persistă între camere#{{Warning}} Doar un boss poate fi activ în același timp#Sănătatea bossului scade în timp" }, -- Delirious
 	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "Prea Înfricoșător", "{{Tears}} +0.5 lacrimi#{{Shotspeed}} +0.2 viteză lacrimi#{{Fear}} Îi sperie pe inamicii dintr-un mic radius în jurul lui Isaac" }, -- 2Spooky
+	[554] = { "554", "Prea Înfricoșător", "{{Tears}} {{ColorGreen}}+0.5{{CR}} lacrimi#{{Shotspeed}} {{ColorGreen}}+0.2{{CR}} viteză lacrimi#{{Fear}} Îi sperie pe inamicii dintr-un mic radius în jurul lui Isaac" }, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = { "560", "Durează", "{{Timer}} Când primești daune, pentru camera respectivă:#↑ {{Tears}} +1.2 rată de tragere la prima lovitură#↑ {{Tears}} +0.4 rată de tragere pentru fiecare lovitură suplimentară#Eliberează un inel de 10 lacrimi în jurul lui Isaac#Lacrimile lasă o baltă de acid la impact" }, -- It Hurts
+	[560] = { "560", "Durează", "{{Timer}} Când primești daune, pentru camera respectivă:#↑ {{Tears}} {{ColorGreen}}+1.2{{CR}} rată de tragere la prima lovitură#↑ {{Tears}} {{ColorGreen}}+0.4{{CR}} rată de tragere pentru fiecare lovitură suplimentară#Eliberează un inel de 10 lacrimi în jurul lui Isaac#Lacrimile lasă o baltă de acid la impact" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
-	[593] = { "593", "Marte", "Dublu-apăsarea unei taste de mișcare îl face pe Isaac să se arunce#{{Damage}} În timpul aruncării, Isaac este invincibil și provoacă 4x dauna lui +8#{{Timer}} 3 secunde timp de reîncărcare#{{Burning}} Creează un inel de foc la impact" }, -- Mars
+	[593] = { "593", "Marte", "Dublu-apăsarea unei taste de mișcare îl face pe Isaac să se arunce#{{Damage}} În timpul aruncării, Isaac este invincibil și provoacă {{ColorGreen}}4x{{CR}} dauna lui {{ColorGreen}}+8{{CR}}#{{Timer}} 3 secunde timp de reîncărcare#{{Burning}} Creează un inel de foc la impact" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
-	[594] = { "594", "Jupiter", "↑ {{EmptyHeart}} +2 containere de inimă goale#↓ {{Speed}} -0.3 viteză#{{HealingRed}} Vindecă 2 inimi#{{Speed}} Viteza crește până la +0.5 dacă stai pe loc#{{Poison}} Mișcarea eliberează nori de otravă#{{Poison}} Imunitate la otravă" }, -- Jupiter
+	[594] = { "594", "Jupiter", "↑ {{EmptyHeart}} {{ColorGreen}}+2{{CR}} containere de inimă goale#↓ {{Speed}} {{ColorRed}}-0.3{{CR}} viteză#{{HealingRed}} Vindecă 2 inimi#{{Speed}} Viteza crește până la {{ColorGreen}}+0.5{{CR}} dacă stai pe loc#{{Poison}} Mișcarea eliberează nori de otravă#{{Poison}} Imunitate la otravă" }, -- Jupiter
 	-- Change: Complete rewrite
-	[632] = { "632", "Farmec Rău", "↑ {{Luck}} +2 noroc#Imun la {{Burning}} foc, {{Confusion}} confuzie, {{Fear}} frică, {{Slow}} pânze de păianjen și {{Poison}} efecte de otravă#Oferă 1 secundă de imunitate la acid" }, -- Evil Charm
+	[632] = { "632", "Farmec Rău", "↑ {{Luck}} {{ColorGreen}}+2{{CR}} noroc#Imun la {{Burning}} foc, {{Confusion}} confuzie, {{Fear}} frică, {{Slow}} pânze de păianjen și {{Poison}} efecte de otravă#Oferă 1 secundă de imunitate la acid" }, -- Evil Charm
 	-- Change: Removed +2 Soul Hearts
 	[643] = { "643", "Revelație", "Zbor#{{Chargeable}} Fascicul sfânt încărcabil cu daune mari#Nu înlocuiește lacrimile lui Isaac" }, -- Revelation
 	-- Change: Adjusted the stat boost to match Hallowed Ground
-	[651] = { "651", "Steaua din Betleem", "Călătorește încet de la prima cameră a etajului la {{BossRoom}} Camera Boss#Se mișcă mai repede dacă ești înaintea ei și mai încet dacă ești în urma ei#Stând în aura ei oferă:#↑ {{Tears}} x2.5 multiplicator lacrimi#↑ {{Damage}} x1.2 multiplicator daune#Lacrimi cu urmărire#50% șansă să ignori daunele" }, -- Star of Bethlehem
+	[651] = { "651", "Steaua din Betleem", "Călătorește încet de la prima cameră a etajului la {{BossRoom}} Camera Boss#Se mișcă mai repede dacă ești înaintea ei și mai încet dacă ești în urma ei#Stând în aura ei oferă:#↑ {{Tears}} {{ColorGreen}}x2.5{{CR}} multiplicator lacrimi#↑ {{Damage}} {{ColorGreen}}x1.2{{CR}} multiplicator daune#Lacrimi cu urmărire#50% șansă să ignori daunele" }, -- Star of Bethlehem
 	-- Change: Added Shop as a new destination
 	[660] = { "660", "Citirea Cărților", "Creează două portaluri în prima cameră a fiecărui etaj#Părăsirea camerei face portalurile să dispară#{{Blank}} {{ColorRed}}Roșu: {{CR}}{{BossRoom}} Camera Boss#{{Blank}} {{ColorYellow}}Galben: {{CR}}{{TreasureRoom}} Camera de Obiecte#{{Blank}} {{ColorBlue}}Albastru: {{CR}}{{SecretRoom}} Camera Secretă#{{Blank}} {{ColorGreen}}Verde: {{CR}}{{Shop}} Magazin" }, -- Card Reading
 	-- Change: Complete rewrite
@@ -64,7 +64,7 @@ local collectibles = {
 	-- Change: Added into for first usage
 	[685] = { "685", "Borcan cu Spirite", "Creează 2 spirite aleatorii#Creează încă un spirit la fiecare utilizare, până la 12" }, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
-	[706] = { "706", "Abis", "Consumă toate piedestalele de obiecte din cameră și creează o lăcustă familiară pentru fiecare#Unele obiecte creează o lăcustă specială când sunt consumate#{{Damage}} Lăcustele provoacă daunele lui Isaac înmulțite cu calitatea obiectului consumat:#{{Quality0}} - 0.5x#{{Quality1}} - 0.75x#{{Quality2}} - 1.0x#{{Quality3}} - 1.5x#{{Quality4}} - 2.0x" }, -- Abyss
+	[706] = { "706", "Abis", "Consumă toate piedestalele de obiecte din cameră și creează o lăcustă familiară pentru fiecare#Unele obiecte creează o lăcustă specială când sunt consumate#{{Damage}} Lăcustele provoacă daunele lui Isaac înmulțite cu calitatea obiectului consumat:#{{Quality0}} - {{ColorGreen}}0.5x{{CR}}#{{Quality1}} - {{ColorGreen}}0.75x{{CR}}#{{Quality2}} - {{ColorGreen}}1.0x{{CR}}#{{Quality3}} - {{ColorGreen}}1.5x{{CR}}#{{Quality4}} - {{ColorGreen}}2.0x{{CR}}" }, -- Abyss
 }
 EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].collectibles)
 
@@ -72,25 +72,25 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 
 local trinkets = {
 	-- Change: Added champion loot information
-	[5] = {"5", "Inimă Violet", "Șansă de 2x pentru inamici campioni#50% șansă ca inamicii campioni să lase loot#Dubleză loot-ul inamicilor campioni"}, -- Purple Heart
+	[5] = {"5", "Inimă Violet", "Șansă de {{ColorGreen}}2x{{CR}} pentru inamici campioni#50% șansă ca inamicii campioni să lase loot#Dubleză loot-ul inamicilor campioni"}, -- Purple Heart
 	-- Change: Added info about devil deals
-	[7] = { "7", "Mărgea de Rozariu", "{{AngelChance}} +50% șansă la Camera Îngerului#{{Collectible33}} Șansă mai mare să găsești Biblia în {{Shop}} Magazine și {{Library}} Biblioteci#Forțează {{DevilChance}}Ofertele Diavolului să fie {{AngelChance}}Oferte ale Îngerului"}, -- Rosary Bead
+	[7] = { "7", "Mărgea de Rozariu", "{{AngelChance}} {{ColorGreen}}+50%{{CR}} șansă la Camera Îngerului#{{Collectible33}} Șansă mai mare să găsești Biblia în {{Shop}} Magazine și {{Library}} Biblioteci#Forțează {{DevilChance}}Ofertele Diavolului să fie {{AngelChance}}Oferte ale Îngerului"}, -- Rosary Bead
 	-- Change: added info about dropping the item
 	[16] = {"16", "Unghia Mamei", "{{MomBoss}} Aruncarea suvenirului în camere ostile va face ca Piciorul Mamei să calce acea locație"}, -- Mom's Toenail
 	-- Change: added Super Secret Room info
 	[23] = { "23", "Poster Lipsă", "{{Player10}} Reînvii ca The Lost la moarte#{{SuperSecretRoom}} 33% șansă să se dezvăluie Camera Super Secretă pe un etaj nou"}, -- Missing Poster
 	-- Change: added ", {{Trinket135}} A Lighter"
-	[53] = { "53", "Căpușă", "{{HealingRed}} Vindecă 1 inimă când intri într-o {{BossRoom}} Cameră Boss#-15% viață boss#{{Warning}} Odată luată, nu poate fi scoasă#Poate fi îndepărtată doar cu {{Trinket41}} Chibrit, {{Trinket135}} O Brichetă sau înghițind-o" }, -- Tick
+	[53] = { "53", "Căpușă", "{{HealingRed}} Vindecă 1 inimă când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-15%{{CR}} viață boss#{{Warning}} Odată luată, nu poate fi scoasă#Poate fi îndepărtată doar cu {{Trinket41}} Chibrit, {{Trinket135}} O Brichetă sau înghițind-o" }, -- Tick
 	-- Change: added +0.5 damage
-	[66] = {"66", "Viermele Leneș", "↑ {{Damage}} +0.5 Daune#↓ {{Shotspeed}} -0.5 Viteză lacrimi"}, -- Lazy Worm
+	[66] = {"66", "Viermele Leneș", "↑ {{Damage}} {{ColorGreen}}+0.5{{CR}} Daune#↓ {{Shotspeed}} {{ColorRed}}-0.5{{CR}} Viteză lacrimi"}, -- Lazy Worm
 	-- Change: Complete rewrite
 	[70] = {"70", "Păduche", "Creează un păianjen albastru la fiecare 30 de secunde în camere ostile#Creează un păianjen albastru la curățarea camerei"}, -- Louse
 	-- Change: Added more loot information
 	[76] = {"76", "Jeton de Poker", "↑ 50% șansă ca cuferele să ofere extra obiecte#↓ 50% șansă ca cuferele să conțină doar o muscă#Crește șansele de câștig la sloturi și alte aparate#Dacă cufărul conține un obiect, acesta va fi de calitate 3 sau mai mare#Conținutul cufărului poate fi uneori obiecte din afara pool-ului de cufere aurii"}, -- Poker Chip
 	-- Change: Added additional effects
-	[85] = {"85", "Karma", "{{DonationMachine}} Folosirea oricărui tip de Mașină de Donații are 33% șansă să:#{{HealingRed}} Vindece 1 inimă (40%)#{{Coin}} Oferă 1 monedă (40%)#{{Luck}} Oferă +1 noroc (15%)#{{Beggar}} Creează un Cerșetor (5%)#{{DonationMachine}} Mașinile de donații se blochează mai rar#Afectează și donațiile la Cerșetori și Mașinile de Reaprovizionare"}, -- Karma
+	[85] = {"85", "Karma", "{{DonationMachine}} Folosirea oricărui tip de Mașină de Donații are 33% șansă să:#{{HealingRed}} Vindece 1 inimă (40%)#{{Coin}} Oferă 1 monedă (40%)#{{Luck}} Oferă {{ColorGreen}}+1{{CR}} noroc (15%)#{{Beggar}} Creează un Cerșetor (5%)#{{DonationMachine}} Mașinile de donații se blochează mai rar#Afectează și donațiile la Cerșetori și Mașinile de Reaprovizionare"}, -- Karma
 	-- Change: Added damage up information
-	[89] = {"89", "Lesă de Copil", "Familiarii stau mai aproape de Isaac#{{Damage}} +25% daune pentru familiari"}, -- Child Leash
+	[89] = {"89", "Lesă de Copil", "Familiarii stau mai aproape de Isaac#{{Damage}} {{ColorGreen}}+25%{{CR}} daune pentru familiari"}, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
 	[93] = { "93", "Scutec Folosit", "33% șansă pe cameră ca toți inamicii zburători să devină prietenoși#Creează 1 muscă albastră la intrarea într-o cameră nouă"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
@@ -98,7 +98,7 @@ local trinkets = {
 	-- Change: now affected by luck, maxing at 18 luck
 	[99] = { "99", "Super Minge", "10% șansă să tragi lacrimi săltărețe#{{Luck}} 100% șansă la 18 noroc" }, -- Super Ball
 	-- Change: Added +2 Tears
-	[103] = {"103", "Egalitate!", "Când numărul de {{Coin}} monede, {{Bomb}} bombe și {{Key}} chei ale lui Isaac este egal:#↑ {{Tears}} +2 lacrimi#Transformă obiectele simple în obiecte duble"}, -- Equality!
+	[103] = {"103", "Egalitate!", "Când numărul de {{Coin}} monede, {{Bomb}} bombe și {{Key}} chei ale lui Isaac este egal:#↑ {{Tears}} {{ColorGreen}}+2{{CR}} lacrimi#Transformă obiectele simple în obiecte duble"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = { "104", "Osul Dorinței", "5% șansă să se distrugă și să creeze un obiect pe piedestal când primești daune" }, -- Wish Bone
 	-- Change: "2%" to "5%"
@@ -151,12 +151,12 @@ local goldenTrinketEffects = {
 	[52] = {"încă o monedă", "{{ColorGold}}2{{CR}} monede", "{{ColorGold}}3{{CR}} monede"},
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
 	       [53] = {
-		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#-{{ColorGold}}30{{CR}}% viață boss#{{ColorGold}}Poate fi îndepărtată!",
-		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#-{{ColorGold}}30{{CR}}% viață boss#{{Warning}} Odată luată, nu poate fi scoasă#Poate fi îndepărtată doar cu {{Trinket41}} Chibrit, {{Trinket135}} O Brichetă sau înghițind-o",
-		       "{{HealingRed}} Vindecă {{ColorGold}}3{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#-{{ColorGold}}30{{CR}}% viață boss#{{ColorGold}}Poate fi îndepărtată!",
+		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!",
+		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{Warning}} Odată luată, nu poate fi scoasă#Poate fi îndepărtată doar cu {{Trinket41}} Chibrit, {{Trinket135}} O Brichetă sau înghițind-o",
+		       "{{HealingRed}} Vindecă {{ColorGold}}3{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!",
 	       },
 	-- Isaac's Head (find replace):
-	[54] = {"3.5 daune", "daunele lui Isaac", "1.5x daunele lui Isaac"},
+	[54] = {"3.5 daune", "daunele lui Isaac", "{{ColorGreen}}1.5x{{CR}} daunele lui Isaac"},
 	-- Judas' Tongue (replace):
 	[56] = {
 		"{{DevilRoom}} Reduce {{ColorGold}}toate{{CR}} prețurile ofertelor diavolului la 1 container de inimă",
@@ -207,8 +207,8 @@ local goldenTrinketEffects = {
 	[97] = {"2 familiari", "3{{CR}} familiari", "4{{CR}} familiari"},
 	-- Nose Goblin (replace):
 	[98] = {
-		"{{ColorGold}}20{{CR}}% șansă să tragi o lacrimă lipicioasă#{{ColorGold}}75{{CR}}% șansă să fie cu urmărire#{{Damage}} Mucii provoacă daunele lui Isaac o dată pe secundă#Mucii rămân lipiți 10 secunde",
-		"{{ColorGold}}30{{CR}}% șansă să tragi o lacrimă lipicioasă cu {{ColorGold}}urmărire{{CR}}#{{Damage}} Mucii provoacă daunele lui Isaac o dată pe secundă#Mucii rămân lipiți 10 secunde",
+		"{{ColorGold}}20%{{CR}} șansă să tragi o lacrimă lipicioasă#{{ColorGold}}75%{{CR}} șansă să fie cu urmărire#{{Damage}} Mucii provoacă daunele lui Isaac o dată pe secundă#Mucii rămân lipiți 10 secunde",
+		"{{ColorGold}}30%{{CR}} șansă să tragi o lacrimă lipicioasă cu {{ColorGold}}urmărire{{CR}}#{{Damage}} Mucii provoacă daunele lui Isaac o dată pe secundă#Mucii rămân lipiți 10 secunde",
 	},
 	-- Fragmented Card (append):
 	[102] = {"{{SecretRoom}} Dezvăluie locația unei camere secrete", "{{SecretRoom}} Dezvăluie locația ambelor camere secrete"},
@@ -243,8 +243,8 @@ local goldenTrinketEffects = {
 	[116] = {"o muscă de atac", "2{{CR}} muște de atac", "3{{CR}} muște de atac"},
 	-- Locust of Conquest (full replace):
 	[117] = {
-		"{{CR}}Intrarea într-o cameră ostilă creează {{ColorGold}}2-5{{CR}} muște de atac#Fiecare muscă provoacă 2x daunele lui Isaac",
-		"{{CR}}Intrarea într-o cameră ostilă creează {{ColorGold}}3-7{{CR}} muște de atac#Fiecare muscă provoacă 2x daunele lui Isaac",
+		"{{CR}}Intrarea într-o cameră ostilă creează {{ColorGold}}2-5{{CR}} muște de atac#Fiecare muscă provoacă {{ColorGreen}}2x{{CR}} daunele lui Isaac",
+		"{{CR}}Intrarea într-o cameră ostilă creează {{ColorGold}}3-7{{CR}} muște de atac#Fiecare muscă provoacă {{ColorGreen}}2x{{CR}} daunele lui Isaac",
 	},
 	-- Stem Cell (find replace):
 	[119] = {"jumătate", "toate"},
@@ -288,8 +288,8 @@ local goldenTrinketEffects = {
 	[151] = {"Afectează și Șefii, Ranchiunele și Bilele & Lanțurile"},
 	-- Telescope Lens (full replace):
 	[152] = {
-		"{{PlanetariumChance}} +18{{CR}}% șansă la Planetariu#+15% șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece și Cadavru",
-		"{{PlanetariumChance}} +33{{CR}}% șansă la Planetariu#+15% șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece, Cadavru, {{ColorGold}}Sheol și Catedrala",
+		"{{PlanetariumChance}} {{ColorGreen}}+18%{{CR}} șansă la Planetariu#{{ColorGreen}}+15%{{CR}} șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece și Cadavru",
+		"{{PlanetariumChance}} {{ColorGreen}}+33%{{CR}} șansă la Planetariu#{{ColorGreen}}+15%{{CR}} șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece, Cadavru, {{ColorGold}}Sheol și Catedrala",
 	},
 	-- Holy Crown (full replace):
 	[155] = {
@@ -301,7 +301,7 @@ local goldenTrinketEffects = {
 	-- Gilded Key (full replace copying the entire original description, because the Golden version doesn't give a key on pickup):
 	       [159] = {
 		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10% șansă să primești un cufăr după curățarea unei camere",
-		       "{{Key}} +1 Cheie la ridicare#{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10% șansă să primești un cufăr după curățarea unei camere",
+		       "{{Key}} {{ColorGreen}}+1{{CR}} Cheie la ridicare#{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10% șansă să primești un cufăr după curățarea unei camere",
 		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+20% șansă să primești un cufăr după curățarea unei camere"
 	       },
 	-- Wicked Crown (full replace):
@@ -310,11 +310,11 @@ local goldenTrinketEffects = {
 		       "{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Sheol#{{ColorGold}}Camerele de comori din Sheol vor conține 2 obiecte la alegere#{{ColorGold}}Dezvăluie locația Camerei de Comori și a Magazinului din Sheol",
 	       },
 	-- Nuh Uh! (append):
-	[165] = {"+10% șansă ca obiectele să apară dublu", "+20% șansă ca obiectele să apară dublu"},
+	[165] = {"{{ColorGreen}}+10%{{CR}} șansă ca obiectele să apară dublu", "{{ColorGreen}}+20%{{CR}} șansă ca obiectele să apară dublu"},
 	-- Keeper’s Bargain (full replace):
 	       [171] = {
-		       "{{DevilRoom}} 100{{CR}}% șansă ca ofertele diavolului să coste monede în loc de inimi",
-		       "{{DevilRoom}} 100{{CR}}% șansă ca ofertele diavolului să coste monede în loc de inimi#{{ColorGold}}Crește șansa ca ofertele diavolului să fie reduse la preț",
+		       "{{DevilRoom}} {{ColorGreen}}100%{{CR}} șansă ca ofertele diavolului să coste monede în loc de inimi",
+		       "{{DevilRoom}} {{ColorGreen}}100%{{CR}} șansă ca ofertele diavolului să coste monede în loc de inimi#{{ColorGold}}Crește șansa ca ofertele diavolului să fie reduse la preț",
 	       },
 	-- Cursed Penny (append):
 	[172] = {"Șansă crescută de a fi teleportat într-o cameră specială"},
@@ -457,7 +457,7 @@ local horsepills = {
 	[20] = {"19", "Telepills", "Îl teleportează pe Isaac într-o cameră specială"},
 	[26] = { "25", "Amnezie", "{{CurseLost}} Ascunde harta etajului#{{Pill}} Uită toate pastilele identificate anterior" },
 	[29] = {"28", "Percs!", "{{HealingRed}} Viață completă#{{Timer}} Reduce toate daunele primite la o jumătate de inimă pentru cameră"},
-	[30] = {"29", "Dependent!", "{{BrokenHeart}} +1 Inimă Frântă#{{Timer}} Crește toate daunele primite la o inimă întreagă pentru cameră"},
+	[30] = {"29", "Dependent!", "{{BrokenHeart}} {{ColorGreen}}+1{{CR}} Inimă Frântă#{{Timer}} Crește toate daunele primite la o inimă întreagă pentru cameră"},
 	[32] = {"31", "???", "{{CurseMaze}} Efectul Blestemului Labirintului pentru etaj#Blesteme suplimentare după utilizări multiple"},
 	[42] = {"41", "Mi-e Somn...", "{{Slow}} Îl încetinește pe Isaac și toți inamicii pentru tot etajul"},
 	[43] = {"42", "Sunt Entuziasmat!!", "Îl accelerează pe Isaac și toți inamicii pentru tot etajul"},
