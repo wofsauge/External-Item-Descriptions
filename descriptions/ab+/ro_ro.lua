@@ -229,7 +229,7 @@ EID.descriptions[languageCode].collectibles={
 	{"206", "Ghilotină", "↑ {{Tears}} -1 Întârziere a lacrimilor#↑ {{Damage}} +1 Daune#Capul lui Isaac devine un orbital care trage, nu primește daune și provoacă 105 daune de contact pe secundă"}, -- Guillotine
 	{"207", "Minge din Bandaje", "Lv1: Orbital#{{Charm}} Lv2: Orbital care trage lacrimi fermecătoare#{{Charm}} Lv3: Fata Bandaj#{{Charm}} Lv4: Super Fata Bandaj"}, -- Ball of Bandages
 	{"208", "Cureaua Campionului", "↑ {{Damage}} +1 Daune#Șansa de inamic campion crește de la 5% la 20%#Nu crește șansa de boși campioni"}, -- Champion Belt
-	{"209", "Bombe Fund", "{{Bomb}} +5 bombe#{{Confusion}} Exploziile zdruncină și provoacă daune fiecărui inamic din cameră"}, -- Butt Bombs
+	{"209", "Bombe Fund", "{{Bomb}} +5 Bombe#{{Confusion}} Exploziile zdruncină și provoacă daune fiecărui inamic din cameră"}, -- Butt Bombs
 	{"210", "Frunză Roasă", "După 1 secundă de inactivitate, Isaac devine invincibil"}, -- Gnawed Leaf
 	{"211", "Bebeluș-păianjel", "După ce primești o daună, apar 1-2 păianjeni albaștri"}, -- Spiderbaby
 	{"212", "Zgarda lui Guppy", "50% șansă să reînvii cu o jumătate de inimă la moarte"}, -- Guppy's Collar
