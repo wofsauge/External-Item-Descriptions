@@ -14,27 +14,27 @@ local languageCode = "ro_ro"
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
-	[56] = { "56", "Incident cu Lămâie", "Varsă o baltă de acid#Acidul provoacă 24 de daune pe secundă#Acidul persistă până când părăsești camera" }, -- Lemon Mishap
+	[56] = { "56", "Accidentul Lămâii", "Varsă o baltă de acid#Acidul provoacă 24 de daune pe secundă#Acidul persistă până când părăsești camera" }, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = { "117", "Pasăre Moartă", "Când primești daune, apare o pasăre care atacă inamicii#Pasărea provoacă 4.3 daune de contact pe secundă#Persistă între camere dacă jucătorul are 1/2 inimi" }, -- Dead Bird
 	-- Change: added "Spawns a random penny trinket"
-	[141] = { "141", "Băiatul Paradei", "{{Coin}} Creează 7 monede aleatorii#Creează un suvenir penny aleatoriu" }, -- Pageant Boy
+	[141] = { "141", "Băiatul Misterios", "{{Coin}} Creează 7 monede aleatorii#Creează un suvenir penny aleatoriu" }, -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = { "186", "Drepturi de Sânge", "Provoacă 40 de daune tuturor inamicilor#{{Tears}} {{ColorGreen}}+0.48{{CR}} rată de tragere pentru camera curentă#{{Warning}} Provoacă 1 inimă de daune lui Isaac#După prima utilizare într-o cameră, provoacă doar o jumătate de inimă#{{Heart}} Elimină inimile roșii mai întâi" }, -- Blood Rights
+	[186] = { "186", "Drepturi de Sânge", "Provoacă 40 de daune tuturor inamicilor#{{Tears}} {{ColorGreen}}+0.48{{CR}} Viteză de atac pentru camera curentă#{{Warning}} Provoacă 1 inimă de daune lui Isaac#După prima utilizare într-o cameră, provoacă doar o jumătate de inimă#{{Heart}} Elimină inimile roșii mai întâi" }, -- Blood Rights
 	-- Change: added "Blocks enemy tears"
 	[281] = { "281", "Sac de Box", "Familiar momeală#Inamicii îl vizează pe el în locul lui Isaac#Blochează lacrimile inamice" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
 	[329] = { "329", "Tehnica Ludovico", "↑ {{Shotspeed}} {{ColorGreen}}+0.2{{CR}} viteză lacrimi#Înlocuiește lacrimile lui Isaac cu o singură lacrimă uriașă controlabilă" }, -- The Ludovico Technique
 	-- Change: Complete rewrite
-	[351] = { "351", "Fasolea Mega", "{{Petrify}} Provoacă 100 de daune și pietrifică toți inamicii din cameră#{{Poison}} Provoacă 5 daune și otrăvește inamicii apropiați#Poate deschide camere secrete și sparge pietre" }, -- Mega Bean
+	[351] = { "351", "Mega Fasole", "{{Petrify}} Provoacă 100 de daune și pietrifică toți inamicii din cameră#{{Poison}} Provoacă 5 daune și otrăvește inamicii apropiați#Poate deschide camere secrete și sparge pietre" }, -- Mega Bean
 	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
-	[420] = { "420", "Praf Negru", "Mersul în cerc desenează o pentagramă pe podea, care provoacă 130 de daune în 4 secunde#Oferă explozii mai mari#Șemineele explodează când sunt stinse" }, -- Black Powder
+	[420] = { "420", "Pudră Neagră", "Mersul în cerc desenează o pentagramă pe podea, care provoacă 130 de daune în 4 secunde#Oferă explozii mai mari#Șemineele explodează când sunt stinse" }, -- Black Powder
 	-- Change: Complete rewrite
 	[436] = { "436", "Lapte!", "Blochează proiectilele inamice#{{Tears}} După 10 lovituri, se sparge și oferă un bonus de lacrimi pentru restul etajului" }, -- Milk!
 	-- Change: Complete rewrite
-	[447] = { "447", "Fasole Persistenta", "Dacă tragi fără pauză timp de 4 secunde, apare un nor de gaz#Norul își mărește dimensiunea în 10 secunde#Norul provoacă mai puține daune cu cât devine mai mare#Poate fi mutat trăgând în el" }, -- Linger Bean
+	[447] = { "447", "Fasole Persistentă", "Dacă tragi fără pauză timp de 4 secunde, apare un nor de gaz#Norul își mărește dimensiunea în 10 secunde#Norul provoacă mai puține daune cu cât devine mai mare#Poate fi mutat trăgând în el" }, -- Linger Bean
 	-- Change: added " and fires radial bursts of tears"
-	[470] = { "470", "Hushy", "Se lovește prin cameră#Provoacă 30 de daune de contact pe secundă#Se oprește când Isaac trage#Blochează proiectilele când e oprit și trage rafale radiale de lacrimi" }, -- Hushy
+	[470] = { "470", "Tăcutul", "Se lovește prin cameră#Provoacă 30 de daune de contact pe secundă#Se oprește când Isaac trage#Blochează proiectilele când e oprit și trage rafale radiale de lacrimi" }, -- Hushy
 	-- Change: added "10 to 12 seconds for Delirium and Mother"
 	[475] = { "475", "Planul C", "Provoacă 9.999.999 de daune tuturor inamicilor#{{Warning}} Îl omoară pe Isaac după 3 secunde#10 până la 12 secunde pentru Delirium și Mother" }, -- Plan C
 	-- Change: added "Turns item pedestals into glitched items"
@@ -42,11 +42,11 @@ local collectibles = {
 	-- Change: Reduced the chance of removing the most recent item to 50%
 	[482] = { "482", "Clicker", "Îți schimbă personajul cu unul aleatoriu#50% șansă de a elimina cel mai recent obiect colectat" }, -- Clicker
 	-- Change: Complete rewrite
-	[510] = { "510", "Deliric", "Generează o versiune prietenoasă delirium a unui boss#Persistă între camere#{{Warning}} Doar un boss poate fi activ în același timp#Sănătatea bossului scade în timp" }, -- Delirious
+	[510] = { "510", "Delirant", "Generează o versiune prietenoasă Delirium a unui boss#Persistă între camere#{{Warning}} Doar un boss poate fi activ în același timp#Sănătatea bossului scade în timp" }, -- Delirious
 	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "Prea Înfricoșător", "{{Tears}} {{ColorGreen}}+0.5{{CR}} lacrimi#{{Shotspeed}} {{ColorGreen}}+0.2{{CR}} viteză lacrimi#{{Fear}} Îi sperie pe inamicii dintr-un mic radius în jurul lui Isaac" }, -- 2Spooky
+	[554] = { "554", "Prea Înfricoșător", "{{Tears}} {{ColorGreen}}+0.5{{CR}} Viteză de atac#{{Shotspeed}} {{ColorGreen}}+0.2{{CR}} Viteza Lacrimilor#{{Fear}} Îi sperie pe inamicii dintr-un mic radius în jurul lui Isaac" }, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = { "560", "Durează", "{{Timer}} Când primești daune, pentru camera respectivă:#↑ {{Tears}} {{ColorGreen}}+1.2{{CR}} rată de tragere la prima lovitură#↑ {{Tears}} {{ColorGreen}}+0.4{{CR}} rată de tragere pentru fiecare lovitură suplimentară#Eliberează un inel de 10 lacrimi în jurul lui Isaac#Lacrimile lasă o baltă de acid la impact" }, -- It Hurts
+	[560] = { "560", "Durează", "{{Timer}} Când primești daune, pentru camera respectivă:#↑ {{Tears}} {{ColorGreen}}+1.2{{CR}} Viteză de atac la prima lovitură#↑ {{Tears}} {{ColorGreen}}+0.4{{CR}} Viteză de atac pentru fiecare lovitură suplimentară#Eliberează un inel de 10 lacrimi în jurul lui Isaac#Lacrimile lasă o baltă de acid la impact" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
 	[593] = { "593", "Marte", "Dublu-apăsarea unei taste de mișcare îl face pe Isaac să se arunce#{{Damage}} În timpul aruncării, Isaac este invincibil și provoacă {{ColorGreen}}4x{{CR}} dauna lui {{ColorGreen}}+8{{CR}}#{{Timer}} 3 secunde timp de reîncărcare#{{Burning}} Creează un inel de foc la impact" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
@@ -98,7 +98,7 @@ local trinkets = {
 	-- Change: now affected by luck, maxing at 18 luck
 	[99] = { "99", "Super Minge", "10% șansă să tragi lacrimi săltărețe#{{Luck}} 100% șansă la 18 noroc" }, -- Super Ball
 	-- Change: Added +2 Tears
-	[103] = {"103", "Egalitate!", "Când numărul de {{Coin}} monede, {{Bomb}} bombe și {{Key}} chei ale lui Isaac este egal:#↑ {{Tears}} {{ColorGreen}}+2{{CR}} lacrimi#Transformă obiectele simple în obiecte duble"}, -- Equality!
+	[103] = {"103", "Egalitate!", "Când numărul de {{Coin}} monede, {{Bomb}} bombe și {{Key}} chei ale lui Isaac este egal:#↑ {{Tears}} {{ColorGreen}}+2{{CR}} Viteză de atac#Transformă obiectele simple în obiecte duble"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = { "104", "Osul Dorinței", "5% șansă să se distrugă și să creeze un obiect pe piedestal când primești daune" }, -- Wish Bone
 	-- Change: "2%" to "5%"
@@ -437,7 +437,7 @@ EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode]
 
 local cards = {
 	-- Change: Added "1% chance for it to be a Crane Game"
-	[11] = { "11", "X - Roata Norocului", "{{Slotmachine}} Creează o Păcănea#{{FortuneTeller}} 24% șansă să fie un Automat de Noroc#{{CraneGame}} 1% șansă să fie o Macara" },
+	[11] = { "11", "X - Roata norocului", "{{Slotmachine}} Creează o Păcănea#{{FortuneTeller}} 24% șansă să fie un Automat de Noroc#{{CraneGame}} 1% șansă să fie o Macara" },
 	-- Change: Added stone enemies and shields
 	[32] = {"32", "Hagalaz", "Distruge toate pietrele și inamicii de piatră din cameră"},
 	-- Change: Complete rewrite
@@ -447,21 +447,21 @@ EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 local tarotClothBuffs = {
 	-- Change: Added Crane Game
-	[11] = { " o Păcănea", " 2 {{CR}}Păcănele", " acesta ", " {{CR}}fiecare ", " acesta ", " {{CR}}fiecare " }, -- X - Roata Norocului
+	[11] = { " o Păcănea", " 2 {{CR}}Păcănele", " acesta ", " {{CR}}fiecare ", " acesta ", " {{CR}}fiecare " }, -- X - Wheel of Fortune
 }
 EID:updateDescriptionsViaTable(tarotClothBuffs, EID.descriptions[languageCode].tarotClothBuffs)
 
 ---------- Pills ----------
 
 local horsepills = {
-	[20] = {"19", "Telepills", "Îl teleportează pe Isaac într-o cameră specială"},
+	[20] = {"19", "Telepilule", "Îl teleportează pe Isaac într-o cameră specială"},
 	[26] = { "25", "Amnezie", "{{CurseLost}} Ascunde harta etajului#{{Pill}} Uită toate pastilele identificate anterior" },
-	[29] = {"28", "Percs!", "{{HealingRed}} Viață completă#{{Timer}} Reduce toate daunele primite la o jumătate de inimă pentru cameră"},
-	[30] = {"29", "Dependent!", "{{BrokenHeart}} {{ColorGreen}}+1{{CR}} Inimă Frântă#{{Timer}} Crește toate daunele primite la o inimă întreagă pentru cameră"},
+	[29] = {"28", "Protecție!", "{{HealingRed}} Viață completă#{{Timer}} Reduce toate daunele primite la o jumătate de inimă pentru cameră"},
+	[30] = {"29", "Dependență!", "{{BrokenHeart}} {{ColorGreen}}+1{{CR}} Inimă Frântă#{{Timer}} Crește toate daunele primite la o inimă întreagă pentru cameră"},
 	[32] = {"31", "???", "{{CurseMaze}} Efectul Blestemului Labirintului pentru etaj#Blesteme suplimentare după utilizări multiple"},
-	[42] = {"41", "Mi-e Somn...", "{{Slow}} Îl încetinește pe Isaac și toți inamicii pentru tot etajul"},
+	[42] = {"41", "Sunt Somnoros...", "{{Slow}} Îl încetinește pe Isaac și toți inamicii pentru tot etajul"},
 	[43] = {"42", "Sunt Entuziasmat!!", "Îl accelerează pe Isaac și toți inamicii pentru tot etajul"},
-	[44] = {"43", "Gulp!", "Consumă suvenirul lui Isaac și îi oferă permanent efectul {{ColorGold}}auriu{{CR}}"},
+	[44] = {"43", "Înghite!", "Consumă suvenirul lui Isaac și îi oferă permanent efectul {{ColorGold}}auriu{{CR}}"},
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 

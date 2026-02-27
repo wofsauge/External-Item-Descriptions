@@ -272,14 +272,14 @@ EID.descriptions[languageCode].collectibles={
 	{"250", "Bombe Bogo", "{{Bomb}} Toate bombele de pe jos devin duble"}, -- Bogo Bombs
 	{"251", "Pachetul Începătorului", "{{Card}} Oferă 1 carte când îl iei#Isaac poate căra 2 cărți#Toate pastilele devin cărți"}, -- Starter Deck
 	{"252", "Mica Punguță", "{{Pill}} Oferă 1 pastilă când îl iei#Isaac poate căra 2 pastile#Toate cărțile devin pastile"}, -- Little Baggy
-	{"253", "Crusta Magică", "↑ {{Heart}} {{ColorGreen}}+1 Viață{{CR}}#↑ {{Luck}} {{ColorGreen}}+1 Noroc{{CR}}"}, -- Magic Scab
-	{"254", "Cheag de Sânge", "↑ {{Damage}} {{ColorGreen}}+1 Daune{{CR}} pentru ochiul stâng#↑ {{Range}} {{ColorGreen}}+5 Distanță{{CR}} pentru ochiul stâng#↑ {{ColorGreen}}+0.5 Mărimea Lacrimilor{{CR}}"}, -- Blood Clot
-	{"255", "Șurub", "↑ {{Tears}} {{ColorGreen}}+0.5 Viteză de Atac{{CR}}#↑ {{Shotspeed}} {{ColorGreen}}+0.2 Viteza Atacurilor{{CR}}"}, -- Screw 
+	{"253", "Crusta Magică", "↑ {{Heart}} {{ColorGreen}}+1{{CR}} Viață#↑ {{Luck}} {{ColorGreen}}+1{{CR}} Noroc"}, -- Magic Scab
+	{"254", "Cheag de Sânge", "↑ {{Damage}} {{ColorGreen}}+1{{CR}} Daune pentru ochiul stâng#↑ {{Range}} {{ColorGreen}}+5{{CR}} Distanță pentru ochiul stâng#↑ {{ColorGreen}}+0.5{{CR}} Mărimea Lacrimilor"}, -- Blood Clot
+	{"255", "Șurub", "↑ {{Tears}} {{ColorGreen}}+0.5{{CR}} Viteză de Atac#↑ {{Shotspeed}} {{ColorGreen}}+0.2{{CR}} Viteza Lacrimilor"}, -- Screw 
 	
 	{"256", "Bombe Fierbinți", "{{Bomb}} {{ColorGreen}}+5{{CR}} Bombe#{{Burning}} Bombele lui Isaac lasă o flacără unde explodează"}, -- Hot Bombs
 	{"257", "Mintea de Foc", "{{Burning}} Lacrimile lui Isaac dau foc inamicilor#10% șansă ca lacrimile să explodeze pe inamici la impact#{{Luck}} 100% șansă la 13 noroc#{{Warning}} Explozia îl poate răni pe Isaac"}, -- Fire Mind
 	{"258", "Nr. Lipsă", "Schimbă toate articolele și statisticile lui Isaac când îl iei, la fiecare nou etaj"}, -- Missing No.
-	{"259", "Materie Neagră", "↑ {{Damage}} {{ColorGreen}}+1 Daune{{CR}}#{{Fear}} 33% șansă să tragi lacrimi înfricoșătoare#{{Luck}} 100% șansă la 20 noroc"}, -- Dark Matter
+	{"259", "Materie Neagră", "↑ {{Damage}} {{ColorGreen}}+1{{CR}} Daune#{{Fear}} 33% șansă să tragi lacrimi înfricoșătoare#{{Luck}} 100% șansă la 20 noroc"}, -- Dark Matter
 	{"260", "Lumânarea Neagră", "{{CurseBlind}} Imunitate la blesteme#{{BlackHeart}} {{ColorGreen}}+1{{CR}} Inimă Neagră#{{AngelDevilChance}} {{ColorGreen}}+15%{{CR}} șansă la camere Înger/Demon"}, -- Black Candle
 	{"261", "Proptoza", "↑ {{Damage}} {{ColorGreen}}x2{{CR}} Daune#↓ {{ColorRed}}Lacrimile dau mai puține daune cu cât de departe ajung{{CR}}"}, -- Proptosis
 	{"262", "Pagina Dispărută 2", "{{BlackHeart}} {{ColorGreen}}+1{{CR}} Inimă Neagră#Luând daune până la 1 inimă dăunează toți inamicii din cameră"}, -- Missing Page 2
@@ -321,17 +321,17 @@ EID.descriptions[languageCode].collectibles={
 	-- For it to work, only use line breaks or semicolons to separate floor details, and use the same order as English
 	{"297", "Cutia Pandorei", "{{NoLB}}Apar recompense în funcție de etaj:#B1: 2{{SoulHeart}}; B2: 2{{Bomb}} + 2{{Key}}#{{NoLB}}C1: Un Articol de Boss; C2: C1 + 2{{SoulHeart}}#D1: 4{{SoulHeart}}; D2: 20{{Coin}}#W1: 2 Articole de Boss#W2: {{Collectible33}} Biblia#???/Vid: Nimic#Sheol: Articol-Diavol + 1{{BlackHeart}}#Cathe: Articol-Înger + 1{{EternalHeart}}#{{NoLB}}Cameră Neagră: Deblocabile {{Collectible523}} Cutia Mișcătoare#Cutie: 1{{Coin}}"}, -- Pandora's Box
 	{"298", "Șchiopătarea Unicornului", "{{Timer}} Primește pentru 6 secunde:#↑ {{Speed}} {{ColorGreen}}+0.28{{CR}} Viteză#Invincibilitate#Isaac nu poate să tragă (Fără daune de contact)"}, -- Unicorn Stump
-	{"299", "Taur", "↓ {{Speed}} {{ColorRed}}-0.3 Viteză{{CR}}#↑ {{Speed}} {{ColorGreen}}Crește viteza încet{{CR}} în camere ostile#La viteza 2 , Isaac devine invincibil și dă daune de contact#După aceea, pierde boostul de viteză Taur în cameră"}, -- Taurus
-	{"300", "Berbec", "↑ {{Speed}} {{ColorGreen}}+0.25 Viteză{{CR}}#Atingând inamicii dai daune de contact"}, -- Aries
+	{"299", "Taur", "↓ {{Speed}} {{ColorRed}}-0.3{{CR}} Viteză#↑ {{Speed}} Crește viteza încet în camere ostile#La viteza 2 , Isaac devine invincibil și dă daune de contact#După aceea, pierde boostul de viteză Taur în cameră"}, -- Taurus
+	{"300", "Berbec", "↑ {{Speed}} {{ColorGreen}}+0.25{{CR}} Viteză#Atingând inamicii dai daune de contact"}, -- Aries
 	{"301", "Rac", "{{SoulHeart}} {{ColorGreen}}+3{{CR}} Inimi suflet#Când primești daune, toate daunele viitoare în cameră sunt reduse la o jumătate de inimă"}, -- Cancer
 	{"302", "Leu", "Te mărești#Isaac poate distruge pietre când intră în ele"}, -- Leo
 	{"303", "Fecioară", "Când primește daune, Isaac poate deveni invincibil temporar#{{Luck}} 100% șansă la 10 noroc#{{Pill}} Convertește pastilele negative în unele pozitive"}, -- Virgo
 	{"304", "Balanță", "{{ColorGreen}}+6{{CR}} {{Coin}} bănuți, {{Bomb}} bombe și {{Key}} chei#Balansează statisticile lui Isaac#Schimbările următoare de statistici vor fi împărțite tuturor statisticilor"}, -- Libra
 	{"305", "Scorpion", "{{Poison}} Lacrimi otrăvite"}, -- Scorpio
 	{"306", "Săgetător", "↑ {{Speed}} {{ColorGreen}}+0.2{{CR}} Viteză#Lacrimi pătrunzătoare"}, -- Sagittarius
-	{"307", "Capricorn", "↑ {{Heart}} {{ColorGreen}}+1 Viață{{CR}}#↑ {{Speed}} {{ColorGreen}}+0.1 Viteză{{CR}}#↑ {{Tears}} {{ColorRed}}-1{{CR}} Întârziere a lacrimilor#↑ {{Damage}} {{ColorGreen}}+0.5 Daune{{CR}}#↑ {{Range}} {{ColorGreen}}+1.5 Distanță{{CR}}#{{ColorGreen}}+1{{CR}} {{Coin}} ban, {{Bomb}} bombă și {{Key}} cheie"}, -- Capricorn
+	{"307", "Capricorn", "↑ {{Heart}} {{ColorGreen}}+1{{CR}} Viață#↑ {{Speed}} {{ColorGreen}}+0.1{{CR}} Viteză#↑ {{Tears}} {{ColorRed}}-1{{CR}} Întârziere a lacrimilor#↑ {{Damage}} {{ColorGreen}}+0.5{{CR}} Daune#↑ {{Range}} {{ColorGreen}}+1.5{{CR}} Distanță#{{ColorGreen}}+1{{CR}} {{Coin}} ban, {{Bomb}} bombă și {{Key}} cheie"}, -- Capricorn
 	{"308", "Vărsător", "Isaac lasă o dâră de lichid#Lichidul provoacă {{ColorGreen}}6{{CR}} daune pe secundă"}, -- Aquarius
-	{"309", "Pești", "↑ {{Tears}} {{ColorRed}}-1{{CR}} Întârziere a lacrimilor#↑ {{Tearsize}} {{ColorGreen}}x1.25 Mărimea lacrimilor{{CR}}#Mărește împingerea lacrimilor"}, -- Pisces
+	{"309", "Pești", "↑ {{Tears}} {{ColorRed}}-1{{CR}} Întârziere a lacrimilor#↑ {{Tearsize}} {{ColorGreen}}x1.25{{CR}} Mărimea lacrimilor#Mărește împingerea lacrimilor"}, -- Pisces
 	{"310", "Rimelul Evei", "↑ {{Damage}} {{ColorGreen}}x2{{CR}} Daune#↓ {{Tears}} {{ColorGreen}}x0.5{{CR}} Viteză de atac#↓ {{Shotspeed}} {{ColorRed}}-0.5{{CR}} Viteza lacrimilor"}, -- Eve's Mascara
 	{"311", "Umbra lui Iuda", "{{Player12}} La moarte reînvii ca Iuda-ul Negru cu {{ColorGreen}}x2{{CR}} daune"}, -- Judas' Shadow
 	{"312", "Papionul lui Maggy", "↑ {{Heart}} {{ColorGreen}}+1{{CR}} Viață#{{HealingRed}} Vindecă 1 inimă#Toate Inimile Roșii vindecă dublu valoarea lor"}, -- Maggy's Bow
@@ -355,7 +355,7 @@ EID.descriptions[languageCode].collectibles={
 	{"330", "Lapte de Soia", "↑ {{Tears}} {{ColorGreen}}x4{{CR}} Viteză de Atac#↑ {{Tears}} {{ColorRed}}-2{{CR}} Întârzierea lacrimei#↓ {{Damage}} {{ColorGreen}}x0.2{{CR}} Daune#↓ {{Tearsize}} {{ColorGreen}}x0.5{{CR}} Mărimea lacrimilor"}, -- Soy Milk
 	{"331", "Dumnezeire", "↑ {{Damage}} {{ColorGreen}}+0.5{{CR}} Daune#↑ {{Range}} {{ColorGreen}}+1.2{{CR}} Distanță#↑ {{ColorGreen}}+0.8{{CR}} Înălțimea lacrimilor#↓ {{Tears}} {{ColorRed}}-0.3{{CR}} Viteză de atac#↓ {{Shotspeed}} {{ColorRed}}-0.3{{CR}} Viteza lacrimilor#Lacrimi Balistice#{{Damage}} Lacrimile primesc o aură care dă {{ColorGreen}}4.5x{{CR}} daunele lui Isaac pe secundă"}, -- Godhead
 	{"332", "Zdrențele lui Lazăr", "{{Player11}} După moarte, reînvii ca Lazăr"}, -- Lazarus' Rags
-	{"333", "Mintea", "Efect de hartă plină"}, -- The Mind
+	{"333", "Mintea", "Arată întreaga hartă a etajului"}, -- The Mind
 	{"334", "Trupul", "↑ {{Heart}} {{ColorGreen}}+3{{CR}} Vieți"}, -- The Body
 	{"335", "Sufletul", "{{SoulHeart}} {{ColorGreen}}+2{{CR}} Inimi Suflet#Primești o aură care respinge inamicii și proiectilele"}, -- The Soul
 	{"336", "Ceapă Moartă", "↑ {{Range}} {{ColorGreen}}+0.25{{CR}} Distanță#↑ {{Tearsize}} {{ColorGreen}}x1.5{{CR}} Mărimea Lacrimilor#↓ {{ColorRed}}-0.5{{CR}} Înălțimea Lacrimilor#↓ {{Shotspeed}} {{ColorRed}}-0.4{{CR}} Viteza Lacrimilor#Lacrimi Pătrunzătoare + Fantomatice"}, -- Dead Onion
@@ -922,7 +922,7 @@ EID.descriptions[languageCode].cards={
 	{"51", "Carte Sfântă", "{{HolyMantle}} Oferă scutul Mantaua Sfântă pentru cameră (previne daunele o singură dată)#25% șansă să apară încă o Carte Sfântă"}, -- Holy Card
 	{"52", "Creștere Uriașă", "{{Timer}} Oferă pentru cameră:#↑ {{Damage}} {{ColorGreen}}+7{{CR}} Daune#↑ {{Range}} {{ColorGreen}}+30{{CR}} Distanță#Crește mărimea#Permite lui Isaac să distrugă pietre trecând prin ele"}, -- Huge Growth
 	{"53", "Rechemare Antică", "{{Card}} Generează 3 cărți aleatorii"}, -- Ancient Recall
-	{"54", "Era Walk", "{{Timer}} Receive for the room:#↑ {{Speed}} {{ColorGreen}}+0.5{{CR}} Speed#↓ {{Shotspeed}} {{ColorRed}}-1{{CR}} Shot speed#{{Slow}} Slow down enemies"}, -- Era Walk
+	{"54", "Era Walk", "{{Timer}} Pe durata camerei:#↑ {{Speed}} {{ColorGreen}}+0.5{{CR}} Viteză#↓ {{Shotspeed}} {{ColorRed}}-1{{CR}} Viteza lacrimilor#{{Slow}} Încetinește inamicii"}, -- Era Walk
 }
 
 --[[ Card Buffs caused by Tarot Cloth (separate table from Rep due to how different they are)
