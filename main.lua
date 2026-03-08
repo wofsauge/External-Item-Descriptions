@@ -12,8 +12,8 @@ EID.isRepentance = REPENTANCE or EID.isRepentancePlus -- REPENTANCE variable can
 require("eid_config")
 EID.Config = EID.UserConfig
 EID.Config.Version = "3.2" -- note: changing this will reset everyone's settings to default!
-EID.ModVersion = 5.16
-EID.ModVersionCommit = "8c1f96f"
+EID.ModVersion = 5.17
+EID.ModVersionCommit = "a1daac2"
 EID.DefaultConfig.Version = EID.Config.Version
 EID.isHidden = false
 EID.player = nil -- The primary Player Entity of Player 1
