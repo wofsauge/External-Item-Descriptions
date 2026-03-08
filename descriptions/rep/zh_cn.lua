@@ -486,6 +486,7 @@ EID.descriptions[languageCode].BookOfVirtuesWispTexts = {
 	-- The placeholder therefore can be used in all parts that make up the wisp descriptions
 	StatDescription = "{ringIcon}{{Wisp}} {amount}|{{Heart}} {health}|{{Damage}} {damage}",	-- {ringIcon} will be replaced with an icon representing the wisp movement, {amount} with the number of wisps, {health} with the HP, {damage} with the damage or the "CantShoot" text
 	Shotspeed = "{1}%弹速", 				-- {1} will be replaced with the shot speed changes in %
+	Damage = "{1}%伤害", 					-- {1} will be replaced with the damage changes in %
 	Chance = " ({1}%概率)",					-- {1} will be replaced with the chance
 	SingleRoom = "单房间魂火",
 	NoWisps = "无魂火",
