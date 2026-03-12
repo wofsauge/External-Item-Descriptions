@@ -121,9 +121,9 @@ local goldenTrinketEffects = {
 	-- Callus (append):
 	[14] = { "{{SacrificeRoom}} Reduce daunele țepilor din camera de sacrificiu la o jumătate de inimă", "{{Collectible108}} Reduce majoritatea daunelor la o jumătate de inimă" },
 	-- Mom's Toenail (find replace):
-	[16] = {"locație", "{{CR}}locație {{ColorGold}}de două ori", "{{CR}}locație {{ColorGold}}de 3 ori"},
+	[16] = {"locație", "{{CR}}locație {{ColorGold}}de două ori{{CR}}", "{{CR}}locație {{ColorGold}}de 3 ori{{CR}}"},
 	-- Paper Clip (find replace):
-	[19] = {"Cufere aurii", "{{CR}}Cufere aurii {{ColorGold}}și Blocuri Încuiate", "{{CR}}Cufere aurii, {{ColorGold}}Blocuri Încuiate și Uși Încuiate"},
+	[19] = {"Cufere aurii", "{{CR}}Cufere aurii {{ColorGold}}și Blocuri Încuiate{{CR}}", "{{CR}}Cufere aurii, {{ColorGold}}Blocuri Încuiate și Uși Încuiate{{CR}}"},
 	-- Mysterious Paper (find replace):
 	[21] = {"efectul de", "{{ColorGold}}două{{CR}} dintre următoarele efecte", "{{ColorGold}}două{{CR}} dintre următoarele efecte"},
 	-- Daemon's Tail (append):
@@ -151,16 +151,16 @@ local goldenTrinketEffects = {
 	[52] = {"încă o monedă", "{{ColorGold}}2{{CR}} monede", "{{ColorGold}}3{{CR}} monede"},
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
 	       [53] = {
-		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!",
+		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!{{CR}}",
 		       "{{HealingRed}} Vindecă {{ColorGold}}2{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{Warning}} Odată luată, nu poate fi scoasă#Poate fi îndepărtată doar cu {{Trinket41}} Chibrit, {{Trinket135}} O Brichetă sau înghițind-o",
-		       "{{HealingRed}} Vindecă {{ColorGold}}3{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!",
+		       "{{HealingRed}} Vindecă {{ColorGold}}3{{CR}} inimi când intri într-o {{BossRoom}} Cameră Boss#{{ColorRed}}-30%{{CR}} viață boss#{{ColorGold}}Poate fi îndepărtată!{{CR}}",
 	       },
 	-- Isaac's Head (find replace):
 	[54] = {"3.5 daune", "daunele lui Isaac", "{{ColorGreen}}1.5x{{CR}} daunele lui Isaac"},
 	-- Judas' Tongue (replace):
 	[56] = {
 		"{{DevilRoom}} Reduce {{ColorGold}}toate{{CR}} prețurile ofertelor diavolului la 1 container de inimă",
-		"{{DevilRoom}} Reduce {{ColorGold}}toate{{CR}} prețurile ofertelor diavolului la 1 container de inimă#{{ColorGold}}Forțează ofertele țepilor de sacrificiu să plătească la prima încercare"
+		"{{DevilRoom}} Reduce {{ColorGold}}toate{{CR}} prețurile ofertelor diavolului la 1 container de inimă#{{ColorGold}}Forțează ofertele țepilor de sacrificiu să plătească la prima încercare{{CR}}"
 	},
 	-- ???'s Soul (find replace):
 	[57] = {"Familiar care sare", "{{CR}}Oferă {{ColorGold}}2 {{CR}}familiari care sar", "{{CR}}Oferă {{ColorGold}}3 {{CR}}familiari care sar"},
@@ -169,7 +169,7 @@ local goldenTrinketEffects = {
 	-- The Left Hand (append):
 	[61] = {
 		"{{RedChest}} Cuferele roșii vor conține acum loot suplimentar",
-		"{{RedChest}} Cuferele roșii vor conține acum loot suplimentar#{{ColorGold}}Cuferele roșii nu vor mai genera păianjeni roșii",
+		"{{RedChest}} Cuferele roșii vor conține acum loot suplimentar#{{ColorGold}}Cuferele roșii nu vor mai genera păianjeni roșii{{CR}}",
 	},
 	-- Shiny Rock (replace):
 	[62] = {
@@ -182,7 +182,7 @@ local goldenTrinketEffects = {
 		"Reduce foarte mult raza exploziei inamicilor",
 	},
 	-- Super Magnet (find replace):
-	[68] = {"obiecte și inamici", "{{CR}}obiecte, inamici, {{ColorGold}}saci și suveniruri", "{{CR}}obiecte, inamici, {{ColorGold}}saci, suveniruri și cufere"},
+	[68] = {"obiecte și inamici", "{{CR}}obiecte, inamici, {{ColorGold}}saci și suveniruri{{CR}}", "{{CR}}obiecte, inamici, {{ColorGold}}saci, suveniruri și cufere{{CR}}"},
 	-- Louse (find replace):
 	[70] = {"un păianjen albastru", "2{{CR}} păianjeni albaștri", "3{{CR}} păianjeni albaștri"},
 	-- Bob's Bladder (appendix):
@@ -265,9 +265,9 @@ local goldenTrinketEffects = {
 	-- Short Fuse (find replace):
 	[133] = { 15, 30, 50 },
 	-- Gigante Bean (append)
-	[134] = {"Crește reculul pârțurilor", "Crește reculul pârțurilor#{{ColorGold}}Pârțurile îi amețesc pe inamici timp de 3 secunde"},
+	[134] = {"Crește reculul pârțurilor", "Crește reculul pârțurilor#{{ColorGold}}Pârțurile îi amețesc pe inamici timp de 3 secunde{{CR}}"},
 	-- Broken Padlock (find replace):
-	[136] = {"Uși, blocuri cu cheie și cufere aurii", "{{CR}}Uși, blocuri cu cheie, cufere aurii, {{ColorGold}}Săli de joc și Camere de Provocare", "{{CR}}Uși, blocuri cu cheie, cufere aurii, {{ColorGold}}Săli de joc, Camere de Provocare și Camere Boss"},
+	[136] = {"Uși, blocuri cu cheie și cufere aurii", "{{CR}}Uși, blocuri cu cheie, cufere aurii, {{ColorGold}}Săli de joc și Camere de Provocare{{CR}}", "{{CR}}Uși, blocuri cu cheie, cufere aurii, {{ColorGold}}Săli de joc, Camere de Provocare și Camere Boss{{CR}}"},
 	-- 'M (append):
 	[138] = {"10% șansă să încarce complet obiectul rulat", "20% șansă să încarce complet obiectul rulat"},
 	-- Apple of Sodom (find replace):
@@ -289,32 +289,32 @@ local goldenTrinketEffects = {
 	-- Telescope Lens (full replace):
 	[152] = {
 		"{{PlanetariumChance}} {{ColorGreen}}+18%{{CR}} șansă la Planetariu#{{ColorGreen}}+15%{{CR}} șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece și Cadavru",
-		"{{PlanetariumChance}} {{ColorGreen}}+33%{{CR}} șansă la Planetariu#{{ColorGreen}}+15%{{CR}} șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece, Cadavru, {{ColorGold}}Sheol și Catedrala",
+		"{{PlanetariumChance}} {{ColorGreen}}+33%{{CR}} șansă la Planetariu#{{ColorGreen}}+15%{{CR}} șansă suplimentară dacă nu ai intrat încă într-un Planetariu#Planetariile pot apărea în Pântece, Cadavru, {{ColorGold}}Sheol și Catedrala{{CR}}",
 	},
 	-- Holy Crown (full replace):
 	[155] = {
-		"{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Catedrală#{{ColorGold}}Camerele de comori din Catedrală vor conține 2 obiecte din care Isaac poate alege",
-		"{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Catedrală#{{ColorGold}}Camerele de comori din Catedrală vor conține 2 obiecte din care Isaac poate alege#{{ColorGold}}Dezvăluie locația Camerei de Comori și a Magazinului din Catedrală",
+		"{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Catedrală#{{ColorGold}}Camerele de comori din Catedrală vor conține 2 obiecte din care Isaac poate alege{{CR}}",
+		"{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Catedrală#{{ColorGold}}Camerele de comori din Catedrală vor conține 2 obiecte din care Isaac poate alege{{CR}}#{{ColorGold}}Dezvăluie locația Camerei de Comori și a Magazinului din Catedrală{{CR}}",
 	},
 	-- Torn Card (find replace):
 	[157] = { 15, 10, 5 },
 	-- Gilded Key (full replace copying the entire original description, because the Golden version doesn't give a key on pickup):
 	       [159] = {
-		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10% șansă să primești un cufăr după curățarea unei camere",
-		       "{{Key}} {{ColorGreen}}+1{{CR}} Cheie la ridicare#{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10% șansă să primești un cufăr după curățarea unei camere",
-		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+20% șansă să primești un cufăr după curățarea unei camere"
+		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10%{{CR}} șansă să primești un cufăr după curățarea unei camere",
+		       "{{Key}} {{ColorGreen}}+1{{CR}} Cheie la ridicare#{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+10%{{CR}} șansă să primești un cufăr după curățarea unei camere",
+		       "{{GoldenChest}} Înlocuiește toate cuferele (cu excepția celor Vechi/Mega) cu cufere aurii#{{GoldenChest}} Cuferele aurii pot conține cărți, pastile sau suveniruri suplimentare#{{GoldenChest}} {{ColorGold}}+20%{{CR}} șansă să primești un cufăr după curățarea unei camere"
 	       },
 	-- Wicked Crown (full replace):
 	       [161] = {
-		       "{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Sheol#{{ColorGold}}Camerele de comori din Sheol vor conține 2 obiecte la alegere",
-		       "{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Sheol#{{ColorGold}}Camerele de comori din Sheol vor conține 2 obiecte la alegere#{{ColorGold}}Dezvăluie locația Camerei de Comori și a Magazinului din Sheol",
+		       "{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Sheol#{{ColorGold}}Camerele de comori din Sheol vor conține 2 obiecte la alegere{{CR}}",
+		       "{{CR}}Creează o {{TreasureRoom}} Cameră de Comori și un {{ColorGold}}magazin îmbunătățit{{CR}} {{Shop}} în Sheol#{{ColorGold}}Camerele de comori din Sheol vor conține 2 obiecte la alegere{{CR}}#{{ColorGold}}Dezvăluie locația Camerei de Comori și a Magazinului din Sheol{{CR}}",
 	       },
 	-- Nuh Uh! (append):
 	[165] = {"{{ColorGreen}}+10%{{CR}} șansă ca obiectele să apară dublu", "{{ColorGreen}}+20%{{CR}} șansă ca obiectele să apară dublu"},
 	-- Keeper’s Bargain (full replace):
 	       [171] = {
 		       "{{DevilRoom}} {{ColorGreen}}100%{{CR}} șansă ca ofertele diavolului să coste monede în loc de inimi",
-		       "{{DevilRoom}} {{ColorGreen}}100%{{CR}} șansă ca ofertele diavolului să coste monede în loc de inimi#{{ColorGold}}Crește șansa ca ofertele diavolului să fie reduse la preț",
+		       "{{DevilRoom}} {{ColorGreen}}100%{{CR}} șansă ca ofertele diavolului să coste monede în loc de inimi#{{ColorGold}}Crește șansa ca ofertele diavolului să fie reduse la preț{{CR}}",
 	       },
 	-- Cursed Penny (append):
 	[172] = {"Șansă crescută de a fi teleportat într-o cameră specială"},
@@ -322,8 +322,8 @@ local goldenTrinketEffects = {
 	[173] = {"10% șansă ca suvenirul să nu fie consumat", "20% șansă ca suvenirul să nu fie consumat"},
 	-- Strange Key (full replace):
 	       [175] = {
-		       "Deschide ușa către etajul Hush indiferent de timp#Folosirea {{Collectible297}} Cutia Pandorei consumă cheia și creează {{ColorGold}}8{{CR}} obiecte din pool-uri aleatorii#{{ColorGold}}Permite deschiderea tuturor ușilor și cufărelor de pe etajul Hush gratuit",
-		       "Deschide ușa către etajul Hush indiferent de timp#Folosirea {{Collectible297}} Cutia Pandorei consumă cheia și creează {{ColorGold}}10{{CR}} obiecte din pool-uri aleatorii#{{ColorGold}}Permite deschiderea tuturor ușilor și cufărelor de pe etajul Hush gratuit",
+		       "Deschide ușa către etajul Hush indiferent de timp#Folosirea {{Collectible297}} Cutia Pandorei consumă cheia și creează {{ColorGold}}8{{CR}} obiecte din pool-uri aleatorii#{{ColorGold}}Permite deschiderea tuturor ușilor și cufărelor de pe etajul Hush gratuit{{CR}}",
+		       "Deschide ușa către etajul Hush indiferent de timp#Folosirea {{Collectible297}} Cutia Pandorei consumă cheia și creează {{ColorGold}}10{{CR}} obiecte din pool-uri aleatorii#{{ColorGold}}Permite deschiderea tuturor ușilor și cufărelor de pe etajul Hush gratuit{{CR}}",
 	       },
 	-- Temporary Tattoo (append):
 	[177] = {"Crește permanent o caracteristică aleatorie după completarea unei Camere de Provocare", "Crește permanent două caracteristici aleatorii după completarea unei Camere de Provocare"},
@@ -332,12 +332,12 @@ local goldenTrinketEffects = {
 	-- Expansion Pack (full replace):
 	       [181] = {
 		       "Folosirea unui obiect activ declanșează efectul a {{ColorGold}}2{{CR}} obiecte active suplimentare de 1-2 încărcări",
-		       "Folosirea unui obiect activ declanșează efectul a {{ColorGold}}2{{CR}} obiecte active suplimentare de 1-2 încărcări#{{ColorGold}}Declanșează și efectul unui obiect activ de 3 încărcări",
+		       "Folosirea unui obiect activ declanșează efectul a {{ColorGold}}2{{CR}} obiecte active suplimentare de 1-2 încărcări#{{ColorGold}}Declanșează și efectul unui obiect activ de 3 încărcări{{CR}}",
 	       },
 	-- Beth’s Essence (append):
-	[182] = {"50% șansă ca spiritele din Camera Îngerului să fie speciale#{{ColorGold}}Cerșetorii vor crea spirite speciale", "100% șansă ca spiritele din Camera Îngerului să fie speciale#{{ColorGold}}Cerșetorii vor crea spirite speciale"},
+	[182] = {"50% șansă ca spiritele din Camera Îngerului să fie speciale#{{ColorGold}}Cerșetorii vor crea spirite speciale{{CR}}", "100% șansă ca spiritele din Camera Îngerului să fie speciale#{{ColorGold}}Cerșetorii vor crea spirite speciale{{CR}}"},
 	-- Adoption Papers (append):
-	[184] = {"Familiarii vor fi mereu la vânzare", "Familiarii vor fi mereu la vânzare#{{Card92}} {{ColorGold}}Magazinele vor putea vinde \"Sufletul lui Lilith\""},
+	[184] = {"Familiarii vor fi mereu la vânzare", "Familiarii vor fi mereu la vânzare#{{Card92}} {{ColorGold}}Magazinele vor putea vinde \"Sufletul lui Lilith\"{{CR}}"},
 	-- Sigil of Baphomet (find replace):
 	[189] = {"1 secundă", "1.5 {{CR}}secunde", "2 {{CR}}secunde"},
 }
