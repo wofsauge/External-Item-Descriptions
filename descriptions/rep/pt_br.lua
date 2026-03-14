@@ -3,7 +3,7 @@
 -----  By: LuanRoger, NotZin0 and JorgeLNJunior  -----
 ------------------------------------------------------
 
--- Last Sync with en_us: 13.06.2022
+-- Last Sync with English: 13.06.2022
 
 -- FORMAT: Item ID | Name| Description
 -- '#' = starts new line of text
@@ -725,7 +725,6 @@ local repTrinkets={
 	[110] = {"110", "", "{{Shop}} Lojas vão aparecer no Womb e Corpse"}, -- Silver Dollar
 	[111] = {"111", "", "{{TreasureRoom}} Salas do item agora aparecem em the Womb e Corpse"}, -- Bloody Crown
 	[119] = {"119", "", "Cura metade dos seus Corações Vermelhos/Osso vazios ao viajar para o próximo andar#Mínimo de Meio Coração curado"}, -- Stem Cell
-	[125] = {"125", "", "Conecta seus familiares com raios de eleticidade#Causa 6 de dano por raio#Também funciona entre jogadores co-op (incluindo Jacob & Esau)"}, -- Extension Cord
 	[128] = {"128", "", "{{EmptyBoneHeart}} 5% de chance de ganhar um Coração de Osso ao receber dano"}, -- Finger Bone
 	[129] = {"129","","10% de chance de disparar dentes#Dentes causam 3.2x o seu dano#{{Luck}} 100% de chance com 9 de Sorte"}, --  Jawbreaker
 	[130] = {"130","","{{Slow}} 10% de chance de disparar lágrimas de lentidão#{{Luck}} 100% de chance com 18 de sorte"}, --  Chewed Pen
@@ -760,7 +759,7 @@ local repTrinkets={
 	[159] = {"159","","{{Key}} +1 Chave#{{GoldenChest}} Substitui todos os baús por Baús Dourados (excerto Old/Mega)#{{GoldenChest}} Baús Dourados podem conter cartas, pílulas ou trinkets extras"}, --  Gilded Key
 	[160] = {"160","","{{GrabBag}} Gera um saco ao viajar para o próximo andar"}, --  Lucky Sack
 	[161] = {"161","","Gera uma Sala do Tesouro {{TreasureRoom}} e Loja {{Shop}} no Sheol"}, --  Wicked Crown
-	[162] = {"162","","{{Player7}} 50% de chance de transformar-se em Azazel quando entra em uma nova sala#O efeito dura até limpar e sair de outra sala"}, --  Azazel's Stump
+	[162] = {"162","","{{Player7}} 33% de chance de transformar-se em Azazel quando entra em uma nova sala#O efeito dura até limpar e sair de outra sala"}, --  Azazel's Stump
 	[163] = {"163","","Todos os Dips (pequenos cocôs) são amigáveis#Gera 1 Dips aleatório quando limpa uma sala"}, --  Dingle Berry
 	[164] = {"164","","{{Bomb}} Gera uma bomba extra para cada bomba colocada"}, --  Ring Cap
 	[165] = {"165","","No Womb e diante, substitui todos as moedas e chaves por uma bomba, coração, pílula, carta, trinket, bateria ou mosca inimiga"}, --  Nuh Uh!
@@ -995,6 +994,7 @@ EID.descriptions[languageCode].horsepills={
 
 EID.descriptions[languageCode].GlitchedItemText = {
 	-- Item Config info
+	-- These texts are affected by the PluralizeFunction (ab+ file)
 	AddBlackHearts = "{{BlackHeart}} {1} Coração Negro",
 	AddBombs = "{{Bomb}} {1} Bomba",
 	AddCoins = "{{Coin}} {1} Moeda",

@@ -280,7 +280,7 @@ if MCMLoaded then
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "External Item Descriptions" end)
 	MCM.AddSpace("EID", "Info")
-	MCM.AddText("EID", "Info", function() return "Version "..EID.ModVersion .."_"..EID.ModVersionCommit.." ("..EID.GameVersion..")" end)
+	MCM.AddText("EID", "Info", function() return "Version "..string.format("%.2f", EID.ModVersion) .."_"..EID.ModVersionCommit.." ("..EID.GameVersion..")" end)
 	MCM.AddSpace("EID", "Info")
 	MCM.AddText("EID", "Info", function() return "by Wofsauge" end)
 	MCM.AddSpace("EID", "Info")
@@ -336,7 +336,7 @@ if MCMLoaded then
 				end
 				renderDummyDesc(true)
 			end,
-			Info = {"Changes the language.","Languages marked as WIP are incomplete."}
+			Info = {"Changes the language.","Languages marked as WIP are incomplete. Contributions welcome!"}
 		}
 	)
 	-- Item Name Language
@@ -613,8 +613,9 @@ if MCMLoaded then
 	EID:AddBooleanSetting("Visuals", "TransformationText", "Display Transformation Name")
 	EID:AddBooleanSetting("Visuals", "TransformationIcons", "Display Transformation Icon")
 	EID:AddBooleanSetting("Visuals", "TransformationProgress", "Display Transformation Progress")
-	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Display Item Pool Icon", {repOnly = true, infoText = "Displays the icon of the expected item pool for full rerolls."})
-	EID:AddBooleanSetting("Visuals", "ShowItemPoolText", "Display Item Pool Name", {repOnly = true, infoText = "Displays the name of the expected item pool for full rerolls."})
+	EID:AddBooleanSetting("Visuals", "ShowContainItemPool", "Item Pool Info", {repOnly = true, infoText = "Displays the icons of item pools for collectible would appear. REPENTOGON is needed for modded items"})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolIcon", "Current Item Pool Icon", {repOnly = true, infoText = "Displays the icon of the expected item pool for full rerolls."})
+	EID:AddBooleanSetting("Visuals", "ShowItemPoolText", "Current Item Pool Name", {repOnly = true, infoText = "Displays the name of the expected item pool for full rerolls."})
 	EID:AddBooleanSetting("Visuals", "ShowObjectID", "Display ID")
 
 	-------Mod indicator for modded items---------

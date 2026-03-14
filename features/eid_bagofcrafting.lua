@@ -99,7 +99,7 @@ function EID:getBagOfCraftingID(Variant, SubType)
 	elseif Variant == 300 then
 		if SubType == 0 then -- player:GetCard() returned 0
 			return nil
-		elseif EID.runeIDs[SubType] then -- runes
+		elseif EID.itemConfig:GetCard(SubType):IsRune() then -- runes
 			return {23}
 		else -- cards
 			return {21}
@@ -1150,7 +1150,7 @@ function EID:handleBagOfCraftingRendering(ignoreRefreshRate)
 		-- Nothing in our recipe list passed the test; try checking English names as a backup
 		if #IDsToCheck == 0 then
 			local curLang = EID:getLanguage()
-			EID.Config["Language"] = "en_us"
+			EID.Config["Language"] = EID.DefaultLanguageCode
 			for _,id in ipairs(sortedIDs) do
 				local searchValid = EID:BoCSCheckItemName(EID:getObjectName(5, 100, id))
 				if (searchValid) then table.insert(IDsToCheck, id) end

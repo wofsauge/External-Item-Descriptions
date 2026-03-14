@@ -23,26 +23,31 @@ local actions = { [0] = "use_active_item", "add_temporary_effect", "convert_enti
 local triggers = { [0] = "active", "tear_fire", "enemy_hit", "enemy_kill", "damage_taken", "room_clear", "entity_spawned", "pickup_collected", "chain" }
 
 local function entityToName(Type, Variant, plural)
-	plural = plural or false
 	-- -1 is often used as an "any of this type", even if there's only one of that type, so converting it to 0 can help find names
 	-- the string.format is in case this receives the type/variant as a Lua float
 	local e = string.format("%d",Type) .. "." .. string.format("%d",Variant)
 	local eWithZero = string.gsub(e, "-1", "0")
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
-	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local name = localizedNames[e] or localizedNames[eWithZero] or EID:GetEntityXMLName(Type, Variant, 0) or e
 
 	--print out entities with no name yet
-	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)")
-	elseif plural then name = name .. pluralize end
+	if name == e then Isaac.DebugString("No name found for " .. e .. " (could be modded)") end
+
+	-- pluralize Entity name
+	if plural then
+		name = name .."{pluralize}"
+		name = EID:TryPluralizeString(name, 2)
+		-- remove temporary variable, if language did not replace it
+		name = EID:ReplaceVariableStr(name, "pluralize", "")
+	end
 
 	return name
 end
 
 -- attributes we need to check on the glitched item's ItemConfig
 local itemConfigItemAttributes = { "AddMaxHearts", "AddHearts", "AddSoulHearts", "AddBlackHearts", "AddBombs", "AddCoins", "AddKeys", "CacheFlags" }
--- REPENTOGON's ProceduralItem functions, in the same order as en_us's VoidNames text we'll be using
+-- REPENTOGON's ProceduralItem functions, in the same order as English's VoidNames text we'll be using
 local getFunctions = { "GetSpeed", "GetFireDelay", "GetDamage", "GetRange", "GetShotSpeed", "GetLuck" }
 -- The items have a value between 0 and 1, and multiplied by these before being added to the player's stats
 local statMult = { 0.2, 1, 1, 1.5, 0.2, 1 }
@@ -54,7 +59,6 @@ function EID:CheckGlitchedItemConfig(id)
 	
 	local localizedNames = EID:getDescriptionEntry("GlitchedItemText")
 	local localizedNamesEnglish = EID:getDescriptionEntryEnglish("GlitchedItemText")
-	local pluralize = EID:getDescriptionEntry("Pluralize")
 	local attributes = "#"
 	
 	-- Check the base item config for the Hearts/Bombs/Coins/Keys this item adds,
@@ -85,9 +89,10 @@ function EID:CheckGlitchedItemConfig(id)
 				local prefix = "↑ "
 				if val > 0 then s = "+" .. s else prefix = "↓ " end
 				attributes = attributes .. prefix .. EID:ReplaceVariableStr(localizedNames[v] or localizedNamesEnglish[v], 1, s)
-				if val ~= 1 and val ~= -1 then attributes = attributes .. pluralize end
 				attributes = attributes .. "#"
 			end
+			-- pluralize
+			attributes = EID:TryPluralizeString(attributes, val)
 		end
 	end
 	
@@ -193,5 +198,5 @@ end
 -- this made more sense when this file was only executed when --luadebug was present
 -- https://www.youtube.com/watch?v=msDuNZyYAIQ
 if (debug and os.date("%m/%d") == "04/01") then
-	EID.descriptions["en_us"].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
+	EID.descriptions[EID.DefaultLanguageCode].sacrifice[1][3] = "{{Coin}} 50% chance of winning 1 coin at Sacrifice#75% chance if you're a genetic freak#!!! If you add Kurt Angle to the mix, your chances of winning drastically go down"
 end

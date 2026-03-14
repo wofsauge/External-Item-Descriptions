@@ -1,6 +1,20 @@
 if not REPENTOGON then
 	return
 end
+
+-- Backwards compatibility for Repentogon on older isaac versions--
+
+-- Remove Necromancer transformation, as it doesnt exist in Version 1.9.7.12
+-- The following removes the data from EID, to prevent errors
+EID.TransformationData[tostring(EID.TRANSFORMATION.NECROMANCER)] = nil
+EID.TRANSFORMATION["NECROMANCER"] = nil
+-- remove Necromancer transformations from items that grant them
+EID.EntityTransformations["5.100.35"] = "12"	-- The Necronomicon: Bookworm, Necromancer
+EID.EntityTransformations["5.100.262"] = nil	-- Missing Page 2: Necromancer
+EID.EntityTransformations["5.350.48"] = nil	-- A Missing Page: Necromancer
+
+
+
 ---@diagnostic disable: duplicate-set-field
 local game = Game()
 local maxVanillaItemID = CollectibleType.NUM_COLLECTIBLES -- sanity backup
@@ -8,7 +22,7 @@ local maxVanillaItemID = CollectibleType.NUM_COLLECTIBLES -- sanity backup
 -- REPENTOGON: Use PersistentGameData to determine item collection status
 -- Returns true if an item needs to be collected for the collection page
 function EID:requiredForCollectionPage(itemID)
-	if itemID >= maxVanillaItemID or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
+	if itemID >= maxVanillaItemID or itemID <= 0 or game:GetVictoryLap() > 0 or game:GetSeeds():IsCustomRun() then return false end
 	return not Isaac.GetPersistentGameData():IsItemInCollection(itemID)
 end
 
@@ -46,7 +60,7 @@ local oldPosInitFunc = EID.PositionLocalMode
 function EID:PositionLocalMode(entity)
 	oldPosInitFunc(_, entity)
 	-- custom description position when describing collectionpage entries
-	if not Isaac.IsInGame() and MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
+	if not Isaac.IsInGame() then
 		EID.CurrentScaleType = "MainMenu"
 		EID.UsedPosition = Vector(10, 10)
 	end
@@ -55,6 +69,9 @@ end
 local skipItemIDs = {}
 function EID:OnMenuRender()
 	if EID.Config["RGON_ShowOnCollectionPage"] and MenuManager:GetActiveMenu() == MainMenuType.COLLECTION then
+		EID:HandleRenderingKeys()
+		if EID.isHidden then return end
+
 		if #skipItemIDs == 0 then -- build list of items not listed in the collectionpage
 			local itemConfig = Isaac.GetItemConfig()
 			for i = 1, EID:GetMaxCollectibleID(), 1 do
@@ -83,6 +100,33 @@ end
 
 EID:AddCallback(ModCallbacks.MC_MAIN_MENU_RENDER, EID.OnMenuRender)
 
+--------------------------Gulped items-----------------------------------
+
+-- REPENTOGON: Gulped trinkets can be read directly from the game
+function EID:ItemReminderHeldPlusGulped(player)
+	local newTable = {}
+	for i=0, 1 do
+		local trinket = player:GetTrinket(i)
+		if trinket > 0 then table.insert(newTable, trinket) end
+	end
+
+	-- Use GetSmeltedTrinkets() to aquire player smelted trinkets infos, instead of keeping a separate table
+	for id, dataTable in pairs(player:GetSmeltedTrinkets()) do
+		if dataTable then
+			local sumTrinket = dataTable.trinketAmount + dataTable.goldenTrinketAmount
+			if sumTrinket > 0 then
+				table.insert(newTable, id)
+			end
+		end
+	end
+	return newTable
+end
+
+-- Remove callback, since we dont need to track smelter usage in Repentogon
+EID:RemoveCallback(ModCallbacks.MC_PRE_USE_ITEM, EID.OnUseSmelter)
+
+-- remove function. No longer needed
+function EID:UpdateAllPlayerTrinkets() end
 
 ---------------------------BAG OF CRAFTING-------------------------------
 -- Directly read bag of crafting content
@@ -102,6 +146,8 @@ function EID:BoCDetectBagContentShift() end
 -- read room items directly from room data when changing rooms, to ensure floor item counter doesnt desync
 function EID:BoCOnNewRoom_Repentogon(_)
 	EID.BoCOnNewRoom(_)
+	if game.Challenge == 43 then return end -- dont track items in CanTripped Challenge
+
 	local lastRoomDesc = game:GetLevel():GetLastRoomDesc()
 	local lastRoomEntities = lastRoomDesc:GetEntitiesSaveState()
 
@@ -133,9 +179,10 @@ function EID:hasDescription(entity)
 		local isGreed = entity.Variant == 11
 		local eventCounter = isGreed and EventCounter.GREED_DONATION_MACHINE_COUNTER or
 			EventCounter.DONATION_MACHINE_COUNTER
+		local maxDonations = isGreed and 1000 or 999
 		local totalDonations = Isaac.GetPersistentGameData():GetEventCounter(eventCounter)
 
-		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < 1000
+		return EID.Config["RGON_DonationMachineDescriptions"] and totalDonations < maxDonations
 	end
 	return oldReturnVal
 end
@@ -164,7 +211,7 @@ local requirementsGreedDonationMachine = {
 	{ 439,  Achievement.EVE_HOLDS_RAZOR_BLADE },
 	{ 500,  Achievement.GREEDIER },
 	{ 666,  Achievement.STORE_KEY },
-	{ 879,  Achievement.THE_LOST_HOLDS_HOLY_MANTLE },
+	{ 879,  Achievement.LOST_HOLDS_HOLY_MANTLE },
 	{ 999,  Achievement.GENEROSITY },
 	{ 1000, Achievement.KEEPER }
 }
@@ -183,10 +230,20 @@ local function DonationMachineCallback(descObj)
 			break
 		end
 	end
-	
+
+	descObj.Icon = EID.InlineIcons["DonationMachine"]
+
+	if coinsNeeded - totalDonations <= 0 then
+		-- All rewards unlocked, remove description part with required coin amount
+		local linebreakPos = string.find(descObj.Description, "#")
+		if linebreakPos then
+			descObj.Description = string.sub(descObj.Description, linebreakPos + 1)
+		end
+		return descObj
+	end
+	-- Replace variables in description with values
 	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 1, coinsNeeded)
 	descObj.Description = EID:ReplaceVariableStr(descObj.Description, 2, coinsNeeded - totalDonations)
-	descObj.Icon = EID.InlineIcons["DonationMachine"]
 	return descObj
 end
 
@@ -199,3 +256,20 @@ local function RepentogonModifierConditions(descObj)
 	return false
 end
 EID:addDescriptionModifier("EID Repentogon", RepentogonModifierConditions, nil)
+
+--------------------- Predictions ---------------------
+
+-- Glyph of Balance --
+-- Override existing function with one that uses Repentogon features
+function EID:GlyphOfBalancePrediction(player)
+	local dropIDTable = player:GetGlyphOfBalanceDrop(Variant, SubType)
+
+	-- build item string based on return value. Only add SubType, if its not equal 0
+	local fullID = "5.0"
+	if dropIDTable[1] ~= -1 then
+		fullID = "5." .. dropIDTable[1] .. (dropIDTable[2] ~= 0 and ("." .. dropIDTable[2]) or "")
+	end
+	local pickupNames = EID:getDescriptionEntry("PickupNames") or {}
+	return pickupNames[fullID] or EID:GetEntityXMLNameByString(fullID) or fullID
+end
+

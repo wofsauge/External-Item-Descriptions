@@ -10,10 +10,11 @@
 
 local languageCode = "en_us"
 
--- init en_us table
+-- init english tables
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "English"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"english", "en"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = {{name="default"}, {name="inverted"}, {name="borderless"}}
@@ -99,7 +100,7 @@ EID.descriptions[languageCode].collectibles={
 	{"76", "X-Ray Vision", "{{SecretRoom}} Opens all secret room entrances"}, -- X-Ray Vision
 	{"77", "My Little Unicorn", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"}, -- My Little Unicorn
 	{"78", "Book of Revelations", "{{SoulHeart}} +1 Soul Heart#{{AngelDevilChance}} +17.5% Devil/Angel Room chance while held#Using the item has a high chance to replace the floor's boss with a horseman"}, -- Book of Revelations
-	{"79", "The Mark", "↑ {{Speed}} +0.2 Speed#↑ {{Damage}} +1 Damage#{{SoulHeart}} +1 Soul Heart"}, -- The Mark
+	{"79", "The Mark", "↑ {{Damage}} +1 Damage#↑ {{Speed}} +0.2 Speed#{{SoulHeart}} +1 Soul Heart"}, -- The Mark
 	{"80", "The Pact", "↑ {{Tears}} +0.7 Tears#↑ {{Damage}} +0.5 Damage#{{SoulHeart}} +2 Soul Hearts"}, -- The Pact
 	{"81", "Dead Cat", "↑ +9 Lives#Isaac respawns with 1 heart container on death#{{Warning}} Sets Isaac's heart containers to 1 when picked up"}, -- Dead Cat
 	{"82", "Lord of the Pit", "↑ {{Speed}} +0.3 Speed#Flight"}, -- Lord of the Pit
@@ -117,7 +118,7 @@ EID.descriptions[languageCode].collectibles={
 	{"94", "Sack of Pennies", "{{Coin}} Spawns a random coin every 2 rooms"}, -- Sack of Pennies
 	{"95", "Robo-Baby", "Shoots lasers#Deals 3.5 damage per shot"}, -- Robo-Baby
 	{"96", "Little C.H.A.D.", "{{HalfHeart}} Spawns a half Red Heart every 3 rooms"}, -- Little C.H.A.D.
-	{"97", "The Book of Sin", "Spawns a random pickup"}, -- The Book of Sin
+	{"97", "The Book of Sin", "Spawns 1 random pickup"}, -- The Book of Sin
 	{"98", "The Relic", "{{SoulHeart}} Spawns 1 Soul Heart every 5-6 rooms"}, -- The Relic
 	{"99", "Little Gish", "{{Slow}} Shoots slowing tears#Deals 3.5 damage per tear"}, -- Little Gish
 	{"100", "Little Steven", "Shoots homing tears#Deals 3.5 damage per tear"}, -- Little Steven
@@ -294,7 +295,7 @@ EID.descriptions[languageCode].collectibles={
 	{"271", "Mystery Sack", "Spawns a random pickup every 5-6 rooms"}, -- Mystery Sack
 	{"272", "BBF", "Friendly exploding fly#The explosion deals 60 damage#{{Warning}} The explosion can hurt Isaac"}, -- BBF
 	{"273", "Bob's Brain", "Dashes in the direction Isaac is shooting#Explodes when it hits an enemy#{{Poison}} The explosion deals 60 damage and poisons enemies#{{Warning}} The explosion can hurt Isaac"}, -- Bob's Brain
-	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#It deals 75 contact damage per second"}, -- Best Bud
+	{"274", "Best Bud", "Taking damage spawns one midrange orbital for the room#Deals 75 contact damage per second"}, -- Best Bud
 	{"275", "Lil Brimstone", "{{Chargeable}} Familiar that charges and shoots a {{Collectible118}} blood beam#It deals 31.5 damage over 0.63 seconds"}, -- Lil Brimstone
 	{"276", "Isaac's Heart", "Isaac becomes invincible#Spawns a heart familiar that follows Isaac#{{Warning}} If the heart familiar gets hit, Isaac takes damage"}, -- Isaac's Heart
 	{"277", "Lil Haunt", "{{Fear}} Chases and fears enemies#Deals 4 contact damage per second"}, -- Lil Haunt
@@ -349,7 +350,7 @@ EID.descriptions[languageCode].collectibles={
 	{"324", "Undefined", "Teleports Isaac to the {{TreasureRoom}} Treasure, {{SecretRoom}} Secret, {{SuperSecretRoom}} Super Secret or {{ErrorRoom}} I AM ERROR Room"}, -- Undefined
 	{"325", "Scissors", "{{Timer}} Isaac's head turns into a stationary familiar for the room#The head shoots 3.5 damage tears#The body is controlled separately and still shoots Isaac's tears"}, -- Scissors
 	{"326", "Breath of Life", "Holding down the USE button empties the charge bar#Isaac is temporarily invincible when the charge bar is empty#{{Warning}} Holding it for too long deals damage to Isaac"}, -- Breath of Life
-	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes isaac temporarily invincible"}, -- The Polaroid
+	{"327", "The Polaroid", "Taking damage at half a Red Heart or none makes Isaac temporarily invincible"}, -- The Polaroid
 	{"328", "The Negative", "Taking damage at half a Red Heart or none damages all enemies in the room"}, -- The Negative
 	{"329", "The Ludovico Technique", "Replaces Isaac's tears with one giant controllable tear"}, -- The Ludovico Technique
 	{"330", "Soy Milk", "↑ {{Tears}} x4 Tears multiplier#↑ {{Tears}} -2 Tear delay#↓ {{Damage}} x0.2 Damage multiplier#↓ {{Tearsize}} x0.5 Tear size"}, -- Soy Milk
@@ -557,7 +558,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryphagy", "Isaac's tears progressively slow down, stop, then explode into 8 smaller tears#Tears can merge and become bigger"}, -- Lachryphagy
 	{"533", "Trisagion", "Replaces Isaac's tears with piercing beams of light#The beams deal 33% damage but can hit enemies multiple times"}, -- Trisagion
 	{"534", "Schoolbag", "Allows Isaac to hold 2 active items#The items can be swapped using the Drop button ({{ButtonRT}})"}, -- Schoolbag
-	{"535", "Blanket", "{{Heart}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
+	{"535", "Blanket", "{{HealingRed}} Heals 1 heart#{{SoulHeart}} +1 Soul Heart#{{HolyMantle}} Entering a boss room grants a Holy Mantle shield (prevents damage once)"}, -- Blanket
 	{"536", "Sacrificial Altar", "Sacrifices up to 2 familiars and spawns a devil item for each sacrifice#{{Coin}} Turns blue spiders/flies into coins"}, -- Sacrificial Altar
 	{"537", "Lil Spewer", "{{Pill}} Spawns a random pill on pickup#Fires a line of creep#The type of creep changes with each pill use"}, -- Lil Spewer
 	{"538", "Marbles", "{{Trinket}} Spawns 3 random trinkets#{{Collectible479}} Taking damage has a 10% chance to consume Isaac's held trinket and grant its effects permanently"}, -- Marbles
@@ -753,7 +754,7 @@ EID.descriptions[languageCode].trinkets={
 	{"14", "Callus", "Immune to creep and floor spikes"}, -- Callus
 	{"15", "Lucky Rock", "{{Coin}} Destroying rocks spawns coins"}, -- Lucky Rock
 	{"16", "Mom's Toenail", "Mom's Foot stomps a random spot in the room every 60 seconds"}, -- Mom's Toenail
-	{"17", "Black Lipstick", "{{BlackHeart}} +5% chance for random Soul Hearts to spawn as Black Hearts"}, -- Black Lipstick
+	{"17", "Black Lipstick", "{{BlackHeart}} +10% chance for random Soul Hearts to spawn as Black Hearts"}, -- Black Lipstick
 	{"18", "Bible Tract", "{{EternalHeart}} +3% chance for Eternal Hearts"}, -- Bible Tract
 	{"19", "Paper Clip", "{{GoldenChest}} Gold chests can be opened for free"}, -- Paper Clip
 	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is reduced to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"}, -- Monkey Paw
@@ -794,7 +795,7 @@ EID.descriptions[languageCode].trinkets={
 	{"55", "Maggy's Faith", "{{EternalHeart}} Entering a new floor grants +1 Eternal Heart"}, -- Maggy's Faith
 	{"56", "Judas' Tongue", "{{DevilRoom}} Reduces all devil deal prices to 1 heart container#Doesn't reduce 3 Soul Heart prices"}, -- Judas' Tongue
 	{"57", "???'s Soul", "Familiar that bounces around the room#Shoots in the same direction as Isaac#Deals 3.5 damage per tear"}, -- ???'s Soul
-	{"58", "Samson's Lock", "{{Timer}} Killing an enemy has a 1/15 chance to grant ↑ {{Damage}} +0.5 damage for the room#{{Luck}} 100% chance at 10 luck"}, -- Samson's Lock
+	{"58", "Samson's Lock", "{{Timer}} Killing an enemy has a 6.66% chance to grant ↑ {{Damage}} +0.5 damage for the room#{{Luck}} 100% chance at 10 luck"}, -- Samson's Lock
 	{"59", "Cain's Eye", "Entering a new floor has a 25% chance to reveal map icons#{{Luck}} 100% chance at 3 luck"}, -- Cain's Eye
 	{"60", "Eve's Bird Foot", "{{Collectible117}} Killing an enemy has a 5% chance to spawn a Dead Bird#{{Luck}} 100% chance at 8 luck"}, -- Eve's Bird Foot
 	{"61", "The Left Hand", "{{RedChest}} Turns all chests into Red Chests"}, -- The Left Hand
@@ -833,8 +834,8 @@ EID.descriptions[languageCode].trinkets={
 	{"94", "Fish Tail", "Doubles all blue fly / spider spawns"}, -- Fish Tail
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears#The tooth deals 2x Isaac's damage"}, -- Black Tooth
 	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
-	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Caps at 2 familiars"}, -- Tonsil
-	{"98", "Nose Goblin", "10% chance to shoot homing sticky tears#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
+	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars"}, -- Tonsil
+	{"98", "Nose Goblin", "10% chance to shoot a sticky tear#50% chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
 	{"99", "Super Ball", "10% chance to shoot bouncing tears"}, -- Super Ball
 	{"100", "Vibrant Bulb", "Holding a fully charged active item grants:#↑ {{Speed}} +0.25 Speed#↑ {{Tears}} +0.2 Tears#↑ {{Damage}} +0.5 Damage#↑ {{Range}} +0.75 Range#↑ {{Shotspeed}} +0.1 Shot speed#↑ {{Luck}} +1 Luck"}, -- Vibrant Bulb
 	{"101", "Dim Bulb", "Holding a completely uncharged active item grants:#↑ {{Speed}} +0.5 Speed#↑ {{Tears}} +0.4 Tears#↑ {{Damage}} +1.5 Damage#↑ {{Range}} +1.5 Range#↑ {{Shotspeed}} +0.3 Shot speed#↑ {{Luck}} +2 Luck"}, -- Dim Bulb
@@ -857,7 +858,7 @@ EID.descriptions[languageCode].trinkets={
 	{"118", "Bat Wing", "{{Timer}} Killing an enemy has a 5% chance to grant flight for the room"}, -- Bat Wing
 	{"119", "Stem Cell", "{{HealingRed}} Entering a new floor heals half a heart"}, -- Stem Cell
 	{"120", "Hairpin", "{{Battery}} Entering an uncleared boss room fully recharges active items"}, -- Hairpin
-	{"121", "Wooden Cross", "{{Collectible313}} Negates the first damage taken on the floor"}, -- Wooden Cross
+	{"121", "Wooden Cross", "{{Collectible313}} Grants a Holy shield that prevents damage once per floor"}, -- Wooden Cross
 	{"122", "Butter!", "Using an active item drops it on a pedestal on the ground#Taking damage has a 2% chance to drop one of Isaac's passive items"}, -- Butter!
 	{"123", "Filigree Feather", "Angel bosses drop angel items instead of Key Pieces"}, -- Filigree Feather
 	{"124", "Door Stop", "The last door used stays open"}, -- Door Stop
@@ -880,7 +881,7 @@ EID.descriptions[languageCode].cards={
 	{"8", "VII - The Chariot", "{{Timer}} Receive for 6 seconds:#↑ {{Speed}} +0.28 Speed#Invincibility#Isaac can't shoot but deals 40 contact damage per second"}, -- VII - The Chariot
 	{"9", "VIII - Justice", "Spawns a random {{UnknownHeart}} heart, {{Coin}} coin, {{Bomb}} bomb and {{Key}} key"}, -- VIII - Justice
 	{"10", "IX - The Hermit", "{{Shop}} Teleports Isaac to the Shop"}, -- IX - The Hermit
-	{"11", "X - Wheel of Fortune", "Spawns a {{Slotmachine}} Slot Machine or {{FortuneTeller}} Fortune Machine"}, -- X - Wheel of Fortune
+	{"11", "X - Wheel of Fortune", "{{Slotmachine}} Spawns a Slot Machine#{{FortuneTeller}} 25% chance for it to be a Fortune Telling Machine"}, -- X - Wheel of Fortune
 	{"12", "XI - Strength", "{{Timer}} Receive for the room:#↑ {{Heart}} +1 Health#↑ {{Speed}} +0.3 Speed#↑ {{Damage}} +0.3 Damage#↑ {{Damage}} x1.5 Damage multiplier#↑ {{Range}} +5.25 Range#↑ +0.5 Tear height"}, -- XI - Strength
 	{"13", "XII - The Hanged Man", "{{Timer}} Flight for the room"}, -- XII - The Hanged Man
 	{"14", "XIII - Death", "Deals 40 damage to all enemies in the room"}, -- XIII - Death
@@ -890,7 +891,7 @@ EID.descriptions[languageCode].cards={
 	{"18", "XVII - The Stars", "{{TreasureRoom}} Teleports Isaac to the Treasure Room"}, -- XVII - The Stars
 	{"19", "XVIII - The Moon", "{{SecretRoom}} Teleports Isaac to the Secret Room"}, -- XVIII - The Moon
 	{"20", "XIX - The Sun", "{{HealingRed}} Full health#Deals 100 damage to all enemies#{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XIX - The Sun
-	{"21", "XX - Judgement", "Spawns a Beggar or Devil Beggar#2% chance to spawn a special Beggar"}, -- XX - Judgement
+	{"21", "XX - Judgement", "{{Beggar}} Spawns a Beggar#{{DemonBeggar}} 33% chance for it to be a Devil Beggar#2% chance for it to be a Key Master or Bomb Bum"}, -- XX - Judgement
 	{"22", "XXI - The World", "{{Timer}} Full mapping effect for the floor (except {{SuperSecretRoom}} Super Secret Room)"}, -- XXI - The World
 	{"23", "2 of Clubs", "{{Bomb}} Doubles Isaac's number of bombs"}, -- 2 of Clubs
 	{"24", "2 of Diamonds", "{{Coin}} Doubles Isaac's number of coins"}, -- 2 of Diamonds
@@ -936,13 +937,13 @@ EID.descriptions[languageCode].tarotClothBuffsAB = {
 	[7] = {2, 4}, -- VI - The Lovers
 	[8] = {6, 12}, -- VII - The Chariot
 	[9] = {"Spawns {{ColorShinyPurple}}2{{CR}} random {{UnknownHeart}} hearts, {{Coin}} coins, {{Bomb}} bombs and {{Key}} keys"}, -- VIII - Justice
-	[11] = {" a ", " 2 ", "Slot Machine", "{{CR}}Slot Machines", "Fortune Machine", "{{CR}}Fortune Machines"}, -- X - Wheel of Fortune
+	[11] = {" a Slot Machine", " 2 {{CR}}Slot Machines", " it ", " {{CR}}each "}, -- X - Wheel of Fortune
 	[12] = {1, 2, 0.3, 0.6, 0.3, 0.6, 5.25, 10.5}, -- XI - Strength
 	[14] = {40, 80}, -- XIII - Death
 	[15] = {" a ", " 2 ", " Machine", " {{CR}}Machines", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XIV - Temperance (+ Greed version)
 	[17] = {6, 12}, -- XVI - The Tower
 	[20] = {100, 200}, -- XIX - The Sun
-	[21] = {" a ", " 2 ", "Beggar ", "{{CR}}Beggars ", "Devil Beggar", "{{CR}}Devil Beggars"}, -- XX - Judgement
+	[21] = {" a Beggar", " 2 {{CR}}Beggars", " it ", " {{CR}}each ", " it ", " {{CR}}each "}, -- XX - Judgement
 	[23] = {"Doubles", "Quadruples"}, -- 2 of Clubs
 	[24] = {"Doubles", "Quadruples"}, -- 2 of Diamonds
 	[25] = {"Doubles", "Quadruples"}, -- 2 of Spades
@@ -1093,8 +1094,18 @@ EID.descriptions[languageCode].transformations={
 
 ---------- MISC ----------
 
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = "s"
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- English plural is very easy. Simply put an "s" at the end of specific words, if amount > 1
+	if amount > 1 then
+		text = text:gsub("Life", "Lives")
+	end
+	-- replace {pluralize} placeholders inside the text with an "s"
+	text = EID:ReplaceVariableStr(text, "pluralize", amount > 1 and "s" or "")
+	text = EID:ReplaceVariableStr(text, "pluralize_y", amount > 1 and "ies" or "y")
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "If absorbed, gain:"
 -- {1} will become the number text (like "{1} Tears" -> "+0.5 Tears")
@@ -1114,27 +1125,28 @@ EID.descriptions[languageCode].BlackFeatherInformation = "{{ColorLime}}{1}{{CR}}
 EID.descriptions[languageCode].SingleUseInfo = "{{Warning}} SINGLE USE {{Warning}}"
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	["Red to Soul"] = {"↑ {{Heart}} +{1} Health", "{{SoulHeart}} +{1} Soul Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{SoulHeart}} +{1} Soul Heart{2}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{2}"},
+	["Red to Soul"] = {"↑ {{Heart}} +{1} Health", "{{SoulHeart}} +{1} Soul Heart{pluralize}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{SoulHeart}} +{1} Soul Heart{pluralize}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Soul Heart{pluralize}"},
 	
-	["Red to Black"] = {"↑ {{Heart}} +{1} Health", "{{BlackHeart}} +{1} Black Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{BlackHeart}} +{1} Black Heart{2}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{SoulHeart}} {1} Black Heart{2}"},
+	["Red to Black"] = {"↑ {{Heart}} +{1} Health", "{{BlackHeart}} +{1} Black Heart{pluralize}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{BlackHeart}} +{1} Black Heart{pluralize}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{BlackHeart}} {1} Black Heart{pluralize}"},
 	
-	["Red to Bone"] = {"↑ {{Heart}} +{1} Health", "{{BoneHeart}} +{1} Bone Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{2}", "{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{2}"}, -- Red HP to Bone Hearts
+	["Red to Bone"] = {"↑ {{Heart}} +{1} Health", "{{BoneHeart}} +{1} Bone Heart{pluralize}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyBoneHeart}} +{1} Empty Bone Heart{pluralize}", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyBoneHeart}} {1} Bone Heart{pluralize}"}, -- Red HP to Bone Hearts
 	
-	["Red to Coin"] = {"↑ {{Heart}} +{1} Health", "{{CoinHeart}} +{1} Coin Heart{2}",
-	"↑ {{EmptyHeart}} +{1} Empty heart container{2}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{2}",
-	"{{HealingRed}} Heals {1} heart{2}", "{{HealingCoin}} Heals {1} coin{2}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{2}"}, -- Red HP to Coin Hearts
+	["Red to Coin"] = {"↑ {{Heart}} +{1} Health", "{{CoinHeart}} +{1} Coin Heart{pluralize}",
+	"↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "{{EmptyCoinHeart}} +{1} Empty Coin Heart{pluralize}",
+	"{{HealingRed}} Heals {1} heart{pluralize}", "{{HealingCoin}} Heals {1} coin{pluralize}", "{{HealingRed}} Heals half a heart", "{{HealingCoin}} Heals 1 coin", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Health", "↓ {{EmptyCoinHeart}} {1} Coin Heart{pluralize}"}, -- Red HP to Coin Hearts
 	
-	["Red to None"] = {"↑ {{Heart}} +{1} Health", "", "↑ {{EmptyHeart}} +{1} Empty heart container{2}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ {{Heart}} +{1} Health", "", "↑ {{EmptyHeart}} +{1} Empty heart container{pluralize}", "", "↓ {{EmptyHeart}} {1} Health", ""}, -- Red HP to None (The Lost)
 }
 
 EID.descriptions[languageCode].MCM = {
@@ -1217,7 +1229,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} No effect in Greed Mode",
 	["No Effect (Copies)"] = "No additional effect from multiple copies", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "No additional effect on familiars", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "No effect for characters that can't have Red Hearts",
 	["Different Effect"] = "{{ColorSilver}}Different effect for {1}{{CR}}",
 	["Dies on Use"] = "{{Warning}} {1} dies on use", -- for Razor Blade and such as The Lost
 	
@@ -1337,8 +1348,4 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.300.18 (Greed)"] = {"{{TreasureRoom}} Teleports Isaac to a random Treasure Room"}, -- XVII - The Stars (Greed)
 	["5.300.18 (Late Greed)"] = {"Teleports Isaac to the first room of the floor"}, -- XVII - The Stars (Greed Last Floors)
 	["5.300.10"] = "Teleports Isaac to a random room if there's no Shop", -- IX - The Hermit (Womb and below)
-	
 }
-
-
-

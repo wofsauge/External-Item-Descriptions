@@ -13,7 +13,8 @@ local languageCode = "ru"
 -- init ru table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Russian"
+EID.descriptions[languageCode].languageName = "Russian (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"russian"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
@@ -871,8 +872,12 @@ EID.descriptions[languageCode].transformations={
 
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = ""
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them
+-- Each language can do their own algorithm to modify the given text to their needs
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- TODO: Not Implemented right now...
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Если поглощён, даёт:"
 EID.descriptions[languageCode].VoidNames = {"Скорость", "Скорострельность", "Урон", "Дальность", "Скорость снаряда", "Удача"}

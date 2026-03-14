@@ -13,7 +13,8 @@ local languageCode = "pl"
 -- init pl table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
-EID.descriptions[languageCode].languageName = "Polish"
+EID.descriptions[languageCode].languageName = "Polish (WIP)"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"polish"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts

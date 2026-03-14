@@ -1,11 +1,12 @@
+local game = Game()
 local showDebugChars = false
 
 
 -- check integrity of language files
 
-local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check {"ko_kr"}
+local languageFilesToCheck = {"fr"} -- EID.Languages -- single file check example {"ko_kr"}
 
--- count en_us entries for stats
+-- count English entries for stats
 local count = 0
 function EID:countEntries(t)
 	for k, _ in pairs(t) do
@@ -15,9 +16,9 @@ function EID:countEntries(t)
 		end
 	end
 end
-EID:countEntries(EID.descriptions["en_us"])
+EID:countEntries(EID.descriptions[EID.DefaultLanguageCode])
 local enUSEntries = count
-EID:WriteDebugMsg("en_us entries: "..enUSEntries)
+EID:WriteDebugMsg("English entries: "..enUSEntries)
 
 
 local maxChecklimit = {["tarotClothBuffs"] = 2}
@@ -83,7 +84,7 @@ for _, lang in ipairs(languageFilesToCheck) do
 	end
 
 	local progress = { 0, 0 }
-	EID:compareTables(EID.descriptions["en_us"], EID.descriptions[lang], lang, progress)
+	EID:compareTables(EID.descriptions[EID.DefaultLanguageCode], EID.descriptions[lang], lang, progress)
 
 	local errors = (enUSEntries - progress[1])-progress[2]
 	EID:WriteDebugMsg("Errors found: "..errors .." / "..enUSEntries)
@@ -198,7 +199,7 @@ EID:removeIgnoredEntity(5,100,10) -- un-Ignore "Halo of flies" collectible entit
 EID:addColor("ColorTwitterBlue", KColor(0, 0.671875, 0.9296875, 1), nil)
 EID:addColor("ColorBlackBlink", nil, function(color)
 		local maxAnimTime = 30
-		local animTime = Game():GetFrameCount() % maxAnimTime
+		local animTime = game:GetFrameCount() % maxAnimTime
 		color = EID:copyKColor(color) or EID:getTextColor()
 		if animTime < maxAnimTime / 2 then
 			color = KColor(0, 0, 0, 1 * color.Alpha)

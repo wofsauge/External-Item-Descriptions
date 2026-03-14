@@ -3,7 +3,7 @@ EID.UserConfig = {
 	-- Change the language of the mod
 	-- Currently Supported: automatic = "auto"				(Default) Chooses the mod language based on your game's language settings(Rep), or defaults to English for ab+ users.
 	--						Bulgarian = "bul"				SPECIAL THANKS TO Gothika_47
-	--						Chinese = "zh_cn"				SPECIAL THANKS TO Xheepey87, frto027
+	--						Chinese (Simplified) = "zh_cn"	SPECIAL THANKS TO Xheepey87, frto027
 	--						Czech = "cs_cz"					SPECIAL THANKS TO domcizzz
 	--						Dutch = "nl_nl"					SPECIAL THANKS TO SomethingMax
 	--						English = "en_us"				SPECIAL THANKS TO everyone!
@@ -190,6 +190,10 @@ EID.UserConfig = {
 	-- REPENTANCE ONLY!!!
 	-- Default = true
 	["ShowQuality"] = true,
+	-- Enables or disables collectible's item pool from which can be appeared
+	-- REPENTANCE ONLY!!!
+	-- Default = false
+	["ShowContainItemPool"] = false,
 	-- Enables or disables collectible's item pool when collected after item name
 	-- REPENTANCE ONLY!!!
 	-- Default = false
@@ -589,6 +593,7 @@ EID.DefaultConfig = {
 	["DisplayTrinketInfo"] = true,
 	["ItemNameColor"] = "ColorEIDObjName",
 	["ShowQuality"] = true,
+	["ShowContainItemPool"] = false,
 	["ShowItemPoolIcon"] = false,
 	["ShowItemPoolText"] = false,
 	["ItemPoolTextColor"] = "ColorSilver",

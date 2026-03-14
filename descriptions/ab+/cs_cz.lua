@@ -10,10 +10,11 @@
 
 local languageCode = "cs_cz"
 
--- init cz table
+-- init Czech table
 EID.descriptions[languageCode] = {}
 EID.descriptions[languageCode].custom = {} -- table for custom entity descriptions
 EID.descriptions[languageCode].languageName = "Czech"
+EID.descriptions[languageCode].alternativeLanguageCodes = {"czech", "cs"}
 
 -- Fonts to be used with this language pack
 EID.descriptions[languageCode].fonts = EID.descriptions["en_us"].fonts
@@ -554,7 +555,7 @@ EID.descriptions[languageCode].collectibles={
 	{"532", "Lachryfagie", "Slzy při cestování zpomalují#Po zastavení explodují v 8 menších slz#Slzy mohou být vstřeleny do jiných slz, čímž se zvětší"},
 	{"533", "Trisagion", "Střílíš průrazné záblesky světla#{{Damage}} Udělují 33% poškození, ale mohou zasáhnout nepřátele několikrát"},
 	{"534", "Školní Aktovka", "Umožňuje ti držet 2 aktivní předměty#Přepínej mezi nimi stisknutím tlačítka Drop (tlačítko 'drž' za \"The Forgotten\")"},
-	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{Heart}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
+	{"535", "Přikrývka", "{{SoulHeart}} +1 Duševní Srdce#{{HealingRed}} Léčí 1 Červené Srdce#{{Collectible313}} Uděluje štít při vstupu do místnosti s Bossem"},
 	{"536", "Obětní Oltář", "Obětuje 1-2 spojence, aby vytvořil Ďábelský předmět#Promění tvé modré pavouky/mouchy na mince"},
 	{"537", "Maličký Plivač", "{{Pill}} Vytvoří náhodnou pilulku#Spojenec, který střílí řadu kaluží#Typ kaluže se změní pokaždé, když použiješ pilulku"},
 	{"538", "Kuličky", "{{Trinket}} Vytvoří 3 náhodné trinkety#{{Collectible479}} Utrpení poškození může spotřebovat tvůj trinket a přidá ti jeho efekt natrvalo"},
@@ -1064,8 +1065,13 @@ EID.descriptions[languageCode].transformations = {
 
 
 ---------- MISC ----------
--- This string will be appended to certain words (like pickup names in glitched item descriptions) to pluralize them, make it "" to not pluralize
-EID.descriptions[languageCode].Pluralize = "s"
+-- a function that will get applied onto specific descriptions (glitched items, Abyss locusts,...) to pluralize them, make it nil to not pluralize
+EID.descriptions[languageCode].PluralizeFunction = function(text, amount)
+	-- replace {plural_X} placeholders inside the text with fitting textparts
+	text = EID:ReplaceVariableStr(text, "plural_e", amount > 1 and "e" or "")
+	text = EID:ReplaceVariableStr(text, "plural_ay", amount > 1 and "y" or "a")
+	return text
+end
 
 EID.descriptions[languageCode].VoidText = "Pokud absorbuješ, získáš:"
 EID.descriptions[languageCode].VoidNames = {"Rychlost", "Slzy", "Poškození", "Dostřel", "Rychlost Střel", "Štěstí"}
@@ -1090,27 +1096,28 @@ EID.descriptions[languageCode].MCM = {
 }
 
 -- Find/replace pairs for changing "+1 Health" to "+1 Soul Heart" for soul health characters, or nothing at all for The Lost
--- {1} = number of hearts, {2} = plural character
+-- {1} = number of hearts, {pluralize} = plural character
+-- These texts are affected by the PluralizeFunction (ab+ file)
 -- If having a simple plural character doesn't work for your language, you could just include an extra string pair to catch plural lines
 EID.descriptions[languageCode].RedToX = {
 	-- These change "+1 Health" to just "+1 Soul Heart" and etc.
-	["Red to Soul"] = {"↑ {{Heart}} +{1} Zdraví", "{{SoulHeart}} +{1} Duševní Srdce{2}",
-	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{SoulHeart}} +{1} Duševní Srdce{2}",
-	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Duševní Srdce{2}"},
+	["Red to Soul"] = {"↑ {{Heart}} +{1} Zdraví", "{{SoulHeart}} +{1} Duševní Srdce",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{SoulHeart}} +{1} Duševní Srdce",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Duševní Srdce"},
 	
-	["Red to Black"] = {"↑ {{Heart}} +{1} Zdraví", "{{BlackHeart}} +{1} Černé Srdce{2}",
-	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{BlackHeart}} +{1} Černé Srdce{2}",
-	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{SoulHeart}} {1} Černé Srdce{2}"},
+	["Red to Black"] = {"↑ {{Heart}} +{1} Zdraví", "{{BlackHeart}} +{1} Černé Srdce",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{BlackHeart}} +{1} Černé Srdce",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{BlackHeart}} {1} Černé Srdce"},
 	
-	["Red to Bone"] = {"↑ {{Heart}} +{1} Zdraví", "{{BoneHeart}} +{1} Kostěné Srdce{2}",
-	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{EmptyBoneHeart}} +{1} Prázdné kostěné srdce{2}", "{{HealingRed}}", "{{HealingBone}}",
-	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyBoneHeart}} {1} Kostěné Srdce{2}"}, -- Red HP to Bone Hearts
+	["Red to Bone"] = {"↑ {{Heart}} +{1} Zdraví", "{{BoneHeart}} +{1} Kostěné Srdce",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{EmptyBoneHeart}} +{1} Prázdné kostěné srdce", "{{HealingRed}}", "{{HealingBone}}",
+	"↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyBoneHeart}} {1} Kostěné Srdce"}, -- Red HP to Bone Hearts
 	
-	["Red to Coin"] = {"↑ {{Heart}} +{1} Zdraví", "{{CoinHeart}} +{1} Mincové Srdce{2}",
-	"↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "{{EmptyCoinHeart}} +{1} Prázdné Mincové Srdce{2}",
-	"{{HealingRed}} Vyléčí {1} srdce{2}", "{{HealingCoin}} Vyléčí {1} minci{2}", "{{HealingRed}}  Vyléčí půlku srdce", "{{HealingCoin}} Vyléčí 1 minci", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyCoinHeart}} {1} Mincové Srdce{2}"}, -- Red HP to Coin Hearts
+	["Red to Coin"] = {"↑ {{Heart}} +{1} Zdraví", "{{CoinHeart}} +{1} Mincové Srdce",
+	"↑ {{EmptyHeart}} +{1} Místo na srdce", "{{EmptyCoinHeart}} +{1} Prázdné Mincové Srdce",
+	"{{HealingRed}} Vyléčí {1} srdce", "{{HealingCoin}} Vyléčí {1} minci", "{{HealingRed}}  Vyléčí půlku srdce", "{{HealingCoin}} Vyléčí 1 minci", "{{HealingRed}}", "{{HealingCoin}}", "↓ {{EmptyHeart}} {1} Zdraví", "↓ {{EmptyCoinHeart}} {1} Mincové Srdce"}, -- Red HP to Coin Hearts
 	
-	["Red to None"] = {"↑ {{Heart}} +{1} Zdraví", "", "↑ {{EmptyHeart}} +{1} Místo na srdce{2}", "", "↓ {{EmptyHeart}} {1} Zdraví", ""}, -- Red HP to None (The Lost)
+	["Red to None"] = {"↑ {{Heart}} +{1} Zdraví", "", "↑ {{EmptyHeart}} +{1} Místo na srdce", "", "↓ {{EmptyHeart}} {1} Zdraví", ""}, -- Red HP to None (The Lost)
 }
 
 
@@ -1199,7 +1206,6 @@ EID.descriptions[languageCode].CharacterInfo = {
 
 EID.descriptions[languageCode].ConditionalDescs = {
 	------ GENERAL STRINGS ------
-	["5.300.48"] = "Teleportuje tě do JSEM ERROR místnosti#Prázdná Karta a ?-Karta bude zničena", -- Blank Card + Q Card
 	["Overridden"] = "Je přepsán předmětem {1}",
 	["Overrides"] = "Přepíše {1}",
 	["Almost No Effect"] = "Malý až žádný efekt pro {1}",
@@ -1212,7 +1218,6 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["No Effect (Greed)"] = "{{GreedMode}} Žádný efekt v Greed Módu",
 	["No Effect (Copies)"] = "Žádný další efekt z více kopií", -- Having the item already, or having Diplopia while looking at a pedestal
 	["No Effect (Familiars)"] = "Žádný další vliv na spojence", -- probably just for Hive Mind + BFFS!
-	["No Red"] = "Žádný efekt pro postavy, které nemohou mít červené srdce",
 	["Different Effect"] = "{{ColorSilver}}Rozdílný efekt pro {1}{{CR}}",
 	["Dies on Use"] = "{{Warning}} {1} zemře při použití", -- for Razor Blade and such as The Lost
 	
