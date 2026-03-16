@@ -21,6 +21,8 @@ local collectibles = {
 	[141] = { "141", "Băiatul Misterios", "{{Coin}} Creează 7 monede aleatorii#Creează un suvenir penny aleatoriu" }, -- Pageant Boy
 	-- Change: added Fire rate information
 	[186] = { "186", "Drepturi de Sânge", "Provoacă 40 de daune tuturor inamicilor#{{Tears}} {{ColorGreen}}+0.48{{CR}} Viteză de atac pentru camera curentă#{{Warning}} Provoacă 1 inimă de daune lui Isaac#După prima utilizare într-o cameră, provoacă doar o jumătate de inimă#{{Heart}} Elimină inimile roșii mai întâi" }, -- Blood Rights
+	-- Change: added random tear effects information	
+	[244] = { "244", "Tech.5", "Ocazional tragi lasere pe lângă lacrimile lui Isaac#Șansă mică ca laserele să aibă efecte aleatorii"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
 	[281] = { "281", "Sac de Box", "Familiar momeală#Inamicii îl vizează pe el în locul lui Isaac#Blochează lacrimile inamice" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
