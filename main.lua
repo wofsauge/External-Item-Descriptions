@@ -1382,7 +1382,7 @@ function EID:OnRender()
 	-- Check for Drop being pressed, for Repentance D Infinity tracking
 	if EID.isRepentance then
 		local dropTriggered, playerNumPressingDrop = EID:PlayersActionPressed(ButtonAction.ACTION_DROP, Input.IsActionTriggered)
-		if dropTriggered then
+		if dropTriggered and not game:IsPaused() then
 			local playerPressingDrop = EID.coopMainPlayers[playerNumPressingDrop]
 			local playerID = EID:getPlayerID(playerPressingDrop, true)
 			local playerType = playerPressingDrop:GetPlayerType()
