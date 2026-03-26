@@ -849,11 +849,12 @@ function EID:getDescriptionData(Type, Variant, SubType)
 	local fullString = Type.."."..Variant
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
 	local moddedDesc = EID:getDescriptionEntry("custom", fullString.."."..adjustedID)
+	local fallbackDesc = EID:getDescriptionEntry("custom", fullString..".-1")
 	local tableName = EID:getTableName(Type, Variant, SubType)
 	local legacyModdedDescription = EID:getLegacyModDescription(Type, Variant, adjustedID)
 	local defaultDesc = EID:getDescriptionEntry(tableName, adjustedID)
 
-	return moddedDesc or legacyModdedDescription or defaultDesc
+	return moddedDesc or fallbackDesc or legacyModdedDescription or defaultDesc
 end
 
 ---Returns an adjusted SubType for special cases like Horse Pills and Golden Trinkets
