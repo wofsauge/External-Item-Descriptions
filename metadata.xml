@@ -35,7 +35,7 @@ The Steam-Workshop version of this mod is compatible with Afterbirth+, Repentanc
 Supported Languages:
 Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Brazilian-Portuguese, Romanian, Russian, Spanish, Turkish, Ukrainian, Vietnamese
 
-To change the language, just edit the &quot;Language&quot; setting in the configuration. We recommend to install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url] to easily change the configuration ingame.
+To change the language, just edit the &quot;Language&quot; setting in the configuration. We recommend to install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3701683951]'Mod Config Menu Impure'[/url] to easily change the configuration ingame.
 
 [img]https://i.imgur.com/RVtZEqp.png[/img]
 For [b]Steam users[/b], simply press the &quot;Subscribe&quot; button on the mod's Steam Workshop page. This will automatically install the mod for you.
@@ -43,7 +43,7 @@ For [b]manual mod installation[/b], read this tutorial &quot;[url=https://github
 
 If you have problems installing use the [url=https://wofsauge.github.io/IsaacDocs/rep/faq/interactive_FAQ.html]Interactive FAQ[/url].
 [img]https://i.imgur.com/PFTZnfC.png[/img]
-Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787]'Mod Config Menu Pure'[/url]. You can use it to configure the mod while playing.
+Simply install [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3701683951]'Mod Config Menu Impure'[/url]. You can use it to configure the mod while playing.
 
 Alternatively, edit the `eid_config.lua` file like described [url=https://github.com/wofsauge/External-Item-Descriptions/wiki/Edit-the-configuration-manually]here[/url]
 
