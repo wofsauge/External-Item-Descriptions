@@ -908,7 +908,7 @@ EID.descriptions[languageCode].cards={
 	{"35", "Dagaz", "{{SoulHeart}} +1 Soul Heart#{{CurseCursed}} Removes all curses for the floor"}, -- Dagaz
 	{"36", "Ansuz", "{{Timer}} Full mapping effect for the floor"}, -- Ansuz
 	{"37", "Perthro", "Rerolls all pedestal items in the room"}, -- Perthro
-	{"38", "Berkano", "Summons 3 blue spiders and 3 blue flies"}, -- Berkano
+	{"38", "Berkano", "Summons 3 locusts for one room"}, -- Berkano
 	{"39", "Algiz", "{{Timer}} Makes Isaac invincible for 30 seconds"}, -- Algiz
 	{"40", "Blank Rune", "Triggers a random rune effect#25% chance to duplicate itself when used"}, -- Blank Rune
 	{"41", "Black Rune", "Deals 40 damage to all enemies#Converts all pedestal items in the room into random stat ups#Converts all pickups in the room into blue flies"}, -- Black Rune
