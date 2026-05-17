@@ -818,6 +818,18 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[159] = { "Заменяет все сундуки (кроме Старых/Мега) золотыми сундуками#Золотые сундуки могут содержать больше карт, пилюль или брелоков" },
 }
 
+--[[
+Localizations may choose to overwrite specific data from EID.GoldenTrinketData in this table. For advanced users only.
+Example: If French uses "Double" instead of "2x" for Purple Heart, they can do:
+EID.descriptions[languageCode].goldenTrinketData = {
+	[5] = {findReplace = true, mult = 2},
+}
+and then place
+	[5] = { "Double", "Quadruple" },
+in their goldenTrinketEffects
+]]
+EID.descriptions[languageCode].goldenTrinketData = { }
+
 ---------- Cards ----------
 
 local repCards={
