@@ -233,6 +233,18 @@ function EID:calculateBagOfCrafting(componentsTable)
 	table.sort(components)
 	local componentsAsString = table.concat(components, ",")
 
+	-- calculate the game's actual output, including any modifications to recipes.xml
+	if REPENTOGON and EntityPlayer.CalculateBagOfCraftingOutput then
+		local cacheResult = calculatedRecipes[componentsAsString]
+		if cacheResult ~= nil then
+			return cacheResult
+		end
+
+		local collectible, itemPool = EntityPlayer.CalculateBagOfCraftingOutput(components)
+		calculatedRecipes[componentsAsString] = collectible
+		return collectible
+	end
+
 	-- Check the fixed recipes
 	local cacheResult = CraftingFixedRecipes[componentsAsString]
 	if cacheResult ~= nil then
