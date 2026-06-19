@@ -36,7 +36,6 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko"
 	korean_gulim(굴림) - A font that was used from former EID Korean. Recommended LineHeight : 13
 
 	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
-	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
  ]]
 EID.descriptions[languageCode].fonts = {
 	{name="korean_yoonwebdotum10_shadow", lineHeight=13, textboxWidth = 175},
