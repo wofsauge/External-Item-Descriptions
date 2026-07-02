@@ -36,7 +36,6 @@ EID.descriptions[languageCode].alternativeLanguageCodes = {"koreana", "kr", "ko"
 	korean_gulim(굴림) - A font that was used from former EID Korean. Recommended LineHeight : 13
 
 	korean_yoonwebdotum10, korean_galmoori9, korean_galmoori11 is added for community request.
-	eid_korean_hcrdotum_0.png is untouched due to game crashes for changing file names.
  ]]
 EID.descriptions[languageCode].fonts = {
 	{name="korean_yoonwebdotum10_shadow", lineHeight=13, textboxWidth = 175},
@@ -195,7 +194,7 @@ EID.descriptions[languageCode].collectibles={
 	{"132", "석탄 한 덩이", "공격이 멀리 나갈수록 타일 1칸당 피해량이 +0.6 증가합니다."}, -- A Lump of Coal
 	{"133", "구피의 발", "{{SoulHeart}} 사용 시 최대 체력 1칸을 소울하트 3칸으로 바꿉니다."}, -- Guppy's Paw
 	{"134", "구피의 꼬리", "{{Chest}} 방 클리어 보상이 33%의 확률로 상자 혹은 황금상자로 바뀝니다.#!!! 방 클리어 보상이 22%의 확률로 등장하지 않습니다."}, -- Guppy's Tail
-	{"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~2개 드랍합니다.#빨간하트를 우선적으로 깎습니다"}, -- IV Bag
+	{"135", "수혈 팩", "사용 시 체력 반칸을 깎고 {{Coin}}동전을 1~2개 드랍합니다.#빨간하트를 우선적으로 깎습니다."}, -- IV Bag
 	{"136", "최고의 친구", "사용 시 적을 유인하고 5초 뒤 공격력 110의 폭발을 일으키는 인형을 하나 설치합니다."}, -- Best Friend
 	{"137", "원격 폭파기", "↑ {{Bomb}}폭탄 +5#폭탄이 아이템 사용 전까지 터지지 않습니다."}, -- Remote Detonator
 	{"138", "성흔", "↑ {{Heart}}최대 체력 +1#↑ {{DamageSmall}}공격력 +0.3"}, -- Stigmata
@@ -422,7 +421,7 @@ EID.descriptions[languageCode].collectibles={
 	{"359", "8인치 대못", "↑ {{DamageSmall}}공격력 +1.5#공격이 적을 더 강하게 밀쳐냅니다."}, -- 8 Inch Nails
 	{"360", "인큐버스", "공격방향으로 캐릭터의 공격과 같은 공격을 발사합니다."}, -- Incubus
 	{"361", "운명의 보상", "공격방향으로 캐릭터의 눈물과 같은 눈물을 발사합니다."}, -- Fate's Reward
-	{"362", "꼬마 상자", "방 클리어 시 35% 확률로 픽업 또는 10% 확률로 장신구를 드랍합니다."}, -- Lil Chest
+	{"362", "꼬마 상자", "방 클리어 시 25% 확률로 픽업 또는 10% 확률로 장신구를 드랍합니다."}, -- Lil Chest
 	{"363", "맹세한 수호자", "캐릭터 주위를 돌며 적의 탄환을 막아줍니다.#접촉한 적에게 초당 105의 피해를 줍니다.#{{EternalHeart}} 그 방에서 탄환 10회 방어시 이터널하트를 하나 드랍합니다."}, -- Sworn Protector
 	{"364", "사랑과 우정 사이", "캐릭터 주변을 돌며 접촉하는 적에게 초당 45의 피해를 줍니다."}, -- Friend Zone
 	{"365", "길잃은 파리", "벽과 장애물 둘레를 돌며 접촉하는 적에게 초당 105의 피해를 줍니다."}, -- Lost Fly

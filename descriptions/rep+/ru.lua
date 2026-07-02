@@ -29,13 +29,219 @@ EID:updateDescriptionsViaTable(collectibles, EID.descriptions[languageCode].coll
 ---------- Trinkets ----------
 
 local trinkets = {
-	[53] = {"53", "Клещ", "-15% здоровья Босса#Лечит на 1 сердце, когда вы заходите в {{BossRoom}}Комнату Боссом#{{Warning}} После взятия не может быть сброшен#Может быть удалён {{Trinket41}} Спичкой,  {{Trinket135}} Зажигалкой или проглочен"}, -- Tick
+	[5] = {"5", "Пурпурное сердце", "Шанс появления чемпионов увеличен в 2 раза#Шанс 50%, что из чемпионов выпадет лут#Весь лут с чемпионов удваивается"}, -- Purple Heart
+	[7] = {"7", "Бусинка от четок", "{{AngelChance}} +50% к шансу Комнаты Ангела#{{Collectible33}} Повышает шанс найти Библию в {{Shop}}Магазине и {{Library}}Библиотеке#Заменяет {{DevilChance}}Сделки с Дьяволом на {{AngelChance}}Сделки с Ангелом"}, -- Rosary Bead
+	[16] = {"16", "Ноготь мамы", "{{MomBoss}} Если сбросить брелок в комнате с врагами, Нога Мамы раздавит это место"}, -- Mom's Toenail
+	[23] = {"23", "Плакат о пропавшем без вести", "{{Player10}} Возрождает за Потерянного после смерти#{{SuperSecretRoom}} 33% шанс открыть Суперсекретную комнату на новом этаже"}, -- Missing Poster
+	[53] = {"53", "Клещ", "-15% здоровья Босса#Лечит на 1 сердце, когда вы заходите в {{BossRoom}}Комнату с Боссом#{{Warning}} После взятия не может быть сброшен#Может быть удалён {{Trinket41}} Спичкой, {{Trinket135}} Зажигалкой или проглочен"}, -- Tick
+	[66] = {"66", "Ленивый червь", "↑ {{Damage}} +0.5 урона#↓ {{Shotspeed}} -0.5 скорости полета"}, -- Lazy Worm
+	[70] = {"70", "Вошь", "Создаёт синюю муху каждые 30 секунд в комнате с врагами#Создаёт синюю муху при зачистке комнаты"}, -- Louse
+	[76] = {"76", "Фишка для покера", "↑ 50% шанс получить доп. лут из сундуков#↓ 50% шанс, что в сундуке будет всего одна муха#Повышает шансы на выплату в автоматах#Заменяет плохие предметы из сундуков на более качественные#Иногда в сундуках могут быть предметы из других пулов"}, -- Poker Chip
+	[85] = {"85", "Карма", "{{DonationMachine}} При использовании автомата пожертвований есть 33% шанс на:#{{HealingRed}} Лечение на 1 сердце (40%)#{{Coin}} +1 монета (40%)#{{Luck}} +1 удачи (15%)#{{Beggar}} Спавн попрошайки (5%)#Автоматы реже взрываются#Также влияет на попрошаек и автоматы пополнения"}, -- Karma
+	[89] = {"89", "Детский поводок", "Фамильяры держатся ближе к персонажу#{{Damage}} Урон фамильяров увеличен на 25%"}, -- Child Leash
+	[93] = {"93", "Использованный подгузник", "33% шанс, что все враждебные мухи станут союзными#Создаёт 1 синюю муху при входе в новую комнату"}, -- Used Diaper
 	[97] = {"97", "Миндалина", "Создает фамильяра после получения урона 6 - 12 раз#Может сработать дважды, после чего исчезнет"}, -- Tonsil
-	[133] = {"133", "Короткий запал", "Бомбы, заложенные персонажем, наносят на 15% больше урона и взрываются быстрее"}, --  Short Fuse
+	[99] = {"99", "Супер мяч", "Шанс 10% выстрелить рикошетящими слезами#{{Luck}} Шанс 100% при 18 удачи"}, -- Super Ball
+	[103] = {"103", "Равенство!", "Если количество {{Coin}}монет, {{Bomb}}бомб и {{Key}}ключей равно:#↑ {{Tears}} +2 к скорострельности#Превращает одиночные расходники в двойные"}, -- Equality!
 	[104] = {"104", "Кость желаний", "С шансом 5% создает предмет на пьедестале при получении урона#После чего исчезает"}, -- Wish Bone
 	[105] = {"105", "Пакет с обедом", "С шансом 5% создает предмет {{Collectible22}} при получении урона#После чего исчезает"}, -- Bag Lunch
+	[133] = {"133", "Короткий запал", "Бомбы, заложенные персонажем, наносят на 15% больше урона и взрываются быстрее"}, -- Short Fuse
+	[135] = {"135", "Зажигалка", "{{Burning}} При входе в комнату есть 20% шанс поджечь случайных врагов#{{Warning}} Удаляет брелок {{Trinket53}} Клещ"}, -- A Lighter
+	[172] = {"172", "Проклятый пенни", "При поднятии монеты телепортирует в случайную комнату#Может телепортировать в секретные комнаты#Тип монеты влияет на тип комнаты, в которую вас телепортирует"}, -- Cursed Penny
 }
 EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets)
+
+------- Golden Trinkets -------
+
+local goldenTrinketEffects = {
+[5] = { 2, 3, 4, 50, 66, 75 }, -- Purple Heart
+	[14] = { "{{SacrificeRoom}} Снижает урон от шипов в комнате жертвоприношений до половины сердца", "{{Collectible108}} Снижает почти любой входящий урон до половины сердца" }, -- Callus
+	[16] = { "место", "{{CR}}место {{ColorGold}}дважды", "{{CR}}место {{ColorGold}}3 раза" }, -- Mom's Toenail
+	[19] = { "Золотые сундуки", "{{CR}}Золотые сундуки {{ColorGold}}и камни со замком", "{{CR}}Золотые сундуки, {{ColorGold}}камни со замком и запертые двери" }, -- Paper Clip
+	[21] = { "эффекта", "{{ColorGold}}двух{{CR}} из следующих эффектов", "{{ColorGold}}двух{{CR}} из следующих эффектов" }, -- Mysterious Paper
+	[22] = { "{{BlackHeart}} Из синих и фиолетовых костров теперь могут выпадать чёрные сердца" }, -- Daemon's Tail
+	[28] = { 22, 33, 50 }, -- Broken Ankh
+	[33] = { "половина", "целое сердце", "полтора сердца" }, -- Umbilical Cord
+	[34] = { 10, 20, 50, 33, 66, 100 }, -- Child's Heart
+	[36] = { 10, 20, 50, 33, 66, 100 }, -- Rusted Key
+	[41] = { 10, 20, 50, 33, 66, 100 }, -- Match Stick
+	[43] = { "При получении урона, если осталось полсердца или меньше, Исаак телепортируется в {{ColorGold}}особую{{CR}} комнату", "При получении урона, если осталось {{ColorGold}}одно сердце{{CR}} или меньше, Исаак телепортируется в {{ColorGold}}особую{{CR}} комнату" }, -- Cursed Skull
+	[44] = { 10, 20, 50, 33, 66, 100 }, -- Safety Cap
+	[45] = { 10, 20, 50, 33, 66, 100 }, -- Ace of Spades
+	[52] = { "монетка", "{{ColorGold}}2{{CR}} монетки", "{{ColorGold}}3{{CR}} монетки" }, -- Counterfeit Penny
+	[53] = { "{{HealingRed}} Восполняет {{ColorGold}}2{{CR}} сердца при входе к {{BossRoom}} боссу#-{{ColorGold}}30{{CR}}% здоровья босса#{{ColorGold}}Можно снять!", "{{HealingRed}} Восполняет {{ColorGold}}2{{CR}} сердца при входе к {{BossRoom}} боссу#-{{ColorGold}}30{{CR}}% здоровья босса#{{Warning}} После поднятия нельзя снять#Снимается только с помощью {{Trinket41}} Спичек, {{Trinket135}} Зажигалки или поглощения", "{{HealingRed}} Восполняет {{ColorGold}}3{{CR}} сердца при входе к {{BossRoom}} боссу#-{{ColorGold}}30{{CR}}% здоровья босса#{{ColorGold}}Можно снять!" }, -- Tick
+	[54] = { "3.5 урона", "урон Исаака", "1.5x урон Исаака" }, -- Isaac's Head
+	[56] = { "{{DevilRoom}} Снижает {{ColorGold}}все{{CR}} цены сделок с Дьяволом до 1 контейнера", "{{DevilRoom}} Снижает {{ColorGold}}все{{CR}} цены сделок с Дьяволом до 1 контейнера#{{ColorGold}}Гарантирует выплату с шипов самопожертвования с первой попытки" }, -- Judas' Tongue
+	[57] = { "спутник", "{{CR}}Даёт {{ColorGold}}2{{CR}} спутников", "{{CR}}Даёт {{ColorGold}}3{{CR}} спутников" }, -- ???'s Soul
+	[58] = { 6.66, 13, 25 }, -- Samson's Lock
+	[61] = { "{{RedChest}} Красные сундуки теперь содержат больше ценного лута", "{{RedChest}} Красные сундуки теперь содержат больше ценного лута#{{ColorGold}}Из красных сундуков больше не появляются пауки" }, -- The Left Hand
+	[62] = { "Люки, отмеченные камни {{ColorGold}}и секретные двери{{CR}} мерцают каждые 10 секунд", "Люки, отмеченные камни {{ColorGold}}и секретные двери{{CR}} мерцают каждые {{ColorGold}}5{{CR}} секунд" }, -- Shiny Rock
+	[63] = { "Уменьшает радиус вражеских взрывов", "Значительно уменьшает радиус вражеских взрывов" }, -- Safety Scissors
+	[68] = { "расходники и врагов", "{{CR}}расходники, врагов, {{ColorGold}}мешки и брелоки", "{{CR}}расходники, врагов, {{ColorGold}}мешки, брелоки и сундуки" }, -- Super Magnet
+	[70] = { "синего паука", "2{{CR}} синих пауков", "3{{CR}} синих пауков" }, -- Louse
+	[71] = { "Увеличивает размер лужи", "Увеличивает размер и время жизни лужи" }, -- Bob's Bladder
+	[76] = { "{{Slotmachine}} Удваивает выплаты игровых автоматов", "{{Slotmachine}} Утраивает выплаты игровых автоматов" }, -- Poker Chip
+	[83] = { "{{Shop}} Убирает плохие планировки магазинов", "{{Shop}} Улучшает планировку магазинов" }, -- Store Key
+	[84] = { "{{Coin}} Повышен шанс появления двойных, пятаков и золотых монет" }, -- Rib of Greed
+	[85] = { "1 удачи", "2{{CR}} удачи", "3{{CR}} удачи" }, -- Karma
+	[87] = { "полсердца", "целое сердце", "полтора сердца" }, -- Mom's Locket
+	[91] = { 33, 66, 100, 5, 7, 10 }, -- Meconium
+	[93] = { "1 синюю муху", "2{{CR}} синие мухи", "3{{CR}} синие мухи" }, -- Used Diaper
+	[94] = { "20% шанс создать 3 синих мухи или паука", "20% шанс создать 4 синих мухи или паука" }, -- Fish Tail
+	[97] = { "2 фамильяра", "3{{CR}} фамильяра", "4{{CR}} фамильяра" }, -- Tonsil
+	[98] = { "{{ColorGold}}20{{CR}}% шанс выстрелить козявкой#{{ColorGold}}75{{CR}}% шанс самонаведения#{{Damage}} Козявки наносят ваш урон раз в сек.#Держатся 10 сек.", "{{ColorGold}}30{{CR}}% шанс выстрелить {{ColorGold}}самонаводящейся{{CR}} козявкой#{{Damage}} Козявки наносят ваш урон раз в сек.#Держатся 10 сек." }, -- Nose Goblin
+	[102] = { "{{SecretRoom}} Открывает одну секретную комнату", "{{SecretRoom}} Открывает обе секретные комнаты" }, -- Fragmented Card
+	[106] = { "Увеличивает", "Значительно{{CR}} увеличивает" }, -- Lost Cork
+	[107] = { "{{AngelDevilChance}} 25% шанс сохранить вероятность сделки при потере красных сердец", "{{AngelDevilChance}} 50% шанс сохранить вероятность сделки при потере красных сердец" }, -- Crow Heart
+	[108] = { "случайное {{UnknownHeart}} сердце, {{Coin}} монету, {{Key}} ключ и {{Trinket}} брелок", "2{{CR}} случайных {{UnknownHeart}} сердца, {{Coin}} монеты, {{Key}} ключа и {{Trinket}} брелока", "3{{CR}} случайных {{UnknownHeart}} сердца, {{Coin}} монеты, {{Key}} ключа и {{Trinket}} брелока" }, -- Walnut
+	[109] = { "Нажатие ctrl меняет положение фамильяров" }, -- Duct Tape
+	[110] = { "Магазины", "Улучшенные магазины" }, -- Silver Dollar
+	[111] = { "Дают выбор из 2-х предметов" }, -- Bloody Crown
+	[112] = { "{{RestockMachine}} Автоматы пополнения реже взрываются" }, -- Pay To Win
+	[113] = { "взрывную муху", "2{{CR}} взрывные мухи", "3{{CR}} взрывные мухи" }, -- Locust of War
+	[114] = { "ядовитую муху", "2{{CR}} ядовитые мухи", "3{{CR}} ядовитые мухи" }, -- Locust of Pestilence
+	[115] = { "замедляющую муху", "2{{CR}} замедляющие мухи", "3{{CR}} замедляющие мухи" }, -- Locust of Famine
+	[116] = { "боевую муху", "2{{CR}} боевые мухи", "3{{CR}} боевые мухи" }, -- Locust of Death
+	[117] = { "{{CR}}При входе в комнату создаёт {{ColorGold}}2-5{{CR}} боевых мух#Каждая наносит 2x вашего урона", "{{CR}}При входе в комнату создаёт {{ColorGold}}3-7{{CR}} боевых мух#Каждая наносит 2x вашего урона" }, -- Locust of Conquest
+	[119] = { "половину", "всё" }, -- Stem Cell
+	[120] = { "полностью заряжает", "сверхзаряжает" }, -- Hairpin
+	[121] = { "щит", "2{{CR}} щита" }, -- Wooden Cross
+	[123] = { "Ангелы также дают пол-синего сердца", "Ангелы также дают синее сердце" }, -- Filigree Feather
+	[124] = { "Держит дверь в Босс раш открытой", "Держит двери в Босс раш и комнаты испытаний открытыми" }, -- Door Stop
+	[126] = { "синюю муху", "2{{CR}} синие мухи", "3{{CR}} синие мухи" }, -- Rotten Penny
+	[127] = { "Также даёт эффект {{Trinket144}} Мозгового червя", "Также даёт эффекты {{Trinket144}} Мозгового червя и {{Trinket65}} Ленточного червя" }, -- Baby-Bender
+	[131] = { 17, 25, 30 }, -- Blessed Penny
+	[133] = { 15, 30, 50 }, -- Short Fuse
+	[134] = { "Усиливает отталкивание газов", "Усиливает отталкивание газов#{{ColorGold}}Газы оглушают врагов на 3 сек." }, -- Gigante Bean
+	[136] = { "сундуки", "{{CR}}сундуки, {{ColorGold}}аркады и комнаты испытаний", "{{CR}}сундуки, {{ColorGold}}аркады, комнаты испытаний и комнаты боссов" }, -- Broken Padlock
+	[138] = { "10% шанс полностью зарядить предмет при реролле", "20% шанс полностью зарядить предмет при реролле" }, -- 'M
+	[140] = { "красные сердца", "любые {{CR}}сердца" }, -- Apple of Sodom
+	[144] = { "25% шанс выстрелить пронзающими слезами", "50% шанс выстрелить пронзающими слезами" }, -- Brain Worm
+	[146] = { "{{Trinket174}} 25% шанс улучшить красную сокровищницу", "{{Trinket174}} 33% шанс улучшить красную сокровищницу" }, -- Devil’s Crown
+	[147] = { "1 заряд", "2{{CR}} заряда", "3{{CR}} заряда" }, -- Charged Penny
+	[148] = { "Ускоряет вращение фамильяров", "Значительно ускоряет вращение фамильяров" }, -- Friendship Necklace
+	[149] = { "10% шанс бесплатного использования активного предмета", "20% шанс бесплатного использования активного предмета" }, -- Panic Button
+	[150] = { "Удваивает награды в синих комнатах", "Утраивает награды в синих комнатах" }, -- Blue Key
+	[151] = { "Также влияет на Боссов с шипами и шипастые шары" }, -- Flat File
+	[152] = { "{{PlanetariumChance}} +18{{CR}}% шанс Планетария#+15% если ещё не посещался#Могут появиться в Матке и Трупе", "{{PlanetariumChance}} +33{{CR}}% шанс Планетария#+15% если ещё не посещался#Могут появиться в Матке, Трупе, {{ColorGold}}Шеоле и Соборе" }, -- Telescope Lens
+	[155] = { "{{CR}}Добавляет сокровищницу и {{ColorGold}}улучшенный{{CR}} магазин в Соборе#{{ColorGold}}Даёт выбор из 2-х предметов в сокровищнице Собора", "{{CR}}Добавляет сокровищницу и {{ColorGold}}улучшенный{{CR}} магазин в Соборе#{{ColorGold}}Даёт выбор из 2-х предметов#{{ColorGold}}Показывает их расположение на карте" }, -- Holy Crown
+	[157] = { 15, 10, 5 }, -- Torn Card
+	[159] = { "{{GoldenChest}} Заменяет почти все сундуки на золотые#{{GoldenChest}} Могут содержать доп. карты, таблетки или брелоки#{{GoldenChest}} {{ColorGold}}+10% шанс сундука за зачистку", "{{Key}} +1 Ключ#{{GoldenChest}} Заменяет почти все сундуки на золотые#{{GoldenChest}} Содержат доп. лут#{{GoldenChest}} {{ColorGold}}+10% шанс сундука за зачистку", "{{GoldenChest}} Заменяет почти все сундуки на золотые#{{GoldenChest}} Содержат доп. лут#{{GoldenChest}} {{ColorGold}}+20% шанс сундука за зачистку" }, -- Gilded Key
+	[161] = { "{{CR}}Добавляет сокровищницу и {{ColorGold}}улучшенный{{CR}} магазин в Шеоле#{{ColorGold}}Даёт выбор из 2-х предметов в сокровищнице Шеола", "{{CR}}Добавляет сокровищницу и {{ColorGold}}улучшенный{{CR}} магазин в Шеоле#{{ColorGold}}Даёт выбор из 2-х предметов#{{ColorGold}}Показывает их расположение на карте" }, -- Wicked Crown
+	[165] = { "+10% шанс двойных расходников", "+20% шанс двойных расходников" }, -- Nuh Uh!
+	[171] = { "{{DevilRoom}} Сделки с Дьяволом всегда стоят монеты", "{{DevilRoom}} Сделки с Дьяволом всегда стоят монеты#{{ColorGold}}Повышает шанс распродаж в сделке" }, -- Keeper’s Bargain
+	[172] = { "Повышает шанс телепорта в особую комнату" }, -- Cursed Penny
+	[173] = { "10% шанс не поглотить брелок", "20% шанс не поглотить брелок" }, -- Your Soul
+	[175] = { "Всегда открывает проход к Хашу#{{Collectible297}} Ящик Пандоры даёт {{ColorGold}}8{{CR}} предметов и поглощает ключ#{{ColorGold}}Сундуки и двери открываются без ключей на этаже Хаша", "Всегда открывает проход к Хашу#{{Collectible297}} Ящик Пандоры даёт {{ColorGold}}10{{CR}} предметов и поглощает ключ#{{ColorGold}}Сундуки и двери открываются без ключей на этаже Хаша" }, -- Strange Key
+	[177] = { "Повышает случайный стат за комнату испытаний", "Повышает 2 случайных стата за комнату испытаний" }, -- Temporary Tattoo
+	[179] = { "Фамильяры наносят 2 конт. урона", "Фамильяры наносят 5 конт. урона" }, -- RC Remote
+	[181] = { "Использование активного предмета вызывает эффекты {{ColorGold}}2{{CR}} доп. предметов (1-2 заряда)", "Использование активного предмета вызывает эффекты {{ColorGold}}2{{CR}} доп. предметов (1-2 заряда)#{{ColorGold}}Также вызывает эффект предмета с 3 зарядами" }, -- Expansion Pack
+	[182] = { "50% шанс на особые огоньки#{{ColorGold}}Попрошайки также создают особые огоньки", "100% шанс на особые огоньки#{{ColorGold}}Попрошайки также создают особые огоньки" }, -- Beth’s Essence
+	[184] = { "Фамильяры всегда со скидкой", "Фамильяры со скидкой#{{Card92}} {{ColorGold}}В магазинах появляется «Душа Лилит»" }, -- Adoption Papers
+	[189] = { "1 секунду", "1.5 {{CR}}секунды", "2 {{CR}}секунды" }, -- Sigil of Baphomet
+}
+EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
+
+----- Golden Trinkets Data -----
+
+local goldenTrinketData = {
+[5] = {findReplace = true}, -- Purple Heart
+[14] = {append = true}, -- Callus
+[16] = {findReplace = true}, -- Mom's Toenail
+[19] = {findReplace = true}, -- Paper Clip
+[21] = {findReplace = true}, -- Mysterious Paper
+[22] = {append = true}, -- Daemon's Tail
+[28] = {findReplace = true}, -- Broken Ankh
+[33] = {findReplace = true}, -- Umbilical Cord
+[34] = {findReplace = true}, -- Child's Heart
+[36] = {findReplace = true}, -- Rusted Key
+[41] = {findReplace = true}, -- Match Stick
+[43] = {fullReplace = true}, -- Cursed Skull
+[44] = {findReplace = true}, -- Safety Cap
+[45] = {findReplace = true}, -- Ace of Spades
+[52] = {findReplace = true}, -- Counterfeit Penny
+[53] = {fullReplace = true}, -- Tick
+[54] = {findReplace = true}, -- Isaac's Head
+[56] = {fullReplace = true}, -- Judas' Tongue
+[57] = {findReplace = true}, -- ???'s Soul
+[58] = {findReplace = true}, -- Samson's Lock
+[61] = {append = true}, -- The Left Hand
+[62] = {fullReplace = true}, -- Shiny Rock
+[63] = {append = true}, -- Safety Scissors
+[68] = {findReplace = true}, -- Super Magnet
+[70] = {findReplace = true}, -- Louse
+[71] = {append = true}, -- Bob's Bladder
+[76] = {append = true}, -- Poker Chip
+[83] = {append = true}, -- Store Key
+[84] = {append = true}, -- Rib of Greed
+[85] = {findReplace = true}, -- Karma
+[87] = {findReplace = true}, -- Mom's Locket
+[91] = {findReplace = true}, -- Meconium
+[93] = {findReplace = true}, -- Used Diaper
+[94] = {append = true}, -- Fish Tail
+[97] = {findReplace = true}, -- Tonsil
+[98] = {fullReplace = true}, -- Nose Goblin
+[102] = {append = true}, -- Fragmented Card
+[106] = {append = true}, -- Lost Cork
+[107] = {append = true}, -- Crow Heart
+[108] = {findReplace = true}, -- Wallnut
+[109] = {append = true}, -- Duct Tape
+[110] = {findReplace = true}, -- Silver Dollar
+[111] = {append = true}, -- Bloody Crown
+[112] = {append = true}, -- Pay To Win
+[113] = {findReplace = true}, -- Locust of War
+[114] = {findReplace = true}, -- Locust of Pestilence
+[115] = {findReplace = true}, -- Locust of Famine
+[116] = {findReplace = true}, -- Locust of Death
+[117] = {fullReplace = true}, -- Locust of Conquest
+[119] = {findReplace = true}, -- Stem Cell
+[120] = {findReplace = true}, -- Hairpin
+[121] = {findReplace = true}, -- Wooden Cross
+[123] = {append = true}, -- Filigree Feather
+[124] = {append = true}, -- Door Stop
+[126] = {findReplace = true}, -- Rotten Penny
+[127] = {append = true}, -- Baby-Bender
+[131] = {findReplace = true}, -- Blessed Penny
+[133] = {findReplace = true}, -- Short Fuse
+[134] = {append = true}, -- Gigante Bean
+[136] = {findReplace = true}, -- Broken Padlock
+[138] = {append = true}, -- 'M
+[140] = {findReplace = true}, -- Apple of Sodom
+[144] = {append = true}, -- Brain Worm
+[146] = {append = true}, -- Devil’s Crown
+[147] = {findReplace = true}, -- Charged Penny
+[148] = {append = true}, -- Friendship Necklace
+[149] = {append = true}, -- Panic Button
+[150] = {append = true}, -- Blue Key
+[151] = {append = true}, -- Flat File
+[152] = {fullReplace = true}, -- Telescope Lens
+[155] = {fullReplace = true}, -- Holy Crown
+[157] = {findReplace = true}, -- Torn Card
+[159] = {fullReplace = true}, -- Gilded Key
+[161] = {fullReplace = true}, -- Wicked Crown
+[165] = {append = true}, -- Nuh Uh!
+[171] = {fullReplace = true}, -- Keeper’s Bargain
+[172] = {append = true}, -- Cursed Penny
+[173] = {append = true}, -- Your Soul
+[175] = {fullReplace = true}, -- Strange Key
+[177] = {append = true}, -- Temporary Tattoo
+[179] = {append = true}, -- RC Remote
+[181] = {fullReplace = true}, -- Expansion Pack
+[182] = {append = true}, -- Beth’s Essence
+[184] = {append = true}, -- Adoption Papers
+[189] = {findReplace = true}, -- Sigil of Baphomet
+}
+EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode].goldenTrinketData)
+
+---------- Cards----------
+
+local cards = {
+	[11] = { "11", "X - Колесо Фортуны", "{{Slotmachine}} Создаёт игровой автомат#{{FortuneTeller}} Шанс 24% на появление автомата предсказаний#{{CraneGame}} Шанс 1% на появление кран-автомата" },
+	[32] = { "32", "Хагалаз", "Уничтожает все камни и каменных врагов в комнате" },
+	[38] = { "38", "Беркано", "{{Collectible706}} Призывает 3 саранчи до конца зачистки комнаты" },
+}
+
+EID:updateDescriptionsViaTable(cards, EID.descriptions[languageCode].cards)
 
 ---------- Conditions ----------
 EID.descriptions[languageCode].ConditionalDescs["5.100.566"] = nil -- Dream Catcher (Greed) - In Rep+, the dream preview works in greed mode as well, so no changes needed

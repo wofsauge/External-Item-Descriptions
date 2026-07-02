@@ -1,6 +1,6 @@
 local game = Game()
 local modTextsAdded = 0
-local function newModdedCondition(text, language)
+function newModdedCondition(text, language)
 	if text == nil then return nil end
 	modTextsAdded = modTextsAdded + 1
 	EID:CreateDescriptionTableIfMissing("ConditionalDescs", language)
@@ -41,6 +41,21 @@ function EID:addSynergyCondition(ID1, ID2, text1, text2, language, extraTable)
 	local modifierText1 = newModdedCondition(text1, language)
 	local modifierText2 = newModdedCondition(text2, language)
 	EID:AddSynergyConditional(ID1, ID2, modifierText1, modifierText2, extraTable)
+end
+
+-- Shortcut function for when you see a second copy of an item you already own (so it can say no effect or unique effects)
+-- It will not show while in the Item Reminder, as that would be silly
+-- ownedID can be a collectible ID or a full item string (like "5.350.54")
+-- The text will be added as a new line, with the owned item's icon at the start
+-- By default, the text will also be shown while holding Diplopia/Crooked Penny
+-- Optional parameters: language, extraTable, includeDiplopiaCrooked
+-- Example usage: EID:addSelfConditional(myUselessIfDupedItemID, "No effect from multiple copies")
+function EID:addSelfCondition(ownedID, text, language, extraTable, includeDiplopiaCrooked)
+	language = language or EID.DefaultLanguageCode
+	if includeDiplopiaCrooked == nil then includeDiplopiaCrooked = true end
+	local modifierText = newModdedCondition(text, language)
+	if includeDiplopiaCrooked then EID:AddItemConditional(ownedID, {ownedID, 347, 485}, modifierText, extraTable, false)
+	else EID:AddItemConditional(ownedID, ownedID, modifierText, extraTable, false) end
 end
 
 -- Function for adding text to a pedestal's description when you're playing a specific character

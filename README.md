@@ -20,7 +20,7 @@ This version is designed to be used with the Afterbirth+ and Repentance DLCs.
 - **Press F2 to hide/show the descriptions!**
 
 ## Supported Languages
-Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian, Vietnamese
+Chinese, Czech, Dutch, English, French, German, Italian, Japanese, Korean, Polish, Portuguese, Russian, Romanian, Spanish, Brazilian-Portuguese, Turkish, Ukrainian, Vietnamese
 
 ## Versions
 There are multiple Versions of the mod, depending on which DLCs you have installed. You are currently looking at the version for Afterbirth+ and Repentance.
@@ -34,7 +34,7 @@ For **Steam users**, simply press the "Subscribe" button on the mod's Steam Work
 For **manual mod installation** or **installation trouble shooting**, read this tutorial "[How to install the mod](https://github.com/wofsauge/External-Item-Descriptions/wiki/How-to-install-the-mod)"
 ## Configuration
 
-Simply install &quot;[Mod Config Menu - Pure](https://steamcommunity.com/sharedfiles/filedetails/?id=2681875787)&quot;. You can use it to configure the mod while playing.
+Simply install &quot;[Mod Config Menu - Impure](https://steamcommunity.com/sharedfiles/filedetails/?id=3701683951)&quot;. You can use it to configure the mod while playing.
 
 Alternatively, edit the `eid_config.lua` file like described [here.](https://github.com/wofsauge/External-Item-Descriptions/wiki/Edit-the-configuration-manually)
 

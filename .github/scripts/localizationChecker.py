@@ -137,7 +137,7 @@ for dlc in dlcs:
         langFiles += glob.glob(SOURCE_MOD_DIRECTORY+"/**/"+dlc+"/*.lua", recursive=True)
     # Read other language files
     for file in langFiles:
-        if "en_us" not in file and "transformations" not in file:
+        if "en_us" not in file and "transformations" not in file and "item_data" not in file:
             languageCode = os.path.basename(file).replace(".lua","")
             print("reading:",file)
             addUpdatedTables(languageCode, dlc)

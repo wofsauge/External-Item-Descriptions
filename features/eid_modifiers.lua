@@ -141,6 +141,29 @@ local function BlackRuneCallback(descObj)
 	return VoidCallback(descObj, true)
 end
 
+local function RandomStatIncreaseCallback(descObj)
+	for i = 1, #EID.coopAllPlayers do
+		local player = EID.coopAllPlayers[i]
+		-- only add description for relevant players
+		if not EID.InsideItemReminder or (EID.InsideItemReminder and EID.ItemReminderPlayerEntity == player) then
+			local playerID = player:GetPlayerType()
+			EID:appendToDescription(descObj, "#"..EID:GetPlayerIcon(playerID) .. " {{ColorIsaac}}"..player:GetName().."{{CR}}#")
+
+			if descObj.ObjSubType == 240 then
+				-- Experimental Treatment
+				local itemDataTable = EID:ExperimentalTreatmentRNGCheck(player)
+				EID:appendToDescription(descObj, EID:GenerateDescriptionFromStatTable(itemDataTable))
+			else
+				-- Dataminer
+				local itemDataTable = EID:DataminerRNGCheck(player)
+				EID:appendToDescription(descObj, EID:GenerateDescriptionFromStatTable(itemDataTable))
+			end
+		end
+	end
+
+	return descObj
+end
+
 -- Map each text block of Pandora's Box to the AbsoluteStage number. Second entry is the block used for Alt-Stages
 local pandoraStages = {
 	[1] = { 1, 1 }, -- B1
@@ -1172,8 +1195,8 @@ if EID.isRepentance then
 	
 				-- damage multiplier based on proc chance
 				if damageMultiplier2 ~= 1 then
-					local damageText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"), damageMultiplier2)
-					descriptionText = descriptionText .. "#" .. textColor .. damageText2 .. GetChanceString(2, procChance, procChance, 0)
+					local damageText2 = EID:ReplaceVariableStr(EID:getDescriptionEntry("BookOfVirtuesWispTexts", "Damage"), damageMultiplier2 * 100)
+					descriptionText = descriptionText .. "#{{Damage}} " .. textColor .. damageText2 .. GetChanceString(2, procChance, procChance, 0)
 				end
 				-- create list of tear effect descriptions
 				descriptionText = descriptionText .. GetFlagString(1, "TearFlagNames", "{{Shotspeed}} " .. textColor, tearFlags, procChance, procChance)
@@ -1301,6 +1324,10 @@ local function EIDConditionsAB(descObj)
 		if EID.Config["DisplayVoidStatInfo"] then
 			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
 			if EID.collectiblesOwned["5.300.41"] then table.insert(callbacks, BlackRuneCallback) end
+		end
+		if EID.Config["ItemReminderShowRNGCheats"] then
+			if descObj.ObjSubType == 240 then table.insert(callbacks, RandomStatIncreaseCallback) end
+			if descObj.ObjSubType == 481 then table.insert(callbacks, RandomStatIncreaseCallback) end
 		end
 		
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
