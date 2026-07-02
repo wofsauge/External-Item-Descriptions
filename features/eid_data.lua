@@ -1176,10 +1176,60 @@ EID.BlackFeatherTrinkets = { [17] = true, [22] = true }
 
 -- Luck formulas
 EID.LuckFormulas = {}
-EID.LuckFormulas["5.100.219"] = function(luck) return math.min(100 / (10 - math.floor(luck*0.3)), 50) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
+EID.LuckFormulas["5.100.55"] = function(luck) return (100 / math.max(1, (2 - math.floor(luck*0.5)))) end -- Mom's Eye: Base 50%, 100% at 2 Luck
+EID.LuckFormulas["5.100.87"] = function(luck) return (100 / math.max(1, (8 - math.floor(luck)))) end -- Loki's Horns: Base 12.5%, 100% at 7 Luck
+EID.LuckFormulas["5.100.89"] = function(luck) return (100 / math.max(1, (4 - math.floor(luck/5)))) end -- Spider Bite: Base 25%, 100% at 15 Luck
+EID.LuckFormulas["5.100.103"] = function(luck) return (100 / math.max(1, (4 - math.floor(luck/4)))) end -- The Common Cold: Base 25%, 100% at 12 Luck
+EID.LuckFormulas["5.100.110"] = function(luck) return (100 / math.max(2, (5 - math.floor(luck*0.15)))) end -- Mom's Contacts: Base 20%, 50% at 20 Luck
+EID.LuckFormulas["5.100.150"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck)))) end -- Tough Love: Base 10%, 100% at 9 Luck
+EID.LuckFormulas["5.100.162"] = function(luck) return (100 / math.max(1, (5 - math.floor(luck*0.15)))) end -- Celtic Cross: Base 20%, 100% at 26.67 Luck
+EID.LuckFormulas["5.100.200"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck/3)))) end -- Mom's Eyeshadow: Base 10%, 100% at 27 Luck
+EID.LuckFormulas["5.100.201"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck/3)))) end -- Iron Bar: Base 10%, 100% at 27 Luck
+EID.LuckFormulas["5.100.217"] = function(luck) return (100 / math.max(1, (20 - math.floor(luck*2)))) end -- Mom's Wig: Base 5%, 100% at 9.5 Luck
+EID.LuckFormulas["5.100.219"] = function(luck) return (100 / math.max(2, (10 - math.floor(luck*0.3)))) end -- Old Bandage: Base 10%, 50% at 26.67 Luck
+EID.LuckFormulas["5.100.225"] = function(luck) return (100 / math.max(2, (10 - math.floor(luck*0.4)))) end -- Gimpy: Base 10%, 50% at 20 Luck
+EID.LuckFormulas["5.100.228"] = function(luck) return (1500 / math.max(15, (100 - math.floor(luck)))) end -- Mom's Perfume: Base 15%, 100% at 85 Luck
+EID.LuckFormulas["5.100.230"] = function(luck) return (1500 / math.max(15, (100 - math.floor(luck)))) end -- Abaddon: Base 15%, 100% at 85 Luck
+EID.LuckFormulas["5.100.231"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Ball of Tar: Base 10%, 100% at 18 Luck
+EID.LuckFormulas["5.100.257"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.7)))) end -- Fire Mind: Base 10%, 100% at 12.86 Luck
+EID.LuckFormulas["5.100.259"] = function(luck) return (100 / math.max(1, (3 - math.floor(luck*0.1)))) end -- Dark Matter: Base 33.3%, 100% at 20 Luck
+EID.LuckFormulas["5.100.303"] = function(luck) return (100 / math.max(1, (4 - math.floor(luck*0.3)))) end -- Virgo: Base 25%, 100% at 10 Luck
+EID.LuckFormulas["5.100.374"] = function(luck) return (100 / math.max(2, (10 - math.floor(luck*0.9)))) end -- Holy Light: Base 10%, 50% at 8.89 Luck
+EID.LuckFormulas["5.100.410"] = function(luck) return (100 / math.max(10, (30 - math.floor(luck)))) end -- Evil Eye: Base 3.33%, 10% at 20 Luck
+EID.LuckFormulas["5.100.443"] = function(luck) return (100 / math.max(1, (15 - math.floor(luck)))) end -- Apple!: Base 6.66%, 100% at 14 Luck
+EID.LuckFormulas["5.100.461"] = function(luck) return (100 / math.max(2, (7 - math.floor(luck)))) end -- Parasitoid: Base 14.3%, 50% at 5 Luck
+EID.LuckFormulas["5.100.496"] = function(luck) return (100 / math.max(1, (30 - math.floor(luck*2)))) end -- Euthanasia: Base 3.33%, 100% at 14.5 Luck
+EID.LuckFormulas["5.100.503"] = function(luck) return (100 / math.max(5, (20 - math.floor(luck)))) end -- Little Horn: Base 5%, 20% at 15 Luck
+EID.LuckFormulas["5.350.8"] = function(luck) return (100 / math.max(1, (20 - math.floor(luck*0.5)))) end -- Cartridge: Base 5%, 100% at 38 Luck
+EID.LuckFormulas["5.350.30"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Pinky Eye: Base 10%, 100% at 18 Luck
+EID.LuckFormulas["5.350.31"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Push Pin: Base 10%, 100% at 18 Luck
+EID.LuckFormulas["5.350.46"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Isaac's Fork: Base 10%, 100% at 18 Luck
+EID.LuckFormulas["5.350.48"] = function(luck) return (100 / math.max(2, (20 - math.floor(luck*0.3)))) end -- A Missing Page: Base 5%, 100% at 60 Luck
+EID.LuckFormulas["5.350.58"] = function(luck) return (100 / math.max(1, (15 - math.floor(luck*1.5)))) end -- Samson's Lock: Base 6.66%, 100% at 9.34 Luck
+EID.LuckFormulas["5.350.59"] = function(luck) return (100 / math.max(1, (4 - math.floor(luck)))) end -- Cain's Eye: Base 25%, 100% at 3 Luck
+EID.LuckFormulas["5.350.60"] = function(luck) return (100 / math.max(1, (20 - math.floor(luck*2.5)))) end -- Eve's Bird Foot: Base 5%, 100% at 7.6 Luck
+EID.LuckFormulas["5.350.95"] = function(luck) return (100 / math.max(1, (33 - math.floor(luck)))) end -- Black Tooth: Base 3.03%, 100% at 32 Luck
+EID.LuckFormulas["5.350.96"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck)))) end -- Ouroboros Worm: Base 10%, 100% at 9 Luck
 if EID.isRepentance then
+	EID.LuckFormulas["5.100.55"] = function(luck) return (50 + luck*10) end -- Mom's Eye: Base 50%, 100% at 5 Luck
+	EID.LuckFormulas["5.100.87"] = function(luck) return (25 + luck*5) end -- Loki's Horns: Base 25%, 100% at 15 Luck
 	EID.LuckFormulas["5.100.219"] = function(luck) return (20 + luck) end -- Old Bandage: Base 20%, 100% at 80 Luck
+	EID.LuckFormulas["5.100.225"] = function(luck) return (8 + luck*2) end -- Gimpy: Base 8%, 100% at 46 Luck
+	EID.LuckFormulas["5.100.408"] = function(luck) return (25 + luck*2.5) end -- Athame: Base 25%, 100% at 30 Luck
+	EID.LuckFormulas["5.100.495"] = function(luck) return (100 / math.max(2, (12 - math.floor(luck)))) end -- Ghost Pepper: Base 8.33%, 50% at 10 Luck
+	EID.LuckFormulas["5.100.496"] = function(luck) return (100 / math.max(4, (30 - math.floor(luck*2)))) end -- Euthanasia: Base 3.33%, 25% at 13 Luck
+	EID.LuckFormulas["5.100.575"] = function(luck) return (100 / math.max(1, (math.floor(5 - luck)))) end -- The Intruder: Base 20%, 100% at 3.01 Luck
 	EID.LuckFormulas["5.100.576"] = function(luck) return math.min(luck*0.5 + 6.25, 10) end -- Dirty Mind: Base 6.25%, 10% at 7.5 Luck
+	EID.LuckFormulas["5.100.606"] = function(luck) return (100 / math.max(5, (20 - math.floor(luck)))) end -- Ocular Rift: Base 5%, 20% at 15 Luck
+	EID.LuckFormulas["5.100.616"] = function(luck) return (100 / math.max(2, (12 - math.floor(luck)))) end -- Bird's Eye: Base 8.33%, 50% at 10 Luck
+	EID.LuckFormulas["5.100.617"] = function(luck) return (100 / math.max(1, (6 - math.floor(luck)))) end -- Lodestone: Base 16.6%, 100% at 5 Luck
+	EID.LuckFormulas["5.100.618"] = function(luck) return (100 / math.max(1, (6 - math.ceil(luck)))) end -- Rotten Tomato: Base 16.6%, 100% at 4.01 Luck
+	EID.LuckFormulas["5.100.637"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck)))) end -- Knockout Drops: Base 10%, 100% at 9 Luck
+	EID.LuckFormulas["5.350.129"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck)))) end -- Jawbreaker: Base 10%, 100% at 9 Luck
+	EID.LuckFormulas["5.350.130"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Chewed Pen: Base 10%, 100% at 18 Luck
+	EID.LuckFormulas["5.350.135"] = function(luck) return math.min(luck*2 + 20) end -- A Lighter: Base 20%, 100% at 40 Luck
+	EID.LuckFormulas["5.350.143"] = function(luck) return math.min(luck*3 + 20, 33) end -- Old Capacitor: Base 20%, 33% at 4.34 Luck
+	EID.LuckFormulas["5.350.188"] = function(luck) return math.min(luck*2 + 20) end -- Ice Cube: Base 20%, 100% at 40 Luck
 end
 
 -- Number of Health Ups you get from a Health Up item
