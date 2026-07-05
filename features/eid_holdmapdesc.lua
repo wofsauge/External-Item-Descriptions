@@ -411,8 +411,8 @@ EID.ItemReminderDescriptionModifier = {
 
 -- Simple function to help with adding properly formatted sections to the reminder description
 -- returns false, when no further descriptions should be added
-function EID:ItemReminderAddTempDescriptionEntry(icon, title, newDesc)
-	table.insert(EID.ItemReminderTempDescriptions, { icon or "{{Blank}}", title, newDesc })
+function EID:ItemReminderAddTempDescriptionEntry(icon, title, newDesc, objectID)
+	table.insert(EID.ItemReminderTempDescriptions, { icon or "{{Blank}}", title, newDesc, objectID })
 	numAvailableDescriptionSlots = numAvailableDescriptionSlots - 1
 	return EID:ItemReminderCanAddMoreToView()
 end
@@ -482,7 +482,7 @@ function EID:ItemReminderAddDescription(player, entityType, variant, subType, ex
 
 	currentBlacklist[objectID] = true
 	local iconString = extraIcon or EID:GetIconStringByDescriptionObject(descObj)
-	return EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
+	return EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description, objectID)
 end
 
 -- In the overview category, check for special descriptions
@@ -499,7 +499,7 @@ function EID:ItemReminderAddSpecialDescriptions(player)
 			if specialDesc.modifierFunction(descObj, player, true) then
 				currentBlacklist[objectID] = true
 				local iconString = EID:GetIconStringByDescriptionObject(descObj)
-				EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description)
+				EID:ItemReminderAddTempDescriptionEntry(iconString, descObj.Name, descObj.Description, objectID)
 			end
 		end
 		if not EID:ItemReminderCanAddMoreToView() then return end
@@ -970,6 +970,10 @@ function EID:ItemReminderGetDescription()
 		end
 		if EID.Config["ShowItemName"] then
 			finalHoldMapDesc = finalHoldMapDesc .. "{{ColorEIDObjName}}" .. entry[2]
+		end
+		-- Display Entity ID if its not empty and the config option is enabled
+		if EID.Config["ShowObjectID"] and entry[4] then
+			finalHoldMapDesc = finalHoldMapDesc .. " {{ColorGray}}" .. entry[4]
 		end
 		local description = entry[3] .. "#"
 
