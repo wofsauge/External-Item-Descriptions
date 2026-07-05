@@ -757,7 +757,7 @@ EID.descriptions[languageCode].trinkets={
 	{"17", "Black Lipstick", "{{BlackHeart}} +10% chance for random Soul Hearts to spawn as Black Hearts"}, -- Black Lipstick
 	{"18", "Bible Tract", "{{EternalHeart}} +3% chance for Eternal Hearts"}, -- Bible Tract
 	{"19", "Paper Clip", "{{GoldenChest}} Gold chests can be opened for free"}, -- Paper Clip
-	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is reduced to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"}, -- Monkey Paw
+	{"20", "Monkey Paw", "{{BlackHeart}} Spawns 1 Black Heart when Isaac's health is damaged down to half a heart#{{Warning}} Disappears after spawning 3 Black Hearts"}, -- Monkey Paw
 	{"21", "Mysterious Paper", "Randomly grants the effect of: #{{Collectible327}} The Polaroid#{{Collectible328}} The Negative#{{Trinket48}} A Missing Page#{{Trinket23}} Missing Poster"}, -- Mysterious Paper
 	{"22", "Daemon's Tail", "{{Heart}} Decreases spawn rate of hearts to 20%#{{BlackHeart}} All Heart pickups turn into Black Hearts#{{Key}} Increases the drop chance of keys"}, -- Daemon's Tail
 	{"23", "Missing Poster", "{{Player10}} Respawn as The Lost on death"}, -- Missing Poster
@@ -770,7 +770,7 @@ EID.descriptions[languageCode].trinkets={
 	{"30", "Pinky Eye", "{{Poison}} 10% chance to shoot poison tears#{{Luck}} 100% chance at 18 luck"}, -- Pinky Eye
 	{"31", "Push Pin", "10% chance to shoot piercing + spectral tears#{{Luck}} 100% chance at 18 luck"}, -- Push Pin
 	{"32", "Liberty Cap", "25% chance for a random mushroom effect per room#Can reveal special rooms on the minimap"}, -- Liberty Cap
-	{"33", "Umbilical Cord", "{{Timer}} Spawns {{Collectible100}} Little Steven for the room when Isaac's health is reduced to half a heart"}, -- Umbilical Cord
+	{"33", "Umbilical Cord", "{{Timer}} Spawns {{Collectible100}} Little Steven for the room when Isaac's health is damaged down to half a heart"}, -- Umbilical Cord
 	{"34", "Child's Heart", "{{UnknownHeart}} 10% chance for the room clear reward to be a random heart#{{Heart}} 33% chance for a bonus heart from chests, tinted rocks, and destroyed machines"}, -- Child's Heart
 	{"35", "Curved Horn", "↑ {{Damage}} +2 Damage"}, -- Curved Horn
 	{"36", "Rusted Key", "{{Key}} 10% chance for the room clear reward to be a key#{{Key}} 33% chance for a bonus key from chests, tinted rocks, and destroyed machines"}, -- Rusted Key

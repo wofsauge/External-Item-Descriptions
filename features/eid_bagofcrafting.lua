@@ -240,7 +240,7 @@ function EID:calculateBagOfCrafting(componentsTable)
 			return cacheResult
 		end
 
-		local collectible, itemPool = EntityPlayer.CalculateBagOfCraftingOutput(components)
+		local collectible, _ = EntityPlayer.CalculateBagOfCraftingOutput(components)
 		calculatedRecipes[componentsAsString] = collectible
 		return collectible
 	end
