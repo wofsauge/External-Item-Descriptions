@@ -20,7 +20,7 @@ local collectibles = {
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "盛装男孩", "{{Coin}} 生成7随机硬币#生成1随机硬币饰品" }, -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = { "186", "血之权利", "对所有敌人造成40点伤害#{{Tears}} 当前房间中射速+0.48#{{Warning}} 对角色造成1心伤害#在房间中首次使用后, 改为造成半心伤害#{{Heart}} 优先消耗红心" }, -- Blood Rights
+	[186] = { "186", "血之权利", "对所有敌人造成40点伤害#{{Tears}} 当前房间中射速修正+0.48#{{Warning}} 对角色造成1心伤害#在房间中首次使用后, 改为造成半心伤害#{{Heart}} 优先消耗红心" }, -- Blood Rights
 	-- Change: added random tear effects information	
 	[244] = { "244", "科技0.5", "时不时发射激光#激光小概率带有随机效果"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
@@ -48,9 +48,9 @@ local collectibles = {
 	-- Change: Complete rewrite
 	[510] = {"510", "精神错乱", "生成1个友好的精神错乱版的头目#切换房间持续存在#{{Warning}} 一次只能激活1个头目#生成的头目血量会随时间流失"}, -- Delirious
 	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "恐怖如斯", "↑ {{Tears}} 射速+0.5#↑ {{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧"}, -- 2Spooky
+	[554] = { "554", "恐怖如斯", "↑ {{Tears}} 射速修正+0.5#↑ {{Shotspeed}} 弹速+0.2#{{Fear}} 使近距离的敌人恐惧"}, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
-	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速+1.2#↑ {{Tears}} 后续受伤射速+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
+	[560] = {"560", "好疼", "{{Timer}} 受伤时, 在当前房间中获得:#↑ {{Tears}} 首次受伤射速修正+1.2#↑ {{Tears}} 后续受伤射速修正+0.4#在角色周围释放10颗泪弹#泪弹击中时留下水迹"}, -- It Hurts
 	-- Change: Added ring of fire on impact description
 	[593] = {"593", "火星", "双击移动键使角色冲锋#{{Damage}} 冲锋时角色无敌, 造成4x角色伤害+8的伤害#{{Timer}} 3秒冷却#{{Burning}} 撞击时在角色周围生成火圈" }, -- Mars
 	-- Change: Heals 2 hearts instead of 1/2
@@ -100,7 +100,7 @@ local trinkets = {
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多2个跟班, 之后该饰品消失"}, -- Tonsil
 	-- Change: Added +2 Tears
-	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速+2"}, -- Equality!
+	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速修正+2"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = {"104", "许愿骨", "受伤时, 5%概率被摧毁并生成1底座道具"}, -- Wish Bone
 	-- Change: "2%" to "5%"
@@ -108,7 +108,7 @@ local trinkets = {
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: added "Removes Tick"
-	[135] = {"135", "打火机", "{{Burning}} 进入房间有20%概率点燃随机敌人#{{Warning}} 会移除 {{Trinket53}} 血虱"}, -- A Lighter
+	[135] = {"135", "打火机", "{{Burning}} 进入房间有20%概率点燃随机敌人#{{Warning}} 会移除 {{Trinket53}}血虱"}, -- A Lighter
 	-- Change: Added coin type based information
 	[172] = {"172", "诅咒硬币", "{{Coin}} 拾起硬币时, 将角色传送至随机房间#可以传送至隐藏房#硬币类型影响传送的房间类型"}, -- Cursed Penny
 }
@@ -142,7 +142,7 @@ local goldenTrinketEffects = {
 	-- Cursed Skull (replace):
 	[43] = {
 		"当受伤后只剩半颗心及以下时, 将角色传送至一个{{ColorGold}}特殊{{CR}}房间",
-		"当受伤后只剩{{ColorGold}}半颗心{{CR}}及以下时, 将角色传送至一个{{ColorGold}}特殊{{CR}} 房间",
+		"当受伤后只剩{{ColorGold}}一颗心{{CR}}及以下时, 将角色传送至一个{{ColorGold}}特殊{{CR}}房间",
 	},
 	-- Safety Cap (find replace):
 	[44] = { 10, 20, 50,  33, 66, 100 },
@@ -153,7 +153,7 @@ local goldenTrinketEffects = {
 	-- Tick (replace): added ", {{Trinket135}} A Lighter"
 	[53] = {
 		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}2{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{ColorGold}}可以移除!",
-		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}3{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{Warning}} 拾起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍移除或吞下",
+		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}2{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{Warning}} 拾起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍, {{Trinket135}}打火机移除或吞下",
 		"{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗{{ColorGold}}3{{CR}}红心#头目血量-{{ColorGold}}30{{CR}}%#{{ColorGold}}可以移除!",
 	},
 	-- Isaac's Head (find replace):
@@ -222,9 +222,9 @@ local goldenTrinketEffects = {
 	},
 	-- Walnut (find replace):
 	[108] = {
-		"1随机{{UnknownHeart}}心, 1{{Coin}}硬币, 1{{Key}}钥匙和1{{Trinket}}随机饰品",
-		"2{{CR}}随机{{UnknownHeart}}心, 2{{Coin}}硬币, 2{{Key}}钥匙和3{{Trinket}}随机饰品",
-		"3{{CR}}随机{{UnknownHeart}}心, 3{{Coin}}硬币, 3{{Key}}钥匙和3{{Trinket}}随机饰品",
+		"1{{UnknownHeart}}随机心, 1{{Coin}}硬币, 1{{Key}}钥匙和1{{Trinket}}随机饰品",
+		"2{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}2{{CR}}{{Coin}}硬币, {{ColorGold}}2{{CR}}{{Key}}钥匙和{{ColorGold}}2{{CR}} {{Trinket}}随机饰品",
+		"3{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}3{{CR}}{{Coin}}硬币, {{ColorGold}}3{{CR}}{{Key}}钥匙和{{ColorGold}}3{{CR}} {{Trinket}}随机饰品",
 	},
 	-- Duct Tape (append):
 	[109] = {"按下丢弃键会让跟班在不同的阵型间切换"},
@@ -260,7 +260,7 @@ local goldenTrinketEffects = {
 	-- Rotten Penny (find replace):
 	[126] = {"1只蓝苍蝇", "2{{CR}}只蓝苍蝇", "3{{CR}}只蓝苍蝇"},
 	-- Baby-Bender (append):
-	[127] = {"同时使跟班获得{{Trinket144}} 脑形虫的效果", "同时使跟班获得{{Trinket144}} 脑形虫与 {{Trinket65}} 长条虫的效果"},
+	[127] = {"同时使跟班获得{{Trinket144}}脑形虫的效果", "同时使跟班获得{{Trinket144}}脑形虫与{{Trinket65}}长条虫的效果"},
 	-- Blessed Penny (find replace):
 	[131] = { 17, 25, 30 },
 	-- Short Fuse (find replace):
