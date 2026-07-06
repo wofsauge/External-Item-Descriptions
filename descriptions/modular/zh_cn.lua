@@ -18,7 +18,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     TearHeight = "泪弹高度 {value}",
     TearSizeMultiplier = "泪弹尺寸 {value}",
     TearSize = "泪弹尺寸 {value}",
-    TearDelayMultiplier = "射击延迟 {value}",
+    TearDelayMultiplier = "射击延迟修正 {value}",
     TearDelay = "射击延迟 {value}",
     FireRateMultiplier = "发射速率修正 {value}",
     FireRate = "发射速率 {value}",
@@ -48,7 +48,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     EternalHeart = "{value} 永恒之心",
     GoldenHeart = "{value} 金心",
     RottenHeart = "{value} 腐心",
-    BrokenHeart = "{value} 失去的心",
+    BrokenHeart = "{value} 碎心",
     EmptyHeart = "{value} 空心之容器",
     FullHealth = "回满血",
     HealingRed = "治疗 {value} 红心",
@@ -60,7 +60,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     AngelDevilChance = "{value}% 恶魔房/天使房概率",
     DevilChance = "{value}% 恶魔房概率",
     AngelChance = "{value}% 天使房概率",
-    PlanetariumChance = "{value}% 天象房概率",
+    PlanetariumChance = "{value}% 星象房概率",
 
     -- Pickups / Spawns
     Coin = "{value} 硬币",
