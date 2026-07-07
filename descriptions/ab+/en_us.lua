@@ -833,7 +833,7 @@ EID.descriptions[languageCode].trinkets={
 	{"93", "Used Diaper", "15% chance per room for all fly enemies to become friendly"}, -- Used Diaper
 	{"94", "Fish Tail", "Doubles all blue fly / spider spawns"}, -- Fish Tail
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears#The tooth deals 2x Isaac's damage"}, -- Black Tooth
-	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#10% Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
+	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#10% chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
 	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars"}, -- Tonsil
 	{"98", "Nose Goblin", "10% chance to shoot a sticky tear#50% chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 60 seconds"}, -- Nose Goblin
 	{"99", "Super Ball", "10% chance to shoot bouncing tears"}, -- Super Ball
