@@ -164,7 +164,7 @@ local goldenTrinketEffects = {
 		"{{DevilRoom}}降低{{ColorGold}}所有{{CR}}恶魔交易至1心#{{ColorGold}}地刺交易只需1次献祭"
 	},
 	-- ???'s Soul (find replace):
-	[57] = {"四处漂浮", "{{CR}}获得{{ColorGold}}2个{{CR}}四处漂浮", "{{CR}}获得{{ColorGold}}3个 {{CR}}四处漂浮"},
+	[57] = {"在房间中", "2个{{CR}}在房间中", "3个{{CR}}在房间中"},
 	-- Samson's Lock (find replace):
 	[58] = { 6.66, 13, 25,  10, 5, 2 },
 	-- The Left Hand (append):
@@ -507,7 +507,7 @@ EID.descriptions[languageCode].abyssSynergies = {}
 EID:updateDescriptionsViaTable(abyssSynergies, EID.descriptions[languageCode].abyssSynergies)
 
 ---------- Transformations ----------
-EID.descriptions[languageCode].transformations[17] = "死灵法师" -- Add Necromancer transformation
+EID.descriptions[languageCode].transformations[17] = "死灵法师！" -- Add Necromancer transformation
 
 -- If Debug enabled, add overwrite tables to the languagepack in order for the language completion script to be able to compare them
 if EID.enableDebug then
