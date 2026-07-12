@@ -14,9 +14,11 @@ local languageCode = "zh_cn"
 
 local collectibles = {
 	-- Change: added "Creep persists until you exit the room"
-	[56] = {"56", "烦事柠檬", "留下一摊水迹#水迹每秒造成24点伤害#水迹在离开房间前持续存在"}, -- Lemon Mishap
+	[56] = { "56", "烦事柠檬", "留下一摊水迹#水迹每秒造成24点伤害#水迹在离开房间前持续存在"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
-	[117] = {"117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间也持续存在"}, -- Dead Bird
+	[117] = { "117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间也持续存在"}, -- Dead Bird
+	-- Change: Change "Tears" to "Fire Rate"
+	[120] = { "120", "怪异蘑菇(小)", "↑ {{Speed}} 移速+0.3#↑ {{Tears}} 射速修正+1.7#↓ {{Damage}} 伤害修正x0.9#↓ {{Damage}} 伤害-0.4"},
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "盛装男孩", "{{Coin}} 生成7随机硬币#生成1随机硬币饰品" }, -- Pageant Boy
 	-- Change: added Fire rate information
@@ -24,15 +26,15 @@ local collectibles = {
 	-- Change: added random tear effects information	
 	[244] = { "244", "科技0.5", "时不时发射激光#激光小概率带有随机效果"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
-	[281] = {"281", "受气包", "诱饵跟班#敌人有时会以他而不是角色作为目标#阻挡敌人弹幕" }, -- Punching Bag
+	[281] = { "281", "受气包", "诱饵跟班#敌人有时会以他而不是角色作为目标#阻挡敌人弹幕" }, -- Punching Bag
 	-- Change: added "+0.2 Shot speed"
-	[329] = {"329", "鲁多维科科技", "↑ {{Shotspeed}} 弹速+0.2#角色的泪弹由1颗巨大的可控泪弹取代"}, -- The Ludovico Technique
+	[329] = { "329", "鲁多维科科技", "↑ {{Shotspeed}} 弹速+0.2#角色的泪弹由1颗巨大的可控泪弹取代"}, -- The Ludovico Technique
 	-- Change: Complete rewrite
-	[351] = {"351", "超级豆子", "{{Petrify}} 使房间中所有敌人石化并造成100点伤害#{{Poison}} 造成5点伤害并使附近敌人中毒#可打开隐藏房并粉碎岩石"}, -- Mega Bean
+	[351] = { "351", "超级豆子", "{{Petrify}} 使房间中所有敌人石化并造成100点伤害#{{Poison}} 造成5点伤害并使附近敌人中毒#可打开隐藏房并粉碎岩石"}, -- Mega Bean
+	-- Change: "10%" to "20%"
+	[398] = { "398", "神体蘑菇", "20%概率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- God's Flesh
 	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
 	[420] = { "420", "黑色粉末", "在地上走1个圈会产生五角星符号, 4秒内造成130点接触伤害#获得更大范围的爆炸效果#火堆熄灭时会爆炸" }, -- Black Powder
-	-- Change: "10%" to "20%"
-	[398] = {"398", "神体蘑菇", "20%概率发射使敌人缩小的泪弹#缩小的敌人可以被踩死"}, -- God's Flesh
 	-- Change: Complete rewrite
 	[436] = {"436", "牛奶！", "阻挡弹幕#{{Tears}} 受击10次后, 破裂并在本层获得射速提升"}, -- Milk!
 	-- Change: Complete rewrite
@@ -90,16 +92,16 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "虱子", "在有敌人的房间里每30秒生成1只蓝蜘蛛#清理房间后生成1只蓝蜘蛛"}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "筹码", "↑ 箱子有50%概率生成额外掉落物#↓ 箱子有50%概率只有1只红苍蝇#提升赌博机等机器获胜几率#若箱子含有道具, 强制其品质至少为3#箱子偶尔会含有金箱子道具池之外的道具"}, -- Poker Chip
+	[76] = {"76", "筹码", "↑ 箱子有50%概率生成额外掉落物#↓ 箱子有50%概率只有1只红苍蝇#提升赌博机等机器获胜几率#若箱子含有品质为0-2的道具，将其替换为品质更高的道具#箱子偶尔会含有金箱子道具池之外的道具"}, -- Poker Chip
 	-- Change: Added additional effects
 	[85] = {"85", "业报", "{{DonationMachine}} 使用捐款机时, 33%概率:#{{HealingRed}} 治疗1红心(40%)#{{Coin}} 给予1硬币(40%)#{{Luck}} 幸运+1(15%)#{{Beggar}} 生成1个乞丐(5%)#{{DonationMachine}} 捐款机卡币概率降低#也会影响乞丐捐款和补货机"}, -- Karma
 	-- Change: Added damage up information
-	[89] = {"89", "儿童栓绳", "跟班离角色更近#{{Damage}} 跟班获得伤害修正×125%"}, -- Child Leash
+	[89] = {"89", "儿童栓绳", "跟班离角色更近#{{Damage}} 跟班获得伤害修正+25%"}, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
 	[93] = { "93", "用过的尿布", "每房间33%概率使所有苍蝇敌人变得友好#进入新房间时生成1蓝苍蝇"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多2个跟班, 之后该饰品消失"}, -- Tonsil
-	-- Change: Added +2 Tears
+	-- Change: Added +2 Fire rate
 	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速修正+2"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = {"104", "许愿骨", "受伤时, 5%概率被摧毁并生成1底座道具"}, -- Wish Bone
@@ -108,7 +110,7 @@ local trinkets = {
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: added "Removes Tick"
-	[135] = {"135", "打火机", "{{Burning}} 进入房间有20%概率点燃随机敌人#{{Warning}} 会移除 {{Trinket53}}血虱"}, -- A Lighter
+	[135] = {"135", "打火机", "{{Burning}} 进入房间有20%概率点燃随机敌人#{{Warning}} 会移除{{Trinket53}}血虱"}, -- A Lighter
 	-- Change: Added coin type based information
 	[172] = {"172", "诅咒硬币", "{{Coin}} 拾起硬币时, 将角色传送至随机房间#可以传送至隐藏房#硬币类型影响传送的房间类型"}, -- Cursed Penny
 }
@@ -118,7 +120,7 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 local goldenTrinketEffects = {
 	-- Purple Heart (find replace):
-	[5] = { 2, 3, 4,  50, 66, 75 },
+	[5] = { 2, 4, 6,  50, 66, 75 },
 	-- Callus (append):
 	[14] = { "{{SacrificeRoom}}将献祭房的尖刺伤害降至半心", "{{Collectible108}}将大多数伤害降至半心" },
 	-- Mom's Toenail (find replace):
@@ -198,6 +200,8 @@ local goldenTrinketEffects = {
 	[85] = { 1, 2, 3,  1, 2, 3,  1, 2, 3},
 	-- Mom's Locket (find replace):
 	[87] = {"半红心", "一红心", "一个半红心"},
+	-- Child Leash (find replace):
+	[89] = {"25", "50", "75"},
 	-- Meconium (find replace):
 	[91] = { 33, 66, 100,  5, 7, 10 },
 	-- Used Diaper (find replace):
@@ -212,7 +216,7 @@ local goldenTrinketEffects = {
 		"{{ColorGold}}30{{CR}}%概率发射{{ColorGold}}追踪{{CR}}鼻屎泪弹#{{Damage}} 鼻屎每秒造成角色伤害#鼻屎会黏住10秒",
 	},
 	-- Fragmented Card (append):
-	[102] = {"{{SecretRoom}}揭示一个隐藏房的位置", "{{SecretRoom}}揭示两个隐藏房的位置"},
+	[102] = {"{{SecretRoom}} 揭示一个隐藏房的位置", "{{SecretRoom}} 揭示两个隐藏房的位置"},
 	-- Lost Cork (find replace):
 	[106] = {"提高", "大幅{{CR}}提高"},
 	-- Crow Heart (append):
@@ -276,7 +280,7 @@ local goldenTrinketEffects = {
 	-- Brain Worm (append):
 	[144] = {"25%概率发射穿刺泪弹", "50%概率发射穿刺泪弹"},
 	-- Devil’s Crown (append):
-	[146] = {"{{Trinket174}}25%概率为数字冰箱贴的特殊布局", "{{Trinket174}}33%概率为数字冰箱贴的特殊布局"},
+	[146] = {"{{Trinket174}} 25%概率为数字冰箱贴的特殊布局", "{{Trinket174}} 33%概率为数字冰箱贴的特殊布局"},
 	-- Charged Penny (find replace):
 	[147] = {"1格", "2{{CR}}格", "3{{CR}}格"},
 	-- Friendship Necklace (append):
@@ -294,8 +298,8 @@ local goldenTrinketEffects = {
 	},
 	-- Holy Crown (full replace):
 	[155] = {
-		"{{CR}}在教堂生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}} {{Shop}}商店#{{ColorGold}}教堂的宝箱房会包含2个道具供玩家选择",
-		"{{CR}}在教堂生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}} {{Shop}}商店#{{ColorGold}}教堂的宝箱房会包含2个道具供玩家选择#{{ColorGold}}揭示教堂的宝箱房与商店的位置",
+		"{{CR}}在教堂生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}}{{Shop}}商店#{{ColorGold}}教堂的宝箱房会包含2个道具供玩家选择",
+		"{{CR}}在教堂生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}}{{Shop}}商店#{{ColorGold}}教堂的宝箱房会包含2个道具供玩家选择#{{ColorGold}}揭示教堂的宝箱房与商店的位置",
 	},
 	-- Torn Card (find replace):
 	[157] = { 15, 10, 5 },
@@ -307,8 +311,8 @@ local goldenTrinketEffects = {
 	},
 	-- Wicked Crown (full replace):
 	[161] = {
-		"{{CR}}在阴间生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}} {{Shop}}商店#{{ColorGold}}阴间的宝箱房会包含2个道具供玩家选择",
-		"{{CR}}在阴间生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}} {{Shop}}商店#{{ColorGold}}阴间的宝箱房会包含2个道具供玩家选择#{{ColorGold}}揭示阴间的宝箱房与商店的位置",
+		"{{CR}}在阴间生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}}{{Shop}}商店#{{ColorGold}}阴间的宝箱房会包含2个道具供玩家选择",
+		"{{CR}}在阴间生成{{TreasureRoom}}宝箱房与{{ColorGold}}稀有布局的{{CR}}{{Shop}}商店#{{ColorGold}}阴间的宝箱房会包含2个道具供玩家选择#{{ColorGold}}揭示阴间的宝箱房与商店的位置",
 	},
 	-- Nuh Uh! (append):
 	[165] = {"生成双倍版本掉落物的概率+10%", "生成双倍版本掉落物的概率+20%"},
@@ -377,6 +381,7 @@ local goldenTrinketData = {
 	[84] = {append = true}, -- Rib of Greed
 	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
+	[89] = {findReplace = true}, -- Child Leash
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
 	[94] = {append = true}, -- Fish Tail
@@ -437,10 +442,10 @@ EID:updateDescriptionsViaTable(goldenTrinketData, EID.descriptions[languageCode]
 ---------- Cards ----------
 
 local cards = {
-	-- Change: Added stone enemies and shields
-	[32] = {"32", "冰雹符文", "摧毁房间中所有石头与石头类敌人"}, -- Hagalaz
 	-- Change: Added "1% chance for it to be a Crane Game"
 	[11] = {"11", "X-命运之轮", "{{Slotmachine}} 生成1台赌博机#{{FortuneTeller}} 24%概率为预言机#{{CraneGame}} 1%概率为夹娃娃机"}, -- X - Wheel of Fortune
+	-- Change: Added stone enemies and shields
+	[32] = {"32", "冰雹符文", "摧毁房间中所有石头与石头类敌人"}, -- Hagalaz
 	-- Change: Complete rewrite
 	[38] = {"38", "桦木符文", "{{Collectible706}} 当前房间中召唤3个无底坑蝗虫"}, -- Berkano
 }
@@ -464,7 +469,7 @@ local horsepills = {
 	-- Change: affects whole floor
 	[43] = {"42", "好兴奋！！！", "使当前层所有敌人和角色加速"}, --I'm Excited!!
 	-- Change: Forces the effect to be a golden trinket
-	[44] = {"43", "咕噜！", "{{Trinket}} 消耗角色的饰品并永久获得其{{ColorGold}}金饰品{{CR}}效果#{{HealingRed}} 治疗等同于消耗饰品量的红心"}, -- Gulp!
+	[44] = {"43", "咕噜！", "{{Trinket}} 消耗角色的饰品并永久获得其{{ColorGold}}金饰品{{CR}}效果"}, -- Gulp!
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
