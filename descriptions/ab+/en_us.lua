@@ -335,7 +335,7 @@ EID.descriptions[languageCode].collectibles={
 	{"309", "Pisces", "↑ {{Tears}} -1 Tear delay#↑ {{Tearsize}} x1.25 Tear size#Increases tear knockback"}, -- Pisces
 	{"310", "Eve's Mascara", "↑ {{Damage}} x2 Damage multiplier#↓ {{Tears}} x0.5 Tears multiplier#↓ {{Shotspeed}} -0.5 Shot speed"}, -- Eve's Mascara
 	{"311", "Judas' Shadow", "{{Player12}} When dead, respawn as Dark Judas with a x2 damage multiplier"}, -- Judas' Shadow
-	{"312", "Maggy's Bow", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart#All Red Hearts heal double their value"}, -- Maggy's Bow
+	{"312", "Maggy's Bow", "↑ {{Heart}} +1 Health#All Red Hearts heal double their value"}, -- Maggy's Bow
 	{"313", "Holy Mantle", "Negates the first hit taken once per room"}, -- Holy Mantle
 	{"314", "Thunder Thighs", "↑ {{Heart}} +1 Health#↓ {{Speed}} -0.4 Speed#Isaac can destroy rocks by walking into them"}, -- Thunder Thighs
 	{"315", "Strange Attractor", "Isaac's tears attract enemies, pickups and trinkets"}, -- Strange Attractor
