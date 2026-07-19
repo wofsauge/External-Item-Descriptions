@@ -280,6 +280,8 @@ local goldenTrinketEffects = {
 	[138] = {"10% chance of fully charging the rolled item", "20% chance of fully charging the rolled item"},
 	-- Apple of Sodom (find replace):
 	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts"},
+	-- Forgotten Lullaby (find replace):
+	[141] = {"2x", "2.5x", "3x"},
 	-- Brain Worm (append):
 	[144] = {"25% chance to shoot piercing tears", "50% chance to shoot piercing tears"},
 	-- Devil’s Crown (append):
@@ -347,7 +349,7 @@ local goldenTrinketEffects = {
 	-- Adoption Papers (append):
 	[184] = {"Familiars will always be on sale", "Familiars will always be on sale#{{Card92}} {{ColorGold}}Shops will now sell \"Soul of Lilith\""},
 	-- Sigil of Baphomet (find replace):
-	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds"},
+	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds", "5 seconds", "7.5 {{CR}}seconds", "10 {{CR}}seconds"},
 }
 EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
@@ -416,6 +418,7 @@ local goldenTrinketData = {
 	[136] = {findReplace = true}, -- Broken Padlock
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
+	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny

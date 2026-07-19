@@ -277,6 +277,8 @@ local goldenTrinketEffects = {
 	[138] = {"10%概率重置后的主动道具为满充能", "20%概率重置后的主动道具为满充能"},
 	-- Apple of Sodom (find replace):
 	[140] = {"拾起红心", "任意{{CR}}的心被拾取"},
+	-- Forgotten Lullaby (find replace):
+	[141] = {"翻倍", "{{CR}}翻{{ColorGold}}2.5{{CR}}倍", "{{CR}}翻{{ColorGold}}3{{CR}}倍"},
 	-- Brain Worm (append):
 	[144] = {"25%概率发射穿刺泪弹", "50%概率发射穿刺泪弹"},
 	-- Devil’s Crown (append):
@@ -413,6 +415,7 @@ local goldenTrinketData = {
 	[136] = {findReplace = true}, -- Broken Padlock
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
+	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny
