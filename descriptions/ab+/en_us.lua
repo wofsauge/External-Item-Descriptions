@@ -815,7 +815,7 @@ EID.descriptions[languageCode].trinkets={
 	{"75", "Error", "Grants a random trinket effect every room"}, -- Error
 	{"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly"}, -- Poker Chip
 	{"77", "Blister", "Increases knockback"}, -- Blister
-	{"78", "Second Hand", "Status effects applied to enemies 2 times as long"}, -- Second Hand
+	{"78", "Second Hand", "Status effects applied to enemies last 2 times as long"}, -- Second Hand
 	{"79", "Endless Nameless", "Using a {{Rune}} rune, {{Card}} card or {{Pill}} pill has a 25% chance to spawn a copy of that rune, card or pill"}, -- Endless Nameless
 	{"80", "Black Feather", "↑ {{Damage}} +0.2 Damage for each \"Evil up\" item held"}, -- Black Feather
 	{"81", "Blind Rage", "Invincibility frames after taking damage last twice as long"}, -- Blind Rage
