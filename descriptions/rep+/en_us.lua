@@ -195,16 +195,14 @@ local goldenTrinketEffects = {
 	[71] = {"Increased creep size", "Increased creep size and duration"},
 	-- Poker Chip (append):
 	[76] = {"{{Slotmachine}} Doubles payouts from gambling", "{{Slotmachine}} Triples payouts from gambling"},
+	-- Blister (find replace):
+	[77] = {"knockback", "{{CR}}knockback {{ColorGold}}further", "{{CR}}knockback {{ColorGold}}even further"},
 	-- Store Key (append):
 	[83] = {"{{Shop}} Prevents shops from using low-quality layouts", "{{Shop}} Upgrades shop layouts"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}} Increased chance of double pennies, nickels, dimes, lucky pennies, and golden pennies"},
-	-- Karma (find replace):
-	[85] = {"1 luck", "2{{CR}} luck", "3{{CR}} luck"},
 	-- Mom's Locket (find replace):
 	[87] = {"half a heart", "a heart", "one and a half hearts"},
-	-- Child Leash (find replace):
-	[89] = {"25", "50", "75"},
 	-- Meconium (find replace):
 	[91] = { 33, 66, 100,  5, 7, 10 },
 	-- Used Diaper (find replace):
@@ -279,9 +277,7 @@ local goldenTrinketEffects = {
 	-- 'M (append):
 	[138] = {"10% chance of fully charging the rolled item", "20% chance of fully charging the rolled item"},
 	-- Apple of Sodom (find replace):
-	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts"},
-	-- Forgotten Lullaby (find replace):
-	[141] = {"2x", "2.5x", "3x"},
+	[140] = {"Picking up Red Hearts", "Any {{CR}}picked up Hearts"},
 	-- Brain Worm (append):
 	[144] = {"25% chance to shoot piercing tears", "50% chance to shoot piercing tears"},
 	-- Devil’s Crown (append):
@@ -382,11 +378,10 @@ local goldenTrinketData = {
 	[70] = {findReplace = true}, -- Louse
 	[71] = {append = true}, -- Bob's Bladder
 	[76] = {append = true}, -- Poker Chip
+	[77] = {findReplace = true}, -- Blister
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
-	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
-	[89] = {findReplace = true}, -- Child Leash
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
 	[94] = {append = true}, -- Fish Tail
@@ -418,7 +413,6 @@ local goldenTrinketData = {
 	[136] = {findReplace = true}, -- Broken Padlock
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
-	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny

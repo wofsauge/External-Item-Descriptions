@@ -92,9 +92,9 @@ local trinkets = {
 	-- Change: Complete rewrite
 	[70] = {"70", "虱子", "在有敌人的房间里每30秒生成1只蓝蜘蛛#清理房间后生成1只蓝蜘蛛"}, -- Louse
 	-- Change: Added more loot information
-	[76] = {"76", "筹码", "↑ 箱子有50%概率生成额外掉落物#↓ 箱子有50%概率只有1只红苍蝇#提升赌博机等机器获胜几率#若箱子含有品质为0-2的道具，将其替换为品质更高的道具#箱子偶尔会含有金箱子道具池之外的道具"}, -- Poker Chip
+	[76] = {"76", "筹码", "↑ 箱子有50%概率生成额外掉落物#↓ 箱子有50%概率只有1只红苍蝇#提升赌博机等机器获胜几率#若箱子含有品质为0-2的道具, 将其替换为品质更高的道具#箱子偶尔会含有金箱子道具池之外的道具"}, -- Poker Chip
 	-- Change: Added additional effects
-	[85] = {"85", "业报", "{{DonationMachine}} 使用捐款机时, 33%概率:#{{HealingRed}} 治疗1红心(40%)#{{Coin}} 给予1硬币(40%)#{{Luck}} 幸运+1(15%)#{{Beggar}} 生成1个乞丐(5%)#{{DonationMachine}} 捐款机卡币概率降低#也会影响乞丐捐款和补货机"}, -- Karma
+	[85] = {"85", "业报", "{{DonationMachine}} 使用捐款机时, 33%概率:#{{HealingRed}} 治疗1红心(40%)#{{Coin}} 给予1硬币(40%)#{{Luck}} 幸运+1(15%)#{{Beggar}} 生成一个乞丐(5%)#{{DonationMachine}} 捐款机卡币概率降低#也会影响乞丐捐款和补货机"}, -- Karma
 	-- Change: Added damage up information
 	[89] = {"89", "儿童栓绳", "跟班离角色更近#{{Damage}} 跟班获得伤害修正+25%"}, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
@@ -192,16 +192,14 @@ local goldenTrinketEffects = {
 	[71] = {"增加水迹范围", "增加水迹范围与持续时间"},
 	-- Poker Chip (append):
 	[76] = {"{{Slotmachine}}赌博获胜的掉落物变为2倍", "{{Slotmachine}}赌博获胜的掉落物变为3倍"},
+	-- Blister (find replace)
+	[77] = {"提高", "进一步{{CR}}提高", "更进一步{{CR}}提高"},
 	-- Store Key (append):
 	[83] = {"{{Shop}}商店不会是等级最低的变体", "{{Shop}}商店的整体质量提升"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}}提高双硬币、镍币、铸币、幸运硬币和金硬币的生成概率"},
-	-- Karma (find replace):
-	[85] = { 1, 2, 3,  1, 2, 3,  1, 2, 3},
 	-- Mom's Locket (find replace):
 	[87] = {"半红心", "一红心", "一个半红心"},
-	-- Child Leash (find replace):
-	[89] = {"25", "50", "75"},
 	-- Meconium (find replace):
 	[91] = { 33, 66, 100,  5, 7, 10 },
 	-- Used Diaper (find replace):
@@ -276,9 +274,7 @@ local goldenTrinketEffects = {
 	-- 'M (append):
 	[138] = {"10%概率重置后的主动道具为满充能", "20%概率重置后的主动道具为满充能"},
 	-- Apple of Sodom (find replace):
-	[140] = {"拾起红心", "任意{{CR}}的心被拾取"},
-	-- Forgotten Lullaby (find replace):
-	[141] = {"翻倍", "{{CR}}翻{{ColorGold}}2.5{{CR}}倍", "{{CR}}翻{{ColorGold}}3{{CR}}倍"},
+	[140] = {"红心", "任意心"},
 	-- Brain Worm (append):
 	[144] = {"25%概率发射穿刺泪弹", "50%概率发射穿刺泪弹"},
 	-- Devil’s Crown (append):
@@ -379,11 +375,10 @@ local goldenTrinketData = {
 	[70] = {findReplace = true}, -- Louse
 	[71] = {append = true}, -- Bob's Bladder
 	[76] = {append = true}, -- Poker Chip
+	[77] = {findReplace = true}, -- Blister
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
-	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
-	[89] = {findReplace = true}, -- Child Leash
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
 	[94] = {append = true}, -- Fish Tail
@@ -415,7 +410,6 @@ local goldenTrinketData = {
 	[136] = {findReplace = true}, -- Broken Padlock
 	[138] = {append = true}, -- 'M
 	[140] = {findReplace = true}, -- Apple of Sodom
-	[141] = {findReplace = true}, -- Forgotten Lullaby
 	[144] = {append = true}, -- Brain Worm
 	[146] = {append = true}, -- Devil’s Crown
 	[147] = {findReplace = true}, -- Charged Penny
