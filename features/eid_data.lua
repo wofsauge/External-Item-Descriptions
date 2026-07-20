@@ -842,7 +842,7 @@ EID.ColorBlindColors = {
 -- append / findReplace / fullReplace: add text (Rainbow Worm, NO!) or entirely replace the trinket's description (Tick) from goldenTrinketEffects
 EID.GoldenTrinketData = {
 	[1] = 1, -- Swallowed Penny
-	[2] = {t={50}, mult=1.2}, -- Petrified Poop (50% -> 60%)
+	[2] = {t={50}, mults={1.2,1.4}}, -- Petrified Poop (50% -> 60%)
 	[5] = {t={2}, mult=2}, -- Purple Heart (max 2x)
 	[10] = {t={0.4,0}}, -- Wiggle Worm
 	[11] = {t={0.4,0}}, -- Ring Worm
@@ -852,7 +852,7 @@ EID.GoldenTrinketData = {
 	[24] = {t={20}, mult=1.5}, -- Butt Penny
 	[26] = {t={0.4, 1.5, 0}}, -- Hook Worm (two stats)
 	[27] = 0.5, -- Whip Worm
-	[29] = 1, -- Fish Head
+	[29] = {t={2, 1}}, -- Fish Head
 	[32] = {t={25}, mult=4}, -- Liberty Cap (max 4x)
 	[35] = 2, -- Curved Horn
 	[37] = 0.15, -- Goat Hoof
@@ -879,7 +879,7 @@ EID.GoldenTrinketData = {
 	[86] = {t={1}, mult=2},-- Lil Larva
 	[88] = {append = true}, -- NO!
 	[90] = {t={100}, mult=2}, -- Brown Cap
-	[92] = 20, -- Cracked Crown
+	[92] = {t={1.2}, mults={1.167,1.333}}, -- Cracked Crown
 	[96] = {t={0.4, 1.5}}, -- Ouroboros Worm
 	[132] = {t={25}, mult=4}, -- Broken Syringe
 	[139] = {t={4},mults={1.5,2}}, -- Teardrop Charm
@@ -892,7 +892,7 @@ EID.GoldenTrinketData = {
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, -- Gilded Key (Golden = no +1 key; probably a bug)
 	[160] = 1, -- Lucky Sack
 	[162] = {t={33}, mults={1.515151, 3.03131}}, -- Azazel's Stump (33/50/100)
-	[163] = {t={1},mult=2}, -- Dingle Berry
+	[163] = 1, -- Dingle Berry
 	[164] = 1, -- Ring Cap
 	[166] = {t={50},mult=2}, -- Modeling Clay
 	[167] = {t={25}, mults={1.32, 2}}, -- Polished Bone (25, 33, 50)
@@ -912,16 +912,18 @@ EID.GoldenTrinketData = {
 	[6] = {findReplace = true, mult = 2}, -- Broken Magnet (coins -> pickups)
 	[7] = {append = true}, -- Rosary Bead
 	[8] = 5, -- Cartridge
-	[9] = 0, -- Pulse Worm (default text)
+	[9] = {append = true}, -- Pulse Worm
 	[12] = 50, -- Flat Worm
 	[13] = {goldenOnly = true, fullReplace = true, mult=1}, -- Golden Store Credit
 	[15] = {append = true}, -- Lucky Rock (effect chance rolls multiple times)
 	[16] = {t={20}, mults={0.5, 0.333}}, -- Mom's Toenail (20 -> 10 -> 6.66)
 	[25] = {goldenOnly = true, findReplace = true, mult = 2}, -- Mysterious Candy (golden = golden poop)
+	[69] = {append = true}, -- Faded Polaroid
 }
 if EID.isRepentancePlus then
 	EID.GoldenTrinketData[17] = {t={10}, mults={2,3.3}} -- Red Patch
 	EID.GoldenTrinketData[23] = {t={33}, mults={1.5,3}} -- Missing Poster
+	EID.GoldenTrinketData[24] = {t={20}, mults={1.5,2}} -- Butt Penny
 	EID.GoldenTrinketData[30] = {t={10}, mults={2,3.3}} -- Pinky Eye
 	EID.GoldenTrinketData[31] = {t={10}, mults={2,3.3}} -- Push Pin
 	EID.GoldenTrinketData[38] = {t={10}, mults={2,2}} -- Mom's Pearl
@@ -952,7 +954,6 @@ if EID.isRepentancePlus then
 	EID.GoldenTrinketData[137] = {t={4}, mults={1.5,2}} -- Myosotis
 	EID.GoldenTrinketData[141] = {t={2}, mults={1.25,1.5}} -- Forgotten Lullaby
 	EID.GoldenTrinketData[158] = {t={2}, mults={1.5,2}} -- Torn Pocket
-	EID.GoldenTrinketData[163] = {t={1}} -- Dingle Berry can be tripled now
 	EID.GoldenTrinketData[167] = {t={25}, mults={1.32,2}} -- Polished Bone
 	EID.GoldenTrinketData[174] = {t={10}, mults={1.5,2}} -- Number Magnet
 	EID.GoldenTrinketData[180] = {t={50}, mults={1.5,2}} -- Found Soul
@@ -1204,7 +1205,7 @@ EID.LuckFormulas["5.350.8"] = function(luck) return (100 / math.max(1, (20 - mat
 EID.LuckFormulas["5.350.30"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Pinky Eye: Base 10%, 100% at 18 Luck
 EID.LuckFormulas["5.350.31"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Push Pin: Base 10%, 100% at 18 Luck
 EID.LuckFormulas["5.350.46"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Isaac's Fork: Base 10%, 100% at 18 Luck
-EID.LuckFormulas["5.350.48"] = function(luck) return (100 / math.max(2, (20 - math.floor(luck*0.3)))) end -- A Missing Page: Base 5%, 100% at 60 Luck
+EID.LuckFormulas["5.350.48"] = function(luck) return (100 / math.max(2, (20 - math.floor(luck*0.3)))) end -- A Missing Page: Base 5%, 50% at 60 Luck
 EID.LuckFormulas["5.350.58"] = function(luck) return (100 / math.max(1, (15 - math.floor(luck*1.5)))) end -- Samson's Lock: Base 6.66%, 100% at 9.34 Luck
 EID.LuckFormulas["5.350.59"] = function(luck) return (100 / math.max(1, (4 - math.floor(luck)))) end -- Cain's Eye: Base 25%, 100% at 3 Luck
 EID.LuckFormulas["5.350.60"] = function(luck) return (100 / math.max(1, (20 - math.floor(luck*2.5)))) end -- Eve's Bird Foot: Base 5%, 100% at 7.6 Luck
