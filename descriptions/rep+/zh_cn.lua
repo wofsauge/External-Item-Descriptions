@@ -94,7 +94,7 @@ local trinkets = {
 	-- Change: Added more loot information
 	[76] = {"76", "筹码", "↑ 箱子有50%概率生成额外掉落物#↓ 箱子有50%概率只有1只红苍蝇#提升赌博机等机器获胜几率#若箱子含有品质为0-2的道具, 将其替换为品质更高的道具#箱子偶尔会含有金箱子道具池之外的道具"}, -- Poker Chip
 	-- Change: Added additional effects
-	[85] = {"85", "业报", "{{DonationMachine}} 使用捐款机时, 33%概率:#{{HealingRed}} 治疗1红心(40%)#{{Coin}} 给予1硬币(40%)#{{Luck}} 幸运+1(15%)#{{Beggar}} 生成一个乞丐(5%)#{{DonationMachine}} 捐款机卡币概率降低#也会影响乞丐捐款和补货机"}, -- Karma
+	[85] = {"85", "业报", "{{DonationMachine}} 使用捐款机时, 33%概率:#{{HealingRed}} 治疗1红心(40%)#{{Coin}} 给予1硬币(40%)#{{Luck}} 幸运+1(15%)#{{Beggar}} 生成1个乞丐(5%)#{{DonationMachine}} 捐款机卡币概率降低#也会影响乞丐捐款和补货机"}, -- Karma
 	-- Change: Added damage up information
 	[89] = {"89", "儿童栓绳", "跟班离角色更近#{{Damage}} 跟班获得伤害修正+25%"}, -- Child Leash
 	-- Change: 33% chance, Spawns blue fly on new room
@@ -198,6 +198,8 @@ local goldenTrinketEffects = {
 	[83] = {"{{Shop}}商店不会是等级最低的变体", "{{Shop}}商店的整体质量提升"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}}提高双硬币、镍币、铸币、幸运硬币和金硬币的生成概率"},
+	-- Karma (find replace):
+	[85] = { 1, 2, 3,  1, 2, 3,  1, 2, 3},
 	-- Mom's Locket (find replace):
 	[87] = {"半红心", "一红心", "一个半红心"},
 	-- Meconium (find replace):
@@ -378,6 +380,7 @@ local goldenTrinketData = {
 	[77] = {findReplace = true}, -- Blister
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
+	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper

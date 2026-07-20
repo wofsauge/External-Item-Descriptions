@@ -201,6 +201,8 @@ local goldenTrinketEffects = {
 	[83] = {"{{Shop}} Prevents shops from using low-quality layouts", "{{Shop}} Upgrades shop layouts"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}} Increased chance of double pennies, nickels, dimes, lucky pennies, and golden pennies"},
+	-- Karma (find replace):
+	[85] = {"1 heart", "2{{CR}} hearts", "3{{CR}} hearts",  "1 coin", "2{{CR}} coins", "3{{CR}} coins",  "1 luck", "2{{CR}} luck", "3{{CR}} luck"},
 	-- Mom's Locket (find replace):
 	[87] = {"half a heart", "a heart", "one and a half hearts"},
 	-- Meconium (find replace):
@@ -381,6 +383,7 @@ local goldenTrinketData = {
 	[77] = {findReplace = true}, -- Blister
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
+	[85] = {findReplace = true}, -- Karma
 	[87] = {findReplace = true}, -- Mom's Locket
 	[91] = {findReplace = true}, -- Meconium
 	[93] = {findReplace = true}, -- Used Diaper
