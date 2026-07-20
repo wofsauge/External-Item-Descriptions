@@ -766,7 +766,7 @@ EID.descriptions[languageCode].trinkets={
 	{"26", "Hook Worm", "↑ {{Range}} +10 Range#Isaac's tears move in angular patterns"}, -- Hook Worm
 	{"27", "Whip Worm", "↑ {{Shotspeed}} +0.5 Shot speed"}, -- Whip Worm
 	{"28", "Broken Ankh", "{{Player4}} 22% chance to respawn as ??? (Blue Baby) on death"}, -- Broken Ankh
-	{"29", "Fish Head", "Taking damage spawns 1 blue fly"}, -- Fish Head
+	{"29", "Fish Head", "Taking damage spawns 1-2 blue flies"}, -- Fish Head
 	{"30", "Pinky Eye", "{{Poison}} 10% chance to shoot poison tears#{{Luck}} 100% chance at 18 luck"}, -- Pinky Eye
 	{"31", "Push Pin", "10% chance to shoot piercing + spectral tears#{{Luck}} 100% chance at 18 luck"}, -- Push Pin
 	{"32", "Liberty Cap", "25% chance for a random mushroom effect per room#Can reveal special rooms on the minimap"}, -- Liberty Cap
@@ -815,7 +815,7 @@ EID.descriptions[languageCode].trinkets={
 	{"75", "Error", "Grants a random trinket effect every room"}, -- Error
 	{"76", "Poker Chip", "↑ 50% chance for chests to spawn extra pickups#↓ 50% chance for chests to contain a single fly"}, -- Poker Chip
 	{"77", "Blister", "Increases knockback"}, -- Blister
-	{"78", "Second Hand", "Status effects applied to enemies last twice as long"}, -- Second Hand
+	{"78", "Second Hand", "Status effects applied to enemies 2 times as long"}, -- Second Hand
 	{"79", "Endless Nameless", "Using a {{Rune}} rune, {{Card}} card or {{Pill}} pill has a 25% chance to spawn a copy of that rune, card or pill"}, -- Endless Nameless
 	{"80", "Black Feather", "↑ {{Damage}} +0.2 Damage for each \"Evil up\" item held"}, -- Black Feather
 	{"81", "Blind Rage", "Invincibility frames after taking damage last twice as long"}, -- Blind Rage
@@ -827,7 +827,7 @@ EID.descriptions[languageCode].trinkets={
 	{"87", "Mom's Locket", "{{HealingRed}} Using a key heals half a heart#{{Heart}} Turns half hearts into full hearts"}, -- Mom's Locket
 	{"88", "NO!", "Prevents active items from spawning"}, -- NO!
 	{"89", "Child Leash", "Familiars stay closer to Isaac"}, -- Child Leash
-	{"90", "Brown Cap", "Poop explodes for 100 damage when destroyed"}, -- Brown Cap
+	{"90", "Brown Cap", "Poop explodes for 60 damage when destroyed"}, -- Brown Cap
 	{"91", "Meconium", "33% chance for Black Poops to spawn#{{BlackHeart}} Destroying Black Poop has a 5% chance to spawn a Black Heart"}, -- Meconium
 	{"92", "Cracked Crown", "↑ {{Tears}} x0.8 Tear delay#↑ x1.33 Stat multiplier for the stats that are above 1 {{Speed}} speed, 3.5 {{Damage}} damage, 23.75 {{Range}} range, 1 {{Shotspeed}} shot speed"}, -- Cracked Crown
 	{"93", "Used Diaper", "15% chance per room for all fly enemies to become friendly"}, -- Used Diaper
