@@ -888,6 +888,7 @@ local repTrinkets={
 	[67] = {"67", "Cracked Dice", "Taking damage has a 50% chance to trigger one of these effects:#{{Collectible105}} D6#{{Collectible406}} D8#{{Collectible285}} D10#{{Collectible386}} D12#{{Collectible166}} D20"}, -- Cracked Dice
 	[69] = {"69", "Faded Polaroid", "Randomly camouflages Isaac#{{Confusion}} Confuses enemies#Can be used to open the \"Strange Door\" in \"Depths II\""}, -- Faded Polaroid
 	[80] = {"80", "Black Feather", "↑ {{Damage}} +0.5 Damage for each \"Evil up\" item held"}, -- Black Feather
+	[90] = {"90", "Brown Cap", "Poop explodes for 100 damage when destroyed"}, -- Brown Cap
 	[92] = {"92", "Cracked Crown", "↑ x1.2 Stat multiplier for the stats that are above 1 {{Speed}} speed, 2.73 {{Tears}} tears, 3.5 {{Damage}} damage, 6.5 {{Range}} range, 1 {{Shotspeed}} shot speed"}, -- Cracked Crown
 	[96] = {"96", "Ouroboros Worm", "↑ +0.4 Tears#↑ {{Range}} +1.5 Range#Spectral tears#10% Chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
 	[98] = {"98", "Nose Goblin", "10% chance to shoot a sticky tear#50% chance for it to be homing#{{Damage}} Boogers deal Isaac's damage once per second#Boogers stick for 10 seconds"}, -- Nose Goblin
@@ -974,8 +975,10 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[6] = { "coins", "pickups" },
 	-- Rosary Bead append
 	[7] = { "{{Collectible72}} Rosary is added to all item pools" },
+	-- Pulse Warm append
+	[9] = {"Increase tear size further"},
 	-- Golden Store Credit: full replace
-	[13] = { "{{Shop}} {{ColorGold}}Allows Isaac to take Shop items for free{{CR}}#Chance to turn into a regular {{Trinket13}} Store Credit after each purchase" },
+	[13] = { "{{Shop}} {{ColorGold}}Allows Isaac to take Shop items for free{{CR}}#25% chance to turn into a regular {{Trinket13}} Store Credit after each purchase" },
 	-- Lucky Rock append (Gold / Mom's Box / Both)
 	[15] = { "Rocks may drop 2 coins", "Rocks may drop 2 coins", "Rocks may drop 3 coins" },
 	-- Golden Mysterious Candy makes Golden Poop
@@ -990,6 +993,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "Worm's stat boosts are doubled", "Worm's stat boosts are tripled", "Worm's stat boosts are quadrupled", },
+	[69] = {"Lengthen effect time"},
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
 	-- NO!

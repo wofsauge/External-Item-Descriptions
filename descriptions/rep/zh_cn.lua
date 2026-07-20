@@ -895,6 +895,7 @@ local repTrinkets={
 	[67] = {"67", "碎裂六面骰", "受伤时, 50%概率触发以下骰子效果之一:#{{Collectible105}} 六面骰#{{Collectible406}} 八面骰#{{Collectible285}} 十面骰#{{Collectible386}} 十二面骰#{{Collectible166}} 二十面骰"}, -- Cracked Dice
 	[69] = {"69", "褪色的全家福", "随机使角色伪装#{{Confusion}} 使敌人混乱#可以用于打开\"深牢II\"的\"奇怪的门\""}, -- Faded Polaroid
 	[80] = {"80", "黑色羽毛", "↑ {{Damage}} 每持有1个\"邪恶上升\"道具, 伤害+0.5"}, -- Black Feather
+	[90] = {"90", "棕色雷管", "大便摧毁时爆炸, 造成100点伤害"}, -- Brown Cap
 	[92] = {"92", "碎裂的王冠", "↑ 高于{{Speed}}移速1, {{Tears}}射速2.73, {{Damage}}伤害3.5, {{Range}}射程6.5, {{Shotspeed}}弹速1的部分修正x1.2"}, -- Cracked Crown
 	[96] = {"96", "衔尾虫", "↑ {{Tears}} 射速+0.4#↑ {{Range}} 射程+1.5#灵体泪弹#10%概率为追踪泪弹#{{Luck}} 幸运9: 100%概率#角色的泪弹螺旋快速前进"}, -- Ouroboros Worm
 	[98] = {"98", "鼻涕泡", "5%概率发射追踪粘性泪弹#{{Damage}} 每秒造成1x角色伤害#能粘住10秒"}, -- Nose Goblin
@@ -916,7 +917,7 @@ local repTrinkets={
 	[138] = {"138", "'M", "使用主动道具后, 将该主动道具重置"}, --  'M
 	[139] = {"139", "泪滴护符", "{{Luck}} 对基于幸运的泪弹效果, 幸运+4"}, --  Teardrop Charm
 	[140] = {"140", "所多玛之果", "拾起红心时, 50%概率将其变成蓝蜘蛛#满血时改为100%"}, --  Apple of Sodom
-	[141] = {"141", "失落摇篮曲", "跟班的射速翻倍"}, --  Forgotten Lullaby
+	[141] = {"141", "失落摇篮曲", "跟班的射速变为2倍"}, --  Forgotten Lullaby
 	[142] = {"142", "伯大尼的信仰", "{{Collectible584}} 进入新层时, 生成4美德之书魂火"}, --  Beth's Faith
 	[143] = {"143", "老旧电容", "{{Battery}} 阻止主动道具通过清理房间充能#{{Battery}} 清理房间后, 20%概率生成1电池#{{Luck}} 幸运5: 33%"}, --  Old Capacitor
 	[144] = {"144", "脑形虫", "泪弹若会打不中敌人, 则90度转向敌人"}, --  Brain Worm
@@ -981,8 +982,10 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[6] = { "硬币", "掉落物" },
 	-- Rosary Bead append
 	[7] = { "{{Collectible72}} 念珠添加至所有道具池" },
+	-- Pulse Worm append
+	[9] = { "波动幅度变得更大" },
 	-- Golden Store Credit: full replace
-	[13] = { "{{Shop}} {{ColorGold}}允许角色免费拿商店道具{{CR}}#每次拿商品后有概率变为普通的{{Trinket13}}商店积分" },
+	[13] = { "{{Shop}} {{ColorGold}}允许角色免费拿商店道具{{CR}}#每次拿商品后有25%概率变为普通的{{Trinket13}}商店积分" },
 	-- Lucky Rock append (Gold / Mom's Box / Both)
 	[15] = { "石头可能掉落2硬币", "石头可能掉落2硬币", "石头可能掉落3硬币" },
 	-- Golden Mysterious Candy makes Golden Poop
@@ -997,6 +1000,8 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "蠕虫属性效果翻倍", "蠕虫属性效果翻三倍", "蠕虫属性效果翻四倍", },
+	-- Faded Polaroid (append)
+	[69] = { "延长效果持续时间", "大幅延长效果持续时间"},
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "若可能, 饰品效果翻倍", "若可能, 饰品效果翻三倍", "若可能, 饰品效果翻四倍", },
 	-- NO!
@@ -1236,7 +1241,7 @@ local repCharacterInfo = {
 	[31] = {"堕化游魂", "{{Card51}} 生成的卡牌有10%概率为神圣卡#品质{{Quality2}}或以下的道具有20%概率重置#只生成\"攻击性\"道具"},
 	[32] = {"堕化莉莉丝", "按发射键弹出短距离近战胎儿造成3x伤害#按住发射键保持胎儿在外面, 向最近的敌人发射泪弹"},
 	[33] = {"堕化店主", "最多2硬币心容器#敌人会掉落2秒内消失的硬币#大多数底座道具需要15硬币购买#恶魔交易和天使道具需要支付15或30硬币#商店不需要钥匙且商品增加"},
-	[34] = {"堕化亚伯伦", ""},
+	[34] = {"堕化亚玻伦", ""},
 	[35] = {"堕化遗骸", "遗骸是一堆不能移动的骨头, 由遗骸之魂拾起并投掷, 造成3x伤害#只有遗骸之魂会受到伤害#炸弹会放置在遗骸的位置#无法拥有红心#{{SoulHeart}} 心之容器改为魂心"},
 	[36] = {"堕化伯大尼", "{{Heart}} 使用红心为主动道具充能#无法拥有红心#{{SoulHeart}} 心之容器改为魂心和红心充能#属性提升只有75%效力"},
 	[37] = {"堕化雅各", "堕化以扫会追击堕化雅各, 接近时冲刺#冲刺会对敌人造成大量伤害#若击中堕化雅各, 堕化雅各在本层后续会变为灵魂, 受伤即死#作为灵魂时, 每房间可以免费进行一次恶魔交易"},
