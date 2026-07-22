@@ -1632,13 +1632,7 @@ function EID:OnRender()
 						end
 						if not wasHidden then
 							local pillColor = closest.SubType
-							local pool = game:GetItemPool()
-							local identified = pool:IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
-							if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
-							local pillEffectID = EID:getAdjustedSubtype(closest.Type, closest.Variant, pillColor)
-							local wasUsed = EID:WasPillUsed(pillColor)
-
-							if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
+							if EID:ShouldShowPillAsIdentified(pillColor) then
 								-- show identified pill
 								local descEntry = EID:getDescriptionObj(closest.Type, closest.Variant, pillColor, closest)
 								EID:addDescriptionToPrint(descEntry)

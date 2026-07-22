@@ -91,28 +91,47 @@ EID.HUDElements = {
 		local id = EID.player:GetCard(0)
 		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
 		id = EID.player:GetPill(0)
-		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		if id ~= 0 then
+			if not EID:ShouldShowPillAsIdentified(id) then
+				return { Description = "UnidentifiedPill", Entity = EID.player}
+			end
+			return EID:getDescriptionObj(5, 70, id) end
 		return nil
 	end},
 	["Pocket2"] = {x = 0,y = 40, width = 30, height = 30, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
 		local id = EID.player:GetCard(1)
 		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
 		id = EID.player:GetPill(1)
-		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		if id ~= 0 then
+			if not EID:ShouldShowPillAsIdentified(id) then
+				return { Description = "UnidentifiedPill", Entity = EID.player}
+			end
+			return EID:getDescriptionObj(5, 70, id)
+		end
 		return nil
 	end},
 	["Pocket3"] = {x = 0,y = 70, width = 30, height = 25, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
 		local id = EID.player:GetCard(2)
 		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
 		id = EID.player:GetPill(2)
-		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		if id ~= 0 then
+			if not EID:ShouldShowPillAsIdentified(id) then
+				return { Description = "UnidentifiedPill", Entity = EID.player}
+			end
+			return EID:getDescriptionObj(5, 70, id)
+		end
 		return nil
 	end},
 	["Pocket4"] = {x = 0,y = 95, width = 30, height = 20, anchors={"BOTTOM","RIGHT"}, descriptionObj = function()
 		local id = EID.player:GetCard(3)
 		if id ~= 0 then return EID:getDescriptionObj(5, 300, id) end
 		id = EID.player:GetPill(3)
-		if id ~= 0 then return EID:getDescriptionObj(5, 70, id) end
+		if id ~= 0 then
+			if not EID:ShouldShowPillAsIdentified(id) then
+				return { Description = "UnidentifiedPill", Entity = EID.player}
+			end
+			return EID:getDescriptionObj(5, 70, id)
+		end
 		return nil
 	end}
 }
@@ -132,7 +151,7 @@ EID.TextReplacementPairs = {
 	{"\r\n", "#"}, -- Line break for long strings
 	{"\n", "#"}, -- Line break for long strings
 	{"\r", "#"}, -- Line break for long strings
-	{"\t", ""}, -- Remove Tabs, useful for formatting logn string texts inside a file, without activating the EID markup system to control the bulletpoint icons
+	{"\t", ""}, -- Remove Tabs, useful for formatting long string texts inside a file, without activating the EID markup system to control the bulletpoint icons
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error

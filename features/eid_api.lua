@@ -3429,3 +3429,20 @@ function EID:WriteErrorMsg(str)
 	EID:WriteDebugMsg("EID ERROR: " .. str)
 end
 
+--- Helper function to evaluate if a pill color is identified
+--- @param pillColor any
+--- @return boolean
+function EID:ShouldShowPillAsIdentified(pillColor)
+	local identified = game:GetItemPool():IsPillIdentified(pillColor) and not EID.Config["OnlyShowPillWhenUsedAtLeastOnce"]
+	if EID.isRepentance and pillColor % PillColor.PILL_GIANT_FLAG == PillColor.PILL_GOLD then identified = true end
+	local pillEffectID = EID:getAdjustedSubtype(5, 70, pillColor)
+	local wasUsed = EID:WasPillUsed(pillColor)
+
+	if (identified or wasUsed or EID.Config["ShowUnidentifiedPillDescriptions"]) and not EID.UnidentifyablePillEffects[pillEffectID] then
+		-- show identified pill
+		return true
+	else
+		-- show unidentified pill description
+		return false
+	end
+end
