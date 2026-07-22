@@ -17,10 +17,12 @@ local collectibles = {
 	[56] = { "56", "Lemon Mishap", "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room" }, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = { "117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second#Persists between rooms if player is at 1/2 hearts" }, -- Dead Bird
+	-- Change: Change "Tears" to "Fire rate"
+	[120] = { "120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Fire rate#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage" }, -- Dead Bird
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "Pageant Boy", "{{Coin}} Spawns 7 random coins#Spawns a random penny trinket" }, -- Pageant Boy
 	-- Change: added Fire rate information
-	[186] = { "186", "Blood Rights", "Deals 40 damage to every enemy#{{Tears}} +0.48 fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first" }, -- Blood Rights
+	[186] = { "186", "Blood Rights", "Deals 40 damage to every enemy#{{Tears}} +0.48 Fire rate for current room#{{Warning}} Deals 1 heart of damage to Isaac#After the first use in a room, deals half a heart instead#{{Heart}} Removes Red Hearts first" }, -- Blood Rights
 	-- Change: added random tear effects information	
 	[244] = { "244", "Tech.5", "Occasionally shoot lasers in addition to Isaac's tears#Small chance for lasers to have random effects"}, -- Tech.5
 	-- Change: added "Blocks enemy tears"
@@ -29,6 +31,8 @@ local collectibles = {
 	[329] = { "329", "The Ludovico Technique", "↑ {{Shotspeed}} +0.2 Shot speed#Replaces Isaac's tears with one giant controllable tear" }, -- The Ludovico Technique
 	-- Change: Complete rewrite
 	[351] = { "351", "Mega Bean", "{{Petrify}} Deals 100 damage and petrifies all enemies in the room#{{Poison}} Deals 5 damage and poisons any enemies nearby#Can open secret rooms and break rocks" }, -- Mega Bean
+	-- Change: "10%" to "20%"
+	[398] = { "398", "God's Flesh", "{{Shrink}} Tears have a 20% chance to shrink enemies#Shrunken enemies can be crushed and killed by walking over them"}, -- God's Flesh
 	-- Change: Added "Grants bigger explosions#Fireplaces explode when extinguished"
 	[420] = { "420", "Black Powder", "Walking in a circle draws a pentagram on the floor, which deals 130 damage over 4 seconds#Grants bigger explosions#Fireplaces explode when extinguished" }, -- Black Powder
 	-- Change: Complete rewrite
@@ -45,8 +49,8 @@ local collectibles = {
 	[482] = { "482", "Clicker", "Changes your character to a random character#50% chance of removing the most recent item collected" }, -- Clicker
 	-- Change: Complete rewrite
 	[510] = { "510", "Delirious", "Spawns a friendly delirium version of a boss#Persists between rooms#{{Warning}} Only one boss can be active at a time#The health of the boss deteriorates over time" }, -- Delirious
-	-- Change: added "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed"
-	[554] = { "554", "2Spooky", "{{Tears}} +0.5 Tears#{{Shotspeed}} +0.2 Shot speed#{{Fear}} Fears enemies in a small radius around Isaac" }, -- 2Spooky
+	-- Change: added "{{Tears}} +0.5 Fire rate#{{Shotspeed}} +0.2 Shot speed"
+	[554] = { "554", "2Spooky", "{{Tears}} +0.5 Fire rate#{{Shotspeed}} +0.2 Shot speed#{{Fear}} Fears enemies in a small radius around Isaac" }, -- 2Spooky
 	-- Change: added "Tears leave a pool of creep on impact"
 	[560] = { "560", "It Hurts", "{{Timer}} When taking damage, receive for the room:#↑ {{Tears}} +1.2 Fire rate on the first hit#↑ {{Tears}} +0.4 Fire rate for each additional hit#Releases a ring of 10 tears around Isaac#Tears leave a pool of creep on impact" }, -- It Hurts
 	-- Change: Added ring of fire on impact description
@@ -62,7 +66,7 @@ local collectibles = {
 	-- Change: Added Shop as a new destination
 	[660] = { "660", "Card Reading", "Spawns two portals in the first room of each floor#Leaving the room despawns the portals#{{Blank}} {{ColorRed}}Red: {{CR}}{{BossRoom}} Boss Room#{{Blank}} {{ColorYellow}}Yellow: {{CR}}{{TreasureRoom}} Item Room#{{Blank}} {{ColorBlue}}Blue: {{CR}}{{SecretRoom}} Secret Room#{{Blank}} {{ColorGreen}}Green: {{CR}}{{Shop}} Shop" }, -- Card Reading
 	-- Change: Complete rewrite
-	[681] = { "681", "Lil Portal", "Double-tapping a fire button launches the portal#Deals contact damage when launched#Consumes pickups in its path#Each pickup consumed increases its size, damage, and spawns a blue fly#Consuming 2-3 pickups spawns a portal to a special room and the familiar disappears for the rest of the floor#The content of the room persists for the rest of the run" }, -- Lil Portal
+	[681] = { "681", "Lil Portal", "Double-tapping a fire button launches the portal#Deals contact damage when launched#Consumes pickups in its path#Each pickup consumed increases its size, damage, and spawns a blue fly#Consuming (1 + stage number) pickups spawns a portal to a special room and the familiar disappears for the rest of the floor#The content of the room persists for the rest of the run" }, -- Lil Portal
 	-- Change: Added into for first usage
 	[685] = { "685", "Jar of Wisps", "Spawns 2 random wisps#Spawns one additional wisp with each use, up to 12" }, -- Jar of Wisps
 	-- Change: Added info about the damage based on item quality
@@ -76,7 +80,7 @@ local trinkets = {
 	-- Change: Added champion loot information
 	[5] = {"5", "Purple Heart", "2x chance for champion enemies#50% chance for champion enemies to drop loot#Doubles champion enemy loot"}, -- Purple Heart
 	-- Change: Added info about devil deals
-	[7] = { "7", "Rosary Bead", "{{AngelChance}} 50% higher Angel Room chance#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries#Forces {{DevilChance}}Devil Deals to be {{AngelChance}}Angel Deals"}, -- Rosary Bead
+	[7] = { "7", "Rosary Bead", "#{{Collectible33}} Higher chance to find The Bible in {{Shop}} Shops and {{Library}} Libraries#Forces {{DevilChance}}Devil Deals to be {{AngelChance}}Angel Deals"}, -- Rosary Bead
 	-- Change: added info about dropping the item
 	[16] = {"16", "Mom's Toenail", "{{MomBoss}} Dropping the trinket in hostile rooms will cause Mom's Foot to stomp its location"}, -- Mom's Toenail
 	-- Change: added Super Secret Room info
@@ -99,8 +103,8 @@ local trinkets = {
 	[97] = { "97", "Tonsil", "Taking damage 6-12 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars" }, -- Tonsil
 	-- Change: now affected by luck, maxing at 18 luck
 	[99] = { "99", "Super Ball", "10% chance to shoot bouncing tears#{{Luck}} 100% chance at 18 luck" }, -- Super Ball
-	-- Change: Added +2 Tears
-	[103] = {"103", "Equality!", "When Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal:#↑ {{Tears}} +2 Tears#Turns single pickups into double pickups"}, -- Equality!
+	-- Change: Added +2 Fire rate and remove Turns single pickups into double pickups
+	[103] = {"103", "Equality!", "When Isaac's {{Coin}} coin, {{Bomb}} bomb and {{Key}} key counts are equal:#↑ {{Tears}} +2 Fire rate"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = { "104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit" }, -- Wish Bone
 	-- Change: "2%" to "5%"
@@ -119,7 +123,7 @@ EID:updateDescriptionsViaTable(trinkets, EID.descriptions[languageCode].trinkets
 
 local goldenTrinketEffects = {
 	-- Purple Heart (find replace):
-	[5] = { 2, 3, 4,  50, 66, 75 },
+	[5] = { 2, 4, 6,  50, 66, 75 },
 	-- Callus (append):
 	[14] = { "{{SacrificeRoom}} Reduces the damage of sacrifice room spikes to half a heart", "{{Collectible108}} Reduces most damage taken to half a heart" },
 	-- Mom's Toenail (find replace):
@@ -191,12 +195,14 @@ local goldenTrinketEffects = {
 	[71] = {"Increased creep size", "Increased creep size and duration"},
 	-- Poker Chip (append):
 	[76] = {"{{Slotmachine}} Doubles payouts from gambling", "{{Slotmachine}} Triples payouts from gambling"},
+	-- Blister (find replace):
+	[77] = {"knockback", "{{CR}}knockback {{ColorGold}}further", "{{CR}}knockback {{ColorGold}}even further"},
 	-- Store Key (append):
 	[83] = {"{{Shop}} Prevents shops from using low-quality layouts", "{{Shop}} Upgrades shop layouts"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}} Increased chance of double pennies, nickels, dimes, lucky pennies, and golden pennies"},
 	-- Karma (find replace):
-	[85] = {"1 luck", "2{{CR}} luck", "3{{CR}} luck"},
+	[85] = {"1 heart", "2{{CR}} hearts", "3{{CR}} hearts",  "1 coin", "2{{CR}} coins", "3{{CR}} coins",  "1 luck", "2{{CR}} luck", "3{{CR}} luck"},
 	-- Mom's Locket (find replace):
 	[87] = {"half a heart", "a heart", "one and a half hearts"},
 	-- Meconium (find replace):
@@ -204,7 +210,7 @@ local goldenTrinketEffects = {
 	-- Used Diaper (find replace):
 	[93] = {"1 blue fly", "2{{CR}} blue flies", "3{{CR}} blue flies"},
 	-- Fish Tail (append):
-	[94] = {"20% chance to spawn 3 blue flies / spiders", "20% chance to spawn 4 blue flies / spiders"},
+	[94] = {"20% chance to spawn 3 blue flies / locusts", "20% chance to spawn 4 blue flies / locusts"},
 	-- Tonsil (find replace):
 	[97] = {"2 familiars", "3{{CR}} familiars", "4{{CR}} familiars"},
 	-- Nose Goblin (replace):
@@ -273,7 +279,7 @@ local goldenTrinketEffects = {
 	-- 'M (append):
 	[138] = {"10% chance of fully charging the rolled item", "20% chance of fully charging the rolled item"},
 	-- Apple of Sodom (find replace):
-	[140] = {"picked up Red Hearts", "any {{CR}}picked up Hearts"},
+	[140] = {"Picking up Red Hearts", "Any {{CR}}picked up Hearts"},
 	-- Brain Worm (append):
 	[144] = {"25% chance to shoot piercing tears", "50% chance to shoot piercing tears"},
 	-- Devil’s Crown (append):
@@ -341,7 +347,7 @@ local goldenTrinketEffects = {
 	-- Adoption Papers (append):
 	[184] = {"Familiars will always be on sale", "Familiars will always be on sale#{{Card92}} {{ColorGold}}Shops will now sell \"Soul of Lilith\""},
 	-- Sigil of Baphomet (find replace):
-	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds"},
+	[189] = {"1 second", "1.5 {{CR}}seconds", "2 {{CR}}seconds", "5 seconds", "7.5 {{CR}}seconds", "10 {{CR}}seconds"},
 }
 EID:updateDescriptionsViaTable(goldenTrinketEffects, EID.descriptions[languageCode].goldenTrinketEffects)
 
@@ -374,6 +380,7 @@ local goldenTrinketData = {
 	[70] = {findReplace = true}, -- Louse
 	[71] = {append = true}, -- Bob's Bladder
 	[76] = {append = true}, -- Poker Chip
+	[77] = {findReplace = true}, -- Blister
 	[83] = {append = true}, -- Store Key
 	[84] = {append = true}, -- Rib of Greed
 	[85] = {findReplace = true}, -- Karma

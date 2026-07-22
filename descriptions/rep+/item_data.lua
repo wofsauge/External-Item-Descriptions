@@ -6,7 +6,9 @@ local Pill_ID = "5.70."
 local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
-EID.FullyAutomatedDescriptions[Card_ID..38] = nil -- Berkano
+EID.FullyAutomatedDescriptions[C_ID .. 120] = nil -- Odd Mushroom (Thin)
+EID.FullyAutomatedDescriptions[C_ID .. 141] = nil -- Pageant Boy
+EID.FullyAutomatedDescriptions[Card_ID .. 38] = nil -- Berkano
 
 local itemData = {
 
