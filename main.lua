@@ -641,19 +641,6 @@ function EID:printDescription(desc, cachedID)
 	local curName = ""
 	if EID.Config["ShowItemName"] and desc.Name then
 		curName = desc.Name
-		if EID.Config["TranslateItemName"] ~= 2 and desc.ObjType ~= -999 then
-			local curLanguage = EID.Config["Language"]
-			if EID:getLanguage() ~= EID.DefaultLanguageCode then
-				EID.Config["Language"] = EID.DefaultLanguageCode
-				local englishName = desc.PermanentTextEnglish or EID:getObjectName(desc.ObjType, desc.ObjVariant, desc.ObjSubType)
-				EID.Config["Language"] = curLanguage
-				if EID.Config["TranslateItemName"] == 1 then
-					curName = englishName
-				elseif EID.Config["TranslateItemName"] == 3 and curName ~= englishName then
-					curName = curName.." ("..englishName..")"
-				end
-			end
-		end
 	end
 	-- Display Entity ID
 	if EID.Config["ShowObjectID"] and desc.ObjType and desc.ObjType > 0 then
@@ -1679,7 +1666,6 @@ function EID:OnRender()
 	if EID.Config["ItemReminderEnabled"] and EID.holdTabCounter >= 30 and EID.TabDescThisFrame == false and EID.holdTabPlayer ~= nil then
 		EID:ItemReminderHandleInputs()
 		local demoDescObj = EID:getDescriptionObj(-999, -1, 1)
-		demoDescObj.PermanentTextEnglish = EID:getDescriptionEntryEnglish("ItemReminder", "Title")
 		-- check for scrolling being enabled here and append scroll controls to the title?
 		demoDescObj.Description = EID:ItemReminderGetDescription()
 		demoDescObj.Name = EID:ItemReminderGetTitle()

@@ -100,7 +100,6 @@ local dynamicSpriteCache = {} -- used to store sprite objects of collectible ico
 ---@field Icon EID_Icon
 ---@field Entity Entity?
 ---@field ShowWhenUnidentified boolean?
----@field PermanentTextEnglish string?
 ---@field IgnoreBulletPointIconConfig boolean?
 ---@field ItemType integer?
 ---@field ChargeType integer?
@@ -526,7 +525,7 @@ end
 ---@param permName1 string
 ---@param permName2 string?
 function EID:displayPermanentText(descriptionObject, permName1, permName2)
-	descriptionObject.PermanentTextEnglish = EID:getDescriptionEntryEnglish(permName1, permName2)
+	descriptionObject.Name = EID:getDescriptionEntryEnglish(permName1, permName2)
 	EID.permanentDisplayTextObj = descriptionObject
 	EID.isDisplayingPermanent = true
 end
@@ -938,11 +937,12 @@ function EID:getTransformationName(id)
 end
 
 ---Tries to get the ingame name of an item based on its ID
+--- Used internally by EID:getObjectName, which also handles the TranslateItemName config option
 ---@param Type EntityType
 ---@param Variant integer
 ---@param SubType integer
 ---@return string
-function EID:getObjectName(Type, Variant, SubType)
+local function getObjectName_internal(Type, Variant, SubType)
 	local fallbackName = Type.."."..Variant.."."..SubType
 	local tableName = EID:getTableName(Type, Variant, SubType)
 
@@ -988,6 +988,31 @@ function EID:getObjectName(Type, Variant, SubType)
 		return name or xmlName or fallbackName
 	end
 	return fallbackName
+end
+
+---Tries to get the ingame name of an item based on its ID
+---@param Type EntityType
+---@param Variant integer
+---@param SubType integer
+---@return string
+function EID:getObjectName(Type, Variant, SubType)
+	local combinedName = getObjectName_internal(Type, Variant, SubType)
+	if EID.Config["TranslateItemName"] ~= 2 then
+		local curLanguage = EID.Config["Language"]
+		if EID:getLanguage() ~= EID.DefaultLanguageCode then
+			EID.Config["Language"] = EID.DefaultLanguageCode
+			local englishName = getObjectName_internal(Type, Variant, SubType)
+			EID.Config["Language"] = curLanguage
+			if englishName ~= combinedName then
+				if EID.Config["TranslateItemName"] == 1 then
+					combinedName = englishName
+				elseif EID.Config["TranslateItemName"] == 3 and combinedName ~= englishName then
+					combinedName = combinedName.." ("..englishName..")"
+				end
+			end
+		end
+	end
+	return combinedName
 end
 
 ---Returns the name of a player based on their ID
