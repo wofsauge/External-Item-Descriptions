@@ -410,6 +410,9 @@ function EID:ApplyModularNestedDescription(itemDataTableEntry, description, modu
     -- Try replace inline variable
     local numReplaced = 0
     description, numReplaced = description:gsub("{VAR:"..string.upper(moduleName).."}", textFragment)
+
+    -- Un-Escape % signs in text, to prevent pattern-matching errors
+    description = description:gsub("%%%%", "%%")
     if numReplaced == 0 then
         return EID:AddModularTextLineToDescription(description, textFragment, indent)
     end
