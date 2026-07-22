@@ -17,8 +17,6 @@ local collectibles = {
 	[56] = { "56", "レモンの災い", "レモン汁が床に広がり、 触れた敵に毎秒24の ダメージを与える#レモン汁は部屋に居る間 残り続ける"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = { "117", "鳥の死体", "ダメージを受けると鳥が 現れ、その部屋に居る間、 敵を追いかけて攻撃する#残り体力が半ハートの時、 常に有効（イブのみ{{Heart}}1）#毎秒4.3の接触ダメージ"}, -- Dead Bird
-	-- Change: Can now break the soft tears cap.
-	[120] = { "120", "変なキノコ", "↑ 連射速度 +1.7#{{Blank}} ※上限を突破できる#↑ 移動速度 +0.3#↓ 攻撃力　 -10%#↓ 攻撃力　 -0.4"}, -- Odd Mushroom
 	-- Change: Now always drops a Penny trinket as part of its rewards.
 	[141] = { "141", "ページェント ボーイ", "ランダムなコイン7枚と、 コイン系トリンケット 1個をスポーンする"}, -- Pageant Boy
 	-- Change: In addition to its existing effects, each use now grants a tears upgrade for the current room.

@@ -17,8 +17,6 @@ local collectibles = {
 	[56] = { "56", "Lemon Mishap", "Spills a pool of creep#The creep deals 24 damage per second#Creep persists until you exit the room" }, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = { "117", "Dead Bird", "Taking damage spawns a bird that attacks enemies#The bird deals 4.3 contact damage per second#Persists between rooms if player is at 1/2 hearts" }, -- Dead Bird
-	-- Change: Change "Tears" to "Fire rate"
-	[120] = { "120", "Odd Mushroom (Thin)", "↑ {{Speed}} +0.3 Speed#↑ {{Tears}} +1.7 Fire rate#↓ {{Damage}} x0.9 Damage multiplier#↓ {{Damage}} -0.4 Damage" }, -- Dead Bird
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "Pageant Boy", "{{Coin}} Spawns 7 random coins#Spawns a random penny trinket" }, -- Pageant Boy
 	-- Change: added Fire rate information

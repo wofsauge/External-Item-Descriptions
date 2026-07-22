@@ -6,7 +6,6 @@ local Pill_ID = "5.70."
 local Card_ID = "5.300."
 local HorseID = PillColor.PILL_GIANT_FLAG
 
-EID.FullyAutomatedDescriptions[C_ID .. 120] = nil -- Odd Mushroom (Thin)
 EID.FullyAutomatedDescriptions[C_ID .. 141] = nil -- Pageant Boy
 EID.FullyAutomatedDescriptions[Card_ID .. 38] = nil -- Berkano
 
@@ -14,13 +13,14 @@ local itemData = {
 
 ---------- Collectibles ----------
 
+    [C_ID .. 120] = { Speed = 0.3, FireRate = 1.7, DamageMultiplier = 0.9, Damage = -0.4 }, -- Odd Mushroom (Thin)  (Tears is now FireRate)
     [C_ID .. 186] = { DamageToAllEnemies = 40, RoomEffect = { FireRate = 0.48 } }, -- Blood Rights (added FireRate)
     [C_ID .. 281] = { BlockProjectiles = true }, -- Punching Bag
     [C_ID .. 329] = { ShotSpeed = 0.2 }, -- The Ludovico Technique
-    [C_ID .. 554] = { Tears = 0.5, ShotSpeed = 0.2 },  -- 2Spooky
+    [C_ID .. 554] = { FireRate = 0.5, ShotSpeed = 0.2 },  -- 2Spooky
 	[C_ID .. 594] = { EmptyHeart = 2, Speed = -0.3, HealingRed = 2 }, -- Jupiter
 	[C_ID .. 643] = { Flight = true }, -- Revelation (Removed +2 Soul Hearts)
-    [C_ID .. 651] = { EffectList = { TearsMultiplier = 2.5, DamageMultiplier = 1.2, TearEffect = "Homing"} }, -- Star of Bethlehem (Changed DamageMultiplier)
+    [C_ID .. 651] = { EffectList = { FireRateMultiplier = 2.5, DamageMultiplier = 1.2, TearEffect = "Homing"} }, -- Star of Bethlehem (Changed DamageMultiplier TearMultiplier to FireRateMultiplier)
 
 ---------- Trinkets ----------
 

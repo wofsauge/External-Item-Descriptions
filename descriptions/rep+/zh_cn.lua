@@ -17,8 +17,6 @@ local collectibles = {
 	[56] = { "56", "烦事柠檬", "留下一摊水迹#水迹每秒造成24点伤害#水迹在离开房间前持续存在"}, -- Lemon Mishap
 	-- Change: added "Persists between rooms if player is at 1/2 hearts"
 	[117] = { "117", "死鸟", "受伤时, 生成1只攻击敌人的鸟#鸟每秒造成4.3点接触伤害#角色只有半心时, 切换房间也持续存在"}, -- Dead Bird
-	-- Change: Change "Tears" to "Fire Rate"
-	[120] = { "120", "怪异蘑菇(小)", "↑ {{Speed}} 移速+0.3#↑ {{Tears}} 射速修正+1.7#↓ {{Damage}} 伤害修正x0.9#↓ {{Damage}} 伤害-0.4"},
 	-- Change: added "Spawns a random penny trinket"
 	[141] = { "141", "盛装男孩", "{{Coin}} 生成7随机硬币#生成1随机硬币饰品" }, -- Pageant Boy
 	-- Change: added Fire rate information
