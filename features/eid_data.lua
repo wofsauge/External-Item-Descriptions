@@ -129,6 +129,10 @@ EID.TextReplacementPairs = {
 	{"\5", "{{Key}}"}, -- Legacy Key
 	{"\015", "{{Coin}}"}, -- Legacy Coin
 	{"\8\189", "{{Bomb}}"}, -- Legacy BOMB
+	{"\r\n", "#"}, -- Line break for long strings
+	{"\n", "#"}, -- Line break for long strings
+	{"\r", "#"}, -- Line break for long strings
+	{"\t", ""}, -- Remove Tabs, useful for formatting logn string texts inside a file, without activating the EID markup system to control the bulletpoint icons
 	{"{{Hashtag}}", "ǂ"}, -- Hashtag
 	{"{{CR}}", "{{ColorReset}}"}, -- Shortcut for Color Resetting
 	{"{{EthernalHeart}}", "{{EternalHeart}}"}, -- fix spelling error
