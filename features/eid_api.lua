@@ -1488,6 +1488,10 @@ function EID:filterColorMarkup(text, baseKColor)
 			lastColor = lookup
 			lastFunc = colorFunc
 			text = string.gsub(text, word, "", 1)
+			-- If the color markup is at the start of the line and is followed by a space, remove that space to avoid an extra gap at the start of the line
+			if textposition == 1 and string.sub(text, 1, 1) == " " then
+				text = string.sub(text, 2)
+			end
 		end
 	end
 
