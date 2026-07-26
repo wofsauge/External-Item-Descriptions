@@ -3,6 +3,7 @@ local languageCode = "pl"
 EID.descriptions[languageCode].AdditionalInformations = {}
 
 -- List of description IDs to ignore for fully automated descriptions
+local C_ID = "5.100."
 EID.descriptions[languageCode].IgnoreFullyAutomatedDescriptions = {}
 
 ---------- Modular Descriptions ----------
@@ -32,29 +33,29 @@ EID.descriptions[languageCode].ModularDescriptions = {
     Luck = "{value} Szczęścia",
     ShotSpeedMultiplier = "{value} Mnożnik Prędkości Strzałów",
     ShotSpeed = "{value} Prędkości Strzałów",
-    Life = "{value} Żyć",
+    Life = "{value} {plural:Życie|Życia|Żyć}",
     SizeUp = "Rośniesz",
     SizeDown = "Malejesz",
     Flight = "Latanie",
     Invincibility = "Nieśmiertelność",
-    RandomStatUp = "↑ Zwiększa losowo {value} statystyk",
-    RandomStatDown = "↓ Zmniejsza losowo {value} statystyk",
+    RandomStatUp = "↑ Zwiększa losowo {value} {plural:statystykę|statystyki|statystyk}",
+    RandomStatDown = "↓ Zmniejsza losowo {value} {plural:statystykę|statystyki|statystyk}",
 
     -- Health related
-    RedHeart = "{value} Serce",
-    SoulHeart = "{value} Serce Duszy",
-    BlackHeart = "{value} Czarne Serce",
-    BoneHeart = "{value} Kościane Serce",
-    EternalHeart = "{value} Wieczne serce",
-    GoldenHeart = "{value} Złote Serce",
-    RottenHeart = "{value} Zgniłe Serce",
-    BrokenHeart = "{value} Złamane Serce",
-    EmptyHeart = "{value} Pusty zasobnik na serce",
+    RedHeart = "{value} {plural:Serce|Serca|Serc}",
+    SoulHeart = "{value} {plural:Serce Duszy|Serca Duszy|Serc Duszy}",
+    BlackHeart = "{value} {plural:Czarne Serce|Czarne Serca|Czarnych Serc}",
+    BoneHeart = "{value} {plural:Kościane Serce|Kościane Serca|Kościanych Serc}",
+    EternalHeart = "{value} {plural:Wieczne Serce|Wieczne Serca|Wiecznych Serc}",
+    GoldenHeart = "{value} {plural:Złote Serce|Złote Serca|Złotych Serc}",
+    RottenHeart = "{value} {plural:Zgniłe Serce|Zgniłe Serca|Zgniłych Serc}",
+    BrokenHeart = "{value} {plural:Złamane Serce|Złamane Serca|Złamanych Serc}",
+    EmptyHeart = "{value} {plural:Pusty zasobnik na serce|Puste zasobniki na serce|Pustych zasobników na serce}",
     FullHealth = "Pełne zdrowie",
-    HealingRed = "Leczy {value} czerwone serce",
-    CoinHeart = "{value} Pieniężne Serce",
-    EmptyCoinHeart = "{value} Pusty zasobnik na Pieniężne Serce",
-    HealingCoin = "Leczy {value} monet",
+    HealingRed = "Leczy {value} {plural:czerwone serce|czerwone serca|czerwonych serc}",
+    CoinHeart = "{value} {plural:Pieniężne Serce|Pieniężne Serca|Pieniężnych Serc}",
+    EmptyCoinHeart = "{value} {plural:Pusty zasobnik na serce|Puste zasobniki na serce|Pustych zasobników na serce}",
+    HealingCoin = "Leczy {value} {plural:monetę|monety|monet}",
 
     -- Room chances
     AngelDevilChance = "{value}% szansy na Pokój Diabła{{DevilRoom}}/Anioła{{AngelRoom}}",
@@ -63,29 +64,29 @@ EID.descriptions[languageCode].ModularDescriptions = {
     PlanetariumChance = "{value}% szansy na Planetarium",
 
     -- Pickups / Spawns
-    Coin = "{value} Moneta",
-    Bomb = "{value} Bomba",
-    Key = "{value} Klucz",
+    Coin = "{value} {plural:Moneta|Monety|Monet}",
+    Bomb = "{value} {plural:Bomba|Bomby|Bomb}",
+    Key = "{value} {plural:Klucz|Klucze|Kluczy}",
     CoinBombKey = "{value} {{Coin}} moneta, {{Bomb}} bomba i {{Key}} klucz",
     -- Dynamic Spawns
     Spawns = {
-        RandomPickup = "Tworzy {value} losowy pickup",
-        RandomTrinket = "Tworzy {value} losowy trynkiet",
-        RandomHeart = "Tworzy {value} losowe serce",
-        RedHeart = "Tworzy {value} Czerwone Serce",
-        SoulHeart = "Tworzy {value} Serce Duszy",
-        BlackHeart = "Tworzy {value} Czarne Serce",
-        BoneHeart = "Tworzy {value} Kościane Serce",
-        Bomb = "Tworzy {value} bomb",
-        Key = "Tworzy {value} klucz",
-        Coin = "Tworzy {value} monetę",
-        RandomCoin = "Tworzy {value} losową monetę",
-        Card = "Tworzy {value} kartę",
-        Pill = "Tworzy {value} pigułkę",
-        Rune = "Tworzy {value} runę",
-        Battery = "Tworzy {value} baterię",
-        BlueFly = "Tworzy {value} niebieską muchę",
-        BlueSpider = "Tworzy {value} niebieskiego pająka",
+        RandomPickup = "Tworzy {value} {plural:losowy zasób|losowe zasoby|losowych zasobów}",
+        RandomTrinket = "Tworzy {value} {plural:losowy drobiazg|losowe drobiazgi|losowych drobiazgów}",
+        RandomHeart = "Tworzy {value} {plural:losowe serce|losowe serca|losowych serc}",
+        RedHeart = "Tworzy {value} {plural:Czerwone Serce|Czerwone Serca|Czerwonych Serc}",
+        SoulHeart = "Tworzy {value} {plural:Serce Duszy|Serca Duszy|Serc Duszy}",
+        BlackHeart = "Tworzy {value} {plural:Czarne Serce|Czarne Serca|Czarnych Serc}",
+        BoneHeart = "Tworzy {value} {plural:Kościane Serce|Kościane Serca|Kościanych Serc}",
+        Bomb = "Tworzy {value} {plural:bombę|bomby|bomb}",
+        Key = "Tworzy {value} {plural:klucz|klucze|kluczy}",
+        Coin = "Tworzy {value} {plural:monetę|monety|monet}",
+        RandomCoin = "Tworzy {value} {plural:losową monetę|losowe monety|losowych monet}",
+        Card = "Tworzy {value} {plural:kartę|karty|kart}",
+        Pill = "Tworzy {value} {plural:pigułkę|pigułki|pigułek}",
+        Rune = "Tworzy {value} {plural:runę|runy|run}",
+        Battery = "Tworzy {value} {plural:baterię|baterie|baterii}",
+        BlueFly = "Tworzy {value} {plural:niebieską muchę|niebieskie muchy|niebieskich much}",
+        BlueSpider = "Tworzy {value} {plural:niebieskiego pająka|niebieskie pająki|niebieskich pająków}",
     },
     -- Permanent Tear Effects
     TearEffect = {
@@ -95,7 +96,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
         Poison = "{{Poison}} Trujące łzy",
     },
     -- Familiars
-    FlyOrbital = "{value} Orbitująca mucha",
+    FlyOrbital = "{value} {plural:Orbitująca mucha|Orbitujące muchy|Orbitujących much}",
     Orbital = "Orbitujący sojusznik",
     BlockProjectiles = "Blokuje wrogie pociski",
     DamagePerTear = "Zadaje {value} obrażeń na łzę",
@@ -104,13 +105,13 @@ EID.descriptions[languageCode].ModularDescriptions = {
     ContactDamagePerSecond = "Zadaje {value} obrażeń kontaktowych na sekundę",
     MimicMovement = "Naśladuje ruchy Izaaka z {value}-sekundowym opóźnieniem",
     -- Player
-    CantShoot = "Isaac nie może strzelać",
+    CantShoot = "Izaak nie może strzelać",
     PlayerContactDamage = "Zadaje {value} obrażeń kontaktowych na sekundę",
     DamageToAllEnemies = "Zadaje {value} obrażeń wszystkim wrogom",
     -- Misc
     LeftEye = "Otrzymujesz dla lewego oka:",
     RightEye = "Otrzymujesz dla prawego oka:",
-    RoomEffect = "{{Timer}} Otrzymujesz w tym pokoju:",
+    RoomEffect = "{{Timer}} Otrzymujesz w tym pomieszczeniu:",
     TimedEffect = "{{Timer}} Otrzymujesz przez {value} sekund:",
     OnUseEffect = "Po użyciu:",
     HeldEffect = "Gdy trzymasz:",
