@@ -818,7 +818,7 @@ EID.descriptions[languageCode].trinkets={
 	{"78", "Second Hand", "Status effects applied to enemies last 2 times as long"}, -- Second Hand
 	{"79", "Endless Nameless", "Using a {{Rune}} rune, {{Card}} card or {{Pill}} pill has a 25% chance to spawn a copy of that rune, card or pill"}, -- Endless Nameless
 	{"80", "Black Feather", "↑ {{Damage}} +0.2 Damage for each \"Evil up\" item held"}, -- Black Feather
-	{"81", "Blind Rage", "Invincibility frames after taking damage last twice as long"}, -- Blind Rage
+	{"81", "Blind Rage", "Invincibility frames after taking damage last 2 times as long"}, -- Blind Rage
 	{"82", "Golden Horse Shoe", "{{TreasureRoom}} Future Treasure Rooms have +15% chance to let Isaac choose between two items"}, -- Golden Horse Shoe
 	{"83", "Store Key", "{{Shop}} Lets Isaac open Shops for free"}, -- Store Key
 	{"84", "Rib of Greed", "{{Coin}} 5% more coins and fewer hearts from room clear rewards#Greed and Super Greed no longer appear in {{Shop}} Shops or {{SecretRoom}} Secret Rooms"}, -- Rib of Greed
@@ -831,7 +831,7 @@ EID.descriptions[languageCode].trinkets={
 	{"91", "Meconium", "33% chance for Black Poops to spawn#{{BlackHeart}} Destroying Black Poop has a 5% chance to spawn a Black Heart"}, -- Meconium
 	{"92", "Cracked Crown", "↑ {{Tears}} x0.8 Tear delay#↑ x1.33 Stat multiplier for the stats that are above 1 {{Speed}} speed, 3.5 {{Damage}} damage, 23.75 {{Range}} range, 1 {{Shotspeed}} shot speed"}, -- Cracked Crown
 	{"93", "Used Diaper", "15% chance per room for all fly enemies to become friendly"}, -- Used Diaper
-	{"94", "Fish Tail", "Doubles all blue fly / spider spawns"}, -- Fish Tail
+	{"94", "Fish Tail", "Doubles all blue fly / locust spawns"}, -- Fish Tail
 	{"95", "Black Tooth", "{{Poison}} 3% chance to shoot poison tooth tears#The tooth deals 2x Isaac's damage"}, -- Black Tooth
 	{"96", "Ouroboros Worm", "↑ {{Range}} +4 Range#↑ +2 Tear height#Spectral tears#10% chance for homing tears#{{Luck}} 100% chance at 9 luck#Isaac's tears move quickly in a spiral pattern"}, -- Ouroboros Worm
 	{"97", "Tonsil", "Taking damage 12-20 times spawns a projectile blocking familiar#Disappears after spawning 2 familiars"}, -- Tonsil
