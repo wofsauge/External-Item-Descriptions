@@ -1018,7 +1018,6 @@ and then place
 	[5] = { "Double", "Quadruple" },
 in their goldenTrinketEffects
 ]]
-
 EID.descriptions[languageCode].goldenTrinketData = { }
 
 ---------- Cards ----------
