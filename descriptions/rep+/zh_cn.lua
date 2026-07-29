@@ -193,7 +193,7 @@ local goldenTrinketEffects = {
 	-- Blister (find replace)
 	[77] = {"提高", "进一步{{CR}}提高", "更进一步{{CR}}提高"},
 	-- Store Key (append):
-	[83] = {"{{Shop}}商店不会是等级最低的变体", "{{Shop}}商店的整体质量提升"},
+	[83] = {"{{Shop}}商店不会是等级最低的变体", "{{Shop}}升级商店的布局"},
 	-- Rib of Greed (append):
 	[84] = {"{{Coin}}提高双硬币、镍币、铸币、幸运硬币和金硬币的生成概率"},
 	-- Karma (find replace):
@@ -235,7 +235,7 @@ local goldenTrinketEffects = {
 	-- Bloody Crown (append):
 	[111] = {"其会包含2个道具供玩家选择"},
 	-- Pay To Win (append):
-	[112] = {"{{RestockMachine}}补货机爆炸概率降低"},
+	[112] = {"{{RestockMachine}} 补货机爆炸概率降低"},
 	-- Locust of War (find replace):
 	[113] = {"1只爆炸攻击的蝗虫", "2{{CR}}只爆炸攻击的蝗虫", "3{{CR}}只爆炸攻击的蝗虫"},
 	-- Locust of Pestilence (find replace):
@@ -291,8 +291,8 @@ local goldenTrinketEffects = {
 	[151] = {"也对头目, 窥眼刺块与链球生效"},
 	-- Telescope Lens (full replace):
 	[152] = {
-		"{{PlanetariumChance}} +18{{CR}}%星象房概率#如果未进入过星象房额外+15%概率#星象房可以生成在子宫和尸宫",
-		"{{PlanetariumChance}} +33{{CR}}%星象房概率#如果未进入过星象房额外+15%概率#星象房可以生成在子宫, 尸宫, {{ColorGold}}阴间和教堂",
+		"{{PlanetariumChance}} +{{ColorGold}}18{{CR}}%星象房概率#如果未进入过星象房额外+15%概率#星象房可以生成在子宫和尸宫",
+		"{{PlanetariumChance}} +{{ColorGold}}33{{CR}}%星象房概率#如果未进入过星象房额外+15%概率#星象房可以生成在子宫, 尸宫, {{ColorGold}}阴间和教堂",
 	},
 	-- Holy Crown (full replace):
 	[155] = {
@@ -316,8 +316,8 @@ local goldenTrinketEffects = {
 	[165] = {"生成双倍版本掉落物的概率+10%", "生成双倍版本掉落物的概率+20%"},
 	-- Keeper’s Bargain (full replace):
 	[171] = {
-		"{{DevilRoom}} 100{{CR}}%概率使恶魔交易消耗硬币而不是心",
-		"{{DevilRoom}} 100{{CR}}%概率使恶魔交易消耗硬币而不是心#{{ColorGold}}增加恶魔交易打折的概率",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}%概率使恶魔交易消耗硬币而不是心",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}%概率使恶魔交易消耗硬币而不是心#{{ColorGold}}增加恶魔交易打折的概率",
 	},
 	-- Cursed Penny (append):
 	[172] = {"增加传送至特殊房间的概率"},

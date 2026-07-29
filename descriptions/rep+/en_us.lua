@@ -294,8 +294,8 @@ local goldenTrinketEffects = {
 	[151] = {"Also affects Bosses, Grudges, and Ball & Chain"},
 	-- Telescope Lens (full replace):
 	[152] = {
-		"{{PlanetariumChance}} +18{{CR}}% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb and Corpse",
-		"{{PlanetariumChance}} +33{{CR}}% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb, Corpse, {{ColorGold}}Sheol and the Cathedral",
+		"{{PlanetariumChance}} +{{ColorGold}}18{{CR}}% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb and Corpse",
+		"{{PlanetariumChance}} +{{ColorGold}}33{{CR}}% Planetarium chance#Additional +15% chance if a Planetarium hasn't been entered yet#Planetariums can spawn in the Womb, Corpse, {{ColorGold}}Sheol and the Cathedral",
 	},
 	-- Holy Crown (full replace):
 	[155] = {
@@ -319,8 +319,8 @@ local goldenTrinketEffects = {
 	[165] = {"+10% chance for double pickups to spawn", "+20% chance for double pickups to spawn"},
 	-- Keeper’s Bargain (full replace):
 	[171] = {
-		"{{DevilRoom}} 100{{CR}}% chance for devil deals to cost coins instead of hearts",
-		"{{DevilRoom}} 100{{CR}}% chance for devil deals to cost coins instead of hearts#{{ColorGold}}Increases chance of Devil deals being on sale",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}% chance for devil deals to cost coins instead of hearts",
+		"{{DevilRoom}} {{ColorGold}}100{{CR}}% chance for devil deals to cost coins instead of hearts#{{ColorGold}}Increases chance of Devil deals being on sale",
 	},
 	-- Cursed Penny (append):
 	[172] = {"Increased chance of being teleported into a special room"},
@@ -389,7 +389,7 @@ local goldenTrinketData = {
 	[97] = {findReplace = true}, -- Tonsil
 	[98] = {fullReplace = true}, -- Nose Goblin
 	[102] = {append = true}, -- Fragmented Card
-	[106] = {append = true}, -- Lost Cork
+	[106] = {findReplace = true}, -- Lost Cork
 	[107] = {append = true}, -- Crow Heart
 	[108] = {findReplace = true}, -- Wallnut
 	[109] = {append = true}, -- Duct Tape
