@@ -1000,6 +1000,10 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	[88] = { "Prevents Quality {{Quality0}} items from spawning" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that might get fixed (maybe it'll give a Golden Key?)
 	[159] = { "{{GoldenChest}} Replaces all chests (except Old/Mega) with golden chests#{{GoldenChest}} Golden chests can contain extra cards, pills or trinkets" },
+	-- Lucky Sack
+	[160] = {"a sack", "2{{CR}} sacks", "3{{CR}} sacks"},
+	-- Lil Clot
+	[176] = {"a blood clot", "2{{CR}} blood clots", "3{{CR}} blood clots"},
 	-- The Twins
 	[183] = { "May copy/grant 2 familiars", "May copy/grant 2 familiars", "May copy/grant 3 familiars" },
 }
@@ -1014,6 +1018,7 @@ and then place
 	[5] = { "Double", "Quadruple" },
 in their goldenTrinketEffects
 ]]
+
 EID.descriptions[languageCode].goldenTrinketData = { }
 
 ---------- Cards ----------
