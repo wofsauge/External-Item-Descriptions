@@ -913,7 +913,7 @@ EID.GoldenTrinketData = {
 	[154] = {t={50}, mult=2}, -- Dice Bag
 	[156] = {t={1,1}}, -- Mother's Kiss
 	[159] = {goldenOnly = true, fullReplace = true, mult=1}, -- Gilded Key (Golden = no +1 key; probably a bug)
-	[160] = 1, -- Lucky Sack
+	[160] = {findReplace = true}, -- Lucky Sack
 	[162] = {t={33}, mults={1.515151, 3.03131}}, -- Azazel's Stump (33/50/100)
 	[163] = 1, -- Dingle Berry
 	[164] = 1, -- Ring Cap
@@ -922,7 +922,7 @@ EID.GoldenTrinketData = {
 	[168] = 1, -- Hollow Heart
 	[169] = {t={1}, goldenOnly = true, mult = 2}, -- Kid's Drawing
 	[170] = {t={33}, mults={1.5,3}}, -- Crystal Key
-	[176] = 1, -- Lil Clot
+	[176] = {findReplace = true}, -- Lil Clot
 	[178] = {t={50},mult=2}, -- Swallowed M80
 	[183] = {append = true}, -- The Twins (effect chance rolls multiple times)
 	[185] = 17, -- Cricket Leg (17%, 1 in 6)
