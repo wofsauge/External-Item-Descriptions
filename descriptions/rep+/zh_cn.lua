@@ -120,7 +120,7 @@ local goldenTrinketEffects = {
 	-- Purple Heart (find replace):
 	[5] = { 2, 4, 6,  50, 66, 75 },
 	-- Callus (append):
-	[14] = { "{{SacrificeRoom}}将献祭房的尖刺伤害降至半心", "{{Collectible108}}将大多数伤害降至半心" },
+	[14] = { "{{SacrificeRoom}} 将献祭房的尖刺伤害降至半心", "{{Collectible108}} 将大多数伤害降至半心" },
 	-- Mom's Toenail (find replace):
 	[16] = {"位置", "{{CR}}位置{{ColorGold}}2次", "{{CR}}位置{{ColorGold}}3次"},
 	-- Paper Clip (find replace):
@@ -128,7 +128,7 @@ local goldenTrinketEffects = {
 	-- Mysterious Paper (find replace):
 	[21] = {"效果", "{{ColorGold}}2个{{CR}}效果", "{{ColorGold}}2个{{CR}}效果"},
 	-- Daemon's Tail (append):
-	[22] = {"{{BlackHeart}}蓝色与紫色火堆现在会掉落黑心"},
+	[22] = {"{{BlackHeart}} 蓝色与紫色火堆现在会掉落黑心"},
 	-- Broken Ankh (find replace):
 	[28] = { 22, 33, 50 },
 	-- Umbilical Cord (find replace):
@@ -160,8 +160,8 @@ local goldenTrinketEffects = {
 	[54] = {"3.5点伤害", "角色伤害", "1.5倍角色伤害"},
 	-- Judas' Tongue (replace):
 	[56] = {
-		"{{DevilRoom}}降低{{ColorGold}}所有{{CR}}恶魔交易至1心",
-		"{{DevilRoom}}降低{{ColorGold}}所有{{CR}}恶魔交易至1心#{{ColorGold}}地刺交易只需1次献祭"
+		"{{DevilRoom}} 降低{{ColorGold}}所有{{CR}}恶魔交易至1心",
+		"{{DevilRoom}} 降低{{ColorGold}}所有{{CR}}恶魔交易至1心#{{ColorGold}}地刺交易只需1次献祭"
 	},
 	-- ???'s Soul (find replace):
 	[57] = {"在房间中", "2个{{CR}}在房间中", "3个{{CR}}在房间中"},
@@ -169,8 +169,8 @@ local goldenTrinketEffects = {
 	[58] = { 6.66, 13, 25,  10, 5, 2 },
 	-- The Left Hand (append):
 	[61] = {
-		"{{RedChest}}红箱子包含额外掉落物",
-		"{{RedChest}}红箱子包含额外掉落物#{{ColorGold}}红箱子不再生成红蜘蛛",
+		"{{RedChest}} 红箱子包含额外掉落物",
+		"{{RedChest}} 红箱子包含额外掉落物#{{ColorGold}}红箱子不再生成红蜘蛛",
 	},
 	-- Shiny Rock (replace):
 	[62] = {
@@ -189,13 +189,13 @@ local goldenTrinketEffects = {
 	-- Bob's Bladder (appendix):
 	[71] = {"增加水迹范围", "增加水迹范围与持续时间"},
 	-- Poker Chip (append):
-	[76] = {"{{Slotmachine}}赌博获胜的掉落物变为2倍", "{{Slotmachine}}赌博获胜的掉落物变为3倍"},
+	[76] = {"{{Slotmachine}} 赌博获胜的掉落物变为2倍", "{{Slotmachine}} 赌博获胜的掉落物变为3倍"},
 	-- Blister (find replace)
 	[77] = {"提高", "进一步{{CR}}提高", "更进一步{{CR}}提高"},
 	-- Store Key (append):
-	[83] = {"{{Shop}}商店不会是等级最低的变体", "{{Shop}}升级商店的布局"},
+	[83] = {"{{Shop}} 商店不会是等级最低的变体", "{{Shop}} 升级商店的布局"},
 	-- Rib of Greed (append):
-	[84] = {"{{Coin}}提高双硬币、镍币、铸币、幸运硬币和金硬币的生成概率"},
+	[84] = {"{{Coin}} 提高双硬币、镍币、铸币、幸运硬币和金硬币的生成概率"},
 	-- Karma (find replace):
 	[85] = { 1, 2, 3,  1, 2, 3,  1, 2, 3},
 	-- Mom's Locket (find replace):
@@ -303,9 +303,9 @@ local goldenTrinketEffects = {
 	[157] = { 15, 10, 5 },
 	-- Gilded Key (full replace copying the entire original description, because the Golden version doesn't give a key on pickup):
 	[159] = {
-		"{{GoldenChest}}将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}}金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+10%",
-		"{{Key}}拾取时获得1个钥匙#{{GoldenChest}}将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}}金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+10%",
-		"{{GoldenChest}}将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}}金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+20%"
+		"{{GoldenChest}} 将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}} 金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+10%",
+		"{{Key}} 拾取时获得1个钥匙#{{GoldenChest}} 将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}} 金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+10%",
+		"{{GoldenChest}} 将所有箱子(旧箱子/大箱子除外)替换为金箱子#{{GoldenChest}} 金箱子可能包含额外的卡牌, 胶囊或饰品#{{GoldenChest}} {{ColorGold}}清理房间后掉落箱子的概率+20%"
 	},
 	-- Wicked Crown (full replace):
 	[161] = {
