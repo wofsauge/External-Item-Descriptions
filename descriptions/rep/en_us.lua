@@ -614,7 +614,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[709] = "Spawns 3 wisps where Isaac lands", -- Suplex!
 	[710] = "Spawns a random wisp on craft", -- Bag of Crafting
 	[712] = "The item wisps shoot homing tears", -- Lemegeton
-	[719] = "20% chance for enemies to drop a {{Coin}} coin on kill", -- Keeper's Box
 	[720] = "Spawns a random wisp", -- Everything Jar
 	[722] = "Orbits the chained enemy, shooting at them#Wisp dies when the enemy dies", -- Anima Sola
 	[723] = "Spawns a random wisp and rerolls all wisps into the type", -- Spindown Dice

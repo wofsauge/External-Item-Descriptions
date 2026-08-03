@@ -508,14 +508,14 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[56] = "魂火会滴落黄色水迹", -- Lemon Mishap
 	[58] = "免疫弹幕#{{Collectible58}}的效果期间免疫伤害", -- Book of Shadows
 	[65] = "被摧毁时掉落1个即爆炸弹", -- Anarchist Cookbook
-	[66] = "{{Slow}}被摧毁时使敌人减速3秒", -- The Hourglass
+	[66] = "{{Slow}} 被摧毁时使敌人减速3秒", -- The Hourglass
 	[77] = "额外接触伤害", -- My Little Unicorn
 	[78] = "被摧毁时在当前房间中生成1只蝗虫", -- Book of Revelations
 	[85] = "被摧毁时掉落1{{Card}}卡牌", -- Deck of Cards
 	[97] = "8选1生成魂火:#{{Collectible65}}{{Collectible42}}{{Collectible85}}{{Collectible102}}{{Collectible37}}{{Collectible177}}{{Collectible49}}{{Collectible45}}#{{Warning}} 很有可能为爆炸效果", -- The Book of Sin
 	[102] = "6选1生成魂火:#普通泪弹且被摧毁时生成1只红蜘蛛/中毒泪弹/石化泪弹/迷惑泪弹/烧伤泪弹/即爆炸弹泪弹#无论哪种, 被摧毁时生成1胶囊", -- Mom's Bottle of Pills
 	[105] = "每重置1个道具额外生成1魂火", -- The D6
-	[111] = "{{Poison}}被摧毁时产生毒气", -- The Bean
+	[111] = "{{Poison}} 被摧毁时产生毒气", -- The Bean
 	[123] = "随机泪弹", -- Monster Manual
 	[124] = "生成触发道具对应的魂火", -- Dead Sea Scrolls
 	[127] = "仅存在于道具所创新层的无限血量魂火", -- Forget Me Now
@@ -528,15 +528,13 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[166] = "摧毁房间中所有掉落物, 每个都有概率生成1魂火", -- D20
 	[175] = "魂火会解锁碰到的箱子/门, 包括超级撒但, 回溯, 尸宫的门#该魂火可以捐给{{KeyBeggar}}钥匙大师", -- Dad's Key
 	[177] = "根据获得的奖励生成魂火", -- Portable Slot
-	[181] = "10%概率发射{{Collectible374}}圣光泪弹", -- White Pony
 	[186] = "高血量魂火", -- Blood Rights
-	[192] = "追踪泪弹", -- Telepathy for Dummies
 	[263] = "被摧毁时掉落1{{Rune}}符文", -- Clear Rune
 	[283] = "重置所有魂火并生成1随机魂火#不重置美德之书", -- D100
 	[284] = "移除所有魂火, 每持有2个道具生成1随机魂火#不重置美德之书", -- D4
 	[285] = "10%概率发射十面骰效果的泪弹", -- D10
 	[286] = "被摧毁时掉落1{{Card}}卡牌", -- Blank Card
-	[287] = "{{Collectible675}}被摧毁时产生碎裂的宝珠的效果", -- Book of Secrets
+	[287] = "{{Collectible675}} 被摧毁时产生碎裂的宝珠的效果", -- Book of Secrets
 	[288] = "生成魂火而不是蜘蛛#被摧毁时生成1蓝蜘蛛", -- Box of Spiders
 	[289] = "红火泪弹", -- Red Candle
 	[290] = "生成魂火而不是掉落红心#被摧毁时概率生成1{{HalfHeart}}半红心", -- The Jar
@@ -549,10 +547,10 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[297] = "根据当前层生成0-8魂火", -- Pandora's Box
 	[298] = "免疫接触伤害#只有激活独角兽的残角或类似效果时才会造成接触伤害", -- Unicorn Stump
 	[323] = "只能维持3秒", -- Isaac's Tears
-	[324] = "{{Collectible570}}黏土饼干泪弹", -- Undefined
+	[324] = "{{Collectible570}} 黏土饼干泪弹", -- Undefined
 	[325] = "抛射泪弹", -- Scissors
 	[326] = "完美阻挡时生成4魂火", -- Breath of Life
-	[347] = "{{Collectible245}}完美视力泪弹#复制所有其他魂火", -- Diplopia
+	[347] = "{{Collectible245}} 完美视力泪弹#复制所有其他魂火", -- Diplopia
 	[348] = "被摧毁时生成1{{Pill}}胶囊", -- Placebo
 	[349] = "被摧毁时50%概率掉落1{{Coin}}硬币", -- Wooden Nickel
 	[351] = "使用时产生岩石波#被摧毁时{{Petrify}}石化敌人并产生{{Poison}}毒气", -- Mega Bean
@@ -563,9 +561,9 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[386] = "5%概率发射将石头/罐子/头骨/蘑鼓重置的泪弹", -- D12
 	[396] = "每个传送门有1魂火", -- Ventricle Razor
 	[406] = "随机伤害和射速", -- D8
-	[419] = "20%概率发射传送敌人的泪弹#魂火每5秒闪匿一次", -- Teleport 2.0
-	[421] = "{{Charm}}被摧毁时产生魅惑屁", -- Kidney Bean
-	[422] = "30%概率发射{{Petrify}}石化泪弹#使上个房间被摧毁的所有魂火重生", -- Glowing Hour Glass
+	[419] = "魂火每5秒闪匿一次", -- Teleport 2.0
+	[421] = "{{Charm}} 被摧毁时产生魅惑屁", -- Kidney Bean
+	[422] = "使上个房间被摧毁的所有魂火重生", -- Glowing Hour Glass
 	[427] = "在房间中弹动, 被角色击中时爆炸#不造成接触伤害", -- Mine Crafter
 	[434] = "生成魂火而不是苍蝇#最多5只苍蝇产生血量和伤害增强的1魂火", -- Jar of Flies
 	[437] = "首次击中时产生七面骰效果", -- D7
@@ -600,7 +598,7 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[550] = "10%概率对敌人触发妈腿践踏的泪弹", -- Broken Shovel
 	[552] = "10%概率对敌人触发妈腿践踏的泪弹 ", -- Mom's Shovel
 	[556] = "短程{{Collectible118}}硫磺火泪弹", -- Sulfur
-	[557] = "↑ {{Luck}} 每有1幸运饼干魂火, 幸运+0.2", -- Fortune Cookie
+	[557] = "↑ {{Luck}}每有1幸运饼干魂火, 幸运+0.2", -- Fortune Cookie
 	[578] = "魂火会滴落黄色水迹", -- Free Lemonade
 	[580] = "进入新房间时概率产生红门", -- Red Key
 	[582] = "最多1个", -- Wavy Cap
@@ -622,7 +620,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[709] = "角色落地时生成3魂火", -- Suplex
 	[710] = "合成时生成1随机魂火", -- Bag of Crafting
 	[712] = "道具魂火发射追踪泪弹", -- Lemegeton
-	[719] = "20%概率击杀敌人时掉落1{{Coin}}硬币", -- Keeper's Box
 	[720] = "生成1随机魂火", -- Everything Jar
 	[722] = "{{Chained}} 禁锢2个敌人#若只有1个敌人, 将其禁锢10秒#再次使用使用孤魂铁索会解除最近的敌人", -- Anima Sola
 	[723] = "生成1随机魂火, 将所有魂火重置为该类型", -- Spindown Dice
@@ -744,7 +741,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [69] = "环形轨道运动",   -- Orbiting tears with a more narrow and stable orbit (used by Saturnus and Immaculate Heart)
     [70] = "碎岩",             -- Rock tears, chance to break rocks, deal extra damage to rock type enemies
     [71] = "脑形虫",      -- Brain Worm, tears turn and go horizontally when moving past an enemy
-    [72] = "鲜血炸弹 ",              -- Blood Bombs, leave blood creep on the ground
+    [72] = "鲜血炸弹",              -- Blood Bombs, leave blood creep on the ground
     [73] = "将敌人变为大便",    -- E. Coli tears, turn enemies into poop
     [74] = "击杀敌人时掉落硬币",      -- Killed enemies have a chance to drop a random coin (Reverse Hanged Man)
     [75] = "硫磺火炸弹",          -- Brimstone Bombs, explosion creates a brimstone cross
@@ -869,7 +866,7 @@ local repBFFSSynergies = {
 	["5.350.142"] = "魂火射速和接触伤害翻倍", -- Beth's Faith
 	["5.350.182"] = "魂火射速和接触伤害翻倍", -- Beth's Essence
 	["5.350.176"] = "血团伤害翻倍", -- Lil Clot
-	["5.350.186"] = "蝗虫伤害提升至1.25x", -- Apollyon's Best Friend
+	["5.350.186"] = "蝗虫伤害提升25%", -- Apollyon's Best Friend
 	["Tainted Lilith"] = "格罗的泪弹伤害翻倍", -- Gello (for BFFS pedestal)
 }
 EID:updateDescriptionsViaTable(repBFFSSynergies, EID.descriptions[languageCode].BFFSSynergies)
@@ -935,7 +932,7 @@ local repTrinkets={
 	[156] = {"156", "母亲的吻", "持有时+1心之容器"}, --  Mother's Kiss
 	[157] = {"157", "扑克牌残片", "每发射15次, 发射1颗{{Collectible149}}吐根酊+{{Collectible5}}我的镜像效果的泪弹, 其射程极高"}, --  Torn Card
 	[158] = {"158", "破损的口袋", "受伤时, 角色掉落持有的2硬币/钥匙/炸弹#该掉落物可能会变为变体, 比如金钥匙, 镍币, 铸币等"}, --  Torn Pocket
-	[159] = {"159", "镀金钥匙", "{{Key}} 首次拾起时+1钥匙#{{GoldenChest}} 所有新生成的箱子(除了旧箱子和巨型箱子)由金箱子取代#{{GoldenChest}} 金箱子可能含有额外的卡牌/胶囊/饰品"}, --  Gilded Key
+	[159] = {"159", "镀金钥匙", "{{Key}} 首次拾起时+1钥匙#{{GoldenChest}} 所有新生成的箱子(除了旧箱子和大箱子)由金箱子取代#{{GoldenChest}} 金箱子可能含有额外的卡牌/胶囊/饰品"}, --  Gilded Key
 	[160] = {"160", "幸运袋", "{{GrabBag}} 进入新层时生成1福袋"}, --  Lucky Sack
 	[161] = {"161", "邪恶王冠", "在阴间中生成{{TreasureRoom}}宝箱房和{{Shop}}商店"}, --  Wicked Crown
 	[162] = {"162", "阿撒泻勒的残角", "{{Player7}} 清理房间后有33%概率变为阿撒泻勒#{{Timer}} 效果持续到清理并离开另一个房间"}, --  Azazel's Stump
@@ -1007,7 +1004,7 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	-- NO!
 	[88] = { "阻止品质{{Quality0}}道具生成" },
 	-- Gilded Key (Golden version only): it doesn't give a key. bug that will get fixed (maybe it'll give a Golden Key?)
-	[159] = { "{{GoldenChest}} 所有新生成的箱子(除了旧箱子和巨型箱子)由金箱子取代#{{GoldenChest}} 金箱子可能含有额外的卡牌/胶囊/饰品" },
+	[159] = { "{{GoldenChest}} 所有新生成的箱子(除了旧箱子和大箱子)由金箱子取代#{{GoldenChest}} 金箱子可能含有额外的卡牌/胶囊/饰品" },
 	-- Lucky Sack
 	[160] = {1, 2, 3},
 	-- Lil Clot
@@ -1247,7 +1244,7 @@ local repCharacterInfo = {
 	[33] = {"堕化店主", "最多2硬币心容器#敌人会掉落2秒内消失的硬币#大多数底座道具需要15硬币购买#恶魔交易和天使道具需要支付15或30硬币#商店不需要钥匙且商品增加"},
 	[34] = {"堕化亚玻伦", ""},
 	[35] = {"堕化遗骸", "遗骸是一堆不能移动的骨头, 由遗骸之魂拾起并投掷, 造成3x伤害#只有遗骸之魂会受到伤害#炸弹会放置在遗骸的位置#无法拥有红心#{{SoulHeart}} 心之容器改为魂心"},
-	[36] = {"堕化伯大尼", "{{Heart}} 使用红心为主动道具充能#无法拥有红心#{{SoulHeart}} 心之容器改为魂心和红心充能#属性提升只有75%效力"},
+	[36] = {"堕化伯大尼", "{{Heart}} 使用红心为主动道具充能#无法拥有红心#{{SoulHeart}} 体力上升改为获得魂心和红心充能#属性提升只有75%效力"},
 	[37] = {"堕化雅各", "堕化以扫会追击堕化雅各, 接近时冲刺#冲刺会对敌人造成大量伤害#若击中堕化雅各, 堕化雅各在本层后续会变为灵魂, 受伤即死#作为灵魂时, 每房间可以免费进行一次恶魔交易"},
 	[38] = {"死亡的堕化拉撒路", "拉撒路有生死两种状态, 每种状态都有各自的道具和血量#清理房间/波次或使用生死逆转时, 切换到另一种状态"},
 	[39] = {"堕化雅各之魂", "#飞行#灵体泪弹#{{Warning}} 受伤即死#{{Warning}} 被堕化以扫击中时死亡#{{DevilRoom}} 每房间可以免费进行一次恶魔交易#下一层时变回堕化雅各"},
@@ -1285,7 +1282,7 @@ EID.descriptions[languageCode].birthright ={
 	{"堕化夏娃", "", "{{HalfHeart}} 红心血团死亡时生成2秒后消失的半红心"},
 	{"堕化参孙", "", "{{Collectible704}} 击杀敌人时狂暴计时增加3秒而不是1秒"},
 	{"堕化阿撒泻勒", "", "{{Collectible726}} 咯血症攻击范围翻倍"},
-	{"堕化拉撒路", "", "未激活的形态作为虚角色#虚角色无敌, 造成0.25x伤害#两个角色都有长子名分的效果"},
+	{"堕化拉撒路", "", "未激活的形态作为虚角色#虚角色无敌, 造成25%伤害#两个角色都有长子名分的效果"},
 	{"堕化伊甸", "", "在长子名分之前拿到的道具不会被重置#主动道具放下又拾起后可再次被重置"},
 	{"堕化游魂", "", "获得1额外生命#死亡时, 在相同房间中重生并对附近敌人造成200点伤害"},
 	{"堕化莉莉丝", "", "{{Collectible728}} 正常跟随的跟班改为与格罗行为一致#每有1个跟班, 造成的近战伤害+3"},
@@ -1294,7 +1291,7 @@ EID.descriptions[languageCode].birthright ={
 	{"堕化遗骸", "", "{{Collectible714}} 堕化遗骸之魂获得召回能力, 从任意距离召回堕化遗骸#遗骸之魂在遗骸返回时无敌"},
 	{"堕化伯大尼", "", "生成4个品质{{Quality3}}和{{Quality4}}的随机道具魂火, 血量比正常魂火高很多"},
 	{"堕化雅各", "", "堕化以扫分裂为两个#两者会同时冲刺#{{Collectible722}} 孤魂铁索的冷却降至10秒#{{Chained}} 使用孤魂铁索禁锢两者6.67秒"},
-	{"死亡的堕化拉撒路", "", "未激活的形态作为虚角色#虚角色无敌, 造成0.25x伤害#两个角色都有长子名分的效果"},
+	{"死亡的堕化拉撒路", "", "未激活的形态作为虚角色#虚角色无敌, 造成25%伤害#两个角色都有长子名分的效果"},
 	{"堕化雅各之魂", "", "堕化以扫分裂为两个#两者会同时冲刺#{{Collectible722}} 孤魂铁索的冷却降至10秒#{{Chained}} 使用孤魂铁索禁锢两者6.67秒"},
 	{"堕化遗骸之魂", "", "{{Collectible714}} 堕化遗骸之魂获得召回能力, 从任意距离召回堕化遗骸#遗骸之魂在遗骸返回时无敌"},
 }
