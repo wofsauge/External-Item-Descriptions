@@ -1286,7 +1286,7 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["5.100.205 (Wafer)"] = "花费降至半心", -- Sharp Plug + Wafer
 
 	["Suicide 1"] = "{1}无法阻止死亡", -- Plan C, Damocles, Suicide King
-	["Suicide 2"] = "死亡无法被{1}阻止", -- Plan C, Damocles, Suicide King
+	["Suicide 2"] = "无法阻止{1}的死亡", -- Plan C, Damocles, Suicide King
 
 	["5.100.7"] = "{1}效果激活时, 伤害修正x1.5", -- Blood of the Martyr
 	["5.100.34"] = "伤害修正x1.5", -- Book of Belial
