@@ -1227,6 +1227,7 @@ EID.LuckFormulas["5.100.503"] = function(luck) return (100 / math.max(5, (20 - m
 EID.LuckFormulas["5.350.8"] = function(luck) return (100 / math.max(1, (20 - math.floor(luck*0.5)))) end -- Cartridge: Base 5%, 100% at 38 Luck
 EID.LuckFormulas["5.350.30"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Pinky Eye: Base 10%, 100% at 18 Luck
 EID.LuckFormulas["5.350.31"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Push Pin: Base 10%, 100% at 18 Luck
+EID.LuckFormulas["5.350.40"] = function(luck) return (100 / math.max(1, (5 - math.floor(luck*0.5)))) end -- Red Patch: Base 20%, 100% at 8 Luck
 EID.LuckFormulas["5.350.46"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Isaac's Fork: Base 10%, 100% at 18 Luck
 EID.LuckFormulas["5.350.48"] = function(luck) return (100 / math.max(2, (20 - math.floor(luck*0.3)))) end -- A Missing Page: Base 5%, 50% at 60 Luck
 EID.LuckFormulas["5.350.58"] = function(luck) return (100 / math.max(1, (15 - math.floor(luck*1.5)))) end -- Samson's Lock: Base 6.66%, 100% at 9.34 Luck
@@ -1254,6 +1255,10 @@ if EID.isRepentance then
 	EID.LuckFormulas["5.350.135"] = function(luck) return math.min(luck*2 + 20) end -- A Lighter: Base 20%, 100% at 40 Luck
 	EID.LuckFormulas["5.350.143"] = function(luck) return math.min(luck*3 + 20, 33) end -- Old Capacitor: Base 20%, 33% at 4.34 Luck
 	EID.LuckFormulas["5.350.188"] = function(luck) return math.min(luck*2 + 20) end -- Ice Cube: Base 20%, 100% at 40 Luck
+end
+if EID.isRepentancePlus then
+	EID.LuckFormulas["5.350.40"] = function(luck) return math.min(luck*5 + 20) end -- Red Patch: Base 20%, 100% at 16 Luck
+	EID.LuckFormulas["5.350.99"] = function(luck) return (100 / math.max(1, (10 - math.floor(luck*0.5)))) end -- Super Ball: Base 10%, 100% at 18 Luck
 end
 
 -- Number of Health Ups you get from a Health Up item

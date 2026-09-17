@@ -83,6 +83,8 @@ local trinkets = {
 	[16] = {"16", "Mom's Toenail", "{{MomBoss}} Dropping the trinket in hostile rooms will cause Mom's Foot to stomp its location"}, -- Mom's Toenail
 	-- Change: added Super Secret Room info
 	[23] = { "23", "Missing Poster", "{{Player10}} Respawn as The Lost on death#{{SuperSecretRoom}} 33% chance to reveal Super Secret Room on new floor"}, -- Missing Poster
+	-- Change: 100% chance at 16 luck
+	[40] = {"40", "Red Patch", "{{Timer}} Taking damage has a 20% chance to grant ↑ {{Damage}} +1.8 damage for the room#{{Luck}} 100% chance at 16 luck"}, -- Red Patch
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = { "53", "Tick", "{{HealingRed}} Heals 1 heart when entering a {{BossRoom}} Boss Room#-15% boss health#{{Warning}} Once picked up, it can't be removed#Only removeable with {{Trinket41}} Match Stick, {{Trinket135}} A Lighter or gulping" }, -- Tick
 	-- Change: added +0.5 damage

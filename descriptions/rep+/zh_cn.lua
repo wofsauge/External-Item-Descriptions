@@ -83,6 +83,8 @@ local trinkets = {
 	[16] = {"16", "妈妈的脚趾甲", "在战斗中扔下会导致妈腿落在该位置"}, -- Mom's Toenail
 	-- Change: added Super Secret Room info
 	[23] = { "23", "寻人启事", "{{Player10}} 死亡时, 以游魂重生#{{SuperSecretRoom}} 进入新层时, 33%概率揭示新一层的超级隐藏房"}, -- Missing Poster
+	-- Change: 100% chance at 16 Luck
+	[40] = {"40", "红补丁", "{{Timer}} 受伤时, 20%概率在当前房间中获得:#↑ {{Damage}} 伤害+1.8#{{Luck}} 幸运16: 100%概率"},
 	-- Change: added ", {{Trinket135}} A Lighter"
 	[53] = {"53", "血虱", "{{HealingRed}} 进入{{BossRoom}}头目房时, 治疗1红心#头目血量-15%#{{Warning}} 捡起后, 无法被其他饰品替换#只能被{{Trinket41}}火柴棍, {{Trinket135}}打火机移除或吞下"}, -- Tick
 	-- Change: added +0.5 damage
@@ -224,9 +226,9 @@ local goldenTrinketEffects = {
 	},
 	-- Walnut (find replace):
 	[108] = {
-		"1{{UnknownHeart}}随机心, 1{{Coin}}硬币, 1{{Key}}钥匙和1{{Trinket}}随机饰品",
-		"2{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}2{{CR}}{{Coin}}硬币, {{ColorGold}}2{{CR}}{{Key}}钥匙和{{ColorGold}}2{{CR}} {{Trinket}}随机饰品",
-		"3{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}3{{CR}}{{Coin}}硬币, {{ColorGold}}3{{CR}}{{Key}}钥匙和{{ColorGold}}3{{CR}} {{Trinket}}随机饰品",
+		"1{{UnknownHeart}}随机心, 1{{Coin}}随机硬币, 1{{Key}}随机钥匙和1{{Trinket}}随机饰品",
+		"2{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}2{{CR}}{{Coin}}随机硬币, {{ColorGold}}2{{CR}}{{Key}}随机钥匙和{{ColorGold}}2{{CR}}{{Trinket}}随机饰品",
+		"3{{CR}}{{UnknownHeart}}随机心, {{ColorGold}}3{{CR}}{{Coin}}随机硬币, {{ColorGold}}3{{CR}}{{Key}}随机钥匙和{{ColorGold}}3{{CR}}{{Trinket}}随机饰品",
 	},
 	-- Duct Tape (append):
 	[109] = {"按下丢弃键会让跟班在不同的阵型间切换"},
@@ -340,7 +342,7 @@ local goldenTrinketEffects = {
 	-- Beth’s Essence (append):
 	[182] = {"50%概率进入天使房获得的魂火变为特殊魂火#{{ColorGold}}乞丐会生成特殊魂火", "100%概率进入天使房获得的魂火变为特殊魂火#{{ColorGold}}乞丐会生成特殊魂火"},
 	-- Adoption Papers (append):
-	[184] = {"跟班永远打折", "跟班永远打折#{{Card92}} {{ColorGold}}商店会出售\"莉莉丝魂石\""},
+	[184] = {"跟班永远打折", "跟班永远打折#{{Card92}} {{ColorGold}}商店会出售\"莉莉丝的魂石\""},
 	-- Sigil of Baphomet (find replace):
 	[189] = {"1秒", "1.5{{CR}}秒", "2{{CR}}秒",  "5秒", "7.5{{CR}}秒", "10{{CR}}秒"},
 }
