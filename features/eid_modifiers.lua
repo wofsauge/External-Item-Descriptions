@@ -366,6 +366,7 @@ local function HealthUpCallback(descObj)
 			descObj.Description = descObj.Description:gsub("{{HealingRed}}(.-)#", "")
 			descObj.Description = descObj.Description:gsub("{{HealingHalfRed}}(.-)#", "")
 		end
+		descObj.Description = descObj.Description:gsub("^#+", ""):gsub("#+$", ""):gsub("#+", "#")
 		
 		-- check if we just made the description blank
 		if descObj.Description:gsub("#", "") == "" then
