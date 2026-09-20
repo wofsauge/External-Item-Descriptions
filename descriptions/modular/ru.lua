@@ -15,7 +15,7 @@ EID.descriptions[languageCode].ModularDescriptions = {
     -- Player Stats
     TearsMultiplier = "{value} множитель скорострельности",
     Tears = "{value} скорострельности",
-    TearHeight = "{value} к высоте слезы",
+    TearHeight = "{value} к высоте слёзы",
     TearSizeMultiplier = "{value} множитель размера слёз",
     TearSize = "{value} к размеру слёз",
     TearDelayMultiplier = "{value} множитель задержки между выстрелами",
@@ -88,10 +88,10 @@ EID.descriptions[languageCode].ModularDescriptions = {
     },
     -- Permanent Tear Effects
     TearEffect = {
-        Homing = "Самонаводящиеся слезы",
-        Spectral = "Спектральные слезы",
-        Piercing = "Пронзающие слезы",
-        Poison = "{{Poison}} Отравляющие слезы",
+        Homing = "Самонаводящиеся слёзы",
+        Spectral = "Спектральные слёзы",
+        Piercing = "Пронзающие слёзы",
+        Poison = "{{Poison}} Отравляющие слёзы",
     },
     -- Familiars
     FlyOrbital = "Орбитальная муха ×{value}{pluralize}",
