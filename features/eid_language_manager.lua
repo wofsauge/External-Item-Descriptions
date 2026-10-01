@@ -110,12 +110,34 @@ function EID:LoadLanguagePacks(gameVersion)
             EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (Names) failed: " ..
                 tostring(err))
         end
+        -- remove item names that are from DLCs above ab+
+        EID:RemoveREPItemNames(languageCode)
         -- load modular descriptions
         wasSuccessful, err = pcall(require, "descriptions.modular." .. languageCode)
         if not wasSuccessful and not string.find(err, "not found") then
             EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (modular) failed: " ..
                 tostring(err))
         end
+    end
+end
+
+ -- remove item names that are from DLCs above ab+
+function EID:RemoveREPItemNames(languageCode)
+    if EID.GameVersion ~= "ab+" then
+        return
+    end
+
+    for id=553, 732 do -- remove collectible names. Ab+ = 1 to 552
+        EID.ItemNames[languageCode]["5.100."..id] = nil
+    end
+    for id=129, 189 do -- remove trinket names. Ab+ = 1 to 128
+        EID.ItemNames[languageCode]["5.350."..id] = nil
+    end
+    for id=54, 97 do -- remove card names. Ab+ = 1 to 53
+        EID.ItemNames[languageCode]["5.300."..id] = nil
+    end
+    for id=47, 49 do -- remove pill names. Ab+ = 1 to 46
+        EID.ItemNames[languageCode]["5.70."..id] = nil
     end
 end
 
