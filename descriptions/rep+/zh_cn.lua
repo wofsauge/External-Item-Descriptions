@@ -176,8 +176,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"夹层岩石, 标记岩石{{ColorGold}}与隐藏房/超级隐藏房的门{{CR}}每10秒闪烁一次",
-		"夹层岩石, 标记岩石{{ColorGold}}与隐藏房/超级隐藏房的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
+		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每10秒闪烁一次",
+		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
 	},
 	-- Safety Scissors (append):
 	[63] = {

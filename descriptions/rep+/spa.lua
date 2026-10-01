@@ -176,8 +176,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (full replace):
 	[62] = {
-		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas/super secretas {{CR}}parpadearán cada 10 segundos",
-		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas/super secretas {{CR}}parpadearán cada {{ColorGold}}5 {{CR}}segundos",
+		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas {{CR}}parpadearán cada 10 segundos",
+		"Las rocas marcadas, de trampilla {{ColorGold}}y entradas de salas secretas {{CR}}parpadearán cada {{ColorGold}}5 {{CR}}segundos",
 	},
 	-- Safety Scissors (append):
 	[63] = {

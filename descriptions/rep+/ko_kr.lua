@@ -272,8 +272,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"10초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌과 {{ColorGold}}{{SecretRoom}}{{SuperSecretRoom}}비밀방 입구{{CR}}가 빛납니다.",
-		"{{ColorGold}}5{{CR}}초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌과 {{ColorGold}}{{SecretRoom}}{{SuperSecretRoom}}비밀방 입구{{CR}}가 빛납니다.",
+		"10초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌과 {{ColorGold}}{{SecretRoom}}비밀방 입구{{CR}}가 빛납니다.",
+		"{{ColorGold}}5{{CR}}초마다 색돌이나 {{LadderRoom}}사다리방이 있는 돌과 {{ColorGold}}{{SecretRoom}}비밀방 입구{{CR}}가 빛납니다.",
 	},
 	-- Safety Scissors (append):
 	[63] = {
