@@ -179,8 +179,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret/super secret room doors{{CR}} blink every 10 seconds",
-		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret/super secret room doors{{CR}} blink every {{ColorGold}}5{{CR}} seconds",
+		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret room doors{{CR}} blink every 10 seconds",
+		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret room doors{{CR}} blink every {{ColorGold}}5{{CR}} seconds",
 	},
 	-- Safety Scissors (append):
 	[63] = {

@@ -1486,6 +1486,7 @@ EID.descriptions[languageCode].VoidNames = {"Velocidad {1}", "Lágrimas {1}", "D
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} Daño +4", "↑ {{Tears}} Lágrimas +2", "↑ {{Speed}} Velocidad +0.5", "↑ {{Range}} Alcance +3"}
 
 EID.descriptions[languageCode].spindownError = "El objeto desaparece"
+EID.descriptions[languageCode].EternalD6Rolls = "Rerolls restantes: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "Efecto de Carta en Blanco:"
 

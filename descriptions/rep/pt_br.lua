@@ -1066,6 +1066,7 @@ EID.descriptions[languageCode].VoidOptionText = " em vez disso será absorvido"
 EID.descriptions[languageCode].VoidNames = {"Velocidade", "Taxa de Disparo", "Dano", "Alcance", "Velocidade de Disparo", "Sorte"}
 
 EID.descriptions[languageCode].spindownError = "O Item desaparece"
+EID.descriptions[languageCode].EternalD6Rolls = "Rerolls restantes: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Mochila:"
 EID.descriptions[languageCode].CraftingRoomContent = "Sala:"

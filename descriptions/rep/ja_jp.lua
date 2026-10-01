@@ -1407,6 +1407,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} 連射速度アップ"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ 攻撃力 +4", "↑ 連射速度 +2", "↑ 移動速度 +0.5", "↑ 射程 +3"}
 
 EID.descriptions[languageCode].spindownError = "アイテム消失"
+EID.descriptions[languageCode].EternalD6Rolls = "残りリロール: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "白紙のカードで使用時："
 

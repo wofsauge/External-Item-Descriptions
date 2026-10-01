@@ -175,8 +175,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"Pietrele cu crawlspace, pietrele colorate {{ColorGold}}și ușile camerelor secrete/super secrete{{CR}} clipesc la fiecare 10 secunde",
-		"Pietrele cu crawlspace, pietrele colorate {{ColorGold}}și ușile camerelor secrete/super secrete{{CR}} clipesc la fiecare {{ColorGold}}5{{CR}} secunde",
+		"Pietrele cu crawlspace, pietrele colorate {{ColorGold}}și ușile camerelor secrete{{CR}} clipesc la fiecare 10 secunde",
+		"Pietrele cu crawlspace, pietrele colorate {{ColorGold}}și ușile camerelor secrete{{CR}} clipesc la fiecare {{ColorGold}}5{{CR}} secunde",
 	},
 	-- Safety Scissors (append):
 	[63] = {

@@ -1461,6 +1461,7 @@ EID.descriptions[languageCode].VoidNames[2] = "Débit {{ColorLime}}{1}"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ Dégâts {{ColorLime}}+4", "↑ Débit {{ColorLime}}+2", "↑ Vitesse {{ColorLime}}+0.5", "↑ Portée {{ColorLime}}+3"}
 
 EID.descriptions[languageCode].spindownError = "L'objet disparaît"
+EID.descriptions[languageCode].EternalD6Rolls = "Relances restantes: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Sac : "
 EID.descriptions[languageCode].CraftingRoomContent = "Salle : "

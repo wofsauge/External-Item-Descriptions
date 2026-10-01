@@ -175,8 +175,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"Le rocce con cunicolo, quelle colorate e {{ColorGold}}le stanze segrete/super segrete{{CR}} luccicano ogni 10 secondi",
-		"Le rocce con cunicolo, quelle colorate e {{ColorGold}}le stanze segrete/super segrete{{CR}} luccicano ogni {{ColorGold}}5{{CR}} secondi",
+		"Le rocce con cunicolo, quelle colorate e {{ColorGold}}le stanze segrete{{CR}} luccicano ogni 10 secondi",
+		"Le rocce con cunicolo, quelle colorate e {{ColorGold}}le stanze segrete{{CR}} luccicano ogni {{ColorGold}}5{{CR}} secondi",
 	},
 	-- Safety Scissors (append):
 	[63] = {

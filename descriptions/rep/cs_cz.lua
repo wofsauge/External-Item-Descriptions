@@ -1201,6 +1201,7 @@ EID.descriptions[languageCode].VoidNames = {"Zvýšení Rychlosti {{Speed}}", "V
 
 
 EID.descriptions[languageCode].spindownError = "Předmět zmizí"
+EID.descriptions[languageCode].EternalD6Rolls = "Zbývající otočení: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Pytlík:"
 EID.descriptions[languageCode].CraftingRoomContent = "Místnost:"

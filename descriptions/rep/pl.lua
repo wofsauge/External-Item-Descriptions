@@ -408,6 +408,7 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 }
 
 EID.descriptions[languageCode].spindownError = "Przedmiot znika"
+EID.descriptions[languageCode].EternalD6Rolls = "Pozostałe przerzuty: {1}"
 
 ---------- Trinkets ----------
 local repTrinkets={
