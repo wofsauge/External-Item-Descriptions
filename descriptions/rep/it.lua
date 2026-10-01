@@ -1397,6 +1397,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} Rateo di Fuoco"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Danni", "↑ {{Tears}} +2 Rateo di Fuoco", "↑ {{Speed}} +0.5 Velocità", "↑ {{Range}} +3 Gittata"}
 
 EID.descriptions[languageCode].spindownError = "Oggetto sparisce"
+EID.descriptions[languageCode].EternalD6Rolls = "Reroll rimasti: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "Effetto di \"Carta Vuota\":"
 

@@ -1330,6 +1330,7 @@ EID.descriptions[languageCode].ExperimentalPillPHD = "Без снижения х
 EID.descriptions[languageCode].ExperimentalPillFalsePHD = "Без случайного повышения характеристик"
 
 EID.descriptions[languageCode].spindownError = "Артефакт исчезает"
+EID.descriptions[languageCode].EternalD6Rolls = "Осталось рероллов: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Мешок:"
 EID.descriptions[languageCode].CraftingRoomContent = "Комната:"

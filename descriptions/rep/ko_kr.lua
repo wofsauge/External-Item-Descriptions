@@ -1366,6 +1366,7 @@ EID.descriptions[languageCode].VoidNames[2] = "연사(상한) {1}"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{DamageSmall}}공격력 +4", "↑ {{TearsSmall}}연사(상한) +2", "↑ {{SpeedSmall}}이동속도 +0.5", "↑ {{RangeSmall}}사거리 +3"}
 
 EID.descriptions[languageCode].spindownError = "아이템 사라짐"
+EID.descriptions[languageCode].EternalD6Rolls = "남은 리롤: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "현재픽업:"
 EID.descriptions[languageCode].CraftingRoomContent = "방:"

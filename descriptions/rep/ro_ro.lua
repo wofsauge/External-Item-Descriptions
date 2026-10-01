@@ -1396,6 +1396,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} Viteză de foc"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} {{ColorGreen}}+4{{CR}} Daune", "↑ {{Tears}} {{ColorGreen}}+2{{CR}} Viteză de atac", "↑ {{Speed}} {{ColorGreen}}+0.5{{CR}} Viteză", "↑ {{Range}} {{ColorGreen}}+3{{CR}} Distanță"}
 
 EID.descriptions[languageCode].spindownError = "Itemul dispare"
+EID.descriptions[languageCode].EternalD6Rolls = "Rerolluri rămase: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "Efect Blank Card:"
 

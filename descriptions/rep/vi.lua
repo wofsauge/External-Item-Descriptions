@@ -1428,6 +1428,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} Tốc độ bắn"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Sát thương", "↑ {{Tears}} +2 Tốc độ bắn", "↑ {{Speed}} +0.5 Tốc độ", "↑ {{Range}} +3 Tầm bắn"}
 
 EID.descriptions[languageCode].spindownError = "Vật phẩm biến mất"
+EID.descriptions[languageCode].EternalD6Rolls = "Lượt reroll còn lại: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "Hiệu ứng Blank Card:"
 

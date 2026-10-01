@@ -1176,6 +1176,7 @@ EID.descriptions[languageCode].VoidNames = {"Швидкість збільшен
 
 
 EID.descriptions[languageCode].spindownError = "Предмет зникає"
+EID.descriptions[languageCode].EternalD6Rolls = "Залишилось реролів: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Сумка:"
 EID.descriptions[languageCode].CraftingRoomContent = "Кімната:"

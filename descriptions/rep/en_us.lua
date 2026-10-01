@@ -1412,6 +1412,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} Fire rate"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Damage", "↑ {{Tears}} +2 Fire rate", "↑ {{Speed}} +0.5 Speed", "↑ {{Range}} +3 Range"}
 
 EID.descriptions[languageCode].spindownError = "Item disappears"
+EID.descriptions[languageCode].EternalD6Rolls = "Rerolls left: {1}" -- {1} is the number of rerolls left. If item will disappear, uses the text for "spindownError"
 
 EID.descriptions[languageCode].BlankCardEffect = "Blank Card effect:"
 

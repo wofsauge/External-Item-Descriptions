@@ -34,6 +34,8 @@ if EID.isRepentance then
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLOWING_HOUR_GLASS] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_GLITCHED_CROWN] = true
 	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_ABYSS] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_D_INFINITY] = true
+	EID.collectiblesToCheck[CollectibleType.COLLECTIBLE_ETERNAL_D6] = true
 end
 EID.collectiblesOwned = {}
 EID.collectiblesAbsorbed = {}
@@ -1235,6 +1237,11 @@ if EID.isRepentance then
 		-- Display wisp effect of a pedestal / your active while holding Book of Virtues
 		return BookOfVirtuesWispDescriptionBuilder(descObj, descObj.ObjSubType)
 	end
+
+	-- Handle EternalD6
+	local function EternalD6Callback(descObj)
+		return EID:EternalD6PredictionCallback(descObj)
+	end
 	--------------------------------
 	-- Although individual conditions/callbacks work well for mods to be able to add through the API,
 	-- As we kept adding callbacks for vanilla items, a lot of code got repeated over and over
@@ -1259,7 +1266,13 @@ if EID.isRepentance then
 			
 			-- Glowing Hourglass overwrites the description when used three times
 			if REPENTOGON and descObj.ObjSubType == 422 then table.insert(callbacks, GlowingHourglassCallback) end
-			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
+			local hasDInfinityEternalD6 = false
+			if EID.collectiblesOwned[489] then
+				local player = Isaac.GetPlayer(EID.collectiblesOwned[489])
+				hasDInfinityEternalD6 = EID:CurrentDInfinity(EID:GetItemSeed(player, 489), player) == 609
+			end
+			if (EID.collectiblesOwned[609] or hasDInfinityEternalD6) and EID.Config["ItemReminderShowRNGCheats"] and descObj.Entity ~= nil then table.insert(callbacks, EternalD6Callback) end -- Ethernal D6
+			if EID.collectiblesOwned[644] then table.insert(callbacks, ConsolationPrizeCallback) end
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
 			
 			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
@@ -1323,16 +1336,16 @@ local function EIDConditionsAB(descObj)
 		if descObj.ObjSubType == 297 then table.insert(callbacks, PandorasBoxCallback) end
 
 		if EID.Config["DisplayVoidStatInfo"] then
-			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end
-			if EID.collectiblesOwned["5.300.41"] then table.insert(callbacks, BlackRuneCallback) end
+			if EID.collectiblesOwned[477] then table.insert(callbacks, VoidCallback) end -- Void
+			if EID.collectiblesOwned["5.300.41"] then table.insert(callbacks, BlackRuneCallback) end -- Black Rune
 		end
 		if EID.Config["ItemReminderShowRNGCheats"] then
-			if descObj.ObjSubType == 240 then table.insert(callbacks, RandomStatIncreaseCallback) end
-			if descObj.ObjSubType == 481 then table.insert(callbacks, RandomStatIncreaseCallback) end
+			if descObj.ObjSubType == 240 then table.insert(callbacks, RandomStatIncreaseCallback) end -- EXPERIMENTAL_TREATMENT
+			if descObj.ObjSubType == 481 then table.insert(callbacks, RandomStatIncreaseCallback) end -- DATAMINER
 		end
 		
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_TRINKET then
-		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end
+		if descObj.ObjSubType == 80 then table.insert(callbacks, BlackFeatherCallback) end -- Black Feather
 	elseif descObj.ObjVariant == PickupVariant.PICKUP_PILL then
 		table.insert(callbacks, VurpCallback)
 	end

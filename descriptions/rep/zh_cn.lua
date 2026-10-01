@@ -1417,6 +1417,7 @@ EID.descriptions[languageCode].VoidNames[2] = "射速修正{1}"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} 伤害+4", "↑ {{Tears}} 射速修正+2", "↑ {{Speed}} 移速+0.5", "↑ {{Range}} 射程+3"}
 
 EID.descriptions[languageCode].spindownError = "道具消失"
+EID.descriptions[languageCode].EternalD6Rolls = "剩余重骰: {1}"
 
 EID.descriptions[languageCode].BlankCardEffect = "空白卡牌效果:"
 

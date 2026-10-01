@@ -496,37 +496,126 @@ function EID:ExperimentalTreatmentRNGCheck(player)
 end
 
 -- Dataminer Stat Changes (by Pattieburger)
--- We "shuffle" the stat table using s1..s5 (mod6, mod5, mod4, mod3, mod2).
--- Result: position 1 = stat UP, position 2 = stat DOWN.
+-- Shuffles the stat table using five RNG steps:
+-- s1..s5 with mod6, mod5, mod4, mod3 and mod2.
+-- Position 1 becomes the stat increase and position 2 the stat decrease.
+local function DataminerStatChangesFromSeed(seed)
+    -- Simulate the RNG without altering the game's collectible RNG.
+    local seeds = {}
+
+    for i = 1, 5 do
+        seed = EID:RNGNext(seed, 5, 9, 7)
+        seeds[i] = seed
+    end
+
+    -- Stat indices:
+    -- 1=Speed, 2=Fire rate, 3=Damage, 4=Range, 5=Shot speed, 6=Luck
+    local statTable = {1, 2, 3, 4, 5, 6}
+
+    for i = 6, 2, -1 do
+        local currentSeed = seeds[7 - i]
+        local j = (currentSeed % i) + 1
+
+        statTable[i], statTable[j] = statTable[j], statTable[i]
+    end
+
+    -- Add one because statChangeLookup also contains the health entry.
+    local upStat = statTable[1] + 1
+    local downStat = statTable[2] + 1
+
+    local statChanges = {
+        [statChangeLookup[downStat][1]] = -statChangeLookup[downStat][2],
+        [statChangeLookup[upStat][1]] = statChangeLookup[upStat][2],
+    }
+
+    return statChanges, seed
+end
+
 function EID:DataminerRNGCheck(player)
-	-- s0: current collectible RNG seed (pre-use)
-	local s0 = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_DATAMINER):GetSeed()
+    local currentSeed = player:GetCollectibleRNG(CollectibleType.COLLECTIBLE_DATAMINER):GetSeed()
+    local statChanges, nextSeed = DataminerStatChangesFromSeed(currentSeed)
 
-	-- simulate s1..s5 (do NOT alter game RNG; just compute next seeds)
-	local s1 = EID:RNGNext(s0, 5, 9, 7)
-	local s2 = EID:RNGNext(s1, 5, 9, 7)
-	local s3 = EID:RNGNext(s2, 5, 9, 7)
-	local s4 = EID:RNGNext(s3, 5, 9, 7)
-	local s5 = EID:RNGNext(s4, 5, 9, 7)
+    if player:HasCollectible(CollectibleType.COLLECTIBLE_CAR_BATTERY) then
+        -- Car Battery activates Dataminer again and continues the RNG sequence.
+        local secondChanges = DataminerStatChangesFromSeed(nextSeed)
 
-	-- stat indices:
-	-- 1=Speed, 2=Fire rate, 3=Damage, 4=Range, 5=Shotspeed, 6=Luck
-	local statTable = {1,2,3,4,5,6}
-	local seeds = { s1, s2, s3, s4, s5 }
+        for stat, amount in pairs(secondChanges) do
+            local total = (statChanges[stat] or 0) + amount
 
-	for i = 6, 2, -1 do
-		local seed = seeds[7 - i] -- 6→1, 5→2, 4→3, 3→4, 2→5
-		local j = (seed % i) + 1
-		statTable[i], statTable[j] = statTable[j], statTable[i]
+            -- Opposite changes cancel each other and should not be displayed.
+            statChanges[stat] = total ~= 0 and total or nil
+        end
+    end
+
+    return statChanges
+end
+
+-- Eternal D6 Pedestal Prediction (by Pattieburger)
+-- Predicts how many successful rerolls remain before a pedestal vanishes.
+local eternalD6VanishCutoff = 0x40000000
+local eternalD6PredictionLimit = 50
+
+local eternalD6VanishSeeds = {
+    [8] = true, [41] = true, [74] = true, [107] = true, [140] = true, [173] = true,
+}
+
+local function EternalD6WillVanish(initSeed)
+    initSeed = initSeed & 0xFFFFFFFF
+
+    if eternalD6VanishSeeds[initSeed] then
+        return true
+    end
+
+    -- Eternal D6 uses this RNG transformation for its vanish decision.
+    local roll = EID:RNGNext(initSeed, 5, 27, 8)
+
+    return roll < eternalD6VanishCutoff
+end
+
+local function EternalD6RerollsUntilVanish(pickup)
+    if not pickup then
+        return nil
+    end
+
+    local initSeed = pickup.InitSeed & 0xFFFFFFFF
+
+    for rerolls = 0, eternalD6PredictionLimit do
+        if EternalD6WillVanish(initSeed) then
+            return rerolls
+        end
+
+        -- A successful reroll gives the pedestal its next InitSeed.
+        initSeed = EID:RNGNext(initSeed, 1, 21, 20)
+    end
+
+    return eternalD6PredictionLimit
+end
+
+-- Eternal D6 Prediction Callback
+function EID:EternalD6PredictionCallback(descObj)
+    local pickup = descObj.Entity:ToPickup()
+    local rerolls = EternalD6RerollsUntilVanish(pickup)
+	local rollAmount = 1
+
+    if rerolls == nil then
+		return descObj -- pickup is nil, so we can't predict anything
 	end
 
-	local upStat   = statTable[1] + 1 -- +1 to skip Health container entry
-	local downStat = statTable[2] + 1 -- +1 to skip Health container entry
+	local text = "#{{Collectible609}} "
 
-	return {
-		[statChangeLookup[downStat][1]] = -statChangeLookup[downStat][2],
-		[statChangeLookup[upStat][1]] = statChangeLookup[upStat][2],
-	}
+	if EID.collectiblesOwned[CollectibleType.COLLECTIBLE_CAR_BATTERY] then
+		rollAmount = 2
+	end
+
+	if rerolls - rollAmount < 0 then
+		text = text .. "{{ColorError}}" .. EID:getDescriptionEntry("spindownError")
+	else
+    	text = text .. "{{ColorLime}}" .. EID:getDescriptionEntry("EternalD6Rolls")
+		text, _ = EID:ReplaceVariableStr(text, 1, tostring(math.floor(rerolls / rollAmount)))
+	end
+
+    EID:appendToDescription(descObj, text)
+    return descObj
 end
 
 -- Liberty Cap, Broken Syringe, Mom's Lock (extremely similar, simple RNG modulos) --
@@ -543,4 +632,3 @@ end
 function EID:LibertyCapPrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(32):GetSeed(), libertyItems) end
 function EID:BrokenSyringePrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(132):GetSeed(), syringeItems) end
 function EID:MomsLockPrediction(player) return EID:TemporaryEffectPrediction(player, player:GetTrinketRNG(153):GetSeed(), momItems) end
--- dont forget to actually add these to hold map desc; remember these are Hidden Information

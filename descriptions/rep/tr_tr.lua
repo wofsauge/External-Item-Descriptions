@@ -416,6 +416,7 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 }
 
 EID.descriptions[languageCode].spindownError = "Item yok olur"
+EID.descriptions[languageCode].EternalD6Rolls = "Kalan yeniden atış: {1}"
 
 ---------- Trinkets ----------
 

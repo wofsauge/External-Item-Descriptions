@@ -1258,6 +1258,7 @@ EID.descriptions[languageCode].VoidNames[2] = "{1} Feuerrate"
 EID.descriptions[languageCode].PurityBoosts = {[0] = "↑ {{Damage}} +4 Schaden", "↑ {{Tears}} +2 Feuerrate", "↑ {{Speed}} +0.5 Geschwindigkeit", "↑ {{Range}} +3 Reichweite"}
 
 EID.descriptions[languageCode].spindownError = "Gegenstand verschwindet"
+EID.descriptions[languageCode].EternalD6Rolls = "Rerolls übrig: {1}"
 
 EID.descriptions[languageCode].CraftingBagContent = "Tasche:"
 EID.descriptions[languageCode].CraftingRoomContent = "Raum:"
