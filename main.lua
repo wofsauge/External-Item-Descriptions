@@ -1706,6 +1706,7 @@ local function OnGameStartGeneral(_,isSave)
 	EID:GetTransformationsOfModdedItems()
 	EID:buildTransformationTables()
 	EID.RecentlyTouchedItems = {}
+	EID.PlayerStartingItems = {}
 	EID.GulpedTrinkets = {}
 	EID.OldestItemIndex = {}
 	if not isSave then
@@ -1834,6 +1835,7 @@ local configIgnoreList = {
 	["PlayerItemInteractions"] = true,
 	["UsedPillColors"] = true,
 	["RecentlyTouchedItems"] = true,
+	["PlayerStartingItems"] = true,
 	["GulpedTrinkets"] = true,
 	["WildCardEffects"] = true,
 	["DInfinityState"] = true,
@@ -1879,6 +1881,7 @@ function EID:OnGameStart(isSave)
 			-- JSON saves integer table keys as strings. we need to transform them back...
 			ConvertSavedTable("PlayerItemInteractions")
 			ConvertSavedTable("RecentlyTouchedItems")
+			ConvertSavedTable("PlayerStartingItems")
 			ConvertSavedTable("GulpedTrinkets")
 			ConvertSavedTable("WildCardEffects")
 			ConvertSavedTable("DInfinityState")
@@ -1980,6 +1983,7 @@ function EID:OnGameExit()
 	EID.Config["CollectedItems"] = EID.CollectedItems
 	EID.Config["PlayerItemInteractions"] = EID.PlayerItemInteractions or {}
 	EID.Config["RecentlyTouchedItems"] = EID.RecentlyTouchedItems or {}
+	EID.Config["PlayerStartingItems"] = EID.PlayerStartingItems or {}
 	EID.Config["GulpedTrinkets"] = EID.GulpedTrinkets or {}
 	EID.Config["UsedPillColors"] = EID.UsedPillColors
 	EID.Config["AbsorbedItems"] = EID.absorbedItems or {}

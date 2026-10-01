@@ -2650,6 +2650,7 @@ end
 
 EID.PlayerItemInteractions = {}
 EID.RecentlyTouchedItems = {}
+EID.PlayerStartingItems = {}
 local hadQueuedItem = {}
 ---Watch for a player's queued item (holding an item over their head) to track active item touches
 ---Used for Transformation Progress and for tracking Recently Touched Items
@@ -3015,6 +3016,7 @@ end
 function EID:UpdateAllPlayerPassiveItems()
 	local passives = EID:GetAllPassiveItems()
 	local listUpdatedForPlayers = {}
+	local isRunStartup = game:GetFrameCount() < 5
 	-- check if id is smaller max id, because numbers bigger a certain value can crash the game when calling HasCollectible()
 	local maxCollID = EID:GetMaxCollectibleID()
 	for i = 1, #EID.coopAllPlayers do
@@ -3038,7 +3040,7 @@ function EID:UpdateAllPlayerPassiveItems()
 
 		-- add items the player did get with non-standard methods (Bag of Crafting, console command, item effects, etc...)
 		for _, itemID in ipairs(passives) do
-			if itemID <= maxCollID and player:HasCollectible(itemID, true) then
+			if itemID <= maxCollID and player:HasCollectible(itemID, not isRunStartup) then
 				local alreadyInList = false
 				for _, heldItemID in ipairs(EID.RecentlyTouchedItems[playerNum]) do
 					if itemID == heldItemID then
@@ -3048,6 +3050,11 @@ function EID:UpdateAllPlayerPassiveItems()
 				end
 				if not alreadyInList then
 					table.insert(EID.RecentlyTouchedItems[playerNum], itemID)
+					-- If the function is called on player init, add it to the starting items list for the Item Reminder
+					if isRunStartup then
+						if EID.PlayerStartingItems[playerNum] == nil then EID.PlayerStartingItems[playerNum] = {} end
+						table.insert(EID.PlayerStartingItems[playerNum], itemID)
+					end
 					listUpdatedForPlayers[i] = true
 				end
 			end

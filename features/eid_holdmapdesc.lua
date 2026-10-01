@@ -520,8 +520,20 @@ end
 ---@param player EntityPlayer
 function EID:ItemReminderHandleSelectedPassiveItem(player)
 	local playerNum = EID:getPlayerID(player, true)
+	local passiveItems = {}
+	-- combine starting items with current held passive items
+	if EID.PlayerStartingItems[playerNum] and #EID.PlayerStartingItems[playerNum] > 0 then
+		for _,id in ipairs(EID.PlayerStartingItems[playerNum]) do
+			table.insert(passiveItems, id)
+		end
+	end
 	if EID.RecentlyTouchedItems[playerNum] and #EID.RecentlyTouchedItems[playerNum] > 0 then
-		EID:ItemReminderHandleItemPrinting(player, EID.RecentlyTouchedItems[playerNum], 100, true)
+		for _,id in ipairs(EID.RecentlyTouchedItems[playerNum]) do
+			table.insert(passiveItems, id)
+		end
+	end
+	if #passiveItems > 0 then
+		EID:ItemReminderHandleItemPrinting(player, passiveItems, 100, true)
 	end
 end
 
