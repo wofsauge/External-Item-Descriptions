@@ -670,13 +670,16 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	description.ObjVariant = Variant
 	description.ObjSubType = SubType
 	local adjustedID = EID:getAdjustedSubtype(Type, Variant, SubType)
-	description.fullItemString = Type.."."..Variant.."."..adjustedID
+	local baseItemString = Type.."."..Variant.."."..adjustedID
+	local isHorsePill = EID:getTableName(Type, Variant, SubType) == "horsepills" and adjustedID ~= 9999
+	description.fullItemString = isHorsePill and Type.."."..Variant.."."..(adjustedID + PillColor.PILL_GIANT_FLAG) or baseItemString
 	description.Name = EID:getObjectName(Type, Variant, SubType)
 	description.Entity = entity or nil
 
 	local generatedModularDesc = false
-	local hasIgnoreModular = EID.descriptions[EID:getLanguage()].IgnoreFullyAutomatedDescriptions and EID.descriptions[EID:getLanguage()].IgnoreFullyAutomatedDescriptions[description.fullItemString]
-	if EID.FullyAutomatedDescriptions[description.fullItemString] and not hasIgnoreModular then
+	local ignoredModularDescriptions = EID.descriptions[EID:getLanguage()].IgnoreFullyAutomatedDescriptions
+	local hasIgnoreModular = ignoredModularDescriptions and (ignoredModularDescriptions[description.fullItemString] or ignoredModularDescriptions[baseItemString])
+	if (EID.FullyAutomatedDescriptions[description.fullItemString] or (isHorsePill and EID.FullyAutomatedDescriptions[baseItemString])) and not hasIgnoreModular then
 		local success, modularDescription = pcall(EID.GenerateDescription, nil, description)
 		if success and modularDescription and modularDescription ~= "" then
 			description.Description = modularDescription
