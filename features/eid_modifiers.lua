@@ -1272,7 +1272,7 @@ if EID.isRepentance then
 				hasDInfinityEternalD6 = EID:CurrentDInfinity(EID:GetItemSeed(player, 489), player) == 609
 			end
 			if (EID.collectiblesOwned[609] or hasDInfinityEternalD6) and EID.Config["ItemReminderShowRNGCheats"] and descObj.Entity ~= nil then table.insert(callbacks, EternalD6Callback) end -- Ethernal D6
-			if EID.collectiblesOwned[644] then table.insert(callbacks, ConsolationPrizeCallback) end
+			if descObj.ObjSubType == 644 then table.insert(callbacks, ConsolationPrizeCallback) end
 			if EID.collectiblesOwned[584] or descObj.ObjSubType == 584 then table.insert(callbacks, BookOfVirtuesCallback) end
 			
 			if EID:PlayersHaveCharacter(PlayerType.PLAYER_CAIN_B) then table.insert(callbacks, TaintedCainPedestalCallback) end
