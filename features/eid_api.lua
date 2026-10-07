@@ -286,8 +286,8 @@ function EID:addPill(id, description, itemName, language)
 		return
 	end
 	local fullID = "5.70." .. id
-	if EID.FullyAutomatedDescriptions[fullID] then
-		EID.FullyAutomatedDescriptions[fullID] = nil -- remove vanilla item id from the modular desc list, since it got overriden by this function.
+	if EID.FullyAutomatedDescriptions["5.70." .. (id+1)] then
+		EID.FullyAutomatedDescriptions["5.70." .. (id+1)] = nil -- remove vanilla item id from the modular desc list, since it got overriden by this function.
 	end
 	EID:CreateDescriptionTableIfMissing("pills", language)
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
@@ -315,8 +315,8 @@ function EID:addHorsePill(id, description, itemName, language)
 		return
 	end
 	local fullID = "5.70." .. id
-	if EID.FullyAutomatedDescriptions[fullID] then
-		EID.FullyAutomatedDescriptions[fullID] = nil -- remove vanilla item id from the modular desc list, since it got overriden by this function.
+	if EID.FullyAutomatedDescriptions["5.70." .. (id+1)] then
+		EID.FullyAutomatedDescriptions["5.70." .. (id+1)] = nil -- remove vanilla item id from the modular desc list, since it got overriden by this function.
 	end
 	EID:CreateDescriptionTableIfMissing("horsepills", language)
 	EID.descriptions[language].horsepills[id + 1] = {id, itemName, description, EID._currentMod}
