@@ -469,8 +469,8 @@ EID.InlineIcons = {
 	["RangeREP"] = {"Stats", 3, 12, 16, -2, -1},
 	["ShotspeedREP"] = {"Stats", 4, 12, 16, 0, -1},
 	["LuckREP"] = {"Stats", 5, 12, 16, -2, -2},
-	["AngelChanceREP"] = {"Stats", 6, 12, 16, -1, -1},
-	["DevilChanceREP"] = {"Stats", 7, 12, 16, 0, -2},
+	["AngelChanceREP"] = {"Stats", 6, 12, 16, -5, 0},
+	["DevilChanceREP"] = {"Stats", 7, 12, 16, -4, -1},
 	["TearsizeREP"] = {"Stats", 11, 12, 16, 0, 1},
 
 	["AngelDevilChance"] = {"Stats", 8, 12, 16, -3, -2},
