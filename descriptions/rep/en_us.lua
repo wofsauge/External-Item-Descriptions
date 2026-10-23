@@ -162,7 +162,7 @@ local repCollectibles={
 	[344] = {"344", "Match Book", "{{BlackHeart}} +1 Black Heart#{{Bomb}} Spawns 3 bombs#{{Trinket41}} Spawns Match Stick"}, -- Match Book
 	[345] = {"345", "Synthoil", "↑ {{Damage}} +1 Damage#↑ {{Range}} +2.5 Range"}, -- Synthoil
 	[346] = {"346", "A Snack", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart"}, -- A Snack
-	[349] = {"349", "Wooden Nickel", "{{Coin}} 59% chance to spawn a random coin"}, -- Wooden Nickel
+	[349] = {"349", "Wooden Nickel", "{{Coin}} 60% chance to spawn a random coin"}, -- Wooden Nickel
 	[352] = {"352", "Glass Cannon", "{{Damage}} Shoots a large piercing spectral tear that does 10x Isaac's damage +10 damage#{{Warning}} While held, taking damage:#↓ Removes an extra 2 hearts of health#↓ Breaks the cannon for a few rooms#↑ {{Range}} +1.5 Range and leaves a blood trail for the room#The extra damage can't kill Isaac#Self-damage does not trigger the effect"}, -- Glass Cannon
 	[353] = {"353", "Bomber Boy", "{{Bomb}} +5 Bombs#Bombs explode in a cross-shaped pattern#↓ x0.75 Bomb damage"}, -- Bomber Boy
 	[354] = {"354", "Crack Jacks", "↑ {{Heart}} +1 Health#{{HealingRed}} Heals 1 heart#{{Trinket}} Spawns a trinket"}, -- Crack Jacks
@@ -1266,7 +1266,7 @@ EID.descriptions[languageCode].birthright ={
 	{"Apollyon", "", "{{Collectible477}} Using Void has a chance to spawn an item that was previously voided#Does not remove the stat bonuses#The more items voided, the higher the chance for an item to spawn upon use"},
 	{"The Forgotten", "", "Removes the chain binding The Soul to The Forgotten"},
 	{"The Forgotten Soul", "", "Removes the chain binding The Soul to The Forgotten"},
-	{"Bethany", "", "{{Battery}} Activating an item using soul charges is sometimes free"},
+	{"Bethany", "", "{{Battery}} Activating an item using soul charges has a 50% chance to use it for free"},
 	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
 	{"Tainted Isaac", "", "Adds 4 passive item slots#Does not consume a slot itself"},
@@ -1389,7 +1389,7 @@ EID.descriptions[languageCode].poopSpells = {
 	{"Stone Poop", "Can deal damage 3 times when thrown#Takes a lot of hits to destroy"},
 	{"Stinky Poop", "Emits a toxic cloud#{{Warning}} The cloud explodes if it touches fire!"},
 	{"Black Poop", "{{Slow}} Creates slowing creep#{{Confusion}} Deals 10 damage and confuses all enemies when destroyed"},
-	{"Holy Poop", "{{Collectible543}} Create a white poop#While inside the poop's aura:#↑ {{Damage}} x1.2 Damage multiplier#↑ {{Tears}} x2.5 Fire rate multiplier#Homing tears#Chance to block damage"},
+	{"Holy Poop", "{{Collectible543}} Create a white poop#While inside the poop's aura:#↑ {{Damage}} x1.2 Damage multiplier#↑ {{Tears}} x2.5 Fire rate multiplier#Homing tears#50% Chance to block damage"},
 	{"Brown Creep", "Leave a trail of creep#Standing on the creep increases Isaac's fire rate and damage#If the creep is touching other poops, it gains their attribute"},
 	{"Fart", "Push nearby enemies and bullets back, and spawn a toxic cloud#{{Warning}} The cloud explodes if it touches fire!"},
 	{"Bomb", "Normal throwable bomb"},
