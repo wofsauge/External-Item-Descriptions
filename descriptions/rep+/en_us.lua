@@ -482,6 +482,13 @@ local horsepills = {
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
 
+---------- Character Info ----------
+local CharacterInfo = {
+	[19] = {"Jacob", "Control Jacob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jacob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#In \"Better\" control, {{ButtonLT}} uses Jacob's active, {{ButtonRB}} uses Jacob's card/pill, hold {{ButtonRT}} to use Esau's#When there's a choice between items, Jacob and Esau can grab two simultaneously"},
+	[20] = {"Esau", "Control Jacob and Esau at the same time#Both characters drop a bomb when one is used#Esau stays in place while holding {{ButtonRT}}#{{ButtonLT}} uses Jacob's active, {{ButtonRB}} uses Esau's active, hold {{ButtonRT}} to use their card/pill#In \"Better\" control, {{ButtonLT}} uses Jacob's active, {{ButtonRB}} uses Jacob's card/pill, hold {{ButtonRT}} to use Esau's#When there's a choice between items, Jacob and Esau can grab two simultaneously"},
+}
+EID:updateDescriptionsViaTable(CharacterInfo, EID.descriptions[languageCode].CharacterInfo)
+
 ---------- Car Battery ----------
 
 local carBattery = {

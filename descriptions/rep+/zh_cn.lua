@@ -101,6 +101,8 @@ local trinkets = {
 	[93] = { "93", "用过的尿布", "每房间33%概率使所有苍蝇敌人变得友好#进入新房间时生成1蓝苍蝇"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多2个跟班, 之后该饰品消失"}, -- Tonsil
+	-- Change: now affected by luck, maxing at 18 luck
+	[99] = {"99", "超级弹球", "10%概率发射弹性泪弹#{{Luck}} 幸运18: 100%概率"},
 	-- Change: Added +2 Fire rate
 	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速修正+2"}, -- Equality!
 	-- Change: "2%" to "5%"
@@ -472,6 +474,13 @@ local horsepills = {
 	[44] = {"43", "咕噜！", "{{Trinket}} 消耗角色的饰品并永久获得其{{ColorGold}}金饰品{{CR}}效果"}, -- Gulp!
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
+
+---------- Character Info ----------
+local CharacterInfo = {
+	[19] = {"雅各", "同时控制雅各和以扫#使用炸弹时, 两个角色都会丢下炸弹#按住{{ButtonRT}}时, 以扫留在原地#{{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用以扫的主动道具, 按住{{ButtonRT}}使用他们的卡牌/胶囊#使用\"优化\"控制时, {{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用雅各的卡牌/胶囊, 按住{{ButtonRT}}使用以扫的主动道具和卡牌/胶囊#在道具多选一时, 雅各和以扫可以同时拿起道具"},
+	[20] = {"以扫", "同时控制雅各和以扫#使用炸弹时, 两个角色都会丢下炸弹#按住{{ButtonRT}}时, 以扫留在原地#{{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用以扫的主动道具, 按住{{ButtonRT}}使用他们的卡牌/胶囊#使用\"优化\"控制时, {{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用雅各的卡牌/胶囊, 按住{{ButtonRT}}使用以扫的主动道具和卡牌/胶囊#在道具多选一时, 雅各和以扫可以同时拿起道具"},
+}
+EID:updateDescriptionsViaTable(CharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 ---------- Car Battery ----------
 
