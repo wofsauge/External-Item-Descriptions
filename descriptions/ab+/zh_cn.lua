@@ -1080,7 +1080,7 @@ EID.descriptions[languageCode].transformations={
 	"鲍勃！",			-- 8
 	"利维坦！",			-- 9
 	"撒拉弗！",			-- 10
-	"乞丐套装",			-- 11
+	"超级乞丐！",			-- 11
 	"书虫！",			-- 12
 	"蜘蛛宝宝！",			-- 13
 	"成人！",			-- 14
@@ -1279,9 +1279,9 @@ EID.descriptions[languageCode].ConditionalDescs = {
 	["Sacrificial Angels"] = "献祭{1}生成2黑心",
 	["Sacrificial Void"] = "被虚空吸收后能使用多次",
 
-	["5.100.116 (1 Room)"] = "1格充能的主动道具, 需在有敌人的房间中15秒充能", -- 9 Volt
+	["5.100.116 (1 Room)"] = "1格充能的主动道具, 在未清理的房间中变为15秒充能", -- 9 Volt
 	["5.100.116 (Timed)"] = "时间充能的主动道具使用后半满", -- 9 Volt
-	["9 Volt 1 Room"] = "在有敌人的房间中15秒充能", -- Actives + 9 Volt
+	["9 Volt 1 Room"] = "在未清理的房间中变为15秒充能", -- Actives + 9 Volt
 	["9 Volt Timed"] = "充能在使用后半满", -- Actives + 9 Volt
 	["5.100.205 (Wafer)"] = "花费降至半心", -- Sharp Plug + Wafer
 
