@@ -673,7 +673,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [6] = "split",                    -- Parasite type tear (splits on collision)
     [7] = "grow by range",            -- Lump of coal type tear (grows by range)
     [8] = "boomerang",                -- My reflection type tear (returns back)
-    [9] = "persistent",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [9] = "persistent",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage)
     [10] = "wiggle movement",         -- Wiggle worm type tear (wiggles)
     [11] = "spawn fly on hit",        -- Mulligan type tear (creates fly on hit)
     [12] = "explosive",               -- IPECAC type tear (explodes on hit)
@@ -992,7 +992,8 @@ EID.descriptions[languageCode].goldenTrinketEffects = {
 	},
 	-- Rainbow Worm (append): With Mom's Box, it gives 2 copies of the temp worm, and doubles 1 of those copies, for triple effect
 	[64] = { "Worm's stat boosts are doubled", "Worm's stat boosts are tripled", "Worm's stat boosts are quadrupled", },
-	[69] = {"Lengthen effect time"},
+	-- Faded Polaroid (append)
+	[69] = {"Lengthen effect time", "Greatly lengthen effect time"},
 	-- Error (append): Same behavior as Rainbow Worm
 	[75] = { "Trinket effect is doubled if possible", "Trinket effect is tripled if possible", "Trinket effect is quadrupled if possible", },
 	-- NO!
@@ -1267,8 +1268,8 @@ EID.descriptions[languageCode].birthright ={
 	{"The Forgotten", "", "Removes the chain binding The Soul to The Forgotten"},
 	{"The Forgotten Soul", "", "Removes the chain binding The Soul to The Forgotten"},
 	{"Bethany", "", "{{Battery}} Activating an item using soul charges has a 50% chance to use it for free"},
-	{"Jacob", "", "The character who picks up the item gains copies of three of the other character's passive items"},
-	{"Esau", "", "The character who picks up the item gains copies of three of the other character's passive items"},
+	{"Jacob", "", "Jacob gains copies of three of Esau's latest passive items, vice versa"},
+	{"Esau", "", "Esau gains copies of three of Jacob's latest passive items, vice versa"},
 	{"Tainted Isaac", "", "Adds 4 passive item slots#Does not consume a slot itself"},
 	{"Tainted Magdalene", "", "{{Heart}} Adds 1 heart container that doesn't drain#{{HealingRed}} Heals 1 heart"},
 	{"Tainted Cain", "", "Doubles the amount of pickups dropped from collecting an item"},
