@@ -343,6 +343,9 @@ if MCMLoaded then
 	local translateStates = {"English", "Current Language", "Current + English"}
 	EID:AddNumberSetting("General", "TranslateItemName", "Name Language", 1, 3, {displayTable = translateStates,
 	infoText = {"Displays item, trinket and character names in a different language than descriptions."}})
+	local translateStates2 = {"English", "Current", "Curr + Eng", "Follow above"}
+	EID:AddNumberSetting("General", "TranslateItemNameDescription", "Name Language on desc", 1, 4, {displayTable = translateStates2,
+	infoText = {"Displays name option inside descriptions", "Change this option if Name Language option messes descriptions"}})
 	
 	MCM.AddSpace("EID", "General")
 	MCM.AddText("EID", "General", "Keybinds")
