@@ -110,8 +110,6 @@ function EID:LoadLanguagePacks(gameVersion)
             EID:WriteErrorMsg("Loading Languagepack '" .. languageCode .. "' (Names) failed: " ..
                 tostring(err))
         end
-        -- remove item names that are from DLCs above ab+
-        EID:RemoveREPItemNames(languageCode)
         -- load modular descriptions
         wasSuccessful, err = pcall(require, "descriptions.modular." .. languageCode)
         if not wasSuccessful and not string.find(err, "not found") then
@@ -209,6 +207,11 @@ function EID:InitializeLanguagePacks()
                 EID.GameVersion = "rgon"
             end
             EID:LoadLanguagePacks(EID.GameVersion)
+        end
+    else
+        for _, languageCode in ipairs(EID.Languages) do
+            -- remove item names that are from DLCs above ab+
+            EID:RemoveREPItemNames(languageCode)
         end
     end
 
