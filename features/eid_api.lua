@@ -673,7 +673,7 @@ function EID:getDescriptionObj(Type, Variant, SubType, entity, checkModifiers)
 	local baseItemString = Type.."."..Variant.."."..adjustedID
 	local isHorsePill = EID:getTableName(Type, Variant, SubType) == "horsepills" and adjustedID ~= 9999
 	description.fullItemString = isHorsePill and Type.."."..Variant.."."..(adjustedID + PillColor.PILL_GIANT_FLAG) or baseItemString
-	description.Name = EID:getObjectName(Type, Variant, SubType)
+	description.Name = EID:getObjectName(Type, Variant, SubType, EID.Config["TranslateItemName"])
 	description.Entity = entity or nil
 
 	local generatedModularDesc = false
@@ -949,13 +949,16 @@ end
 ---@param Type EntityType
 ---@param Variant integer
 ---@param SubType integer
+---@param language? string default: `EID:getLanguage()`. Used to get name for specific language
 ---@return string
-local function getObjectName_internal(Type, Variant, SubType)
+function EID:getFlatObjectName(Type, Variant, SubType, language)
 	local fallbackName = Type.."."..Variant.."."..SubType
 	local tableName = EID:getTableName(Type, Variant, SubType)
+	-- Use current langauge if param is not set
+	language = language or EID:getLanguage()
 
 	-- try to get name from EID.ItemNames table
-	local translatedName = EID.ItemNames[EID:getLanguage()][fallbackName]
+	local translatedName = EID.ItemNames[language][fallbackName]
 	local itemNameTableEntry = translatedName ~= "" and translatedName or EID.ItemNames[EID.DefaultLanguageCode][fallbackName]
 	-- return itemName table entry if found and not pills/horsepills
 	-- 'EID.ItemNames[EID.DefaultLanguageCode][fallbackName]' can also be empty check if it is empty again, to check ItemConfig stuff propery
@@ -1002,22 +1005,20 @@ end
 ---@param Type EntityType
 ---@param Variant integer
 ---@param SubType integer
+---@param translateItemOption? integer uses value from the TranslateItemNameDescription config option
 ---@return string
-function EID:getObjectName(Type, Variant, SubType)
-	local combinedName = getObjectName_internal(Type, Variant, SubType)
-	if EID.Config["TranslateItemName"] ~= 2 then
-		local curLanguage = EID.Config["Language"]
-		if EID:getLanguage() ~= EID.DefaultLanguageCode then
-			EID.Config["Language"] = EID.DefaultLanguageCode
-			local englishName = getObjectName_internal(Type, Variant, SubType)
-			EID.Config["Language"] = curLanguage
-			if englishName ~= combinedName then
-				if EID.Config["TranslateItemName"] == 1 then
-					combinedName = englishName
-				elseif EID.Config["TranslateItemName"] == 3 and combinedName ~= englishName then
-					combinedName = combinedName.." ("..englishName..")"
-				end
-			end
+function EID:getObjectName(Type, Variant, SubType, translateItemOption)
+	local option = translateItemOption or EID.Config["TranslateItemNameDescription"]
+	if option == 4 then
+		option = EID.Config["TranslateItemName"]
+	end
+	local combinedName = EID:getFlatObjectName(Type, Variant, SubType)
+	if option ~= 2 and EID:getLanguage() ~= EID.DefaultLanguageCode then
+		local englishName = EID:getFlatObjectName(Type, Variant, SubType, EID.DefaultLanguageCode)
+		if option == 1 or combinedName == englishName then
+			combinedName = englishName
+		elseif option == 3 and combinedName ~= englishName then
+			combinedName = combinedName.." ("..englishName..")"
 		end
 	end
 	return combinedName
