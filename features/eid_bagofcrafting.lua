@@ -390,7 +390,7 @@ local function GameStartCrafting()
 	for i=1, EID.XMLMaxItemID do
 		local item = EID.itemConfig:GetCollectible(i)
 		if item ~= nil then
-			CraftingItemQualities[item.ID] = item.CraftingQuality or item.Quality
+			CraftingItemQualities[item.ID] = item.CraftingQuality or item.Quality or 0
 			CraftingItemAllowed[item.ID] = EID:isCollectibleAllowed(item.ID)
 		end
 	end
@@ -404,7 +404,7 @@ local function GameStartCrafting()
 		local coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 		while coll ~= nil do
 			CraftingMaxItemID = CraftingMaxItemID + 1
-			CraftingItemQualities[coll.ID] = coll.CraftingQuality or coll.Quality
+			CraftingItemQualities[coll.ID] = coll.CraftingQuality or coll.Quality or 0
 			CraftingItemAllowed[coll.ID] = true
 			coll = EID.itemConfig:GetCollectible(CraftingMaxItemID+1)
 		end
