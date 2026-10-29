@@ -109,6 +109,8 @@ local trinkets = {
 	[104] = { "104", "Wish Bone", "5% chance to get destroyed and spawn a pedestal item when hit" }, -- Wish Bone
 	-- Change: "2%" to "5%"
 	[105] = { "105", "Bag Lunch", "{{Collectible22}} 5% chance to get destroyed and spawn Lunch when hit" }, -- Bag Lunch
+	-- Change: added Key Piece priority
+	[123] = {"123", "Filigree Feather", "Angel bosses drop angel items instead of Key Pieces#When holding one Key Piece, drop the other one instead"},
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = { "133", "Short Fuse", "Isaac's bombs explode faster#Bombs deal 15% more damage" }, -- Short Fuse
 	-- Change: added "Removes Tick"
@@ -180,7 +182,7 @@ local goldenTrinketEffects = {
 	-- Shiny Rock (replace):
 	[62] = {
 		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret room doors{{CR}} blink every 10 seconds",
-		"Crawlspace rocks, tinted rocks {{ColorGold}}and secret room doors{{CR}} blink every {{ColorGold}}5{{CR}} seconds",
+		"Crawlspace rocks, tinted rocks, {{ColorGold}}secret room and super secret room doors{{CR}} blink every {{ColorGold}}5{{CR}} seconds",
 	},
 	-- Safety Scissors (append):
 	[63] = {
