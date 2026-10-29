@@ -101,12 +101,16 @@ local trinkets = {
 	[93] = { "93", "用过的尿布", "每房间33%概率使所有苍蝇敌人变得友好#进入新房间时生成1蓝苍蝇"}, -- Used Diaper
 	-- Change: Changed "12-20 times" to "6-12 times"
 	[97] = {"97", "扁桃体", "受伤6-12次后, 获得阻挡弹幕的跟班#最多2个跟班, 之后该饰品消失"}, -- Tonsil
+	-- Change: now affected by luck, maxing at 18 luck
+	[99] = {"99", "超级弹球", "10%概率发射弹性泪弹#{{Luck}} 幸运18: 100%概率"},
 	-- Change: Added +2 Fire rate
 	[103] = {"103", "等号！", "当角色的{{Coin}}硬币, {{Bomb}}炸弹和{{Key}}钥匙数量相等时:#↑ {{Tears}} 射速修正+2"}, -- Equality!
 	-- Change: "2%" to "5%"
 	[104] = {"104", "许愿骨", "受伤时, 5%概率被摧毁并生成1底座道具"}, -- Wish Bone
 	-- Change: "2%" to "5%"
 	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 5%概率被摧毁并生成午餐"}, -- Bag Lunch
+	-- Change: added Key Piece priority
+	[123] = {"123", "银丝羽毛", "天使头目掉落天使房道具而不是钥匙碎片#持有一个钥匙碎片时，优先掉落另一个钥匙碎片"},
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: added "Removes Tick"
@@ -176,8 +180,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每10秒闪烁一次",
-		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
+		"夹层岩石, 标记岩石{{ColorGold}}与隐藏房的门{{CR}}每10秒闪烁一次",
+		"夹层岩石, 标记岩石, {{ColorGold}}隐藏房与超级隐藏房的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
 	},
 	-- Safety Scissors (append):
 	[63] = {
@@ -472,6 +476,13 @@ local horsepills = {
 	[44] = {"43", "咕噜！", "{{Trinket}} 消耗角色的饰品并永久获得其{{ColorGold}}金饰品{{CR}}效果"}, -- Gulp!
 }
 EID:updateDescriptionsViaTable(horsepills, EID.descriptions[languageCode].horsepills)
+
+---------- Character Info ----------
+local CharacterInfo = {
+	[19] = {"雅各", "同时控制雅各和以扫#使用炸弹时, 两个角色都会丢下炸弹#按住{{ButtonRT}}时, 以扫留在原地#{{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用以扫的主动道具, 按住{{ButtonRT}}使用他们的卡牌/胶囊#使用\"优化\"控制时, {{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用雅各的卡牌/胶囊, 按住{{ButtonRT}}使用以扫的主动道具和卡牌/胶囊#在道具多选一时, 雅各和以扫可以同时拿起道具"},
+	[20] = {"以扫", "同时控制雅各和以扫#使用炸弹时, 两个角色都会丢下炸弹#按住{{ButtonRT}}时, 以扫留在原地#{{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用以扫的主动道具, 按住{{ButtonRT}}使用他们的卡牌/胶囊#使用\"优化\"控制时, {{ButtonLT}}使用雅各的主动道具, {{ButtonRB}}使用雅各的卡牌/胶囊, 按住{{ButtonRT}}使用以扫的主动道具和卡牌/胶囊#在道具多选一时, 雅各和以扫可以同时拿起道具"},
+}
+EID:updateDescriptionsViaTable(CharacterInfo, EID.descriptions[languageCode].CharacterInfo)
 
 ---------- Car Battery ----------
 

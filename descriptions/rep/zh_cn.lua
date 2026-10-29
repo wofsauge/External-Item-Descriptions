@@ -162,7 +162,7 @@ local repCollectibles={
 	[344] = {"344", "火柴盒", "{{BlackHeart}} +1黑心#{{Bomb}} 生成3炸弹#{{Trinket41}} 生成火柴棍"}, -- Match Book
 	[345] = {"345", "合成油脂", "↑ {{Damage}} 伤害+1#↑ {{Range}} 射程+2.5"}, -- Synthoil
 	[346] = {"346", "零食", "↑ {{Heart}} +1心之容器#{{HealingRed}} 治疗1红心"}, -- A Snack
-	[349] = {"349", "木制镍币", "{{Coin}} 59%概率生成1随机硬币"}, -- Wooden Nickel
+	[349] = {"349", "木制镍币", "{{Coin}} 60%概率生成1随机硬币"}, -- Wooden Nickel
 	[352] = {"352", "玻璃大炮", "{{Damage}} 发射1颗巨大的穿刺灵体泪弹, 造成10x角色伤害+10点伤害#{{Warning}} 持有时受伤:#↓ 额外受到2心伤害#↓ 大炮破碎持续数个房间#↑ {{Range}} 在当前房间中射程+1.5, 并留下血迹#额外伤害不会击杀以撒#自伤不会触发该效果"}, -- Glass Canon
 	[353] = {"353", "炸弹人", "{{Bomb}} +5炸弹#炸弹十字爆炸#↓ 角色放置的炸弹伤害x0.75"},
 	[354] = {"354", "琥珀爆米花", "↑ {{Heart}} +1心之容器#{{HealingRed}} 治疗1红心#{{Trinket}} 生成1饰品"}, -- Crack Jacks
@@ -442,9 +442,9 @@ EID.descriptions[languageCode].bingeEaterBuffs = {
 	[24] = "↑ {{Damage}} 伤害+1#↑ {{Shotspeed}} 弹速+0.2#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Dessert
 	[25] = "↑ {{Range}} 射程+2.5#↑ {{Shotspeed}} 弹速+0.2#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Breakfast
 	[26] = "↑ {{Damage}} 伤害+1#↑ {{Range}} 射程+2.5#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Rotten Meat
-	[346] = "↑ {{Shotspeed}} 弹速+0.2#↑ {{Luck}}  幸运+1#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- A Snack
+	[346] = "↑ {{Shotspeed}} 弹速+0.2#↑ {{Luck}} 幸运+1#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- A Snack
 	[456] = "↑ {{Damage}} 伤害+1#↑ {{Luck}} 幸运+1#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Midnight Snack
-	[707] = "↑ {{Tears}} 射速+0.5#↑ {{Luck}}  幸运+1#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Supper
+	[707] = "↑ {{Tears}} 射速+0.5#↑ {{Luck}} 幸运+1#↑ {{Damage}} 暂时伤害+3.6#↓ {{Speed}} 移速-0.03", -- Supper
 }
 
 -- Buffs caused by Book of Belial with Judas' Birthright
@@ -520,7 +520,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[124] = "生成触发道具对应的魂火", -- Dead Sea Scrolls
 	[127] = "仅存在于道具所创新层的无限血量魂火", -- Forget Me Now
 	[130] = "魂火会向角色发射方向冲刺", -- A Pony
-	[133] = "生成3高血量魂火", -- Guppy's Paw
 	[137] = "每个引爆的炸弹生成1魂火#魂火的泪弹也可以被远程引爆", -- Remote Detonator
 	[145] = "生成魂火而不是苍蝇#被摧毁时生成1只蓝苍蝇", -- Guppy's Head
 	[147] = "概率从大便生成粪滴魂火, 从石头5选1生成魂火:#{{Collectible132}}煤炭/{{Collectible201}}铁/{{Collectible202}}金/{{Collectible68}}红石/{{Collectible415}}钻石", -- Notched Axe
@@ -528,7 +527,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[166] = "摧毁房间中所有掉落物, 每个都有概率生成1魂火", -- D20
 	[175] = "魂火会解锁碰到的箱子/门, 包括超级撒但, 回溯, 尸宫的门#该魂火可以捐给{{KeyBeggar}}钥匙大师", -- Dad's Key
 	[177] = "根据获得的奖励生成魂火", -- Portable Slot
-	[186] = "高血量魂火", -- Blood Rights
 	[263] = "被摧毁时掉落1{{Rune}}符文", -- Clear Rune
 	[283] = "重置所有魂火并生成1随机魂火#不重置美德之书", -- D100
 	[284] = "移除所有魂火, 每持有2个道具生成1随机魂火#不重置美德之书", -- D4
@@ -568,7 +566,6 @@ EID.descriptions[languageCode].bookOfVirtuesWisps = {
 	[434] = "生成魂火而不是苍蝇#最多5只苍蝇产生血量和伤害增强的1魂火", -- Jar of Flies
 	[437] = "首次击中时产生七面骰效果", -- D7
 	[441] = "{{Chargeable}} 蓄力硫磺火泪弹#在超级喷射期间会持续发射", -- Mega Blast
-	[475] = "死亡后保持存在", -- Plan C
 	[476] = "若没复制掉落物, 则生成第二个魂火", -- D1
 	[477] = "生成所有吸收的主动道具的魂火#本身不生成魂火", -- Void
 	[478] = "被摧毁时暂停所有敌人和弹幕3秒", -- Pause
@@ -678,7 +675,7 @@ EID.descriptions[languageCode].TearFlagNames = {
     [6] = "分裂",                    -- Parasite type tear (splits on collision)
     [7] = "伤害随距离提升",            -- Lump of coal type tear (grows by range)
     [8] = "回旋",                -- My reflection type tear (returns back)
-    [9] = "持续",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage
+    [9] = "持续",               -- Polyphemus type tear (Damages the entity and if the damage is more then enemy hp it continues with less damage)
     [10] = "扭扭虫",         -- Wiggle worm type tear (wiggles)
     [11] = "击中时生成蓝苍蝇",        -- Mulligan type tear (creates fly on hit)
     [12] = "爆炸",               -- IPECAC type tear (explodes on hit)
@@ -895,7 +892,7 @@ local repTrinkets={
 	[90] = {"90", "棕色雷管", "大便摧毁时爆炸, 造成100点伤害"}, -- Brown Cap
 	[92] = {"92", "碎裂的王冠", "↑ 高于{{Speed}}移速1, {{Tears}}射速2.73, {{Damage}}伤害3.5, {{Range}}射程6.5, {{Shotspeed}}弹速1的部分修正x1.2"}, -- Cracked Crown
 	[96] = {"96", "衔尾虫", "↑ {{Tears}} 射速+0.4#↑ {{Range}} 射程+1.5#灵体泪弹#10%概率为追踪泪弹#{{Luck}} 幸运9: 100%概率#角色的泪弹螺旋快速前进"}, -- Ouroboros Worm
-	[98] = {"98", "鼻涕泡", "5%概率发射追踪粘性泪弹#{{Damage}} 每秒造成1x角色伤害#能粘住10秒"}, -- Nose Goblin
+	[98] = {"98", "鼻涕泡", "10%概率发射粘性泪弹#50%概率带有追踪效果#{{Damage}} 每秒造成1x角色伤害#能粘住10秒"}, -- Nose Goblin
 	[101] = {"101", "暗灯泡", "持有完全未充能的主动道具时:#↑ {{Speed}} 移速+0.5#↑ {{Tears}} 射速+0.5#↑ {{Damage}} 伤害+1.5#↑ {{Range}} 射程+1.5#↑ {{Shotspeed}} 弹速+0.3#↑ {{Luck}} 幸运+2"}, -- Dim Bulb
 	[107] = {"107", "乌鸦的心", "受伤时, 首先消耗红心, 然后消耗魂心/黑心#{{Warning}} 红心伤害会降低恶魔房/天使房概率"}, -- Crow Heart
 	[110] = {"110", "银币", "{{Shop}} 商店会出现在子宫和尸宫中"},
@@ -913,7 +910,7 @@ local repTrinkets={
 	[137] = {"137", "勿忘草", "进入新层时, 上一层未收集的最多4个掉落物在初始房间生成"}, --  Myosotis
 	[138] = {"138", "'M", "使用主动道具后, 将该主动道具重置"}, --  'M
 	[139] = {"139", "泪滴护符", "{{Luck}} 对基于幸运的泪弹效果, 幸运+4"}, --  Teardrop Charm
-	[140] = {"140", "所多玛之果", "拾起红心时, 50%概率将其变成蓝蜘蛛#满血时改为100%"}, --  Apple of Sodom
+	[140] = {"140", "所多玛之果", "拾起红心时, 50%概率将其变成蓝蜘蛛#满血时必定触发#该效果可能会消耗用于治疗的心"}, --  Apple of Sodom
 	[141] = {"141", "失落摇篮曲", "跟班的射速变为2倍"}, --  Forgotten Lullaby
 	[142] = {"142", "伯大尼的信仰", "{{Collectible584}} 进入新层时, 生成4美德之书魂火"}, --  Beth's Faith
 	[143] = {"143", "老旧电容", "{{Battery}} 阻止主动道具通过清理房间充能#{{Battery}} 清理房间后, 20%概率生成1电池#{{Luck}} 幸运5: 33%"}, --  Old Capacitor
@@ -948,7 +945,7 @@ local repTrinkets={
 	[172] = {"172", "诅咒硬币", "{{Coin}} 拾起硬币时, 将角色传送至随机房间#可以传送至隐藏房"}, --  Cursed Penny
 	[173] = {"173", "你的灵魂", "{{DevilRoom}} 允许免费进行一次恶魔交易#{{Warning}} 免费交易也会影响天使房概率"}, --  Your Soul
 	[174] = {"174", "数字冰箱贴", "{{DevilChance}} 恶魔房概率+10%#防止恶魔房中出现坎卜斯#恶魔房变为特殊房间布局, 有更多的交易, 黑心和敌人"}, --  Number Magnet
-	[175] = {"175", "奇怪的钥匙", "无论时间, 打开死寂的门#使用{{Collectible297}}潘多拉的盒子时, 从随机道具池生成6个道具"}, --  Strange Key
+	[175] = {"175", "奇怪的钥匙", "无论时间, 打开死寂的门#使用{{Collectible297}}潘多拉魔盒时, 从随机道具池生成6个道具"}, --  Strange Key
 	[176] = {"176", "小血团", "生成1个血块跟班, 模仿角色的行动#复制角色的属性和泪弹效果, 造成35%角色伤害#每个房间重生"}, --  Lil Clot
 	[177] = {"177", "纹身贴", "{{Chest}} 清理{{ChallengeRoom}}挑战房后, 生成1箱子#清理{{BossRushRoom}}头目挑战房, 生成1道具"}, --  Temporary Tattoo
 	[178] = {"178", "被吞下的M80鞭炮", "受伤时角色有50%概率爆炸#不会摧毁交互中的献血机或忏悔室, 但会生成摧毁时的掉落物"}, --  Swallowed M80
@@ -1076,10 +1073,10 @@ local repCards={
 	[85] = {"85", "???的魂石", "{{Poison}} 产生8团毒气并留下棕色水迹, 然后快速生成7屁股炸弹#站在水迹中获得:#↑ {{Tears}} 射速修正+1.5#↑ {{Damage}} 伤害+1"}, -- Soul of ???
 	[86] = {"86", "夏娃的魂石", "{{Timer}} 在当前房间中生成14只死鸟跟班追击敌人"}, -- Soul of Eve
 	[87] = {"87", "参孙的魂石", "{{Collectible704}} 激活狂怒! 10秒#{{Timer}} 每次击杀使效果延长1秒"}, -- Soul of Samson
-	[88] = {"88", "阿撒泻勒的魂石", "{{Collectible441}} 发射超级喷射7.5秒"}, -- Soul of Azazel
+	[88] = {"88", "阿撒泻勒的魂石", "{{Collectible441}} 发射超级喷射的血激光柱7.5秒"}, -- Soul of Azazel
 	[89] = {"89", "拉撒路的魂石", "角色死亡并立即以半心复活#致死时自动使用此物品(相当于多一条命)"}, -- Soul of Lazarus
 	[90] = {"90", "伊甸的魂石", "重置当前房间中的底座道具和掉落物#重置的道具来自随机道具池"}, -- Soul of Eden
-	[91] = {"91", "游魂的魂石", "{{Player10}} 在当前房间中, 角色变为游魂#允许免费在{{DevilRoom}}恶魔房拿1个道具#可以免费直接进入陵墓或炼狱"}, -- Soul of the Lost
+	[91] = {"91", "游魂的魂石", "{{Player10}} 在当前房间中, 角色变为游魂#允许免费在{{DevilRoom}}恶魔房拿1个道具#可以不消耗心进入通往陵墓或炼狱的门"}, -- Soul of the Lost
 	[92] = {"92", "莉莉丝的魂石", "永久获得1个随机跟班"}, -- Soul of Lilith
 	[93] = {"93", "店主的魂石", "{{Coin}} 生成1-25随机硬币"}, -- Soul of the Keeper
 	[94] = {"94", "亚玻伦的魂石", "生成15只随机蝗虫"}, -- Soul of Apollyon
@@ -1235,7 +1232,7 @@ local repCharacterInfo = {
 	[24] = {"堕化犹大", "无法拥有红心#{{BlackHeart}} 心之容器改为黑心"},
 	[25] = {"堕化???", "炸弹由大便取代#{{Crafting29}} 造成伤害时生成大便掉落物#{{Collectible715}} 通过使用保留, 存储1个大便以备后用"},
 	[26] = {"堕化夏娃", "按住发射键会将你的心转换为血团#不同类型的心会生成拥有不同血量和泪弹效果的血团#血团会随着时间失去血量#按住{{ButtonRT}}时血团会留在原地#只剩半心且没有血团时, 获得治疗或离开房间前, 获得属性提升并使用圣血吸管进行攻击"},
-	[27] = {"堕化参孙", "造成或受到伤害会为积攒狂暴状态#{{Timer}} 进入狂暴状态时, 在5秒内:#↑ {{Speed}} 移速+0.4# {{Tears}} 射速修正x0.5#↑ {{Tears}} 射速修正+2#↑ {{Damage}} 伤害+3#攻击变为能反弹子弹的近战攻击#{{Timer}} 每次击杀增加1秒狂暴持续时间并获得短暂无敌"},
+	[27] = {"堕化参孙", "造成或受到伤害会积攒狂暴状态#{{Timer}} 进入狂暴状态时, 在5秒内:#↑ {{Speed}} 移速+0.4# {{Tears}} 射速修正x0.5#↑ {{Tears}} 射速修正+2#↑ {{Damage}} 伤害+3#攻击变为能反弹子弹的近战攻击#{{Timer}} 每次击杀增加1秒狂暴持续时间并获得短暂无敌"},
 	[28] = {"堕化阿撒泻勒", "开始蓄力时咯血#用咯血击中敌人会将蓄力时间减半#咯血造成1.5x角色伤害#{{BrimstoneCurse}} 硫磺火激光对受影响的敌人造成额外伤害#该敌人死亡时会爆炸, 并将诅咒传给附近的敌人"},
 	[29] = {"堕化拉撒路", "拉撒路有生死两种状态, 每种状态都有各自的道具和血量#清理房间/波次或使用生死逆转时, 切换到另一种状态"},
 	[30] = {"堕化伊甸", "受伤时, 重置角色属性, 道具, 饰品和消耗品#道具会重置成同一道具池中的道具#自伤不会导致重置"},
@@ -1272,9 +1269,9 @@ EID.descriptions[languageCode].birthright ={
 	{"遗骸", "", "遗骸之魂不再绑定, 可自由移动"},
 	{"遗骸之魂", "", "遗骸之魂不再绑定, 可自由移动"},
 	{"伯大尼", "", "{{Battery}} 使用魂心充能激活道具时, 50%概率不消耗魂心充能"},
-	{"雅各", "", "拿起这个道具的角色获得另个角色3个被动道具的复制品"},
-	{"以扫", "", "拿起这个道具的角色获得另个角色3个被动道具的复制品"},
-	{"堕化以撒", "", "增加4个额外被动道具槽位#长子名分本身不占用槽位"},
+	{"雅各", "", "获得以扫最后拾取的3个被动道具的复制品, 反之亦然"},
+	{"以扫", "", "获得雅各最后拾取的3个被动道具的复制品, 反之亦然"},
+	{"堕化以撒", "", "增加4个被动道具槽位#长子名分本身不占用槽位"},
 	{"堕化抹大拉", "", "{{Heart}} 不流失的心之容器增加1个#{{HealingRed}} 治疗1红心"},
 	{"堕化该隐", "", "道具分解生成的掉落物数量翻倍"},
 	{"堕化犹大", "", "{{Collectible705}} 暗仪刺刀击中敌人和弹幕的范围变大"},
@@ -1394,7 +1391,7 @@ EID.descriptions[languageCode].poopSpells = {
 	{"岩石大便", "投掷时可造成3次接触伤害#需要受击更多次才能摧毁"},
 	{"恶臭大便", "释放毒气#{{Warning}} 毒气接触火会爆炸!"},
 	{"黑大便", "{{Slow}} 产生减速水迹#{{Confusion}} 被摧毁时对所有敌人造成10点伤害并使其混乱"},
-	{"神圣大便", "{{Collectible543}} 产生1个白大便#在光环中时:#↑ {{Damage}} 伤害修正x1.2#↑ {{Tears}} 射速修正x2.5#追踪泪弹#50%概率阻挡伤害#"},
+	{"神圣大便", "{{Collectible543}} 产生1个白大便#在光环中时:#↑ {{Damage}} 伤害修正x1.2#↑ {{Tears}} 射速修正x2.5#追踪泪弹#50%概率阻挡伤害"},
 	{"棕色水迹", "留下水迹#对敌人造成接触伤害#角色站在水迹上会提升射速和伤害#当轨迹与其他大便接触时, 获得特殊效果"},
 	{"屁", "推开周围的敌人和弹幕, 生成毒气#{{Warning}} 毒气接触火会爆炸!"},
 	{"大便炸弹", "普通的可投掷炸弹"},
@@ -1448,7 +1445,7 @@ EID.descriptions[languageCode].ModdedRecipesWarningText = "其他模组的道具
 -- For collectible/player conditionals, lines will automatically have their bulletpoint, and {1} is replaced with their name
 local repConditions = {
 	------ GENERAL STRINGS ------
-	["Tainted Revive"] = "{1}只是复活",
+	["Tainted Revive"] = "{1}以自身复活",
 	["Ice Tears"] = "冻结敌人不算击杀", -- Uranus Anti-Synergy
 
 	------ GREED MODE ------
@@ -1476,8 +1473,8 @@ local repConditions = {
 	["5.100.694 (Tainted Keeper)"] = {"{{Warning}} {1}拾起此道具后受伤即死#↑ {{Damage}} 每个碎心使伤害+0.25#{{BrokenHeart}} +1碎心#{{BrokenHeart}} 致死时, 致死伤害改为+1碎心#{{Warning}} 堕化店主2碎心时死亡"}, -- Heartbreak + Tainted Keeper
 	["5.100.501"] = "{1}: 获得额外的硬币心容器", -- Greed's Gullet + Keeper
 	["5.100.188"] = "{1}: 造成7.5点伤害", -- Cain + Abel
-	["5.100.360"] = "{1}: 造成1x角色伤害", -- Lilith + Incubus
-	["5.100.728"] = "{1}: 造成1x角色伤害", -- Lilith + Gello
+	["5.100.360"] = "{1}: 造成100%角色伤害", -- Lilith + Incubus
+	["5.100.728"] = "{1}: 造成100%角色伤害", -- Lilith + Gello
 	["5.100.230 (Keeper)"] = "{1}: 保留1硬币心容器", -- Abaddon
 	["5.100.230 (Bethany)"] = "{1}: 保留半红心", -- Abaddon
 	["5.100.230 (Tainted Bethany)"] = "{1}: 不失去红心充能", -- Abaddon

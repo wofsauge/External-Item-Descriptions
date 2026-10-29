@@ -286,7 +286,7 @@ EID.descriptions[languageCode].collectibles={
 	{"262", "Missing Page 2", "{{BlackHeart}} +1 Black Heart#Taking damage down to 1 heart damages all enemies in the room"}, -- Missing Page 2
 	{"263", "", "<item does not exist>"},
 	{"264", "Smart Fly", "Orbital#Attacks enemies when Isaac takes damage#Deals 22.5 contact damage per second"}, -- Smart Fly
-	{"265", "Dry Baby", "10% chance to damage all enemies in the room when it is hit by an enemy tear"}, -- Dry Baby
+	{"265", "Dry Baby", "25% chance to damage all enemies in the room when it is hit by an enemy tear#2.5 seconds cooldown"}, -- Dry Baby
 	{"266", "Juicy Sack", "{{Slow}} Leaves slowing creep#Spawns 1-2 friendly spiders after clearing a room"}, -- Juicy Sack
 	{"267", "Robo-Baby 2.0", "Shoots lasers#Deals 3.5 damage per shot#Moves in the direction Isaac is shooting"}, -- Robo-Baby 2.0
 	{"268", "Rotten Baby", "Spawns blue flies when Isaac shoots"}, -- Rotten Baby
