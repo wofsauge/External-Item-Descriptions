@@ -939,6 +939,7 @@ if EID.isRepentance then
 	
 	-- Handle Glitched Crown style pedestals
 	local currentSelection = {} -- keep track of which description we're looking at for a given pedestal
+	local lastGlitchedCrownAdvance = {}
 	local goingToSpindown = false
 	local inGlitchedCrown = false
 	local function GlitchedCrownCallback(descObj)
@@ -969,8 +970,11 @@ if EID.isRepentance then
 			-- watch for Tab being pressed to advance our selection by 1
 			-- when spindown dice is involved, watch for tab being released instead of pressed, it makes more sense
 			if goingToSpindown and EID:TabReleased() or not goingToSpindown and EID:TabPressed() then
-				currentSelection[pedestalID] = currentSelection[pedestalID] + 1
-				if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
+				if lastGlitchedCrownAdvance[pedestalID] ~= EID.GameUpdateCount then
+					lastGlitchedCrownAdvance[pedestalID] = EID.GameUpdateCount
+					currentSelection[pedestalID] = currentSelection[pedestalID] + 1
+					if currentSelection[pedestalID] > #sortedItems then currentSelection[pedestalID] = 0 end
+				end
 			end
 
 			-- display the overview description

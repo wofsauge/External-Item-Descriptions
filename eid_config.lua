@@ -25,9 +25,12 @@ EID.UserConfig = {
 	--
 	["Language"] = "auto",
 	-- Change if item names should be displayed in English, your translated language or both
-	-- States: 1 = English , 2 = translated,  3 = both
+	-- "TranslateItemName" : For title (name)
+	-- "TranslateItemNameDescription" : For non-title (item names inside descriptions, use this if item name option messes descriptions)
+	-- States: 1 = English , 2 = translated,  3 = both,  4 = Follow "TranslateItemName" option
 	-- Default = 2
 	["TranslateItemName"] = 2,
+	["TranslateItemNameDescription"] = 4,
 	-- Change font type. Values are [default, borderless, inverted]
 	-- Default = "default"
 	["FontType"] = "default",
@@ -553,6 +556,7 @@ EID.UserConfig = {
 EID.DefaultConfig = {
 	["Language"] = "auto",
 	["TranslateItemName"] = 2,
+	["TranslateItemNameDescription"] = 4,
 	["FontType"] = "default",
 	["TextboxWidth"] = 130,
 	["Size"] = 1,
