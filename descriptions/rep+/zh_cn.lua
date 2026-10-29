@@ -110,7 +110,7 @@ local trinkets = {
 	-- Change: "2%" to "5%"
 	[105] = {"105", "午餐袋", "{{Collectible22}} 受伤时, 5%概率被摧毁并生成午餐"}, -- Bag Lunch
 	-- Change: added Key Piece priority
-	[123] = {"123", "银丝羽毛", "天使头目掉落天使房道具而不是钥匙碎片#持有一个钥匙碎片时，优先掉落另一个钥匙碎片"}
+	[123] = {"123", "银丝羽毛", "天使头目掉落天使房道具而不是钥匙碎片#持有一个钥匙碎片时，优先掉落另一个钥匙碎片"},
 	-- Change: added "Bombs deal 15% more damage"
 	[133] = {"133", "短引线", "角色的炸弹爆炸更快#炸弹造成的伤害提高15%"}, -- Short Fuse
 	-- Change: added "Removes Tick"
@@ -180,8 +180,8 @@ local goldenTrinketEffects = {
 	},
 	-- Shiny Rock (replace):
 	[62] = {
-		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每10秒闪烁一次",
-		"夹层岩石, 标记岩石{{ColorGold}}通往密室的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
+		"夹层岩石, 标记岩石{{ColorGold}}与隐藏房的门{{CR}}每10秒闪烁一次",
+		"夹层岩石, 标记岩石{{ColorGold}}隐藏房与超级隐藏房的门{{CR}}每{{ColorGold}}5{{CR}}秒闪烁一次",
 	},
 	-- Safety Scissors (append):
 	[63] = {
